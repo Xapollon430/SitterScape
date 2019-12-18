@@ -1,0 +1,19 @@
+{
+	"name": "Server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"repository": {},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^3.0.7",
+		"express": "^4.17.1",
+		"mongoose": "^5.8.1",
+		"validator": "^12.1.0"
+	}
+}
