@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
-const Routes = require("./routes/route");
+const Route = require("./routes/route");
 
 const PORT = process.env.PORT || 5000;
-app.use(express.json());
 
-app.use(Routes);
+app.use(express.json());
+app.use(Route);
+// app.use(express.static("static"));
 
 app.listen(PORT, () => {
-	console.log("Listening on PORT");
+	console.log("Listening");
 });
