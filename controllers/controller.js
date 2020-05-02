@@ -7,16 +7,18 @@ const signUp = async (req, res) => {
 	let token;
 	try {
 		user = new User(userData);
-		token = await user.generateAuthToken();
+		token = user.generateAuthToken();
+		await user.save();
 	} catch (e) {
-		return res.status(400).send({ error: e.message });
+		console.log(e.message);
+		return res.status(400).send({ error: "Failed signing up." });
 	}
 	res.send({ user, token });
 };
 
 const login = async (req, res) => {
-	const { name, password } = req.body;
-	let foundUser = await User.findOne({ name });
+	const { username, password } = req.body;
+	let foundUser = await User.findOne({ username }, { username: "1" });
 	if (!foundUser) {
 		return res.status(400).send({ error: "Wrong password or username" });
 	}

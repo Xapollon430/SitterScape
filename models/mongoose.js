@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 const userSchema = mongoose.Schema({
-	name: {
+	username: {
 		type: String,
 		required: true,
 		trim: true,
@@ -48,12 +48,9 @@ const userSchema = mongoose.Schema({
 	],
 });
 
-userSchema.methods.generateAuthToken = async function () {
-	const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
-
-	user.tokens = this.tokens.concat({ token });
-	await this.save();
-
+userSchema.methods.generateAuthToken = function () {
+	const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
+	this.tokens = this.tokens.concat({ token });
 	return token;
 };
 
