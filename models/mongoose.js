@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Validator = require("validator");
+const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGO_URL, {
@@ -32,19 +34,28 @@ const userSchema = mongoose.Schema({
 		trim: true,
 		minlength: 6,
 	},
-	type: {
-		type: String,
-		required: true,
-	},
+	// type: {
+	// 	type: String,
+	// 	required: true,
+	// },
 	tokens: [
 		{
 			token: {
 				type: String,
-				required: true,
+				// required: true,
 			},
 		},
 	],
 });
+
+userSchema.methods.generateAuthToken = async function () {
+	const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
+
+	user.tokens = this.tokens.concat({ token });
+	await this.save();
+
+	return token;
+};
 
 let User = mongoose.model("User", userSchema);
 

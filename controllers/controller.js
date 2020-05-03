@@ -1,34 +1,34 @@
 const { User } = require("../models/mongoose");
+require("dotenv").config();
 
 const signUp = async (req, res) => {
 	const userData = req.body;
 	let user;
+	let token;
 	try {
 		user = new User(userData);
-		await user.save();
+		token = await user.generateAuthToken();
 	} catch (e) {
-		res.status(400).send({ error: e.message });
+		return res.status(400).send({ error: e.message });
 	}
-
-	res.send(user);
+	res.send({ user, token });
 };
 
 const login = async (req, res) => {
 	const { name, password } = req.body;
 	let foundUser = await User.findOne({ name });
 	if (!foundUser) {
-		res.status(400).send({ error: "Wrong password or username" });
-		return;
+		return res.status(400).send({ error: "Wrong password or username" });
 	}
 
 	let isValidPassword = password === foundUser.password;
 
 	if (!isValidPassword) {
-		res.status(400).send({ error: "Wrong password or username" });
-		return;
+		return res.status(400).send({ error: "Wrong password or username" });
 	}
 
-	res.status(200).send({ foundUser });
+	let token = await foundUser.generateAuthToken();
+	res.status(200).send({ foundUser, token });
 };
 
 module.exports = {
