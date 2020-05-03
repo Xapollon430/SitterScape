@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 const Validator = require("validator");
+require("dotenv").config();
 
-mongoose.connect(
-	"mongodb+srv://Xapollon430:Anakonda11+@cluster0-8aiat.mongodb.net/Users?retryWrites=true&w=majority",
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	}
-);
+mongoose.connect(process.env.MONGO_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 
 const userSchema = mongoose.Schema({
 	name: {
