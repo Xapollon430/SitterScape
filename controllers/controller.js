@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const signUp = async (req, res) => {
 	const userData = req.body;
-	console.log(req.body);
 	let user;
 	let token;
 	try {
