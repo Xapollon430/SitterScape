@@ -38,19 +38,20 @@ const userSchema = mongoose.Schema({
 	// 	type: String,
 	// 	required: true,
 	// },
-	tokens: [
-		{
-			token: {
-				type: String,
-				// required: true,
-			},
-		},
-	],
+	// tokens: [
+	// 	{
+	// 		token: {
+	// 			type: String,
+	// 			// required: true,
+	// 		},
+	// 	},
+	// ],
 });
 
 userSchema.methods.generateAuthToken = function () {
-	const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
-	this.tokens = this.tokens.concat({ token });
+	const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET, {
+		expiresIn: "10000",
+	});
 	return token;
 };
 
