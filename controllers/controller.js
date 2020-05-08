@@ -14,7 +14,7 @@ const signUp = async (req, res) => {
 		return res.status(400).send({ error: "Failed signing up." });
 	}
 	res.send({ user, token });
-	let x;
+	let y;
 };
 
 const login = async (req, res) => {
