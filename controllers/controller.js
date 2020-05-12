@@ -19,14 +19,11 @@ const signUp = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  console.log(req.body);
   const { username, password } = req.body;
   let foundUser = await User.findOne({ username });
   if (!foundUser) {
     return res.status(400).send({ error: "Wrong password or username" });
   }
-
-  console.log(foundUser);
 
   let isValidPassword = password === foundUser.password;
 
@@ -35,12 +32,10 @@ const login = async (req, res) => {
   }
 
   let token = await foundUser.generateAuthToken();
-  res
-    .status(200)
-    .send({
-      user: { username: foundUser.username, email: foundUser.email },
-      token,
-    });
+  res.status(200).send({
+    user: { username: foundUser.username, email: foundUser.email },
+    token,
+  });
 };
 
 module.exports = {
