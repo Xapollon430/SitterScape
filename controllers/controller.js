@@ -2,38 +2,48 @@ const { User } = require("../models/mongoose");
 require("dotenv").config();
 
 const signUp = async (req, res) => {
-	const userData = req.body;
-	let user;
-	let token;
-	try {
-		user = new User(userData);
-		token = user.generateAuthToken();
-		await user.save();
-	} catch (e) {
-		console.log(e.message);
-		return res.status(400).send({ error: "Failed signing up." });
-	}
-	res.send({ user, token });
+  console.log(req.body);
+
+  const userData = req.body;
+  let user;
+  let token;
+  try {
+    user = new User(userData);
+    token = user.generateAuthToken();
+    await user.save();
+  } catch (e) {
+    console.log(e.message);
+    return res.status(400).send({ error: "Failed signing up." });
+  }
+  res.send({ user, token });
 };
 
 const login = async (req, res) => {
-	const { username, password } = req.body;
-	let foundUser = await User.findOne({ username }, { username: "1" });
-	if (!foundUser) {
-		return res.status(400).send({ error: "Wrong password or username" });
-	}
+  console.log(req.body);
+  const { username, password } = req.body;
+  let foundUser = await User.findOne({ username });
+  if (!foundUser) {
+    return res.status(400).send({ error: "Wrong password or username" });
+  }
 
-	let isValidPassword = password === foundUser.password;
+  console.log(foundUser);
 
-	if (!isValidPassword) {
-		return res.status(400).send({ error: "Wrong password or username" });
-	}
+  let isValidPassword = password === foundUser.password;
 
-	let token = await foundUser.generateAuthToken();
-	res.status(200).send({ foundUser, token });
+  if (!isValidPassword) {
+    return res.status(400).send({ error: "Wrong password or username" });
+  }
+
+  let token = await foundUser.generateAuthToken();
+  res
+    .status(200)
+    .send({
+      user: { username: foundUser.username, email: foundUser.email },
+      token,
+    });
 };
 
 module.exports = {
-	signUp,
-	login,
+  signUp,
+  login,
 };
