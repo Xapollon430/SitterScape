@@ -19,18 +19,18 @@ const signUp = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
-  let foundUser = await User.findOne({ username });
+  const { email, password } = req.body;
+  let foundUser = await User.findOne({ email });
+
   if (!foundUser) {
-    return res.status(400).send({ error: "Wrong password or username" });
+    return res.status(400).send({ error: "Wrong password or email" });
   }
 
   let isValidPassword = password === foundUser.password;
 
   if (!isValidPassword) {
-    return res.status(400).send({ error: "Wrong password or username" });
+    return res.status(400).send({ error: "Wrong password or email" });
   }
-
   let token = await foundUser.generateAuthToken();
   res.status(200).send({
     user: { username: foundUser.username, email: foundUser.email },
