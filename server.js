@@ -5,6 +5,7 @@ const Route = require("./routes/route");
 
 const PORT = process.env.PORT || 5000;
 
+let fetchtest;
 
 app.use(express.json());
 app.use(cors());
