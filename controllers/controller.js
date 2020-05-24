@@ -21,15 +21,14 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   let foundUser = await User.findOne({ email });
-
   if (!foundUser) {
-    return res.status(400).send({ error: "Wrong password or email" });
+    return res.json({ message: "Wrong password or email" }, 400);
   }
 
   let isValidPassword = password === foundUser.password;
 
   if (!isValidPassword) {
-    return res.status(400).send({ error: "Wrong password or email" });
+    return res.json({ message: "Wrong password or email" }, 400);
   }
   let token = await foundUser.generateAuthToken();
   res.status(200).send({
