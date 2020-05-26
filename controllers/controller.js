@@ -1,4 +1,5 @@
 const { User } = require("../models/mongoose");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const signUp = async (req, res) => {
@@ -18,7 +19,7 @@ const signUp = async (req, res) => {
   res.send({ user, token });
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
   let foundUser = await User.findOne({ email });
   if (!foundUser) {
