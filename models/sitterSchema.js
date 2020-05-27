@@ -38,10 +38,10 @@ const sitterSchema = mongoose.Schema({
   },
   phoneNumber: String,
   rate: Number,
-  //   profileComments
+  profileComments,
 });
 
-userSchema.methods.generateAuthToken = function () {
+sitterSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: "10000",
   });
