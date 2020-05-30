@@ -16,8 +16,8 @@ app.use(express.json());
 app.use(cors());
 app.use(Routes);
 
-app.use((error, req, res) => {
-  res.status(error.id).json(error.message);
+app.use((req, res) => {
+  return res.json({ error: res.error.message });
 });
 
 app.listen(PORT, () => {
