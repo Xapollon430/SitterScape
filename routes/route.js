@@ -7,14 +7,8 @@ router.post("/sign-up", Controller.signUp);
 
 router.post("/login", Controller.login);
 
-router.get("/test", async (req, res, next) => {
-  try {
-    user = await User.findById(req.userData.userId);
-  } catch (e) {
-    let error = new HttpError("test", 400);
-    res.error = error;
-    return next();
-  }
+router.use((req, res) => {
+  return res.json({ error: "Route doesnt exist" });
 });
 
 module.exports = router;
