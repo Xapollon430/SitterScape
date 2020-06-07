@@ -38,7 +38,8 @@ const sitterSchema = mongoose.Schema({
   },
   phoneNumber: String,
   rate: Number,
-  profileComments,
+  rating: Number,
+  // profileComments,
 });
 
 sitterSchema.methods.generateAuthToken = function () {

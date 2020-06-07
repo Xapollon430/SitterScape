@@ -1,4 +1,5 @@
-const { User } = require("../models/mongoose");
+const { Sitter } = require("../models/Sitter");
+const { Owner } = require("../models/Owner");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
