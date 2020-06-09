@@ -23,6 +23,7 @@ const ownerSchema = mongoose.Schema({
     minlength: 6,
   },
   animals: [{ kind: String, weight: String }],
+  photo: String
 });
 
 ownerSchema.methods.generateAuthToken = function () {
