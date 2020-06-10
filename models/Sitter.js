@@ -40,6 +40,7 @@ const sitterSchema = mongoose.Schema({
   rate: Number,
   rating: Number,
   // profileComments,
+  picture: String,
 });
 
 sitterSchema.methods.generateAuthToken = function () {
