@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.use(express.json());
 app.use(cors());
-app.use("/auth", Routes);
+app.use(Routes);
 
 app.use(express.static("./src/client/build"));
 
