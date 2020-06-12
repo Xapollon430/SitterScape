@@ -16,12 +16,17 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.use(express.json());
 app.use(cors());
-app.use(Routes);
+app.use("/api", Routes);
 
-app.use(express.static("./src/client/build"));
+app.get("/12", (req, res) => {
+  res.send("expres");
+});
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+app.use(express.static("./client/build"));
+
+app.get("*", (req, res) => {
+  console.log("hits react");
+  return res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 app.use(async (req, res, next) => {
