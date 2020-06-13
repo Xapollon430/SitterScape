@@ -16,18 +16,7 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.use(express.json());
 app.use(cors());
-app.use("/api", Routes);
-
-app.get("/12", (req, res) => {
-  res.send("expres");
-});
-
-app.use(express.static("./client/build"));
-
-app.get("*", (req, res) => {
-  console.log("hits react");
-  return res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+app.use(Routes);
 
 app.use(async (req, res, next) => {
   return res.status(req.error.code).json({ error: req.error.message });
