@@ -1,5 +1,5 @@
-const { Sitter } = require("../models/Sitter");
-const { Owner } = require("../models/Owner");
+const { Sitter } = require("../database/models/Sitter");
+const { Owner } = require("../database/models/Owner");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
