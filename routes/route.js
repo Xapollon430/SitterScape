@@ -1,14 +1,16 @@
-const express = require("express");
+import express from "express";
+
+import { login, signUp } from "../controllers/controller";
+import HttpError from "../error/HttpError";
+
 const router = express.Router();
-const Controller = require("../controllers/controller");
-const HttpError = require("../error/HttpError");
 
-router.post("/sign-up", Controller.signUp);
+router.post("/sign-up", signUp);
 
-router.post("/login", Controller.login);
+router.post("/login", login);
 
 router.use((req, res) => {
   return res.json({ error: "Route doesnt exist" });
 });
 
-module.exports = router;
+export default router;

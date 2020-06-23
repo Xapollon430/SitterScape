@@ -1,15 +1,12 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const cors = require("cors");
-const Routes = require("./routes/route");
-const mongoose = require("mongoose");
-const ConnectDB = require("./database/db.js");
-const connectDB = require("./database/db");
-const ReactDOMServer = require("react-dom/server");
-const App = require("./static/App");
-let React = require("react");
-
+import express from "express";
+import fs from "fs";
+import path from "path";
+import cors from "cors";
+import Routes from "./routes/route";
+import connectDB from "./database/db";
+import { ReactDOMServer } from "react-dom";
+import App from "./static/App";
+import React from "react";
 require("dotenv").config();
 connectDB();
 
@@ -36,7 +33,9 @@ app.get("/", (req, res, next) => {
     );
   });
 });
+const X = () => <div>123</div>;
 
+console.log(<X />);
 // app.use(Routes);
 
 // app.use(async (req, res, next) => {

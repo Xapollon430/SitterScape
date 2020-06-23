@@ -4,5 +4,4 @@ class HttpError {
     this.message = message;
   }
 }
-
-module.exports = HttpError;
+export default HttpError;
