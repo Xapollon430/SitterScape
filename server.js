@@ -7,6 +7,7 @@ import connectDB from "./database/db";
 import { ReactDOMServer } from "react-dom";
 import App from "./static/App";
 import React from "react";
+
 require("dotenv").config();
 connectDB();
 
@@ -33,14 +34,12 @@ app.get("/", (req, res, next) => {
     );
   });
 });
-const X = () => <div>123</div>;
 
-console.log(<X />);
-// app.use(Routes);
+app.use(Routes);
 
-// app.use(async (req, res, next) => {
-//   return res.status(req.error.code).json({ error: req.error.message });
-// });
+app.use(async (req, res, next) => {
+  return res.status(req.error.code).json({ error: req.error.message });
+});
 
 app.listen(PORT, () => {
   console.log("Listening");
