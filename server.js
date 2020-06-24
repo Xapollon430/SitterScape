@@ -4,8 +4,10 @@ import path from "path";
 import cors from "cors";
 import Routes from "./routes/route";
 import connectDB from "./database/db";
-import { ReactDOMServer } from "react-dom";
-import App from "./static/App";
+import ReactDOMServer from "react-dom/server";
+import App from "./src/App";
+// import BrowserRouter from "../Sit-FrontEnd/src/App";
+
 import React from "react";
 
 require("dotenv").config();
@@ -24,13 +26,10 @@ app.get("/", (req, res, next) => {
       console.error(err);
       return res.status(500).send("An error occurred");
     }
+    const markup = ReactDOMServer.renderToString(<App />);
+    console.log(markup);
     return res.send(
-      data.replace(
-        '<div id="root"></div>',
-        `<div id="root">${ReactDOMServer.renderToString(
-          React.createElement(App)
-        )}</div>`
-      )
+      data.replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
     );
   });
 });

@@ -5,10 +5,10 @@ var serverConfig = {
   entry: "./server.js",
   target: "node",
   externals: [nodeExternals()],
-  output: {
-    path: __dirname,
-    filename: "bundle.js",
-  },
+  // output: {
+  //   path: __dirname,
+  //   filename: "bundle.js",
+  // },
   mode: "development",
   module: {
     rules: [{ test: /\.(js)$/, use: "babel-loader" }],
