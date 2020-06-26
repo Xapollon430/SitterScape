@@ -5,8 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const signUp = async (req, res) => {
-  console.log(req.body);
-
   const userData = req.body;
   let user;
   let token;

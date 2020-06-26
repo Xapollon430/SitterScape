@@ -9,8 +9,9 @@ router.post("/sign-up", signUp);
 
 router.post("/login", login);
 
-router.use((req, res) => {
-  return res.json({ error: "Route doesnt exist" });
+router.use((req, res, next) => {
+  req.error = new HttpError("Route doesnt exist", "400");
+  return next();
 });
 
 export default router;
