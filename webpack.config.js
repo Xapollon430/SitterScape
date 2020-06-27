@@ -11,7 +11,17 @@ var serverConfig = {
   // },
   mode: "development",
   module: {
-    rules: [{ test: /\.(js)$/, use: "babel-loader" }],
+    rules: [
+      { test: /\.(js)$/, use: "babel-loader" },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"],
+      },
+    ],
   },
   plugins: [new NodemonPlugin()],
   stats: "minimal",

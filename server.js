@@ -34,7 +34,7 @@ app.use(express.static("/static"));
 app.use(Routes);
 
 app.use(async (req, res, next) => {
-  return res.status(req.error.code).json({ error: req.error.message });
+  return res.status(req.error.errorCode).json({ error: req.error.message });
 });
 
 app.listen(PORT, () => {

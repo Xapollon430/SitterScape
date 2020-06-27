@@ -1,0 +1,179 @@
+.form-wrap span {
+    color: #666;
+    text-decoration: none;
+}
+
+.form-wrap input {
+    font: 16px/26px "Raleway", sans-serif;
+}
+
+.form-wrap .tabs {
+    overflow: hidden;
+    padding-top: -20px;
+}
+.form-wrap .tabs h3 {
+    float: left;
+    width: 50%;
+    margin-top: 10px;
+}
+.form-wrap .tabs h3 span {
+    padding: 0.5em 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #e6e7e8;
+    display: block;
+    color: #666;
+}
+.form-wrap .tabs h3 span.active {
+    background-color: #fff;
+}
+.form-wrap .tabs-content {
+    padding: 1.5rem;
+}
+
+.form-wrap #login-tab-content {
+    padding: 1.5em;
+}
+
+.form-wrap .tabs-content div[id$="tab-content"] {
+    display: none;
+}
+.form-wrap .tabs-content .active {
+    display: block !important;
+}
+
+.form-wrap form .input {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    padding: 0.8em 0 10px 0.8em;
+    border: 1px solid #cfcfcf;
+    outline: 0;
+    display: inline-block;
+    margin: 0 0 5px 0;
+    padding-right: 2em;
+    width: 100%;
+}
+.form-wrap form .button {
+    width: 100%;
+    padding: 0.8em 0 10px 0.8em;
+    background-color: #28a55f;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.form-wrap form .button:hover {
+    background-color: #4fda8c;
+}
+.form-wrap form .checkbox {
+    visibility: hidden;
+    padding: 20px;
+    margin: 0.5em 0 1.5em;
+}
+.form-wrap form .checkbox:checked + label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+.form-wrap form label[for] {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+}
+.form-wrap form label[for]:before {
+    content: "";
+    position: absolute;
+    border: 1px solid #cfcfcf;
+    width: 17px;
+    height: 17px;
+    top: 0px;
+    left: -14px;
+}
+.form-wrap form label[for]:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 5px;
+    background-color: transparent;
+    top: 4px;
+    left: -10px;
+    border: 3px solid #28a55f;
+    border-top: none;
+    border-right: none;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.form-wrap .help-text {
+    margin-top: 0.6em;
+}
+.form-wrap .help-text p {
+    text-align: center;
+    font-size: 14px;
+}
+
+.form-wrap input[type="checkbox"] {
+    margin-left: -5px;
+}
+
+.error {
+    border: 1px solid red !important;
+}
+
+.error-message {
+    color: red !important;
+}
+
+.spinner {
+    justify-self: center;
+    margin-bottom: 20px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid rgb(20, 169, 109);
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.form-wrap {
+    display: grid;
+}
+
+.padding-left {
+    padding-left: 20px;
+}
+
+input[type="radio"] {
+    margin: 10px 5px;
+}
+
+#radio-error {
+    color: red;
+}
