@@ -12,7 +12,14 @@ var serverConfig = {
   mode: "development",
   module: {
     rules: [
-      { test: /\.(js)$/, use: "babel-loader" },
+      {
+        test: /\.(js)$/,
+        use: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+          plugins: ["@babel/transform-runtime"],
+        },
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
@@ -24,7 +31,6 @@ var serverConfig = {
     ],
   },
   plugins: [new NodemonPlugin()],
-  stats: "minimal",
 };
 
 module.exports = serverConfig;

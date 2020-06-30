@@ -12,15 +12,7 @@
     "animal",
     "sitter"
   ],
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/transform-runtime"
-    ]
-  },
+  
   "author": "Vehbi Karaagac",
   "license": "MIT",
   "dependencies": {

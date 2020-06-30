@@ -6,7 +6,7 @@ import Routes from "./routes/route";
 import connectDB from "./database/db";
 import ReactDOMServer from "react-dom/server";
 import React from "react";
-import App from "./client/App";
+// import App from "../Frontend/src/App";
 
 require("dotenv").config();
 connectDB();
@@ -16,6 +16,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+let App = () => <button>123</button>;
 
 // app.use(express.static("/static"));
 
