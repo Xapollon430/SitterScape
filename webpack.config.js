@@ -5,6 +5,10 @@ const path = require("path");
 const serverConfig = {
   entry: "./src/server/server.js",
   target: "node",
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, "src/server/"),
@@ -23,58 +27,50 @@ const serverConfig = {
           },
         },
       },
-      {
-        test: /\.css$/i,
-        use: [
-          "isomorphic-style-loader",
-          {
-            loader: "css-loader",
-          },
-        ],
-      },
-      {
-        test: /\.(png|jpg|jpeg)$/i,
-        use: [
-          {
-            loader: "url-loader",
-          },
-        ],
-      },
+
+      // {
+      //   test: /\.(png|jpg|jpeg)$/i,
+      //   use: [
+      //     {
+      //       loader: "url-loader",
+      //     },
+      //   ],
+      // },
     ],
   },
   plugins: [new NodemonPlugin()],
 };
 
-const clientConfig = {
-  entry: "./src/client/index.js",
-  output: {
-    path: path.resolve(__dirname, "src/server/static"),
-    filename: "bundle.js",
-  },
-  mode: "development",
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
-      },
-    ],
-  },
-  // devServer: {
-  //     historyApiFallback: true,
-  //     compress: true,
-  //     open: true,
-  //     port: 3000,
-  // },
-  stats: "minimal",
-};
+// const clientConfig = {
+//   entry: "./src/client/index.js",
+//   output: {
+//     path: path.resolve(__dirname, "src/server/static"),
+//     filename: "bundle.js",
+//   },
+//   mode: "development",
+//   module: {
+//     rules: [
+//       {
+//         test: /\.jsx?$/,
+//         exclude: /node_modules/,
+//         loader: "babel-loader",
+//       },
+//       {
+//         test: /\.css$/i,
+//         use: ["style-loader", "css-loader"],
+//       },
+//       {
+//         test: /\.(png|svg|jpg|gif)$/,
+//         use: ["file-loader"],
+//       },
+//     ],
+//   },
+//   // devServer: {
+//   //     historyApiFallback: true,
+//   //     compress: true,
+//   //     open: true,
+//   //     port: 3000,
+//   // },
+//   stats: "minimal",
+// };
 module.exports = serverConfig;
