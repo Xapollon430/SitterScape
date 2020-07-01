@@ -14,6 +14,8 @@ connectDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+const App = () => <button>123</button>;
+
 app.use(express.json());
 app.use(cors());
 app.use("static", express.static(path.resolve(__dirname, "static")));

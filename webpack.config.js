@@ -1,14 +1,15 @@
 var nodeExternals = require("webpack-node-externals");
 const NodemonPlugin = require("nodemon-webpack-plugin");
+const path = require("path");
 
-var serverConfig = {
-  entry: "./server.js",
+const serverConfig = {
+  entry: "./src/server/server.js",
   target: "node",
   externals: [nodeExternals()],
-  // output: {
-  //   path: __dirname,
-  //   filename: "bundle.js",
-  // },
+  output: {
+    path: path.resolve(__dirname, "src/server/"),
+    filename: "serverbundle.js",
+  },
   mode: "development",
   module: {
     rules: [
@@ -32,46 +33,48 @@ var serverConfig = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        test: /\.(png|jpg|jpeg)$/i,
+        use: [
+          {
+            loader: "url-loader",
+          },
+        ],
       },
     ],
   },
   plugins: [new NodemonPlugin()],
 };
 
+const clientConfig = {
+  entry: "./src/client/index.js",
+  output: {
+    path: path.resolve(__dirname, "src/server/static"),
+    filename: "bundle.js",
+  },
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"],
+      },
+    ],
+  },
+  // devServer: {
+  //     historyApiFallback: true,
+  //     compress: true,
+  //     open: true,
+  //     port: 3000,
+  // },
+  stats: "minimal",
+};
 module.exports = serverConfig;
-const path = require("path");
-
-// module.exports = {
-//     entry: "./src/index.js",
-//     output: {
-//         path: path.resolve(__dirname, "../Backend/static"),
-//         filename: "bundle.js",
-//     },
-//     mode: "development",
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.jsx?$/,
-//                 exclude: /node_modules/,
-//                 loader: "babel-loader",
-//             },
-//             {
-//                 test: /\.css$/i,
-//                 use: ["style-loader", "css-loader"],
-//             },
-//             {
-//                 test: /\.(png|svg|jpg|gif)$/,
-//                 use: ["file-loader"],
-//             },
-//         ],
-//     },
-//     devServer: {
-//         historyApiFallback: true,
-//         compress: true,
-//         open: true,
-//         port: 3000,
-//     },
-//     stats: "minimal",
-// };
