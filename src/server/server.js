@@ -25,8 +25,6 @@ app.use(express.json());
 app.use(cors());
 app.use("static", express.static(path.resolve(__dirname, "static")));
 
-console.log(path.join(__dirname, "/static/index.html"));
-
 app.get("/", (req, res, next) => {
   fs.readFile(
     path.join(__dirname, "/static/index.html"),
@@ -38,7 +36,7 @@ app.get("/", (req, res, next) => {
       }
       const markup = ReactDOMServer.renderToString(<App />);
       return res.send(
-        data.replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
+        data.replace('<div id="root"></div>', `<div id="root" >${markup}</div>`)
       );
     }
   );
