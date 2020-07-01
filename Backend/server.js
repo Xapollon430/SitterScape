@@ -16,19 +16,15 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-
-let App = () => <button>123</button>;
-
-// app.use(express.static("/static"));
+app.use("static", express.static(path.resolve(__dirname, "static")));
 
 app.get("/", (req, res, next) => {
-  fs.readFile(path.resolve("./public/index.html"), "utf8", (err, data) => {
+  fs.readFile(path.resolve("./static/index.html"), "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send("An error occurred");
     }
     const markup = ReactDOMServer.renderToString(<App />);
-    console.log(markup);
     return res.send(
       data.replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
     );

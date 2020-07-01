@@ -14,15 +14,22 @@ var serverConfig = {
     rules: [
       {
         test: /\.(js)$/,
-        use: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: ["@babel/transform-runtime"],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/transform-runtime"],
+          },
         },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "isomorphic-style-loader",
+          {
+            loader: "css-loader",
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
