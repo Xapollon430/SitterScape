@@ -4,7 +4,8 @@
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
   "scripts": {
-    "start": "webpack -w"
+    "start": "webpack -w",
+    "client:dev": "webpack-dev-server"
   },
   "repository": {},
   "keywords": [
@@ -18,6 +19,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "html-webpack-plugin": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
     "react": "^16.13.1",
