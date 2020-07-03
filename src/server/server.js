@@ -16,7 +16,6 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use("/static", express.static(path.resolve(__dirname, "static")));
 
 app.get("/", (req, res, next) => {
   fs.readFile(
@@ -32,6 +31,9 @@ app.get("/", (req, res, next) => {
     }
   );
 });
+
+app.use("/static", express.static(path.resolve(__dirname, "static")));
+
 app.use(Routes);
 
 app.use(async (req, res, next) => {

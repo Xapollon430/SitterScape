@@ -48,7 +48,6 @@ const clientConfig = {
     path: path.resolve(__dirname, "src/server/static"),
     filename: "bundle.js",
   },
-  mode: "development",
   module: {
     rules: [
       {
@@ -73,13 +72,13 @@ const clientConfig = {
     port: 3000,
   },
   stats: "minimal",
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: "./src/server/static/index.html",
-    }),
-  ],
+  // plugins: [
+  //   new HTMLWebpackPlugin({
+  //     template: "./src/server/static/index.html",
+  //   }),
+  // ],
 };
 
 //run both, dev server for client and ask for images from server
 // in prod we serve it all from server
-module.exports = clientConfig;
+module.exports = serverConfig;
