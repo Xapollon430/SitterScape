@@ -79,4 +79,7 @@ const clientConfig = {
     }),
   ],
 };
-module.exports = serverConfig;
+
+//run both, dev server for client and ask for images from server
+// in prod we serve it all from server
+module.exports = clientConfig;
