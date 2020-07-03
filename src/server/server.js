@@ -7,7 +7,7 @@ import connectDB from "./database/db";
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 import styled from "styled-components";
-// import App from "../Frontend/src/App";
+import App from "../client/App";
 
 require("dotenv").config();
 connectDB();
@@ -15,11 +15,13 @@ connectDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-const X = styled.div`
-  color: red;
-`;
+// const X = styled.div`
+//   color: red;
+// `;
 
-const App = () => <X>123</X>;
+let x = ReactDOMServer.renderToString(<App />);
+
+console.log(x);
 
 app.use(express.json());
 app.use(cors());
