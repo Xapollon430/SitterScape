@@ -1,4 +1,4 @@
-export const renderHTML = (markup) => {
+export const renderHTML = (markup, data) => {
   return `<!DOCTYPE html>
     <html lang="en">
       <head>

@@ -8,6 +8,8 @@ import { StaticRouter } from "react-router";
 import React from "react";
 import App from "../client/App";
 import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../client/store/store";
 
 require("dotenv").config();
 connectDB();
@@ -21,9 +23,13 @@ app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/dist", express.static(path.resolve(__dirname, "dist")));
 
 app.get("/", (req, res, next) => {
+  const store = createStore(rootReducer);
+
   const markup = ReactDOMServer.renderToString(
     <StaticRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </StaticRouter>
   );
   return res.send(renderHTML(markup));

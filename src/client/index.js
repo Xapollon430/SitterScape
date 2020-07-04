@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import rootReducer from "./store/store";
 import { createStore } from "redux";
+let x;
 
 const store = createStore(rootReducer, window.__PRELOADED_STATE__);
 
