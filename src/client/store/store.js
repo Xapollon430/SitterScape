@@ -3,10 +3,8 @@ import AuthModalReducer from "./reducers/AuthModalReducer";
 import GeneralReducer from "./reducers/GeneralReducer";
 
 const rootReducer = combineReducers({
-    modalState: AuthModalReducer,
-    appState: GeneralReducer,
+  modalState: AuthModalReducer,
+  appState: GeneralReducer,
 });
 
-const store = createStore(rootReducer);
-
-export default store;
+export default rootReducer;

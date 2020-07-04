@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
-import store from "./Store/store";
 import { BrowserRouter } from "react-router-dom";
-import { Switch } from "react-router-dom";
+import rootReducer from "./store/store";
+import { createStore } from "redux";
 
-ReactDOM.render(
+const store = createStore(rootReducer, window.__PRELOADED_STATE__);
+
+ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <App />
-      </Switch>
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
