@@ -12,7 +12,7 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, "src/server/"),
-    filename: "server.js",
+    filename: "serverBundle.js",
   },
   mode: "development",
   module: {

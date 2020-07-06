@@ -166,7 +166,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar renderHTML = function ren
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"@babel/runtime/regenerator\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"@babel/runtime/helpers/asyncToGenerator\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _routes_route__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/route */ \"./src/server/routes/route.js\");\n/* harmony import */ var _database_db__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./database/db */ \"./src/server/database/db.js\");\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./html */ \"./src/server/html.js\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);\n/* harmony import */ var _webpack_server_config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../webpack.server.config */ \"./webpack.server.config.js\");\n/* harmony import */ var _webpack_server_config__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_webpack_server_config__WEBPACK_IMPORTED_MODULE_10__);\n/* harmony import */ var webpack__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! webpack */ \"webpack\");\n/* harmony import */ var webpack__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(webpack__WEBPACK_IMPORTED_MODULE_11__);\n/* harmony import */ var webpack_dev_middleware__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! webpack-dev-middleware */ \"webpack-dev-middleware\");\n/* harmony import */ var webpack_dev_middleware__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(webpack_dev_middleware__WEBPACK_IMPORTED_MODULE_12__);\n\n\n\n\n\n\n\n\n\n\n\n\n // import App from \"../client/App\";\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nObject(_database_db__WEBPACK_IMPORTED_MODULE_6__[\"default\"])();\nvar PORT = process.env.PORT || 5000;\nvar app = express__WEBPACK_IMPORTED_MODULE_2___default()();\n\nvar X = function X() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(\"div\", null, \"123\");\n};\n\napp.use(express__WEBPACK_IMPORTED_MODULE_2___default.a.json());\napp.use(cors__WEBPACK_IMPORTED_MODULE_3___default()());\napp.use(\"/static\", express__WEBPACK_IMPORTED_MODULE_2___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, \"static\")));\napp.use(\"/dist\", express__WEBPACK_IMPORTED_MODULE_2___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, \"dist\")));\napp.get(\"/\", function (req, res) {\n  var markup = react_dom_server__WEBPACK_IMPORTED_MODULE_8___default.a.renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(X, null));\n  console.log(markup);\n  return res.send(Object(_html__WEBPACK_IMPORTED_MODULE_7__[\"default\"])(markup));\n});\napp.use(_routes_route__WEBPACK_IMPORTED_MODULE_5__[\"default\"]);\napp.use( /*#__PURE__*/function () {\n  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(req, res, next) {\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            return _context.abrupt(\"return\", res.status(req.error.errorCode).json({\n              error: req.error.message\n            }));\n\n          case 1:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n\n  return function (_x, _x2, _x3) {\n    return _ref.apply(this, arguments);\n  };\n}());\napp.listen(PORT, function () {\n  console.log(\"Listening\");\n});\n\n//# sourceURL=webpack:///./src/server/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ \"@babel/runtime/regenerator\");\n/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"@babel/runtime/helpers/asyncToGenerator\");\n/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _routes_route__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes/route */ \"./src/server/routes/route.js\");\n/* harmony import */ var _database_db__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./database/db */ \"./src/server/database/db.js\");\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./html */ \"./src/server/html.js\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_8__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_9__);\n\n\n\n\n\n\n\n\n\n // import App from \"../client/App\";\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nObject(_database_db__WEBPACK_IMPORTED_MODULE_6__[\"default\"])();\nvar PORT = process.env.PORT || 5000;\nvar app = express__WEBPACK_IMPORTED_MODULE_2___default()();\n\nvar X = function X() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(\"div\", null, \"123\");\n};\n\napp.use(express__WEBPACK_IMPORTED_MODULE_2___default.a.json());\napp.use(cors__WEBPACK_IMPORTED_MODULE_3___default()());\napp.use(\"/static\", express__WEBPACK_IMPORTED_MODULE_2___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, \"static\")));\napp.use(\"/dist\", express__WEBPACK_IMPORTED_MODULE_2___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_4___default.a.resolve(__dirname, \"dist\")));\napp.get(\"/\", function (req, res) {\n  var markup = react_dom_server__WEBPACK_IMPORTED_MODULE_8___default.a.renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9___default.a.createElement(X, null));\n  console.log(markup);\n  return res.send(Object(_html__WEBPACK_IMPORTED_MODULE_7__[\"default\"])(markup));\n});\napp.use(_routes_route__WEBPACK_IMPORTED_MODULE_5__[\"default\"]);\napp.use( /*#__PURE__*/function () {\n  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(req, res, next) {\n    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {\n      while (1) {\n        switch (_context.prev = _context.next) {\n          case 0:\n            return _context.abrupt(\"return\", res.status(req.error.errorCode).json({\n              error: req.error.message\n            }));\n\n          case 1:\n          case \"end\":\n            return _context.stop();\n        }\n      }\n    }, _callee);\n  }));\n\n  return function (_x, _x2, _x3) {\n    return _ref.apply(this, arguments);\n  };\n}());\napp.listen(PORT, function () {\n  console.log(\"Listening\");\n});\n\n//# sourceURL=webpack:///./src/server/index.js?");
 
 /***/ }),
 
@@ -179,17 +179,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bab
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _controllers_controller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/controller */ \"./src/server/controllers/controller.js\");\n/* harmony import */ var _error_HttpError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../error/HttpError */ \"./src/server/error/HttpError.js\");\n\n\n\nvar router = express__WEBPACK_IMPORTED_MODULE_0___default.a.Router();\nrouter.post(\"/sign-up\", _controllers_controller__WEBPACK_IMPORTED_MODULE_1__[\"signUp\"]);\nrouter.post(\"/login\", _controllers_controller__WEBPACK_IMPORTED_MODULE_1__[\"login\"]);\nrouter.use(function (req, res, next) {\n  req.error = new _error_HttpError__WEBPACK_IMPORTED_MODULE_2__[\"default\"](\"Route doesnt exist\", \"400\");\n  return next();\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./src/server/routes/route.js?");
-
-/***/ }),
-
-/***/ "./webpack.server.config.js":
-/*!**********************************!*\
-  !*** ./webpack.server.config.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var nodeExternals = __webpack_require__(/*! webpack-node-externals */ \"webpack-node-externals\");\n\nvar NodemonPlugin = __webpack_require__(/*! nodemon-webpack-plugin */ \"nodemon-webpack-plugin\");\n\nvar path = __webpack_require__(/*! path */ \"path\");\n\nmodule.exports = {\n  entry: \"./src/server/index.js\",\n  target: \"node\",\n  node: {\n    __dirname: false,\n    __filename: false\n  },\n  externals: [nodeExternals()],\n  output: {\n    path: path.resolve(__dirname, \"src/server/\"),\n    filename: \"server.js\"\n  },\n  mode: \"development\",\n  module: {\n    rules: [{\n      test: /\\.(js)$/,\n      use: {\n        loader: \"babel-loader\",\n        options: {\n          presets: [\"@babel/preset-env\", \"@babel/preset-react\"],\n          plugins: [\"@babel/transform-runtime\"]\n        }\n      }\n    }]\n  },\n  plugins: [new NodemonPlugin()]\n};\n\n//# sourceURL=webpack:///./webpack.server.config.js?");
 
 /***/ }),
 
@@ -292,17 +281,6 @@ eval("module.exports = require(\"mongoose\");\n\n//# sourceURL=webpack:///extern
 
 /***/ }),
 
-/***/ "nodemon-webpack-plugin":
-/*!*****************************************!*\
-  !*** external "nodemon-webpack-plugin" ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"nodemon-webpack-plugin\");\n\n//# sourceURL=webpack:///external_%22nodemon-webpack-plugin%22?");
-
-/***/ }),
-
 /***/ "path":
 /*!***********************!*\
   !*** external "path" ***!
@@ -344,39 +322,6 @@ eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:/
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"validator\");\n\n//# sourceURL=webpack:///external_%22validator%22?");
-
-/***/ }),
-
-/***/ "webpack":
-/*!**************************!*\
-  !*** external "webpack" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"webpack\");\n\n//# sourceURL=webpack:///external_%22webpack%22?");
-
-/***/ }),
-
-/***/ "webpack-dev-middleware":
-/*!*****************************************!*\
-  !*** external "webpack-dev-middleware" ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"webpack-dev-middleware\");\n\n//# sourceURL=webpack:///external_%22webpack-dev-middleware%22?");
-
-/***/ }),
-
-/***/ "webpack-node-externals":
-/*!*****************************************!*\
-  !*** external "webpack-node-externals" ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"webpack-node-externals\");\n\n//# sourceURL=webpack:///external_%22webpack-node-externals%22?");
 
 /***/ })
 
