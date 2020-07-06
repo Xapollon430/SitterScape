@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from "redux";
+import { combineReducers } from "redux";
 import AuthModalReducer from "./reducers/AuthModalReducer";
 import GeneralReducer from "./reducers/GeneralReducer";
 
@@ -7,4 +7,6 @@ const rootReducer = combineReducers({
   appState: GeneralReducer,
 });
 
-export default rootReducer;
+const store = createStore(rootReducer);
+
+export default store;

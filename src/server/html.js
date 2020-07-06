@@ -1,4 +1,4 @@
-export const renderHTML = (markup, data) => {
+const renderHTML = (markup) => {
   return `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -14,8 +14,8 @@ export const renderHTML = (markup, data) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
         />
       <link rel="stylesheet" href="./static/stylesheets/index.css">
-        </style>
         <title>Sit</title>
+    
       </head>
       <body>
         <div id="modal-hook"></div>
@@ -26,3 +26,5 @@ export const renderHTML = (markup, data) => {
     </html>
     `;
 };
+
+export default renderHTML;

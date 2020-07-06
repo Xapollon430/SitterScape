@@ -3,13 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import rootReducer from "./store/store";
-import { createStore } from "redux";
-let x;
+import store from "./store/store";
 
-const store = createStore(rootReducer, window.__PRELOADED_STATE__);
-
-ReactDOM.hydrate(
+ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
