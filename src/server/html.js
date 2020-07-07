@@ -1,4 +1,9 @@
-const renderHTML = (markup) => {
+import ReactDOMServer from "react-dom/server";
+import React from "react";
+
+const X = () => <button>44444</button>;
+
+const ServerSideMarkup = () => {
   return `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -18,13 +23,14 @@ const renderHTML = (markup) => {
     
       </head>
       <body>
+      
         <div id="modal-hook"></div>
         <div id="backdrop-hook"></div>
-        <div id="root">${markup}</div>
-        <script src="./dist/bundle.js"></script>
+        <div id="root">${ReactDOMServer.renderToString(<X />)}</div>
+        <script src="./static/bundle.js"></script>
       </body>
     </html>
     `;
 };
 
-export default renderHTML;
+export default ServerSideMarkup;

@@ -6,8 +6,7 @@ module.exports = {
   entry: "./src/server/index.js",
   target: "node",
   node: {
-    __dirname: false,
-    __filename: false,
+    __dirname: false, // dirname not defined
   },
   externals: [nodeExternals()],
   output: {

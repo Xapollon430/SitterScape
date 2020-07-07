@@ -14,4 +14,8 @@ router.use((req, res, next) => {
   return next();
 });
 
+router.use(async (req, res, next) => {
+  return res.status(req.error.errorCode).json({ error: req.error.message });
+});
+
 export default router;
