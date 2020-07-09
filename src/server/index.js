@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import Routes from "./routes/route";
 import connectDB from "./database/db";
-import ServerSideMarkup from "./html";
+// import ServerSideMarkup from "./html";
 require("dotenv").config();
 connectDB();
 
