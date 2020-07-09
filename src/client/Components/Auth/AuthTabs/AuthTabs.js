@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-// import "../AuthModal.css";
 
 const AuthTabs = ({ changeTab, errorMessageFromServer }) => {
   let state = useSelector((state) => state);

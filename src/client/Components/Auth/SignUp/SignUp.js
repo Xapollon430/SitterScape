@@ -1,5 +1,4 @@
 import React from "react";
-// import "../AuthModal.css";
 
 const SignUp = ({ onChange, submitHandler, formError, isLoading }) => {
   return isLoading ? (

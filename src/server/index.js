@@ -14,7 +14,9 @@ app.use(cors());
 
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
-app.use((req, res) => res.send(ServerSideMarkup())); // SSR for prod
+
+if(process.env.)
+// app.use((req, res) => res.send(ServerSideMarkup())); // SSR for prod
 
 app.listen(PORT, () => {
   console.log("Listening");

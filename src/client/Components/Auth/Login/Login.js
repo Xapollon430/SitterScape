@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "../AuthModal.css";
 
 const Login = ({ onChange, submitHandler, formError, isLoading }) => {
   return isLoading ? (
