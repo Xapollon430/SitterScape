@@ -20,14 +20,15 @@ const ServerSideMarkup = () => {
         />
       <link rel="stylesheet" href="./static/stylesheets/index.css">
         <title>Sit</title>
-    
+
       </head>
       <body>
-      
+
         <div id="modal-hook"></div>
         <div id="backdrop-hook"></div>
         <div id="root">${ReactDOMServer.renderToString(<X />)}</div>
         <script src="./static/bundle.js"></script>
+
       </body>
     </html>
     `;
