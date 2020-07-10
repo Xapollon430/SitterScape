@@ -32,7 +32,7 @@ const Information = React.memo(() => {
       <Title>How We Make It All Work</Title>
       <StepWrapper>
         <Step>
-          <StepImage src="/static/images/steps-profile.png" />
+          <StepImage src="http://localhost:5000/static/images/steps-profile.jpg" />
           <StepNumber>STEP 1</StepNumber>
           <StepTitle>Create a Sit Account and Get Comfortable</StepTitle>
           <StepParagraph>
@@ -41,7 +41,7 @@ const Information = React.memo(() => {
           </StepParagraph>
         </Step>
         <Step>
-          <StepImage src="/static/images/steps-search.png" />
+          <StepImage src="http://localhost:5000/static/images/steps-search.jpg" />
           <StepNumber>STEP 2</StepNumber>
           <StepTitle>Sort for a Sitter Using Our Connections</StepTitle>
           <StepParagraph>
@@ -50,7 +50,7 @@ const Information = React.memo(() => {
           </StepParagraph>
         </Step>
         <Step>
-          <StepImage src="/static/images/steps-profile.png" />
+          <StepImage src="http://localhost:5000/static/images/steps-profile.jpg" />
           <StepNumber>STEP 3</StepNumber>
           <StepTitle>Meet the Most Qualified Sitters In Your Area</StepTitle>
           <StepParagraph>
@@ -61,7 +61,7 @@ const Information = React.memo(() => {
       </StepWrapper>
 
       <CustomerWrap>
-        <CustomerImage src="/static/images/petsitter.jpg" />
+        <CustomerImage src="http://localhost:5000/static/images/petsitter.jpg" />
         <CustomerQuoteWrap>
           <GreenLine />
           <CustomerQuote>
