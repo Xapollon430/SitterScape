@@ -146,6 +146,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bab
 
 /***/ }),
 
+/***/ "./src/server/html.js":
+/*!****************************!*\
+  !*** ./src/server/html.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n/* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nvar X = function X() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(\"button\", null, \"44444\");\n};\n\nvar ServerSideMarkup = function ServerSideMarkup() {\n  return \"<!DOCTYPE html>\\n    <html lang=\\\"en\\\">\\n      <head>\\n        <meta charset=\\\"utf-8\\\" />\\n        <meta name=\\\"viewport\\\" content=\\\"initial-scale=1.0, width=device-width\\\" />\\n    \\n        <link\\n          href=\\\"https://fonts.googleapis.com/css?family=Quicksand&display=swap\\\"\\n          rel=\\\"stylesheet\\\"\\n        />\\n        <link\\n          rel=\\\"stylesheet\\\"\\n          href=\\\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css\\\"\\n        />\\n      <link rel=\\\"stylesheet\\\" href=\\\"./static/stylesheets/index.css\\\">\\n        <title>Sit</title>\\n\\n      </head>\\n      <body>\\n\\n        <div id=\\\"modal-hook\\\"></div>\\n        <div id=\\\"backdrop-hook\\\"></div>\\n        <div id=\\\"root\\\">\".concat(react_dom_server__WEBPACK_IMPORTED_MODULE_0___default.a.renderToString( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(X, null)), \"</div>\\n        <script src=\\\"./static/bundle.js\\\"></script>\\n\\n      </body>\\n    </html>\\n    \");\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (ServerSideMarkup);\n\n//# sourceURL=webpack:///./src/server/html.js?");
+
+/***/ }),
+
 /***/ "./src/server/index.js":
 /*!*****************************!*\
   !*** ./src/server/index.js ***!
@@ -154,7 +166,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bab
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _routes_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/route */ \"./src/server/routes/route.js\");\n/* harmony import */ var _database_db__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./database/db */ \"./src/server/database/db.js\");\n\n\n\n\n // import ServerSideMarkup from \"./html\";\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nObject(_database_db__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\nvar PORT = process.env.PORT || 5000;\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.json());\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(\"/static\", express__WEBPACK_IMPORTED_MODULE_0___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_2___default.a.resolve(__dirname, \"static\")));\napp.use(\"/api\", _routes_route__WEBPACK_IMPORTED_MODULE_3__[\"default\"]);\n\nif (false) {}\n\napp.listen(PORT, function () {\n  console.log(\"Listening\");\n});\n\n//# sourceURL=webpack:///./src/server/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ \"cors\");\n/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _routes_route__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/route */ \"./src/server/routes/route.js\");\n/* harmony import */ var _database_db__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./database/db */ \"./src/server/database/db.js\");\n/* harmony import */ var _html__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./html */ \"./src/server/html.js\");\n\n\n\n\n\n\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\nObject(_database_db__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\nvar PORT = process.env.PORT || 5000;\nvar app = express__WEBPACK_IMPORTED_MODULE_0___default()();\napp.use(express__WEBPACK_IMPORTED_MODULE_0___default.a.json());\napp.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());\napp.use(\"/static\", express__WEBPACK_IMPORTED_MODULE_0___default.a[\"static\"](path__WEBPACK_IMPORTED_MODULE_2___default.a.resolve(__dirname, \"static\")));\napp.use(\"/api\", _routes_route__WEBPACK_IMPORTED_MODULE_3__[\"default\"]);\n\nif (false) {}\n\napp.listen(PORT, function () {\n  console.log(\"Listening\");\n});\n\n//# sourceURL=webpack:///./src/server/index.js?");
 
 /***/ }),
 
@@ -277,6 +289,28 @@ eval("module.exports = require(\"mongoose\");\n\n//# sourceURL=webpack:///extern
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_%22react%22?");
+
+/***/ }),
+
+/***/ "react-dom/server":
+/*!***********************************!*\
+  !*** external "react-dom/server" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
 
 /***/ }),
 

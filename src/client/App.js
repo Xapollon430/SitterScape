@@ -8,7 +8,6 @@ const App = () => {
     <Switch>
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <FindSitter />} />
-      <Route exact path="/api" render={() => <button>123</button>} />
     </Switch>
   );
 };

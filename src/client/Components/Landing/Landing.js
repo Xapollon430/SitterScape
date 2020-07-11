@@ -7,7 +7,6 @@ import Information from "./Information/Information";
 import AuthModal from "../Auth/AuthModal";
 import { changeIsModalOpen } from "../../store/actions/AuthModalActions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 function Landing() {
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ function Landing() {
         </Modal>
       </BackgroundImage>
       <Information />
-      <Link to="/api">123</Link>
     </React.Fragment>
   );
 }
