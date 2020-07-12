@@ -18,7 +18,6 @@ app.use("/api", Routes);
 if (process.env.NODE_ENV === "production") {
   app.use((req, res) => res.send(ServerSideMarkup())); // SSR for prod
 }
-clg;
 
 app.listen(PORT, () => {
   console.log("Listening");

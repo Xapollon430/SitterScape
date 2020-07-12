@@ -36,7 +36,6 @@ const AuthModal = () => {
         : signUpFormChecker(userInfo);
 
     setFormError(errors);
-    console.log(errors);
     if (!errors.errorExists) {
       setIsLoading(true);
       let response = await fetch(`http://localhost:5000/${type}`, {
