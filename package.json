@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server/server.js",
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
-    "client:prod": "webpack --config webpack.client.config.js"
+    "client:prod": "webpack --config webpack.client.config.js",
+    "heroku": "node --exec babel-node src/server/server.js"
   },
   "repository": {},
   "keywords": [
@@ -23,6 +24,7 @@
     "heroku": "^7.42.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -41,7 +43,6 @@
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
@@ -56,5 +57,8 @@
     "plugins": [
       "@babel/transform-runtime"
     ]
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
