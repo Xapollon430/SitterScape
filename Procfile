@@ -1,1 +1,1 @@
-web: npm run heroku
+web: node --exec babel-node src/server/server.js

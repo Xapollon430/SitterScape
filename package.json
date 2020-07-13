@@ -6,8 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/server/server.js",
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
-    "client:prod": "webpack --config webpack.client.config.js",
-    "heroku": "node --exec babel-node src/server/server.js"
+    "client:prod": "webpack --config webpack.client.config.js"
   },
   "repository": {},
   "keywords": [
