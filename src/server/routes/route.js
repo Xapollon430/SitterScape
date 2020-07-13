@@ -3,7 +3,6 @@ import { login, signUp } from "../controllers/controller";
 import HttpError from "../error/HttpError";
 
 const router = express.Router();
-
 router.post("/sign-up", signUp);
 
 router.post("/login", login);
