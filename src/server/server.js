@@ -13,6 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const X = <button>123</button>;
+
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 

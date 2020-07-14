@@ -4,9 +4,10 @@
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
   "scripts": {
-    "server": "babel-node src/server/server.js",
+    "server:dev": "st",
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
-    "client:build": "webpack --mode production --config webpack.client.config.js"
+    "client:build": "webpack --mode production --config webpack.client.config.js",
+    "build": "npx babel src --out-dir dist"
   },
   "repository": {},
   "keywords": [
@@ -33,6 +34,7 @@
     "validator": "^12.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.3",
     "@babel/node": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.10.3",
