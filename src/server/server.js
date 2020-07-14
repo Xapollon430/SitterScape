@@ -3,7 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const Routes = require("./routes/route");
 const connectDB = require("./database/db");
-
+const React = require("react");
 // import ServerSideMarkup from "./html";
 require("dotenv").config();
 connectDB();
@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const X = <button>123</button>;
+const X = <button>1223</button>;
 
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);

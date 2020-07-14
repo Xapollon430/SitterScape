@@ -8,7 +8,9 @@ var path = require("path");
 
 var Routes = require("./routes/route");
 
-var connectDB = require("./database/db"); // import ServerSideMarkup from "./html";
+var connectDB = require("./database/db");
+
+var React = require("react"); // import ServerSideMarkup from "./html";
 
 
 require("dotenv").config();
@@ -18,7 +20,7 @@ var PORT = process.env.PORT || 5000;
 var app = express();
 app.use(express.json());
 app.use(cors());
-var X = /*#__PURE__*/React.createElement("button", null, "123");
+var X = /*#__PURE__*/React.createElement("button", null, "1223");
 app.use("/static", express["static"](path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
