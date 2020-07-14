@@ -1,8 +1,9 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
-import Routes from "./routes/route";
-import connectDB from "./database/db";
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const Routes = require("./routes/route");
+const connectDB = require("./database/db");
+
 // import ServerSideMarkup from "./html";
 require("dotenv").config();
 connectDB();

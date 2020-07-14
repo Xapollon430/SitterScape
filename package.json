@@ -4,9 +4,9 @@
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/server/server.js",
+    "server:dev": "babel-node src/server/server.js",
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
-    "client:prod": "webpack --config webpack.client.config.js"
+    "client:build": "webpack --mode production --config webpack.client.config.js"
   },
   "repository": {},
   "keywords": [
@@ -42,11 +42,13 @@
     "css-loader": "^3.6.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "nodemon-webpack-plugin": "^4.3.2",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.0"
   },
   "babel": {
     "presets": [

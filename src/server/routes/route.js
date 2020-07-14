@@ -1,6 +1,6 @@
-import express from "express";
-import { login, signUp } from "../controllers/controller";
-import HttpError from "../error/HttpError";
+const express = require("express");
+const { login, signUp } = require("../controllers/controller");
+const HttpError = require("../error/HttpError");
 
 const router = express.Router();
 router.post("/sign-up", signUp);
@@ -16,4 +16,4 @@ router.use(async (req, res, next) => {
   return res.status(req.error.errorCode).json({ error: req.error.message });
 });
 
-export default router;
+module.exports = router;

@@ -1,10 +1,10 @@
-import Sitter from "../database/models/Sitter";
-import Owner from "../database/models/Owner";
-import dotenv from "dotenv";
+const Sitter = require("../database/models/Sitter");
+const Owner = require("../database/models/Owner");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-export const signUp = async (req, res) => {
+const signUp = async (req, res) => {
   const userData = req.body;
   let user;
   let token;
@@ -19,7 +19,7 @@ export const signUp = async (req, res) => {
   res.send({ user, token });
 };
 
-export const login = async (req, res, next) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body;
   let foundUser = await User.findOne({ email });
   if (!foundUser) {
@@ -36,4 +36,9 @@ export const login = async (req, res, next) => {
     user: { username: foundUser.username, email: foundUser.email },
     token,
   });
+};
+
+module.exports = {
+  login,
+  signUp,
 };
