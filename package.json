@@ -4,7 +4,7 @@
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
   "scripts": {
-    "server:dev": "babel-node src/server/server.js",
+    "server": "babel-node src/server/server.js",
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
     "client:build": "webpack --mode production --config webpack.client.config.js"
   },
