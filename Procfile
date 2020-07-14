@@ -1,1 +1,1 @@
-web: node serverBundle/server.js
+web: node bundle/server.js
