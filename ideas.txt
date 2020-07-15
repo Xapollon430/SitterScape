@@ -1,0 +1,6 @@
+1- Live Chat app in Sit
+2- Blog page for users, hashtags, upvotes, comments
+3- Email, phone notificiations, Lambda?
+4- Be able to take a picture of a dog? and send it in chat?
+5- Profiles for sitters
+6- learn react router details , read docs
