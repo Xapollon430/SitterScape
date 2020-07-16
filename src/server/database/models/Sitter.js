@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 // import Validator from "validator";
 
@@ -53,4 +53,4 @@ sitterSchema.methods.generateAuthToken = function () {
 
 let Sitter = mongoose.model("Sitter", sitterSchema);
 
-module.exports = Sitter;
+export default Sitter;

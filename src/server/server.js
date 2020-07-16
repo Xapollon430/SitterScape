@@ -1,11 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const Routes = require("./routes/route");
-const connectDB = require("./database/db");
-const React = require("react");
+import express from "express";
+import cors from "cors";
+import path from "path";
+import Routes from "./routes/route";
+import connectDB from "./database/db";
+import React from "React";
+import { config } from "dotenv";
 // import ServerSideMarkup from "./html";
-require("dotenv").config();
+
+config();
 connectDB();
 
 const PORT = process.env.PORT || 5000;

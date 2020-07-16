@@ -7,7 +7,7 @@
     "client:dev": "webpack-dev-server --config webpack.client.config.js",
     "client:build": "webpack --mode production --config webpack.client.config.js",
     "server:dev": "nodemon --exec babel-node src/server/server.js",
-    "server:build": "babel src/server --copy-files --out-dir bundle"
+    "server:build": "babel src/server --copy-files --out-dir prod-bundle"
   },
   "repository": {},
   "keywords": [

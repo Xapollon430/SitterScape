@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 const ownerSchema = mongoose.Schema({
   username: {
@@ -35,4 +35,4 @@ ownerSchema.methods.generateAuthToken = function () {
 
 let Owner = mongoose.model("Owner", ownerSchema);
 
-module.exports = Owner;
+export default Owner;
