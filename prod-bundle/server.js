@@ -32,6 +32,9 @@ app.use(
   _express["default"]["static"](_path["default"].resolve(__dirname, "static"))
 );
 app.use("/api", _route["default"]);
+app.get("/test", function (req, res) {
+  return res.sendFile(_path["default"].join(__dirname, "test.html"));
+});
 
 // if (process.env.NODE_ENV === "production") {
 app.use("/", function (req, res) {
