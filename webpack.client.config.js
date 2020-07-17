@@ -14,10 +14,6 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel-loader",
       },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
     ],
   },
   devServer: {
@@ -29,6 +25,10 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: "./src/server/static/index.html",
+    }),
+
+    new webpack.DefinePlugin({
+      "process.env.MY_VALUE": JSON.stringify("aCoolValue"),
     }),
   ],
 };
