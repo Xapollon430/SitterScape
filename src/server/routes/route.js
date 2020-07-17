@@ -1,6 +1,6 @@
 import express from "express";
 import { login, signUp } from "../controllers/controller";
-import HttpError from "../error/HttpError";
+import HttpError from "./error/HttpError";
 
 const router = express.Router();
 router.post("/sign-up", signUp);
