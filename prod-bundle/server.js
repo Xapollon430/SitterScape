@@ -25,16 +25,19 @@ var app = (0, _express["default"])();
 app.use(_express["default"].json());
 app.use((0, _cors["default"])());
 
-var X = /*#__PURE__*/_React["default"].createElement("button", null, "1223");
+var X = /*#__PURE__*/ _React["default"].createElement("button", null, "1223");
 
-app.use("/static", _express["default"]["static"](_path["default"].resolve(__dirname, "static")));
+app.use(
+  "/static",
+  _express["default"]["static"](_path["default"].resolve(__dirname, "static"))
+);
 app.use("/api", _route["default"]);
 
-if (process.env.NODE_ENV === "production") {
-  app.use("/", function (req, res) {
-    return res.send((0, _html["default"])());
-  }); // SSR for prod
-}
+// if (process.env.NODE_ENV === "production") {
+app.use("/", function (req, res) {
+  return res.send((0, _html["default"])());
+}); // SSR for prod
+// }
 
 app.listen(PORT, function () {
   console.log("Listening");
