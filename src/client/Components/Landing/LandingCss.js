@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import bgImage from "../../images/background.jpg";
 
 let BackgroundImage = styled.div`
   min-width: 322px;

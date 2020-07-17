@@ -27,7 +27,7 @@ const ServerSideMarkup = () => {
         <div id="modal-hook"></div>
         <div id="backdrop-hook"></div>
         <div id="root">${ReactDOMServer.renderToString(<X />)}</div>
-        <script src="./static/bundle.js"></script>
+        <script src="./static/react-bundle.js"></script>
 
       </body>
     </html>
