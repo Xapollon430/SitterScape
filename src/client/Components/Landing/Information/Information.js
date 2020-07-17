@@ -28,7 +28,9 @@ const Information = React.memo(() => {
       <Title>How We Make It All Work</Title>
       <StepWrapper>
         <Step>
-          <StepImage src="http://localhost:5000/static/images/steps-profile.png" />
+          <StepImage
+            src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
+          />
           <StepNumber>STEP 1</StepNumber>
           <StepTitle>Create a Sit Account and Get Comfortable</StepTitle>
           <StepParagraph>
@@ -37,7 +39,9 @@ const Information = React.memo(() => {
           </StepParagraph>
         </Step>
         <Step>
-          <StepImage src="http://localhost:5000/static/images/steps-search.png" />
+          <StepImage
+            src={`${process.env.SIT_API_URL}/static/images/steps-search.png`}
+          />
           <StepNumber>STEP 2</StepNumber>
           <StepTitle>Sort for a Sitter Using Our Connections</StepTitle>
           <StepParagraph>
@@ -46,7 +50,9 @@ const Information = React.memo(() => {
           </StepParagraph>
         </Step>
         <Step>
-          <StepImage src="http://localhost:5000/static/images/steps-profile.png" />
+          <StepImage
+            src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
+          />
           <StepNumber>STEP 3</StepNumber>
           <StepTitle>Meet the Most Qualified Sitters In Your Area</StepTitle>
           <StepParagraph>
@@ -57,7 +63,9 @@ const Information = React.memo(() => {
       </StepWrapper>
 
       <CustomerWrap>
-        <CustomerImage src="http://localhost:5000/static/images/petsitter.jpg" />
+        <CustomerImage
+          src={`${process.env.SIT_API_URL}/static/images/petsitter.jpg`}
+        />
         <CustomerQuoteWrap>
           <GreenLine />
           <CustomerQuote>

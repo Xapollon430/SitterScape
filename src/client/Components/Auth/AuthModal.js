@@ -28,7 +28,6 @@ const AuthModal = () => {
   const dispatch = useDispatch();
 
   const submitHandler = async (e, type) => {
-    console.log(123);
     e.preventDefault();
     let errors =
       type === "login"
@@ -38,7 +37,7 @@ const AuthModal = () => {
     setFormError(errors);
     if (!errors.errorExists) {
       setIsLoading(true);
-      let response = await fetch(`http://localhost:5000/${type}`, {
+      let response = await fetch(`${process.env.SIT_API_URL}/${type}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
