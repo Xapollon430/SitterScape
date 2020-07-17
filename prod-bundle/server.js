@@ -12,7 +12,7 @@ var _route = _interopRequireDefault(require("./routes/route"));
 
 var _db = _interopRequireDefault(require("./database/db"));
 
-var _React = _interopRequireDefault(require("React"));
+var _React = _interopRequireDefault(require("react"));
 
 var _dotenv = require("dotenv");
 
