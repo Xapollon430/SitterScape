@@ -5,6 +5,8 @@ const webpack = require("webpack");
 //This is for client side code, the server doesnt use webpack and only uses babel
 
 module.exports = (env) => {
+  console.log(env);
+
   return {
     entry: "./src/client/index.js",
     output: {
