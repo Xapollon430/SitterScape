@@ -6,16 +6,25 @@ import {
   RecentPosts,
   NewsLetter,
   GridWrap,
+  FooterTitle,
 } from "./FooterCss";
 
 const Footer = () => {
   return (
     <FooterWrap>
       <GridWrap>
-        <Contact>Contact</Contact>
-        <Menu>Menu</Menu>
-        <RecentPosts>Recent Posts</RecentPosts>
-        <NewsLetter>News Letter</NewsLetter>
+        <Contact>
+          <FooterTitle>CONTACT</FooterTitle>
+        </Contact>
+        <Menu>
+          <FooterTitle>MENU</FooterTitle>
+        </Menu>
+        <RecentPosts>
+          <FooterTitle>RECENT POSTS</FooterTitle>
+        </RecentPosts>
+        <NewsLetter>
+          <FooterTitle>NEWS LETTER</FooterTitle>
+        </NewsLetter>
       </GridWrap>
     </FooterWrap>
   );

@@ -9,7 +9,8 @@ export const FooterWrap = styled.footer`
 export const GridWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 80%;
+  justify-items: center;
+  width: 60%;
   margin: 0 auto;
 `;
 
@@ -20,3 +21,8 @@ export const Menu = styled.div``;
 export const RecentPosts = styled.div``;
 
 export const NewsLetter = styled.div``;
+
+export const FooterTitle = styled.h5`
+  color: white;
+  letter-spacing: 1px;
+`;
