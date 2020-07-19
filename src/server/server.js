@@ -19,11 +19,13 @@ const X = <button>1223</button>;
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
-app.get("/test", (req, res) => res.sendFile(path.join(__dirname, "test.html")));
+app.get("/test", (req, res) =>
+  res.sendFile(path.join(__dirname + "/index.html"))
+);
 
-if (process.env.NODE_ENV === "production") {
-  app.use("/", (req, res) => res.send(ServerSideMarkup())); // SSR for prod
-}
+// if (process.env.NODE_ENV === "production") {
+app.use("/", (req, res) => res.send(ServerSideMarkup())); // SSR for prod
+// }
 
 app.listen(PORT, () => {
   console.log("Listening");

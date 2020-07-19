@@ -1,7 +1,7 @@
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 
-const X = () => <button>44444</button>;
+const X = () => <button>HUZEYFE</button>;
 
 const ServerSideMarkup = () => {
   return `<!DOCTYPE html>
@@ -26,7 +26,7 @@ const ServerSideMarkup = () => {
 
         <div id="modal-hook"></div>
         <div id="backdrop-hook"></div>
-        <div id="root">${ReactDOMServer.renderToString(<X />)}</div>
+        <div id="root">${ReactDOMServer.renderToString(<X></X>)}</div>
         <script src="./static/react-bundle.js"></script>
 
       </body>
