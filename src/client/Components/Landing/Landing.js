@@ -5,6 +5,7 @@ import BackgroundImage from "./LandingCss";
 import Modal from "../../UI/Modal/Modal";
 import Information from "./Information/Information";
 import AuthModal from "../Auth/AuthModal";
+import Footer from "../Footer/Footer";
 import { changeIsModalOpen } from "../../store/actions/AuthModalActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -28,6 +29,7 @@ function Landing() {
         </Modal>
       </BackgroundImage>
       <Information />
+      <Footer />
     </React.Fragment>
   );
 }

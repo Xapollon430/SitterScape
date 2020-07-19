@@ -16,10 +16,7 @@ import {
   CustomerName,
   GreenLine,
   SitterName,
-  Footer,
-  SocialMediaImage,
-  SocialMediaWrapper,
-  FooterDivider,
+  InformationTitle,
 } from "./InformationCss";
 
 const Information = React.memo(() => {
@@ -79,7 +76,7 @@ const Information = React.memo(() => {
         </SitterName>
       </CustomerWrap>
 
-      <Title>Who We Are</Title>
+      <InformationTitle>Who We Are</InformationTitle>
 
       <InformationParagraph>
         Are you looking for a Pet sitter or Pet sitting job? At Sit we have
@@ -87,16 +84,6 @@ const Information = React.memo(() => {
         easier for everyone to connect other pet lovers for their services. We
         can find care for your pets when you can't take care of them.
       </InformationParagraph>
-      <Footer>
-        <SocialMediaWrapper>
-          <img src="https://img.icons8.com/ios/30/ffffff/facebook-new.png" />
-          <img src="https://img.icons8.com/ios/30/ffffff/instagram-new.png" />
-          <img src="https://img.icons8.com/ios/30/ffffff/youtube-play.png" />
-          <img src="https://img.icons8.com/ios/30/ffffff/pinterest.png" />
-          <img src="https://img.icons8.com/ios/30/ffffff/linkedin.png" /> &copy;
-          2020 Sit. All rights reserved.
-        </SocialMediaWrapper>
-      </Footer>
     </InformationWrapper>
   );
 });
