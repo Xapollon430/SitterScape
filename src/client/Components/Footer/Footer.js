@@ -7,6 +7,7 @@ import {
   NewsLetter,
   GridWrap,
   FooterTitle,
+  FooterText,
 } from "./FooterCss";
 
 const Footer = () => {
@@ -15,6 +16,13 @@ const Footer = () => {
       <GridWrap>
         <Contact>
           <FooterTitle>CONTACT</FooterTitle>
+          <FooterText>
+            Street: 8380 Greensboro Drive <br />
+            City: Mc Lean <br />
+            State: Virginia <br />
+            Zip Code: 22182 <br />
+            Phone Number: 703-589-3760
+          </FooterText>
         </Contact>
         <Menu>
           <FooterTitle>MENU</FooterTitle>

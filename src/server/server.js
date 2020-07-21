@@ -17,13 +17,9 @@ app.use(cors());
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
-app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname + "/static/index.html"))
-);
-
-// if (process.env.NODE_ENV === "production") {
-app.get("/1", (req, res) => res.send(ServerSideMarkup()));
-// }
+if (process.env.NODE_ENV === "production") {
+  app.get("/", (req, res) => res.send(ServerSideMarkup()));
+}
 
 app.listen(PORT, () => {
   console.log("Listening");

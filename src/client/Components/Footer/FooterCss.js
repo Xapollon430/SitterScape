@@ -25,4 +25,9 @@ export const NewsLetter = styled.div``;
 export const FooterTitle = styled.h5`
   color: white;
   letter-spacing: 1px;
+  margin-bottom: 10px;
+`;
+
+export const FooterText = styled.span`
+  color: rgb(169, 169, 169);
 `;
