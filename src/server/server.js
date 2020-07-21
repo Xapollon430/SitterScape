@@ -17,12 +17,12 @@ app.use(cors());
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
-app.get("/test", (req, res) =>
+app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname + "/static/index.html"))
 );
 
 // if (process.env.NODE_ENV === "production") {
-app.use("/", (req, res) => res.send(ServerSideMarkup())); // SSR for prod
+app.get("/1", (req, res) => res.send(ServerSideMarkup()));
 // }
 
 app.listen(PORT, () => {
