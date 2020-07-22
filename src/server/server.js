@@ -3,7 +3,6 @@ import cors from "cors";
 import path from "path";
 import Routes from "./routes/route";
 import connectDB from "./database/db";
-// import React from "React";
 import { config } from "dotenv";
 import ServerSideMarkup from "./html";
 config();
