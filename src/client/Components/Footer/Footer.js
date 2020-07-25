@@ -19,16 +19,6 @@ const Footer = React.memo(() => {
   return (
     <FooterWrap>
       <GridWrap>
-        <Contact>
-          <FooterTitle>CONTACT</FooterTitle>
-          <FooterText>
-            Street: 8380 Greensboro Drive <br />
-            City: Mc Lean <br />
-            State: Virginia <br />
-            Zip Code: 22182 <br />
-            Phone Number: 703-589-3760
-          </FooterText>
-        </Contact>
         <Menu>
           <FooterTitle>MENU</FooterTitle>
           <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
@@ -62,6 +52,16 @@ const Footer = React.memo(() => {
             Checklist Before Adoption
           </FooterLink>
         </RecentPosts>
+        <Contact>
+          <FooterTitle>CONTACT</FooterTitle>
+          <FooterText>
+            Street: 8380 Greensboro Drive <br />
+            City: Mc Lean <br />
+            State: Virginia <br />
+            Zip Code: 22182 <br />
+            Phone Number: 703-589-3760
+          </FooterText>
+        </Contact>
         <NewsLetter>
           <FooterTitle>NEWS LETTER</FooterTitle>
           <NewsLetterInput placeholder="Your email adress..."></NewsLetterInput>
