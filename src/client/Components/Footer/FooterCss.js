@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const FooterWrap = styled.footer`
   width: 100vw;
   min-width: 334px;
-
   background: rgb(64, 72, 79);
 `;
 
@@ -15,24 +14,32 @@ export const GridWrap = styled.div`
   margin: 0 auto;
   padding: 15px 0px 60px 0px;
   grid-gap: 10px;
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     width: 100vw;
     margin: 0px 50px 0px 20px;
     grid-template-columns: 1fr 1fr;
     justify-items: start;
   }
   @media (max-width: 442px) {
-    grid-template-areas: "C", "M P", "N";
+    grid-template-columns: 100px 1fr;
   }
 `;
 
-export const Contact = styled.div``;
+export const Contact = styled.div`
+  @media (max-width: 442px) {
+    grid-column: 1 / span 2;
+  }
+`;
 
 export const Menu = styled.div``;
 
 export const RecentPosts = styled.div``;
 
-export const NewsLetter = styled.div``;
+export const NewsLetter = styled.div`
+  @media (max-width: 442px) {
+    grid-column: 1 / span 2;
+  }
+`;
 
 export const FooterTitle = styled.h5`
   color: white;
@@ -70,6 +77,10 @@ export const NewsLetterButton = styled.button`
   @media (max-width: 572px) {
     display: block;
     width: 150px;
+  }
+  @media (max-width: 442px) {
+    display: inline;
+    width: 90px;
   }
 `;
 
