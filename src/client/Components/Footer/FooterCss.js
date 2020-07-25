@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const FooterWrap = styled.footer`
   width: 100vw;
+  min-width: 334px;
+
   background: rgb(64, 72, 79);
 `;
 
@@ -13,6 +15,15 @@ export const GridWrap = styled.div`
   margin: 0 auto;
   padding: 15px 0px 60px 0px;
   grid-gap: 10px;
+  @media (max-width: 800px) {
+    width: 100vw;
+    margin: 0px 50px 0px 20px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+  }
+  @media (max-width: 442px) {
+    grid-template-areas: "C", "M P", "N";
+  }
 `;
 
 export const Contact = styled.div``;
@@ -41,10 +52,11 @@ export const FooterLink = styled.a`
 
 export const NewsLetterInput = styled.input`
   background: white;
-  border: 1px solid black;
-  width: 140px;
-  height: 30px;
+  border: none;
   outline: none;
+  width: 140px;
+  height: 35px;
+  padding: 0px 0px 0px 10px;
 `;
 
 export const NewsLetterButton = styled.button`
@@ -53,5 +65,21 @@ export const NewsLetterButton = styled.button`
   height: 35px;
   outline: none;
   border: none;
+  padding: 5px;
   cursor: pointer;
+  @media (max-width: 572px) {
+    display: block;
+    width: 150px;
+  }
+`;
+
+export const SocialMediaImage = styled.img`
+  width: 30px;
+  margin: 5px 5px 0px 0px;
+`;
+
+export const Copyright = styled.p`
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
 `;

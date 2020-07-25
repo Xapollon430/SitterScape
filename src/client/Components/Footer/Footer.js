@@ -11,6 +11,8 @@ import {
   FooterLink,
   NewsLetterInput,
   NewsLetterButton,
+  SocialMediaImage,
+  Copyright,
 } from "./FooterCss";
 
 const Footer = React.memo(() => {
@@ -64,8 +66,36 @@ const Footer = React.memo(() => {
           <FooterTitle>NEWS LETTER</FooterTitle>
           <NewsLetterInput placeholder="Your email adress..."></NewsLetterInput>
           <NewsLetterButton>Subscribe</NewsLetterButton>
+          <div>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <SocialMediaImage
+                src={`${process.env.SIT_API_URL}/static/images/icons8-facebook-64.png`}
+              />
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <SocialMediaImage
+                src={`${process.env.SIT_API_URL}/static/images/icons8-instagram-64.png`}
+              />
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <SocialMediaImage
+                src={`${process.env.SIT_API_URL}/static/images/icons8-play-button-64.png`}
+              />
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <SocialMediaImage
+                src={`${process.env.SIT_API_URL}/static/images/icons8-pinterest-64.png`}
+              />
+            </a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <SocialMediaImage
+                src={`${process.env.SIT_API_URL}/static/images/icons8-twitter-64.png`}
+              />
+            </a>
+          </div>
         </NewsLetter>
       </GridWrap>
+      <Copyright>© 2020 Sit. All Rights Reserved</Copyright>
     </FooterWrap>
   );
 });
