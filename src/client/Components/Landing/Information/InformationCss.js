@@ -90,6 +90,7 @@ export const CustomerQuoteWrap = styled.div`
   top: -50px;
   left: 50px;
   width: 370px;
+  min-width: 334px;
   height: 220px;
   padding: 20px;
   background-color: white;
