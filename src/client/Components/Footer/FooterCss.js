@@ -11,25 +11,27 @@ export const GridWrap = styled.div`
   grid-template-columns: 1fr 1fr 1fr 300px;
   justify-items: center;
   width: 60%;
+  padding: 15px 30px 60px 15px;
   margin: 0 auto;
-  padding: 15px 0px 60px 0px;
+
   grid-gap: 10px;
   @media (max-width: 1000px) {
-    width: 100vw;
-    margin: 0px 50px 0px 20px;
     grid-template-columns: 1fr 1fr;
     justify-items: start;
+    width: 80%;
   }
-  @media (max-width: 550px) {
-    grid-template-columns: 100px 1fr;
+  @media (max-width: 560px) {
+    grid-template-columns: 100px 250px;
+    margin: 0;
   }
   @media (max-width: 442px) {
     grid-template-columns: 100px 200px;
+    margin: 0;
   }
 `;
 
 export const Contact = styled.div`
-  @media (max-width: 550px) {
+  @media (max-width: 560px) {
     grid-column: 1 / span 2;
   }
 `;
@@ -39,7 +41,7 @@ export const Menu = styled.div``;
 export const RecentPosts = styled.div``;
 
 export const NewsLetter = styled.div`
-  @media (max-width: 550px) {
+  @media (max-width: 560px) {
     grid-column: 1 / span 2;
   }
 `;
