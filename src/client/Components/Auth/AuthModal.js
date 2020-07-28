@@ -37,7 +37,7 @@ const AuthModal = () => {
     setFormError(errors);
     if (!errors.errorExists) {
       setIsLoading(true);
-      let response = await fetch(`${process.env.SIT_API_URL}/${type}`, {
+      let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
