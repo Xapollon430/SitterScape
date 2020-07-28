@@ -70,8 +70,9 @@ const Header = () => {
               ) : (
                 <ExpandDown className="fas fa-chevron-down" />
               )}
-              <ProfileDropdown open={isDropdownOpen} />
             </Button>
+            <ProfileDropdown open={isDropdownOpen} />
+
             <Button onClick={openModal}>Sign Up</Button>
           </React.Fragment>
         )}
