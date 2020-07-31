@@ -7,23 +7,23 @@ export const signUp = async (req, res) => {
   let user;
   let token;
 
-  console.log(req.body);
   try {
-    const user =
+    user =
       signUpData.userType === "owner"
         ? new Owner(signUpData)
         : new Sitter(signUpData);
-
     token = user.generateAuthToken();
     await user.save();
   } catch (e) {
     console.log(e.message);
     return res.status(400).send({ error: "Failed signing up." });
   }
+  console.log(user);
   res.send({ user, token });
 };
 
 export const login = async (req, res, next) => {
+  console.log(123);
   const { email, password } = req.body;
   let foundUser = await User.findOne({ email });
   if (!foundUser) {

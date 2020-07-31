@@ -2,6 +2,7 @@ import React from "react";
 import Landing from "./Components/Landing/Landing";
 import FindSitter from "./Components/FindSitter/FindSitter";
 import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
   return (

@@ -4,3 +4,6 @@
 4- Be able to take a picture of a dog? and send it in chat?
 5- Profiles for sitters
 6- Sell pet products make a shop? Stripe API paypal api
+
+
+cleanup app.js

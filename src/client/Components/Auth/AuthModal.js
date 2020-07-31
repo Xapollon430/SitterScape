@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "./AuthModal.css";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import AuthTabs from "./AuthTabs/AuthTabs";
@@ -12,15 +11,20 @@ import {
 import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
 import { generalDispatchBundler } from "../../store/actions/GeneralActions";
 
-const initialUserState = {
+const initialSignUpState = {
   email: "",
   username: "",
   password: "",
   userType: "",
 };
 
+const initialLoginState = {
+  email: "",
+  password: "",
+};
+
 const AuthModal = () => {
-  const [userInfo, setUserInfo] = useState(initialUserState);
+  const [userInfo, setUserInfo] = useState(initialSignUpState);
   const [formError, setFormError] = useState({});
   const [errorMessageFromServer, setErrorMessageFromServer] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,14 +33,17 @@ const AuthModal = () => {
 
   const submitHandler = async (e, type) => {
     e.preventDefault();
+
     let errors =
       type === "login"
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
 
     setFormError(errors);
+    console.log(errors);
     if (!errors.errorExists) {
       setIsLoading(true);
+      console.log(123);
       let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
         method: "POST",
         headers: {
@@ -53,13 +60,15 @@ const AuthModal = () => {
             loggedIn: true,
           })
         );
-        dispatch(changeIsModalOpen(false));
         localStorage.setItem("jwt-token", data.token);
+        setIsLoading(false);
+        dispatch(changeIsModalOpen(false));
       } else {
         setErrorMessageFromServer(data.message);
-        setUserInfo(initialUserState);
+        state.modalState.isLogInOpen
+          ? setUserInfo(initialLoginState)
+          : setUserInfo(initialSignUpState);
       }
-      setIsLoading(false);
     }
   };
 
@@ -76,7 +85,9 @@ const AuthModal = () => {
       : dispatch(changeIsSignUpOpen(true));
     setFormError({});
     setErrorMessageFromServer(null);
-    setUserInfo(initialUserState);
+    state.modalState.isLogInOpen
+      ? setUserInfo(initialLoginState)
+      : setUserInfo(initialSignUpState);
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Login = ({ onChange, submitHandler, formError, isLoading }) => {
   return isLoading ? (

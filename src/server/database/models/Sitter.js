@@ -45,7 +45,7 @@ const sitterSchema = mongoose.Schema({
 });
 
 sitterSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: this._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: "10000",
   });
   return token;
