@@ -20,9 +20,10 @@ export const Nav = styled.div`
   display: ${(props) => (props.close === false ? "none" : "grid")};
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
+
   @media (max-width: 700px) {
     grid-template-columns: none;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(4, 30px);
   }
 `;
 
@@ -46,6 +47,7 @@ export const Brand = styled.h1`
   @media (max-width: 700px) {
     display: block;
     grid-area: brand;
+    font-size: 2rem;
   }
 `;
 
@@ -67,6 +69,10 @@ export const Button = styled.button`
   font-size: 1.1rem;
   height: 45px;
   border-radius: 5px;
+  @media (max-width: 700px) {
+    height: 35px;
+    font-size: 1rem;
+  }
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
@@ -83,15 +89,23 @@ export const DropdownWrapper = styled.div`
   border: white 2px solid;
   cursor: pointer;
   outline: none;
+  z-index: 100;
+  @media (max-width: 700px) {
+    top: 38px;
+    grid-auto-rows: 40px;
+  }
 `;
 
 export const DropdownItem = styled.span`
   color: white;
-  font-weight: 550;
   padding-top: 14px;
-
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
+  }
+  @media (max-width: 700px) {
+    padding-top: 10px;
+    background: #28a55f;
+    border: 1px solid white;
   }
 `;
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InformationWrapper = styled.div`
-  width: 100%;
+  width: 100vw;
   margin: 50px auto 0px auto;
   display: grid;
   justify-items: center;

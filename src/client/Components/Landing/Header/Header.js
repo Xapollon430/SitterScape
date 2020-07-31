@@ -10,6 +10,8 @@ import {
   ExpandDown,
   ExpandUp,
 } from "./HeaderCss";
+import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
+import Modal from "../../../UI/Modal/Modal";
 import { useResponsive } from "../../../CustomHooks/Hooks";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,7 +19,6 @@ import {
   changeIsSignUpOpen,
   changeIsLogInOpen,
 } from "../../../store/actions/AuthModalActions";
-import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import { changeLoggedIn } from "../../../store/actions/GeneralActions";
 
 const Header = () => {
@@ -41,7 +42,10 @@ const Header = () => {
   return (
     <Navbar>
       <Brand>Sit!</Brand>
-      <Menu onClick={showHamburger} className="fas fa-bars fa-3x"></Menu>
+      <Menu
+        onClick={showHamburger}
+        className={`fas fa-${isHamburgerOpen ? `times` : `bars`} fa-2x`}
+      ></Menu>
       <Nav close={isHamburgerOpen}>
         <RouterLink to="/search">
           <Button size="small" style={{ width: "100%" }}>
@@ -73,7 +77,9 @@ const Header = () => {
               <ProfileDropdown open={isDropdownOpen} />
             </Button>
 
-            <Button onClick={openModal}>Sign Up</Button>
+            <Button open={isDropdownOpen} onClick={openModal}>
+              Sign Up
+            </Button>
           </React.Fragment>
         )}
       </Nav>

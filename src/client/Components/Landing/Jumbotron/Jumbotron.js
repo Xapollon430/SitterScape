@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Section,
-  Title,
-  Paragraph,
-  Button,
-  Footer,
-  Link,
-} from "./JumbotronCss";
+import { Section, Title, Paragraph, Button, Info, Link } from "./JumbotronCss";
 import { Link as RouterLink } from "react-router-dom";
 
 const Jumbotron = React.memo(() => {
@@ -23,12 +16,12 @@ const Jumbotron = React.memo(() => {
         <Button>Find a Sitter!</Button>
       </RouterLink>
 
-      <Footer>
+      <Info>
         Are you looking for a pet sitting job?
         <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
           Apply Now.
         </Link>
-      </Footer>
+      </Info>
     </Section>
   );
 });
