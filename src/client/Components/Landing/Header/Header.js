@@ -57,18 +57,8 @@ const Header = () => {
         <EmptyDiv />
         {state.appState.loggedIn ? (
           <React.Fragment>
-            <Button>{state.appState.username}</Button>
-            <Button variant="outlined" onClick={logOut}>
-              Log Out
-            </Button>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              name="login"
-            >
-              Log In
+            <Button>
+              {state.appState.username}
               {isDropdownOpen ? (
                 <ExpandUp className="fas fa-chevron-up" />
               ) : (
@@ -76,10 +66,17 @@ const Header = () => {
               )}
               <ProfileDropdown open={isDropdownOpen} />
             </Button>
-
-            <Button open={isDropdownOpen} onClick={openModal}>
-              Sign Up
+            <Button variant="outlined" onClick={logOut}>
+              Log Out
             </Button>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Button onClick={openModal} name="login">
+              Log In
+            </Button>
+
+            <Button onClick={openModal}>Sign Up</Button>
           </React.Fragment>
         )}
       </Nav>

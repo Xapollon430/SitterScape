@@ -3,11 +3,17 @@ import Owner from "../database/models/Owner";
 import dotenv from "dotenv";
 
 export const signUp = async (req, res) => {
-  const userData = req.body;
+  const signUpData = req.body;
   let user;
   let token;
+
+  console.log(req.body);
   try {
-    user = new User(userData);
+    const user =
+      signUpData.userType === "owner"
+        ? new Owner(signUpData)
+        : new Sitter(signUpData);
+
     token = user.generateAuthToken();
     await user.save();
   } catch (e) {

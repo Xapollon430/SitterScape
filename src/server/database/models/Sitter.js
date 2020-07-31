@@ -51,6 +51,6 @@ sitterSchema.methods.generateAuthToken = function () {
   return token;
 };
 
-let Sitter = mongoose.model("Sitter", sitterSchema);
+const Sitter = mongoose.model("Sitter", sitterSchema);
 
 export default Sitter;
