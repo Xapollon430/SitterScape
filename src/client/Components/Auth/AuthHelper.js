@@ -10,7 +10,7 @@ export const signUpFormChecker = (formData) => {
   };
 
   for (let data in errorData) {
-    if (formData[data] == "") {
+    if (formData[data] == undefined) {
       errorData[data] = `${
         data.charAt(0).toUpperCase() + data.slice(1)
       } can't be empty!`;
@@ -33,7 +33,7 @@ export const logInFormChecker = (formData) => {
     password: "",
   };
   for (let data in errorData) {
-    if (formData[data] == "") {
+    if (formData[data] == undefined) {
       errorData[data] = `${
         data.charAt(0).toUpperCase() + data.slice(1)
       } can't be empty!`;

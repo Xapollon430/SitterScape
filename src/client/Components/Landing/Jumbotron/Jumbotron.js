@@ -9,7 +9,7 @@ const Jumbotron = React.memo(() => {
         You love your pets, <br /> so do we.
       </Title>
       <Paragraph>
-        At Sit.com we provide the most quality <br />
+        At Sit.com we provide the quality <br />
         caretakers to your beloved pets.
       </Paragraph>
       <RouterLink to="/search">

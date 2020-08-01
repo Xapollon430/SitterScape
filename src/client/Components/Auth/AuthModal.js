@@ -11,39 +11,25 @@ import {
 import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
 import { generalDispatchBundler } from "../../store/actions/GeneralActions";
 
-const initialSignUpState = {
-  email: "",
-  username: "",
-  password: "",
-  userType: "",
-};
-
-const initialLoginState = {
-  email: "",
-  password: "",
-};
-
 const AuthModal = () => {
-  const [userInfo, setUserInfo] = useState(initialSignUpState);
+  const [userInfo, setUserInfo] = useState({});
   const [formError, setFormError] = useState({});
   const [errorMessageFromServer, setErrorMessageFromServer] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  console.log(userInfo);
+  console.log(formError);
   const submitHandler = async (e, type) => {
     e.preventDefault();
-
     let errors =
       type === "login"
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
 
     setFormError(errors);
-    console.log(errors);
     if (!errors.errorExists) {
       setIsLoading(true);
-      console.log(123);
       let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
         method: "POST",
         headers: {
@@ -85,9 +71,6 @@ const AuthModal = () => {
       : dispatch(changeIsSignUpOpen(true));
     setFormError({});
     setErrorMessageFromServer(null);
-    state.modalState.isLogInOpen
-      ? setUserInfo(initialLoginState)
-      : setUserInfo(initialSignUpState);
   };
 
   return (

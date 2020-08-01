@@ -9,18 +9,6 @@ import Footer from "../Footer/Footer";
 import { changeIsModalOpen } from "../../store/actions/AuthModalActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const initialSignUpState = {
-  email: "",
-  username: "",
-  password: "",
-  userType: "",
-};
-
-const initialLoginState = {
-  email: "",
-  password: "",
-};
-
 function Landing() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -37,13 +25,7 @@ function Landing() {
           showModal={state.modalState.isModalOpen}
           onCancel={closeRegisterModal}
         >
-          <AuthModal
-            initialFormState={
-              state.modalState.isLogInOpen
-                ? initialLoginState
-                : initialSignUpState
-            }
-          />
+          <AuthModal />
         </Modal>
       </BackgroundImage>
       <Information />
