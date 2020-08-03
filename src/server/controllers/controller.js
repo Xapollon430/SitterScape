@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 export const signUp = async (req, res) => {
   const signUpData = req.body;
-  let user;
+  const user;
   let token;
 
   try {
