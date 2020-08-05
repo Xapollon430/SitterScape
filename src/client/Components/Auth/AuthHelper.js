@@ -6,7 +6,6 @@ export const signUpFormChecker = (formData) => {
     email: "",
     username: "",
     password: "",
-    userType: "",
   };
 
   for (let data in errorData) {

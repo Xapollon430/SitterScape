@@ -18,18 +18,22 @@ const AuthModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(userInfo);
-  console.log(formError);
+
   const submitHandler = async (e, type) => {
     e.preventDefault();
+
     let errors =
       type === "login"
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
 
     setFormError(errors);
+    console.log(errors);
+    console.log(formError);
+
     if (!errors.errorExists) {
       setIsLoading(true);
+
       let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
         method: "POST",
         headers: {
@@ -51,9 +55,7 @@ const AuthModal = () => {
         dispatch(changeIsModalOpen(false));
       } else {
         setErrorMessageFromServer(data.message);
-        state.modalState.isLogInOpen
-          ? setUserInfo(initialLoginState)
-          : setUserInfo(initialSignUpState);
+        setUserInfo({});
       }
     }
   };
