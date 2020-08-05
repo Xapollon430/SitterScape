@@ -1,5 +1,5 @@
-import Sitter from "../database/models/Sitter";
-import Owner from "../database/models/Owner";
+import User from "../database/models/User";
+
 import dotenv from "dotenv";
 
 export const signUp = async (req, res) => {

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
-const ownerSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -43,7 +43,7 @@ const ownerSchema = mongoose.Schema({
   animals: [{ kind: String, weight: String }],
 });
 
-ownerSchema.methods.generateAuthToken = function () {
+userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ id: this._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: "10000",
   });
@@ -51,6 +51,6 @@ ownerSchema.methods.generateAuthToken = function () {
   return token;
 };
 
-const Owner = mongoose.model("Owner", ownerSchema);
+const User = mongoose.model("User", userSchema);
 
-export default Owner;
+export default User;
