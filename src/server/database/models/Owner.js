@@ -25,8 +25,23 @@ const ownerSchema = mongoose.Schema({
     trim: true,
     minlength: 6,
   },
-  animals: [{ kind: String, weight: String }],
+  adress: {
+    street: String,
+    city: String,
+    zip: Number,
+    location: {
+      latitude: String,
+      longitude: String,
+    },
+  },
+  phoneNumber: String,
+  rate: Number,
+  rating: Number,
+  // profileComments,
   picture: String,
+  animals: [{ kind: String, weight: String }],
+  sitter: Boolean,
+  owner: Boolean,
 });
 
 ownerSchema.methods.generateAuthToken = function () {
