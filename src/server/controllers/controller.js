@@ -8,16 +8,14 @@ export const signUp = async (req, res) => {
   let token;
 
   try {
-    user =
-      signUpData.userType === "owner"
-        ? new Owner(signUpData)
-        : new Sitter(signUpData);
+    user = new User(signUpData);
     token = user.generateAuthToken();
     await user.save();
   } catch (e) {
     console.log(e.message);
     return res.status(400).send({ error: "Failed signing up." });
   }
+
   console.log(user);
   res.send({ user, token });
 };
