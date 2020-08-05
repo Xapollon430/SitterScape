@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
-// import Validator from "validator";
-
-const sitterSchema = mongoose.Schema({
+const ownerSchema = mongoose.Schema({
   username: {
     type: String,
     required: true,
     trim: true,
   },
-
   email: {
     type: String,
     required: true,
@@ -42,15 +39,18 @@ const sitterSchema = mongoose.Schema({
   rating: Number,
   // profileComments,
   picture: String,
+  userType: String,
+  animals: [{ kind: String, weight: String }],
 });
 
-sitterSchema.methods.generateAuthToken = function () {
+ownerSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ id: this._id.toString() }, process.env.JWT_SECRET, {
     expiresIn: "10000",
   });
+
   return token;
 };
 
-const Sitter = mongoose.model("Sitter", sitterSchema);
+const Owner = mongoose.model("Owner", ownerSchema);
 
-export default Sitter;
+export default Owner;
