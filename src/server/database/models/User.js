@@ -34,12 +34,12 @@ const userSchema = mongoose.Schema({
       longitude: String,
     },
   },
-  phoneNumber: String,
+  // phoneNumber: String,
   rate: Number,
   rating: Number,
   // profileComments,
   picture: String,
-  userType: String,
+  isActiveSitter: { type: Boolean, default: false },
   animals: [{ kind: String, weight: String }],
 });
 
