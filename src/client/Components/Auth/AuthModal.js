@@ -28,8 +28,6 @@ const AuthModal = () => {
         : signUpFormChecker(userInfo);
 
     setFormError(errors);
-    console.log(errors);
-    console.log(formError);
 
     if (!errors.errorExists) {
       setIsLoading(true);
