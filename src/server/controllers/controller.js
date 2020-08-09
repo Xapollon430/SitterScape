@@ -1,5 +1,4 @@
 import User from "../database/models/User";
-
 import dotenv from "dotenv";
 
 export const signUp = async (req, res) => {
