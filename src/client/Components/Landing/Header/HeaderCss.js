@@ -17,11 +17,12 @@ export const Navbar = styled.div`
 export const Nav = styled.div`
   grid-area: nav;
   width: 100%;
-  display: ${(props) => (props.close === false ? "none" : "grid")};
+  display: grid;
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
 
   @media (max-width: 700px) {
+    display: ${(props) => (props.open ? "grid" : "none")};
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
   }
@@ -61,6 +62,7 @@ export const Button = styled.button`
   font-family: inherit;
   color: white;
   position: relative;
+  width: 100%;
   background-color: Transparent;
   background-repeat: no-repeat;
   border: white 2px solid;

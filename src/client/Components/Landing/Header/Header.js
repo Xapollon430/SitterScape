@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Navbar,
   Brand,
@@ -12,7 +12,6 @@ import {
 } from "./HeaderCss";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import Modal from "../../../UI/Modal/Modal";
-import { useResponsive } from "../../../CustomHooks/Hooks";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeIsModalOpen,
@@ -22,8 +21,8 @@ import {
 import { changeLoggedIn } from "../../../store/actions/GeneralActions";
 
 const Header = () => {
-  const [showHamburger, isHamburgerOpen] = useResponsive();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isHamburgerOpen, openHamburger] = useState(false);
+  const [IsProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -43,32 +42,30 @@ const Header = () => {
     <Navbar>
       <Brand>Sit!</Brand>
       <Menu
-        onClick={showHamburger}
+        onClick={() => openHamburger(!isHamburgerOpen)}
         className={`fas fa-${isHamburgerOpen ? `times` : `bars`} fa-2x`}
-      ></Menu>
-      <Nav close={isHamburgerOpen}>
-        <RouterLink to="/search">
-          <Button size="small" style={{ width: "100%" }}>
-            Find A Sitter
-          </Button>
-        </RouterLink>
+      />
+      <Nav open={isHamburgerOpen}>
+        <Link to="/search">
+          <Button>Find A Sitter</Button>
+        </Link>
 
-        <Button variant="outlined">Blog</Button>
+        <Button>Blog</Button>
         <EmptyDiv />
         {state.appState.loggedIn ? (
           <React.Fragment>
-            <Button>
+            <Button
+              onClick={() => setIsProfileDropdownOpen(!IsProfileDropdownOpen)}
+            >
               {state.appState.username}
               {isDropdownOpen ? (
                 <ExpandUp className="fas fa-chevron-up" />
               ) : (
                 <ExpandDown className="fas fa-chevron-down" />
               )}
-              <ProfileDropdown open={isDropdownOpen} />
+              <ProfileDropdown open={isProfileDropdownOpen} />
             </Button>
-            <Button variant="outlined" onClick={logOut}>
-              Log Out
-            </Button>
+            <Button onClick={logOut}>Log Out</Button>
           </React.Fragment>
         ) : (
           <React.Fragment>
