@@ -40,7 +40,6 @@ const AuthModal = () => {
         body: JSON.stringify(userInfo),
       });
       let data = await response.json();
-
       if (data.user && data.token) {
         dispatch(
           generalDispatchBundler({
