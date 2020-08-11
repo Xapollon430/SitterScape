@@ -111,10 +111,6 @@ export const DropdownItem = styled.span`
   }
 `;
 
-export const ExpandDown = styled.i`
-  padding-left: 8px;
-`;
-
-export const ExpandUp = styled.i`
+export const ExpandIcon = styled.i`
   padding-left: 8px;
 `;

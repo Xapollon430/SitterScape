@@ -48,7 +48,6 @@ const AuthModal = () => {
           })
         );
         localStorage.setItem("jwt-token", data.token);
-        setIsLoading(false);
         dispatch(changeIsModalOpen(false));
       } else {
         setErrorMessageFromServer(data.message);

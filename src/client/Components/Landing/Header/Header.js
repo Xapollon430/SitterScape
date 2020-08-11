@@ -7,11 +7,9 @@ import {
   Nav,
   EmptyDiv,
   Button,
-  ExpandDown,
-  ExpandUp,
+  ExpandIcon,
 } from "./HeaderCss";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
-import Modal from "../../../UI/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeIsModalOpen,
@@ -21,8 +19,9 @@ import {
 import { changeLoggedIn } from "../../../store/actions/GeneralActions";
 
 const Header = () => {
-  const [isHamburgerOpen, openHamburger] = useState(false);
-  const [IsProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -38,11 +37,15 @@ const Header = () => {
     dispatch(changeLoggedIn(false));
   };
 
+  const openHamburger = () => setIsOpenHamburger(!isHamburgerOpen);
+  const openProfileDropdownOpen = () =>
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+
   return (
     <Navbar>
       <Brand>Sit!</Brand>
       <Menu
-        onClick={() => openHamburger(!isHamburgerOpen)}
+        onClick={openHamburger}
         className={`fas fa-${isHamburgerOpen ? `times` : `bars`} fa-2x`}
       />
       <Nav open={isHamburgerOpen}>
@@ -54,15 +57,13 @@ const Header = () => {
         <EmptyDiv />
         {state.appState.loggedIn ? (
           <React.Fragment>
-            <Button
-              onClick={() => setIsProfileDropdownOpen(!IsProfileDropdownOpen)}
-            >
+            <Button onClick={openProfileDropdownOpen}>
               {state.appState.username}
-              {isDropdownOpen ? (
-                <ExpandUp className="fas fa-chevron-up" />
-              ) : (
-                <ExpandDown className="fas fa-chevron-down" />
-              )}
+              <ExpandIcon
+                className={`fas fa-chevron-${
+                  isProfileDropdownOpen ? "up" : "down"
+                }`}
+              />
               <ProfileDropdown open={isProfileDropdownOpen} />
             </Button>
             <Button onClick={logOut}>Log Out</Button>
