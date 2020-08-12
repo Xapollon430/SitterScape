@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header/Header";
+import Header from "../Header/Header";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import BackgroundImage from "./LandingCss";
 import Modal from "../../UI/Modal/Modal";

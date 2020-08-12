@@ -15,8 +15,8 @@ import {
   changeIsModalOpen,
   changeIsSignUpOpen,
   changeIsLogInOpen,
-} from "../../../store/actions/AuthModalActions";
-import { changeLoggedIn } from "../../../store/actions/GeneralActions";
+} from "../../store/actions/AuthModalActions";
+import { changeLoggedIn } from "../../store/actions/GeneralActions";
 
 const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
