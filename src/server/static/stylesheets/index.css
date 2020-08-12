@@ -36,7 +36,7 @@ body {
   background-color: #fff;
 }
 .form-wrap .tabs-content {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .form-wrap #login-tab-content {
@@ -184,6 +184,10 @@ body {
   }
 }
 
+.tabs-wrap {
+  margin-top: 25px;
+}
+
 .form-wrap {
   display: grid;
 }
@@ -194,8 +198,4 @@ body {
 
 input[type="radio"] {
   margin: 10px 5px;
-}
-
-#radio-error {
-  color: red;
 }

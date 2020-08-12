@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const AuthTabs = ({ changeTab, errorMessageFromServer }) => {
   let state = useSelector((state) => state);
   return (
-    <div className="form-wrap">
+    <div className="tabs-wrap">
       <div className="tabs">
         <h3 className="signup-tab">
           <span

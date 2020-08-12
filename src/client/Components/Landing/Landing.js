@@ -21,13 +21,13 @@ function Landing() {
       <BackgroundImage>
         <Header />
         <Jumbotron />
-        <Modal
-          showModal={state.modalState.isModalOpen}
-          onCancel={closeRegisterModal}
-        >
-          <AuthModal />
-        </Modal>
       </BackgroundImage>
+      <Modal
+        showModal={state.modalState.isModalOpen}
+        onClose={closeRegisterModal}
+      >
+        <AuthModal onClose={closeRegisterModal} />
+      </Modal>
       <Information />
       <Footer />
     </React.Fragment>

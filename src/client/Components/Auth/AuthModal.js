@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import AuthTabs from "./AuthTabs/AuthTabs";
+import { CancelIcon } from "./AuthModalCss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeIsLogInOpen,
   changeIsSignUpOpen,
   changeIsModalOpen,
 } from "../../store/actions/AuthModalActions";
-import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
 import { generalDispatchBundler } from "../../store/actions/GeneralActions";
+import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
 
-const AuthModal = () => {
+const AuthModal = ({ onClose }) => {
   const [userInfo, setUserInfo] = useState({});
   const [formError, setFormError] = useState({});
   const [errorMessageFromServer, setErrorMessageFromServer] = useState(null);
@@ -73,6 +74,7 @@ const AuthModal = () => {
 
   return (
     <div className="form-wrap">
+      <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
       <AuthTabs
         changeTab={changeTab}
         errorMessageFromServer={errorMessageFromServer}
