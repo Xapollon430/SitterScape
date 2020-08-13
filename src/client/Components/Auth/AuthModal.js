@@ -19,7 +19,6 @@ const AuthModal = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(state.modalState);
 
   const submitHandler = async (e, type) => {
     e.preventDefault();

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 function Landing() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
+  console.log(state.modalState);
   const closeRegisterModal = () => {
     dispatch(changeIsModalOpen(false));
   };

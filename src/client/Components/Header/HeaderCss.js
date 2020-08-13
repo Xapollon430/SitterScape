@@ -16,8 +16,8 @@ export const Navbar = styled.div`
 
 export const Nav = styled.div`
   grid-area: nav;
-  width: 100%;
   display: grid;
+  width: 100%;
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
 
