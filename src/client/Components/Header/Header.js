@@ -22,7 +22,7 @@ const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
-  const state = useSelector((state) => state);
+  const { appState } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const openModal = (event) => {
@@ -55,10 +55,10 @@ const Header = () => {
 
         <Button>Blog</Button>
         <EmptyDiv />
-        {state.appState.loggedIn ? (
+        {appState.loggedIn ? (
           <React.Fragment>
             <Button onClick={openProfileDropdownOpen}>
-              {state.appState.username}
+              {appState.user.username}
               <ExpandIcon
                 className={`fas fa-chevron-${
                   isProfileDropdownOpen ? "up" : "down"
