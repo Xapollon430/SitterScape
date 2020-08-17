@@ -25,7 +25,7 @@ const SignUp = ({ onChange, submitHandler, formError, isLoading }) => {
           <input
             type="text"
             className={`input ${formError.name ? "error" : ""}`}
-            name="Name"
+            name="name"
             placeholder="Name"
             onChange={onChange}
           />
