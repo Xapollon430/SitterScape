@@ -3,6 +3,7 @@ import { login, signUp } from "../controllers/controller";
 import HttpError from "../error/HttpError";
 
 const router = express.Router();
+
 router.post("/sign-up", signUp);
 router.post("/login", login);
 
@@ -11,8 +12,9 @@ router.post("/login", login);
 //   return next();
 // });
 
-router.use(async (req, res, next) => {
+router.use(async (error, req, res, next) => {
   // Error handler route
+  console.log(error);
   return res.status(req.error.code).json({ error: req.error.message });
 });
 
