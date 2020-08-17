@@ -8,17 +8,17 @@ export const signUp = async (req, res, next) => {
   let token;
 
   try {
-    User.findOne({ email: req.body.email }, async (err, user) => {
-      if (err) return next(new HttpError("Email already used!", 500));
+    User.findOne({ email: req.body.email }, async (err, emailExists) => {
+      if (emailExists) return next(new HttpError("Email already used!", 500));
 
       user = new User(signUpData);
       token = user.generateAuthToken();
       await user.save();
+      res.send({ user, token });
     });
   } catch (e) {
     return next(new HttpError(e.message, 400));
   }
-  res.send({ user, token });
 };
 
 export const login = async (req, res, next) => {
