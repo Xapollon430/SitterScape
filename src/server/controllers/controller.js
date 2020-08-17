@@ -19,9 +19,8 @@ export const signUp = async (req, res) => {
     });
   } catch (e) {
     req.error = new HttpError(e.message, 400);
-    return res.status(400).send({ error: "Failed signing up." });
+    return next();
   }
-
   res.send({ user, token });
 };
 
