@@ -14,8 +14,7 @@ router.post("/login", login);
 
 router.use(async (error, req, res, next) => {
   // Error handler route
-  console.log(error);
-  return res.status(req.error.code).json({ error: req.error.message });
+  return res.status(error.code).json({ error: error.message });
 });
 
 export default router;

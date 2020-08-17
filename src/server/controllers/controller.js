@@ -2,24 +2,21 @@ import User from "../database/models/User";
 import dotenv from "dotenv";
 import HttpError from "../error/HttpError";
 
-export const signUp = async (req, res) => {
+export const signUp = async (req, res, next) => {
   const signUpData = req.body;
   let user;
   let token;
-  // return next(new HttpError("test", 400));
+
   try {
     User.findOne({ email: req.body.email }, async (err, user) => {
-      if (err) {
-        req.error = new HttpError("Email already used!", 500);
-        return next();
-      }
+      if (err) return next(new HttpError("Email already used!", 500));
+
       user = new User(signUpData);
       token = user.generateAuthToken();
       await user.save();
     });
   } catch (e) {
-    req.error = new HttpError(e.message, 400);
-    return next();
+    return next(new HttpError(e.message, 400));
   }
   res.send({ user, token });
 };

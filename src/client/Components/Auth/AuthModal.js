@@ -19,7 +19,7 @@ const AuthModal = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(userInfo);
+
   const submitHandler = async (e, type) => {
     e.preventDefault();
 
@@ -27,7 +27,7 @@ const AuthModal = ({ onClose }) => {
       type === "login"
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
-    console.log(errors);
+
     setFormError(errors);
 
     if (!errors.errorExists) {
