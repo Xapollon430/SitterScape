@@ -2,11 +2,17 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
 const userSchema = mongoose.Schema({
-  username: {
+  firstName: {
     type: String,
     required: true,
     trim: true,
   },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
   email: {
     type: String,
     required: true,

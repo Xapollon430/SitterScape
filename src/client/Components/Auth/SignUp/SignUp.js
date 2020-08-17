@@ -19,14 +19,24 @@ const SignUp = ({ onChange, submitHandler, formError, isLoading }) => {
             placeholder="Email"
             onChange={onChange}
           />
-          {formError.username ? (
-            <div className="error-message">{formError.username}</div>
+          {formError.name ? (
+            <div className="error-message">{formError.name}</div>
           ) : null}
           <input
             type="text"
-            className={`input ${formError.username ? "error" : ""}`}
-            name="username"
-            placeholder="Username"
+            className={`input ${formError.name ? "error" : ""}`}
+            name="Name"
+            placeholder="Name"
+            onChange={onChange}
+          />
+          {formError.surname ? (
+            <div className="error-message">{formError.surname}</div>
+          ) : null}
+          <input
+            type="text"
+            className={`input ${formError.surname ? "error" : ""}`}
+            name="surname"
+            placeholder="Surname"
             onChange={onChange}
           />
           {formError.password ? (

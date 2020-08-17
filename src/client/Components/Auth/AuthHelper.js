@@ -4,7 +4,8 @@ export const signUpFormChecker = (formData) => {
   let errorExists = null;
   let errorData = {
     email: "",
-    username: "",
+    name: "",
+    surname: "",
     password: "",
   };
 
