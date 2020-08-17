@@ -1,6 +1,6 @@
 class HttpError {
   constructor(message, errorCode) {
-    this.errorCode = errorCode;
+    this.errorCode = code;
     this.message = message;
   }
 }

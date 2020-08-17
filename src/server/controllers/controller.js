@@ -1,5 +1,6 @@
 import User from "../database/models/User";
 import dotenv from "dotenv";
+import HttpError from "../error/HttpError";
 
 export const signUp = async (req, res) => {
   const signUpData = req.body;
@@ -7,11 +8,17 @@ export const signUp = async (req, res) => {
   let token;
 
   try {
-    user = new User(signUpData);
-    token = user.generateAuthToken();
-    await user.save();
+    User.findOne({ email: req.body.email }, async (err, user) => {
+      if (err) {
+        req.error = new HttpError("Email already used!", 500);
+        return next();
+      }
+      user = new User(signUpData);
+      token = user.generateAuthToken();
+      await user.save();
+    });
   } catch (e) {
-    console.log(e.message);
+    req.error = new HttpError(e.message, 400);
     return res.status(400).send({ error: "Failed signing up." });
   }
 

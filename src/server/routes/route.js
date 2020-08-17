@@ -7,12 +7,12 @@ router.post("/sign-up", signUp);
 router.post("/login", login);
 
 router.use((req, res, next) => {
-  req.error = new HttpError("Route doesnt exist", "400");
+  req.error = req.error || new HttpError("Route doesnt exist", "400");
   return next();
 });
 
 router.use(async (req, res, next) => {
-  return res.status(req.error.errorCode).json({ error: req.error.message });
+  return res.status(req.error.code).json({ error: req.error.message });
 });
 
 export default router;
