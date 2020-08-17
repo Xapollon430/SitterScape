@@ -41,7 +41,6 @@ const AuthModal = ({ onClose }) => {
         body: JSON.stringify(userInfo),
       });
       let data = await response.json();
-      console.log(data);
       if (data.user && data.token) {
         dispatch(
           generalDispatchBundler({
