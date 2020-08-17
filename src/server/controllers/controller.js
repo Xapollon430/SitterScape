@@ -6,7 +6,7 @@ export const signUp = async (req, res) => {
   const signUpData = req.body;
   let user;
   let token;
-  return next(new HttpError("test", 400));
+  // return next(new HttpError("test", 400));
   try {
     User.findOne({ email: req.body.email }, async (err, user) => {
       if (err) {
