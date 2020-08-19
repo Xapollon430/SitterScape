@@ -28,9 +28,9 @@ const AuthModal = ({ onClose }) => {
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
 
-    setFormError(errors);
-
-    if (!errors.errorExists) {
+    if (error.errorExists) {
+      setFormError(errors);
+    } else {
       setIsLoading(true);
 
       let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
