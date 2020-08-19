@@ -1,7 +1,7 @@
 import validator from "validator";
 
 export const signUpFormChecker = (formData) => {
-  let errorExists = null;
+  let errorExists;
   let errorData = {
     email: "",
     name: "",
@@ -27,7 +27,7 @@ export const signUpFormChecker = (formData) => {
 };
 
 export const logInFormChecker = (formData) => {
-  let errorExists = null;
+  let errorExists;
   let errorData = {
     email: "",
     password: "",
