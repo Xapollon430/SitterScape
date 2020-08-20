@@ -6,7 +6,6 @@ export const signUp = async (req, res, next) => {
   const signUpData = req.body;
   let user;
   let token;
-
   try {
     User.findOne({ email: req.body.email }, async (err, emailExists) => {
       if (emailExists) return next(new HttpError("Email already used!", 500));

@@ -12,7 +12,8 @@ router.post("/login", login);
 //   return next();
 // });
 
-router.use(async (error, req, res, next) => {
+router.use((error, req, res, next) => {
+  console.log(123);
   // Error handler route
   return res.status(error.code).json({ message: error.message });
 });

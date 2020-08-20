@@ -28,11 +28,10 @@ const AuthModal = ({ onClose }) => {
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
 
-    if (error.errorExists) {
+    if (errors.errorExists) {
       setFormError(errors);
     } else {
       setIsLoading(true);
-
       let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
         method: "POST",
         headers: {
