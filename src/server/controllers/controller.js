@@ -30,7 +30,7 @@ export const login = async (req, res, next) => {
 
   let token = await foundUser.generateAuthToken();
   res.status(200).send({
-    user: { username: foundUser.username, email: foundUser.email },
+    user: foundUser,
     token,
   });
 };

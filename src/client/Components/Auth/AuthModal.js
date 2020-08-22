@@ -27,7 +27,6 @@ const AuthModal = ({ onClose }) => {
       type === "login"
         ? logInFormChecker(userInfo)
         : signUpFormChecker(userInfo);
-
     if (errors.errorExists) {
       setFormError(errors);
     } else {
