@@ -5,7 +5,8 @@ let BackgroundImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("${process.env.SIT_API_URL}/static/images/background.jpg");
+  background-image: url("${process.env
+    .SIT_API_URL}/static/images/background.jpg");
   height: 100vh;
   width: 100vw;
   background-position: center;
