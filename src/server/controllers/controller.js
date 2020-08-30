@@ -8,6 +8,8 @@ export const signUp = async (req, res, next) => {
     User.findOne({ email: req.body.email }, async (err, emailExists) => {
       if (emailExists) return next(new HttpError("Email already used!", 500));
 
+      console.log(signUpData);
+
       let user = new User(signUpData);
       let token = user.generateAuthToken();
       await user.save();
