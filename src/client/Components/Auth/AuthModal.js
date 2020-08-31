@@ -11,6 +11,7 @@ import {
 } from "../../store/actions/AuthModalActions";
 import { generalDispatchBundler } from "../../store/actions/GeneralActions";
 import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
+import { Post } from "../../Functions/Functions";
 
 const AuthModal = ({ onClose }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -32,14 +33,10 @@ const AuthModal = ({ onClose }) => {
       setFormError(errors);
     } else {
       setIsLoading(true);
-      let response = await fetch(`${process.env.SIT_API_URL}/api/${type}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      });
-      let data = await response.json();
+      let response = await Post(
+        `${process.env.SIT_API_URL}/api/${type}`,
+        userInfo
+      );
       if (data.user && data.token) {
         dispatch(
           generalDispatchBundler({
@@ -50,7 +47,7 @@ const AuthModal = ({ onClose }) => {
         localStorage.setItem("jwt-token", data.token);
         dispatch(changeIsModalOpen(false));
       } else {
-        setErrorMessageFromServer(data.message);
+        setErrorMessageFromServer(data.error);
         setUserInfo({});
       }
     }

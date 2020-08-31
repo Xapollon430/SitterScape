@@ -12,9 +12,8 @@ router.use((req, res, next) => {
 });
 
 router.use((error, req, res, next) => {
-  console.log(123);
   // Error handler route
-  return res.status(error.code).json({ message: error.message });
+  return res.status(error.code).json({ error: error.message });
 });
 
 export default router;
