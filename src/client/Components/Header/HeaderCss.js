@@ -28,7 +28,7 @@ export const Nav = styled.div`
   }
 `;
 
-export const Menu = styled.i`
+export const ButtonWrap = styled.div`
   grid-area: menu;
   display: none;
   color: white;
@@ -36,6 +36,9 @@ export const Menu = styled.i`
     display: block;
     justify-self: end;
     padding-right: 20px;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 

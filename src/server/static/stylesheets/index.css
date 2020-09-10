@@ -200,3 +200,8 @@ body {
 input[type="radio"] {
   margin: 10px 5px;
 }
+
+button[aria-label="Navigation"] {
+  /* Getting rid of react burger button outline */
+  outline: none;
+}

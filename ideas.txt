@@ -11,3 +11,4 @@ cleanup app.js
 1- axios
 3- signup email check
 4- cleanup ap
+5- fix submit handler

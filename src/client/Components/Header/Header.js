@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import {
   Navbar,
   Brand,
-  Menu,
   Nav,
   EmptyDiv,
   Button,
   ExpandIcon,
+  ButtonWrap,
 } from "./HeaderCss";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ import {
   changeIsLogInOpen,
 } from "../../store/actions/AuthModalActions";
 import { changeLoggedIn } from "../../store/actions/GeneralActions";
+import { HamburgerSpin } from "react-animated-burgers";
 
 const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
@@ -44,10 +45,14 @@ const Header = () => {
   return (
     <Navbar>
       <Brand>Sit!</Brand>
-      <Menu
-        onClick={openHamburger}
-        className={`fas fa-${isHamburgerOpen ? `times` : `bars`} fa-2x`}
-      />
+      <ButtonWrap>
+        <HamburgerSpin
+          isActive={isHamburgerOpen ? false : true}
+          toggleButton={openHamburger}
+          barColor="white"
+        />
+      </ButtonWrap>
+
       <Nav open={isHamburgerOpen}>
         <Link to="/search">
           <Button>Find A Sitter</Button>
