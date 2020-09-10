@@ -37,9 +37,7 @@ export const ButtonWrap = styled.div`
     justify-self: end;
     padding-right: 20px;
   }
-  &:focus {
-    outline: none;
-  }
+  
 `;
 
 export const Brand = styled.h1`
