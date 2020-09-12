@@ -9,7 +9,7 @@ import {
   changeIsSignUpOpen,
   changeIsModalOpen,
 } from "../../store/actions/AuthModalActions";
-import { generalDispatchBundler } from "../../store/actions/GeneralActions";
+import { changeLoggedIn, logUserIn } from "../../store/actions/GeneralActions";
 import { signUpFormChecker, logInFormChecker } from "./AuthHelper";
 import { Post } from "../../Functions/Functions";
 
@@ -33,18 +33,14 @@ const AuthModal = ({ onClose }) => {
       setFormError(errors);
     } else {
       setIsLoading(true);
-      let response = await Post(
+      let { user, token, error } = await Post(
         `${process.env.SIT_API_URL}/api/${type}`,
         userInfo
       );
-      if (data.user && data.token) {
-        dispatch(
-          generalDispatchBundler({
-            user: data.user,
-            loggedIn: true,
-          })
-        );
+      if (user && token) {
         localStorage.setItem("jwt-token", data.token);
+        dispatch(logUserIn(data.user));
+        dispatch(changeLoggedIn(true));
         dispatch(changeIsModalOpen(false));
       } else {
         setErrorMessageFromServer(data.error);
