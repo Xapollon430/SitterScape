@@ -22,7 +22,7 @@ module.exports = (env) => {
     },
 
     devServer: {
-      historyApiFallback: true,
+      historyApiFallback: true, // redirect every request to /
       open: true,
       port: 3000,
     },
