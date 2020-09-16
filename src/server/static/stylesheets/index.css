@@ -87,53 +87,18 @@ body {
   }
 }
 
+.tabs-wrap {
+  margin-top: 25px;
+}
+
+.form-wrap {
+  display: grid;
+}
+
 .form-wrap form .button:hover {
   background-color: #4fda8c;
 }
-.form-wrap form .checkbox {
-  visibility: hidden;
-  padding: 20px;
-  margin: 0.5em 0 1.5em;
-}
-.form-wrap form .checkbox:checked + label:after {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: alpha(opacity=100);
-  opacity: 1;
-}
-.form-wrap form label[for] {
-  position: relative;
-  padding-left: 20px;
-  cursor: pointer;
-}
-.form-wrap form label[for]:before {
-  content: "";
-  position: absolute;
-  border: 1px solid #cfcfcf;
-  width: 17px;
-  height: 17px;
-  top: 0px;
-  left: -14px;
-}
-.form-wrap form label[for]:after {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  opacity: 0;
-  content: "";
-  position: absolute;
-  width: 9px;
-  height: 5px;
-  background-color: transparent;
-  top: 4px;
-  left: -10px;
-  border: 3px solid #28a55f;
-  border-top: none;
-  border-right: none;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
+
 .form-wrap .help-text {
   margin-top: 0.6em;
 }
@@ -150,6 +115,10 @@ body {
   border: 1px solid red !important;
 }
 
+.form-wrap input[type="radio"] {
+  margin: 10px 5px;
+}
+
 .error-message {
   color: red !important;
 }
@@ -162,18 +131,7 @@ body {
   border-top: 16px solid rgb(20, 169, 109);
   width: 120px;
   height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
 }
 
 @keyframes spin {
@@ -185,23 +143,24 @@ body {
   }
 }
 
-.tabs-wrap {
-  margin-top: 25px;
-}
-
-.form-wrap {
-  display: grid;
-}
-
-.padding-left {
-  padding-left: 20px;
-}
-
-input[type="radio"] {
-  margin: 10px 5px;
-}
-
 button[aria-label="Navigation"] {
-  /* Getting rid of react burger button outline */
   outline: none;
+}
+
+@media (max-width: 700px) {
+  .DropDownAnimation {
+    animation: DropDown 300ms ease-in-out forwards;
+  }
+}
+
+@keyframes DropDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

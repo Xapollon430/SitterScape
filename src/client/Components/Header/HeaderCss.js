@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Navbar = styled.div`
   padding: 20px 30px 20px 20px;
@@ -37,7 +37,6 @@ export const ButtonWrap = styled.div`
     justify-self: end;
     padding-right: 20px;
   }
-  
 `;
 
 export const Brand = styled.h1`
@@ -93,6 +92,7 @@ export const DropdownWrapper = styled.div`
   cursor: pointer;
   outline: none;
   z-index: 100;
+
   @media (max-width: 700px) {
     top: 38px;
     grid-auto-rows: 40px;

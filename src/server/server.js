@@ -17,9 +17,9 @@ app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
 // PROD ROUTE FOR SSR
-if (process.env.NODE_ENV === "production") {
-  app.get("/", (req, res) => res.send(ServerSideMarkup()));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.get("/", (req, res) => res.send(ServerSideMarkup()));
+// }
 
 app.listen(PORT, () => {
   console.log("Listening");

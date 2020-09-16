@@ -47,13 +47,13 @@ const Header = () => {
       <Brand>Sit!</Brand>
       <ButtonWrap>
         <HamburgerSpin
-          isActive={isHamburgerOpen ? false : true}
+          isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
           barColor="white"
         />
       </ButtonWrap>
 
-      <Nav open={isHamburgerOpen}>
+      <Nav className="DropDownAnimation" open={isHamburgerOpen}>
         <Link to="/search">
           <Button>Find A Sitter</Button>
         </Link>

@@ -12,3 +12,4 @@ cleanup app.js
 3- signup email check
 4- cleanup ap
 5- fix submit handler
+6- responsive nav bar animation
