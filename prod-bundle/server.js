@@ -24,9 +24,12 @@ app.use(_express["default"].json());
 app.use((0, _cors["default"])());
 app.use("/static", _express["default"]["static"](_path["default"].resolve(__dirname, "static")));
 app.use("/api", _route["default"]); // PROD ROUTE FOR SSR
-// if (process.env.NODE_ENV === "production") {
-//   app.get("/", (req, res) => res.send(ServerSideMarkup()));
-// }
+
+if (process.env.NODE_ENV === "production") {
+  app.get("/", function (req, res) {
+    return res.send((0, _html["default"])());
+  });
+}
 
 app.listen(PORT, function () {
   console.log("Listening");
