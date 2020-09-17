@@ -8,7 +8,6 @@ import AuthModal from "../Auth/AuthModal";
 import Footer from "../Footer/Footer";
 import { changeIsModalOpen } from "../../store/actions/AuthModalActions";
 import { useDispatch, useSelector } from "react-redux";
-import { HamburgerSpin } from "react-animated-burgers";
 
 function Landing() {
   const dispatch = useDispatch();

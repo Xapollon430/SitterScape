@@ -1,7 +1,7 @@
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 
-// const X = () => <button>HUZEYFE</button>;
+const X = () => <button>HUZEYFE</button>;
 
 const ServerSideMarkup = () => {
   return `<!DOCTYPE html>

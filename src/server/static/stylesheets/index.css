@@ -12,10 +12,6 @@ body {
   text-decoration: none;
 }
 
-.form-wrap input {
-  font: 16px/26px "Raleway", sans-serif;
-}
-
 .form-wrap .tabs {
   overflow: hidden;
   padding-top: -20px;
@@ -75,18 +71,14 @@ body {
 }
 
 @media screen and (max-width: 700px) {
+  .form-wrap .tabs-content {
+    padding-top: 10px;
+  }
   .form-wrap form .button,
   .form-wrap form .input {
     padding: 4px;
   }
 }
-
-@media screen and (max-width: 700px) {
-  .form-wrap .tabs-content {
-    padding-top: 10px;
-  }
-}
-
 .tabs-wrap {
   margin-top: 25px;
 }
@@ -140,27 +132,5 @@ body {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-button[aria-label="Navigation"] {
-  outline: none;
-}
-
-@media (max-width: 700px) {
-  .DropDownAnimation {
-    animation: DropDown 300ms ease-in-out forwards;
-  }
-}
-
-@keyframes DropDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-60px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
