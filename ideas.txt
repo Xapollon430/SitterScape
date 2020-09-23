@@ -13,3 +13,4 @@ cleanup app.js
 4- cleanup ap
 5- fix submit handler
 6- auth modal fix
+7-https://medium.com/@martin.crabtree/react-creating-a-redux-like-global-state-with-the-usecontext-and-usereducer-hooks-89aa2b27dbc5

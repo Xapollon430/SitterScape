@@ -14,18 +14,6 @@ export const Navbar = styled.div`
   }
 `;
 
-const menuDown = keyframes`
-   0% {
-    opacity: 0;
-    transform: translateY(-60px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
 export const Nav = styled.div`
   grid-area: nav;
   display: grid;
@@ -34,10 +22,11 @@ export const Nav = styled.div`
   grid-template-columns: 120px 120px 1fr 120px 120px;
 
   @media (max-width: 700px) {
-    display: ${(props) => (props.open ? "grid" : "none")};
+    height: ${(props) => (props.open ? "160px" : "0px")};
+    overflow: hidden;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    animation: ${menuDown} 300ms ease-in-out forwards;
+    transition: height 0.5s ease-in-out;
   }
 `;
 
