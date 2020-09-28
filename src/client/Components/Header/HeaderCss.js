@@ -14,6 +14,8 @@ export const Navbar = styled.div`
   }
 `;
 
+const NavAnimationOne = keyframes``;
+
 export const Nav = styled.div`
   grid-area: nav;
   display: grid;
