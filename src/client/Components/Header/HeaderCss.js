@@ -14,7 +14,23 @@ export const Navbar = styled.div`
   }
 `;
 
-const NavAnimationOne = keyframes``;
+const NavAnimationOne = keyframes`
+  from{
+    height: 0px
+  } 
+  to{
+    height: 160px
+  }
+`;
+
+const NavAnimationTwo = keyframes`
+  from{
+    height: 160px
+  } 
+  to{
+    height: 0px
+  }
+`;
 
 export const Nav = styled.div`
   grid-area: nav;
@@ -28,7 +44,7 @@ export const Nav = styled.div`
     overflow: hidden;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    transition: height 0.5s ease-in-out;
+    animation: ${(props) => (props.open ? "160px" : "0px")}} 0.5s;
   }
 `;
 
