@@ -44,7 +44,7 @@ export const Nav = styled.div`
     overflow: hidden;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    animation: ${(props) => (props.open ? "160px" : "0px")}} 0.5s;
+    animation: ${(props) => (props.open ? "160px" : "0px")} 0.5s;
   }
 `;
 
