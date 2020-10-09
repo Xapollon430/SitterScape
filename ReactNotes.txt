@@ -1,3 +1,5 @@
 React state update batching example
 https://codesandbox.io/s/402pn5l989?file=/src/index.js:327-340
 
+React usestate callback for fresh state.
+https://codesandbox.io/s/hopeful-banzai-kcou6?file=/src/App.js:245-506
