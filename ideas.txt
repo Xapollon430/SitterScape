@@ -5,7 +5,9 @@
 5- Profiles for sitters
 6- Sell pet products make a shop? Stripe API paypal api
 
-Startup names - SitterScape, Pupnest, sittery?
+Startup names - SitterScape, Pupnest, Sitterry
+Sitterlux, Petcarify, Sytters, Searchsitter, Sitterpedia,
+Pupsytter
 
 cleanup app.js
 
