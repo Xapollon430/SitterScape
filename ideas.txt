@@ -9,7 +9,6 @@ Startup names - SitterScape, Pupnest, Sitterry
 Sitterlux, Petcarify, Sytters, Searchsitter, Sitterpedia,
 Pupsytter.
 
-cleanup app.js
 
 1- axios
 3- signup email check
