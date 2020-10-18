@@ -18,3 +18,4 @@ cleanup app.js
 6- auth modal fix
 7-https://medium.com/@martin.crabtree/react-creating-a-redux-like-global-state-with-the-usecontext-and-usereducer-hooks-89aa2b27dbc5
 8- https://medium.com/javascript-in-plain-english/implementing-context-api-in-a-react-application-8b9b156a4154
+9- purchase and deploy to SitterScape.

@@ -66,7 +66,7 @@ const AuthModal = ({ onClose }) => {
   };
 
   return (
-    <div className="form-wrap">
+    <React.Fragment>
       <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
       <AuthTabs
         changeTab={changeTab}
@@ -87,7 +87,7 @@ const AuthModal = ({ onClose }) => {
           isLoading={isLoading}
         />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 

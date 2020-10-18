@@ -1,5 +1,5 @@
 {
-  "name": "Sit",
+  "name": "SitterScape",
   "version": "1.0.0",
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "formik": "^2.2.0",
     "heroku": "^7.42.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
@@ -31,7 +32,8 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "styled-components": "^5.1.1",
-    "validator": "^12.1.0"
+    "validator": "^12.1.0",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

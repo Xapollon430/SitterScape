@@ -1,5 +1,8 @@
-React state update batching example
+React state update batching example.
 https://codesandbox.io/s/402pn5l989?file=/src/index.js:327-340
 
-React usestate callback for fresh state.
+React useState callback for fresh state.
 https://codesandbox.io/s/hopeful-banzai-kcou6?file=/src/App.js:245-506
+
+React useState under the hood.
+https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/
