@@ -2,8 +2,8 @@
 2- Blog page for users, hashtags, upvotes, comments
 3- Email, phone notificiations, Lambda?
 4- Be able to take a picture of a dog? and send it in chat?
-5- Profiles for sitters
-6- Sell pet products make a shop? Stripe API paypal api
+5- Sell pet products make a shop? Stripe API paypal api
+6- Rover map page.
 
 Startup names - SitterScape, Pupnest, Sitterry
 Sitterlux, Petcarify, Sytters, Searchsitter, Sitterpedia,
