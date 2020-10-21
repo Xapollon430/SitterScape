@@ -25,12 +25,37 @@ export const Spinner = styled.div`
   animation: ${spin} 2s linear infinite;
 `;
 
-export const Tab = styled.span`
-  width: 50%;
-  height: 40px;
+export const TabWrap = styled.div`
+  width: 100%;
+  margin-top: 35px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background-color: white;
-  border: 1px solid black;
 `;
 export const TabText = styled.h3`
   text-align: center;
+  font-weight: 400;
+`;
+
+export const Form = styled.form`
+  display: grid;
+  width: 85%;
+  margin: 10px auto 30px auto;
+  grid-gap: 5px;
+`;
+
+export const Input = styled.input`
+  border: 1px solid #cfcfcf;
+  outline: 0;
+  height: 16px;
+  padding: 0.8em 0 10px 0.8em;
+`;
+
+export const SubmitButton = styled.button`
+  background-color: #28a55f;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 35px;
 `;
