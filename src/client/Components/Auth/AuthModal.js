@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import AuthTabs from "./AuthTabs/AuthTabs";
-import { CancelIcon } from "./AuthModalCss";
+import { CancelIcon, Spinner } from "./AuthModalCss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeIsLogInOpen,
@@ -34,8 +33,9 @@ const AuthModal = ({ onClose }) => {
   return (
     <React.Fragment>
       <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
-      <AuthTabs changeTab={changeTab} />
-      {state.modalState.isLogInOpen ? <Login /> : <SignUp />}
+      {/* <AuthTabs changeTab={changeTab} /> */}
+      <Spinner />
+      {/* {state.modalState.isLogInOpen ? <Login /> : <SignUp />} */}
     </React.Fragment>
   );
 };
