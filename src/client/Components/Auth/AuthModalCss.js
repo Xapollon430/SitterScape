@@ -24,3 +24,13 @@ export const Spinner = styled.div`
   height: 120px;
   animation: ${spin} 2s linear infinite;
 `;
+
+export const Tab = styled.span`
+  width: 50%;
+  height: 40px;
+  background-color: white;
+  border: 1px solid black;
+`;
+export const TabText = styled.h3`
+  text-align: center;
+`;
