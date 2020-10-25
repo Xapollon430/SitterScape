@@ -11,8 +11,8 @@ Pupsytter.
 
 
 1- Change fetch calls to axios?
-3- Signup email auth.
-4- Cleanup code.
+3- Signup email auth. (Later)
+4- Cleanup code. (Later)
 5- Rewrite auth modal css with styled comp, introduce formik and yup
 https://formik.org/docs/tutorial, https://www.smashingmagazine.com/2020/10/react-validation-formik-yup/
 
@@ -20,3 +20,5 @@ https://formik.org/docs/tutorial, https://www.smashingmagazine.com/2020/10/react
 https://medium.com/@martin.crabtree/react-creating-a-redux-like-global-state-with-the-usecontext-and-usereducer-hooks-89aa2b27dbc5
 https://medium.com/javascript-in-plain-english/implementing-context-api-in-a-react-application-8b9b156a4154
 7- Purchase and deploy to SitterScape.com
+
+https://developer.mozilla.org/en-US/docs/Web/API/DragEvent
