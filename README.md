@@ -1,4 +1,5 @@
-# Sit
-Backend of Sit.com
+# SitterScape
 
-Sit.com is an innovative platform to connect pet sitters and owners.
+of SitterScape.com
+
+SitterScape.com is an innovative platform to connect pet sitters and owners.

@@ -6,3 +6,6 @@ https://codesandbox.io/s/hopeful-banzai-kcou6?file=/src/App.js:245-506
 
 React useState under the hood.
 https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/
+
+React version 17 no need for React being in scope, also synthetic event removed.
+https://medium.com/better-programming/whats-new-in-react-v17-68b7e15576e1
