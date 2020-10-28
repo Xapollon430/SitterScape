@@ -12,7 +12,7 @@ Pupsytter.
 
 1- Change fetch calls to axios?
 3- Signup email auth. (Later)
-4- Cleanup code. (Later)
+4- Cleanup code. Remove deps, React scope etc, (Later)
 5- Rewrite auth modal css with styled comp, introduce formik and yup
 https://formik.org/docs/tutorial, https://www.smashingmagazine.com/2020/10/react-validation-formik-yup/
 
