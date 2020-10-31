@@ -27,8 +27,7 @@ export const Spinner = styled.div`
 
 export const TabWrap = styled.div`
   width: 100%;
-  margin-top: 35px;
-
+  margin-top: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: white;
@@ -36,6 +35,10 @@ export const TabWrap = styled.div`
 export const TabText = styled.h3`
   text-align: center;
   font-weight: 400;
+  padding-top: 10px;
+  height: 32px;
+  background-color: ${(props) =>
+    props.selected ? `none` : `rgb(230, 231, 232)`};
 `;
 
 export const Form = styled.form`

@@ -42,8 +42,8 @@ const AuthModal = ({ onClose }) => {
     <React.Fragment>
       <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
       <TabWrap onClick={changeTab}>
-        <TabText selected={state.modalState}>Sign Up</TabText>
-        <TabText>Login</TabText>
+        <TabText selected={state.modalState.isSignUpOpen}>Sign Up</TabText>
+        <TabText selected={state.modalState.isLogInOpen}>Login</TabText>
       </TabWrap>
       {state.modalState.isLogInOpen ? <Login /> : <SignUp />}
     </React.Fragment>
