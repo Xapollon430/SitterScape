@@ -46,6 +46,7 @@ export const Form = styled.form`
   width: 85%;
   margin: 10px auto 30px auto;
   grid-gap: 5px;
+  text-align: center;
 `;
 
 export const Input = styled.input`
@@ -61,4 +62,8 @@ export const SubmitButton = styled.button`
   color: #fff;
   cursor: pointer;
   height: 35px;
+`;
+
+export const Text = styled.div`
+  font-size: 0.9em;
 `;

@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import {
-  CancelIcon,
-  Spinner,
-  TabWrap,
-  TabText,
-  Form,
-  Input,
-  SubmitButton,
-} from "./AuthModalCss";
+import { CancelIcon, Spinner, TabWrap, TabText } from "./AuthModalCss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeIsLogInOpen,
