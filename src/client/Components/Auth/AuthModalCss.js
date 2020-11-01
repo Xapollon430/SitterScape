@@ -35,7 +35,7 @@ export const TabWrap = styled.div`
 export const TabText = styled.h3`
   text-align: center;
   font-weight: 400;
-  padding-top: 10px;
+  padding-top: 8px;
   height: 32px;
   background-color: ${(props) =>
     props.selected ? `none` : `rgb(230, 231, 232)`};
@@ -43,7 +43,7 @@ export const TabText = styled.h3`
 
 export const Form = styled.form`
   display: grid;
-  width: 85%;
+  width: 90%;
   margin: 10px auto 30px auto;
   grid-gap: 5px;
   text-align: center;
@@ -62,6 +62,7 @@ export const SubmitButton = styled.button`
   color: #fff;
   cursor: pointer;
   height: 35px;
+  margin-bottom: 10px;
 `;
 
 export const Text = styled.div`

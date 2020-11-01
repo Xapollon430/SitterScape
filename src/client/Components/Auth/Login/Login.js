@@ -1,12 +1,4 @@
-import {
-  CancelIcon,
-  Spinner,
-  TabWrap,
-  TabText,
-  Form,
-  Input,
-  SubmitButton,
-} from "../AuthModalCss";
+import { Text, Spinner, Form, Input, SubmitButton } from "../AuthModalCss";
 
 const Login = ({ onChange, submitHandler, formError, isLoading }) => {
   return (
@@ -14,6 +6,7 @@ const Login = ({ onChange, submitHandler, formError, isLoading }) => {
       <Input placeholder="Email"></Input>
       <Input placeholder="Password"></Input>
       <SubmitButton>SUBMIT</SubmitButton>
+      <Text>Did somebody forget their account?</Text>
     </Form>
   );
 };
