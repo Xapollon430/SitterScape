@@ -12,3 +12,13 @@ https://medium.com/better-programming/whats-new-in-react-v17-68b7e15576e1
 
 How styled components work
 https://medium.com/styled-components/how-styled-components-works-618a69970421
+
+JWT Implementing
+https://medium.com/@weinberger.ariel/json-web-token-jwt-the-only-explanation-youll-ever-need-cf53f0822f50
+https://www.reddit.com/r/reactjs/comments/jjkddv/how_to_store_jwt_in_the_client_side/
+https://stackoverflow.com/questions/27301557/if-you-can-decode-jwt-how-are-they-secure
+
+Articles on various topics of CS
+https://stackoverflow.com/questions/13163081/how-does-an-assembler-work-how-is-it-written
+https://www.quora.com/How-does-a-CPU-understand-assembly-language-How-is-it-made-to-understand-what-its-supposed-to-do
+https://softwareengineering.stackexchange.com/questions/227983/how-do-we-go-from-assembly-to-machine-codecode-generation
