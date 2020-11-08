@@ -13,6 +13,9 @@ https://medium.com/better-programming/whats-new-in-react-v17-68b7e15576e1
 How styled components work
 https://medium.com/styled-components/how-styled-components-works-618a69970421
 
+Styled Components Best Practices
+https://www.reddit.com/r/reactjs/comments/jp5lbe/best_practices_for_styled_components/
+
 JWT Implementing
 https://medium.com/@weinberger.ariel/json-web-token-jwt-the-only-explanation-youll-ever-need-cf53f0822f50
 https://www.reddit.com/r/reactjs/comments/jjkddv/how_to_store_jwt_in_the_client_side/
