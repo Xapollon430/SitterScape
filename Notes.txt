@@ -20,6 +20,7 @@ JWT Implementing
 https://medium.com/@weinberger.ariel/json-web-token-jwt-the-only-explanation-youll-ever-need-cf53f0822f50
 https://www.reddit.com/r/reactjs/comments/jjkddv/how_to_store_jwt_in_the_client_side/
 https://stackoverflow.com/questions/27301557/if-you-can-decode-jwt-how-are-they-secure
+https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/
 
 Articles on various topics of CS
 https://stackoverflow.com/questions/13163081/how-does-an-assembler-work-how-is-it-written
