@@ -5,7 +5,7 @@ import Routes from "./routes/route";
 import connectDB from "./database/db";
 import { config } from "dotenv";
 import ServerSideMarkup from "./html";
-config();
+config(); // fix
 connectDB();
 
 const PORT = process.env.PORT || 5000;

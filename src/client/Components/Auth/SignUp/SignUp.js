@@ -1,28 +1,73 @@
-import { Spinner, Form, Input, SubmitButton, Text } from "../AuthModalCss";
-import { SignUpSchema } from "./SignUpSchema";
-import { useFormik } from "formik";
+import {
+  Spinner,
+  Form,
+  Input,
+  SubmitButton,
+  Text,
+  ErrorText,
+} from "../AuthModalCss";
+import FormikInit from "./SignUpSchema";
 
-const SignUp = ({ onChange, submitHandler, formError, isLoading }) => {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      name: "",
-      surname: "",
-      password: "",
-    },
-    validationSchema: SignUpSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+const SignUp = () => {
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    errors,
+    touched,
+    handleBlur,
+    isValidating,
+  } = FormikInit();
 
   return (
-    <Form>
-      <Input placeholder="Email"></Input>
-      <Input placeholder="Name"></Input>
-      <Input placeholder="Surname"></Input>
-      <Input placeholder="Password"></Input>
-      <SubmitButton>SUBMIT</SubmitButton>
+    <Form onSubmit={handleSubmit}>
+      {errors.email && touched.email ? (
+        <ErrorText>{errors.email}</ErrorText>
+      ) : null}
+      <Input
+        error={errors.email && touched.email}
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        id="email"
+        name="email"
+        placeholder="Email"
+      ></Input>
+      {errors.name && touched.name ? (
+        <ErrorText>{errors.name}</ErrorText>
+      ) : null}
+      <Input
+        error={errors.name && touched.name}
+        value={values.name}
+        onChange={handleChange}
+        id="name"
+        name="name"
+        placeholder="Name"
+      ></Input>
+      {errors.surname && touched.surname ? (
+        <ErrorText>{errors.surname}</ErrorText>
+      ) : null}
+      <Input
+        error={errors.surname && touched.surname}
+        value={values.surname}
+        onChange={handleChange}
+        id="surname"
+        name="surname"
+        placeholder="Surname"
+      ></Input>
+      {errors.password && touched.password ? (
+        <ErrorText>{errors.password}</ErrorText>
+      ) : null}
+      <Input
+        error={errors.password && touched.password}
+        value={values.password}
+        onChange={handleChange}
+        id="password"
+        name="password"
+        placeholder="Password"
+        type="password"
+      ></Input>
+      <SubmitButton type="submit">SUBMIT</SubmitButton>
       <Text>By signing up you agree to our</Text>
       <Text>Terms of service</Text>
     </Form>

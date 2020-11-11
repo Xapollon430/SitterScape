@@ -1,10 +1,35 @@
 import * as Yup from "yup";
+import { useFormik } from "formik";
+import Axios from "axios";
+import { useDispatch } from "react-redux";
 
-export const SignInSchema = Yup.object().shape({
-  email: Yup.string().email().required("Email is required"),
-  name: Yup.string().required(),
-  surname: Yup.string().required(),
-  password: Yup.string()
-    .required("Password is required")
-    .min(4, "Password is too short"),
-});
+export default () => {
+  const SignUpSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Please enter a valid email")
+      .required("Email is required"),
+    name: Yup.string().required("First name is required"),
+    surname: Yup.string().required("Surname is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password is too short"),
+  });
+
+  return useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      surname: "",
+      password: "",
+    },
+    validationSchema: SignUpSchema,
+    onSubmit: async (values) => {
+      const response = await Axios.post(
+        `${process.env.SIT_API_URL}/api/sign-up`,
+        values
+      );
+
+      console.log(response);
+    },
+  });
+};

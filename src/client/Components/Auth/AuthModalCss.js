@@ -45,12 +45,12 @@ export const Form = styled.form`
   display: grid;
   width: 90%;
   margin: 10px auto 30px auto;
-  grid-gap: 5px;
+  grid-gap: 3px;
   text-align: center;
 `;
 
 export const Input = styled.input`
-  border: 1px solid #cfcfcf;
+  border: ${(props) => (props.error ? "1px solid red" : "1px solid #cfcfcf")};
   outline: 0;
   height: 16px;
   padding: 0.8em 0 10px 0.8em;
@@ -62,9 +62,17 @@ export const SubmitButton = styled.button`
   color: #fff;
   cursor: pointer;
   height: 35px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 `;
 
 export const Text = styled.div`
   font-size: 0.9em;
+`;
+
+export const ErrorText = styled.span`
+  color: red;
+  font-size: 0.9rem;
+  text-align: left;
+  position: relative;
+  top: 2px;
 `;
