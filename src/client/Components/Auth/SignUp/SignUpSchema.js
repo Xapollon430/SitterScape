@@ -37,10 +37,9 @@ export default () => {
           if (data.user && data.token) {
             localStorage.setItem("jwt-token", data.token);
             dispatch(logUserIn(data.user));
-            dispatch(changeLoggedIn(true));
             dispatch(changeIsModalOpen(false));
           } else {
-            setErrorMessageFromServer(data.error);
+            // setErrorMessageFromServer(data.error); Error from server
           }
         }
       );
