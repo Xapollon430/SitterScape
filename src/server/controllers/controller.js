@@ -10,7 +10,6 @@ export const signUp = async (req, res, next) => {
       let user = new User(signUpData);
       let token = user.generateAuthToken();
       await user.save();
-      console.log(user, token);
       res.send({ user, token });
     });
   } catch (e) {

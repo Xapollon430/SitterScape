@@ -2,6 +2,12 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
+import { changeIsModalOpen } from "../../../store/actions/AuthModalActions";
+
+import {
+  logUserIn,
+  changeLoggedIn,
+} from "../../../store/actions/GeneralActions";
 
 export default () => {
   const dispatch = useDispatch();
