@@ -24,12 +24,19 @@ export default () => {
     },
     validationSchema: SignUpSchema,
     onSubmit: async (values) => {
-      const response = await Axios.post(
+      const { user, token } = await Axios.post(
         `${process.env.SIT_API_URL}/api/sign-up`,
         values
       );
 
-      console.log(response);
+      if (user && token) {
+        localStorage.setItem("jwt-token", data.token);
+        dispatch(logUserIn(data.user));
+        dispatch(changeLoggedIn(true));
+        dispatch(changeIsModalOpen(false));
+      } else {
+        setErrorMessageFromServer(data.error);
+      }
     },
   });
 };

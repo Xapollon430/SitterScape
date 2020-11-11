@@ -19,7 +19,9 @@ const SignUp = () => {
     isValidating,
   } = FormikInit();
 
-  return (
+  return isValidating ? (
+    <Spinner />
+  ) : (
     <Form onSubmit={handleSubmit}>
       {errors.email && touched.email ? (
         <ErrorText>{errors.email}</ErrorText>
