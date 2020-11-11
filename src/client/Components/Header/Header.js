@@ -55,7 +55,6 @@ const Header = () => {
       </ButtonWrap>
 
       <Nav open={isHamburgerOpen}>
-        {/* <h1>123123</h1> */}
         <Link to="/search">
           <Button>Find A Sitter</Button>
         </Link>
@@ -65,7 +64,7 @@ const Header = () => {
         {appState.loggedIn ? (
           <React.Fragment>
             <Button onClick={openProfileDropdownOpen}>
-              {appState.user.username}
+              {appState.user.name}
               <ExpandIcon
                 className={`fas fa-chevron-${
                   isProfileDropdownOpen ? "up" : "down"
