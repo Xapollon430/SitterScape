@@ -4,6 +4,8 @@ import Axios from "axios";
 import { useDispatch } from "react-redux";
 
 export default () => {
+  const dispatch = useDispatch();
+
   const SignUpSchema = Yup.object().shape({
     email: Yup.string()
       .email("Please enter a valid email")
@@ -23,20 +25,19 @@ export default () => {
       password: "",
     },
     validationSchema: SignUpSchema,
-    onSubmit: async (values) => {
-      const { user, token } = await Axios.post(
-        `${process.env.SIT_API_URL}/api/sign-up`,
-        values
+    onSubmit: (values) => {
+      Axios.post(`${process.env.SIT_API_URL}/api/sign-up`, values).then(
+        ({ data }) => {
+          if (data.user && data.token) {
+            localStorage.setItem("jwt-token", data.token);
+            dispatch(logUserIn(data.user));
+            dispatch(changeLoggedIn(true));
+            dispatch(changeIsModalOpen(false));
+          } else {
+            setErrorMessageFromServer(data.error);
+          }
+        }
       );
-
-      if (user && token) {
-        localStorage.setItem("jwt-token", data.token);
-        dispatch(logUserIn(data.user));
-        dispatch(changeLoggedIn(true));
-        dispatch(changeIsModalOpen(false));
-      } else {
-        setErrorMessageFromServer(data.error);
-      }
     },
   });
 };
