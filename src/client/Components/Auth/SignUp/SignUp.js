@@ -1,7 +1,21 @@
-import React from "react";
 import { Spinner, Form, Input, SubmitButton, Text } from "../AuthModalCss";
+import { SignUpSchema } from "./SignUpSchema";
+import { useFormik } from "formik";
 
 const SignUp = ({ onChange, submitHandler, formError, isLoading }) => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      name: "",
+      surname: "",
+      password: "",
+    },
+    validationSchema: SignUpSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <Form>
       <Input placeholder="Email"></Input>
