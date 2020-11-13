@@ -26,3 +26,6 @@ Articles on various topics of CS
 https://stackoverflow.com/questions/13163081/how-does-an-assembler-work-how-is-it-written
 https://www.quora.com/How-does-a-CPU-understand-assembly-language-How-is-it-made-to-understand-what-its-supposed-to-do
 https://softwareengineering.stackexchange.com/questions/227983/how-do-we-go-from-assembly-to-machine-codecode-generation
+
+Most important article ever
+https://medium.com/better-programming/the-best-engineering-advice-i-ever-got-i-dont-really-care-just-make-it-work-2e238f0cf908

@@ -26,7 +26,7 @@ export const Nav = styled.div`
     overflow: hidden;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    transition: 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out;
   }
 `;
 
