@@ -28,10 +28,8 @@ export default (setIsLoading) => {
       password: "",
     },
     validationSchema: SignUpSchema,
-    onSubmit: async (values) => {
-      setIsLoading(true);
-
-      Axios.post(`${process.env.SIT_API_URL}/api/sign-up`, values).then(
+    onSubmit: (values) => {
+      return Axios.post(`${process.env.SIT_API_URL}/api/sign-up`, values).then(
         ({ data }) => {
           if (data.user && data.token) {
             localStorage.setItem("jwt-token", data.token);

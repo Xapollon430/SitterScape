@@ -19,9 +19,10 @@ const SignUp = () => {
     errors,
     touched,
     handleBlur,
+    isSubmitting,
   } = FormikInit(setIsLoading);
-
-  return isLoading ? (
+  console.log(isSubmitting);
+  return isSubmitting ? (
     <Spinner />
   ) : (
     <Form onSubmit={handleSubmit}>
