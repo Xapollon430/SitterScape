@@ -28,18 +28,19 @@ export default (setIsLoading) => {
       password: "",
     },
     validationSchema: SignUpSchema,
-    onSubmit: (values) => {
-      return Axios.post(`${process.env.SIT_API_URL}/api/sign-up`, values).then(
-        ({ data }) => {
-          if (data.user && data.token) {
-            localStorage.setItem("jwt-token", data.token);
-            dispatch(logUserIn(data.user));
-            dispatch(changeIsModalOpen(false));
-          } else {
-            // setErrorMessageFromServer(data.error); Error from server
-          }
-        }
+    onSubmit: async (values) => {
+      let { data } = Axios.post(
+        `${process.env.SIT_API_URL}/api/sign-up`,
+        values
       );
+
+      if (data.user && data.token) {
+        localStorage.setItem("jwt-token", data.token);
+        dispatch(logUserIn(data.user));
+        dispatch(changeIsModalOpen(false));
+      } else {
+        // setErrorMessageFromServer(data.error); Error from server
+      }
     },
   });
 };
