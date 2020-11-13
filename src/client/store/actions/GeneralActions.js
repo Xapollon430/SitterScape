@@ -15,6 +15,6 @@ export const logUserIn = (user) => {
 export const generalDispatchBundler = (payload) => {
   return {
     type: "GENERAL_BUNDLE",
-    payload: { ...payload },
+    payload,
   };
 };

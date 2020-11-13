@@ -3,8 +3,8 @@ import { useFormik } from "formik";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { changeIsModalOpen } from "../../../store/actions/AuthModalActions";
-
 import { logUserIn } from "../../../store/actions/GeneralActions";
+import { Post } from "../../../Functions/Functions";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string()
@@ -29,7 +29,7 @@ export default (setIsLoading) => {
     },
     validationSchema: SignUpSchema,
     onSubmit: async (values) => {
-      let { data } = Axios.post(
+      let { data } = await Post(
         `${process.env.SIT_API_URL}/api/sign-up`,
         values
       );
