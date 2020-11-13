@@ -10,7 +10,9 @@ export const signUp = async (req, res, next) => {
       let user = new User(signUpData);
       let token = user.generateAuthToken();
       await user.save();
-      res.send({ user, token });
+      setTimeout(() => {
+        res.send({ user, token });
+      }, 2000);
     });
   } catch (e) {
     return next(new HttpError(e.message, 400));

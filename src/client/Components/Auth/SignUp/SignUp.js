@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Spinner,
   Form,
@@ -9,6 +10,8 @@ import {
 import FormikInit from "./SignUpSchema";
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     handleSubmit,
     handleChange,
@@ -16,10 +19,9 @@ const SignUp = () => {
     errors,
     touched,
     handleBlur,
-    isValidating,
-  } = FormikInit();
+  } = FormikInit(setIsLoading);
 
-  return isValidating ? (
+  return isLoading ? (
     <Spinner />
   ) : (
     <Form onSubmit={handleSubmit}>
@@ -42,6 +44,7 @@ const SignUp = () => {
         error={errors.name && touched.name}
         value={values.name}
         onChange={handleChange}
+        onBlur={handleBlur}
         id="name"
         name="name"
         placeholder="Name"
@@ -53,6 +56,7 @@ const SignUp = () => {
         error={errors.surname && touched.surname}
         value={values.surname}
         onChange={handleChange}
+        onBlur={handleBlur}
         id="surname"
         name="surname"
         placeholder="Surname"
@@ -64,6 +68,7 @@ const SignUp = () => {
         error={errors.password && touched.password}
         value={values.password}
         onChange={handleChange}
+        onBlur={handleBlur}
         id="password"
         name="password"
         placeholder="Password"
