@@ -1,28 +1,16 @@
 import React, { useState } from "react";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import { CancelIcon , TabWrap, TabText } from "./AuthModalCss";
+import { CancelIcon, TabWrap, TabText } from "./AuthModalCss";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeIsLogInOpen,
   changeIsSignUpOpen,
 } from "../../store/actions/AuthModalActions";
-import { Post } from "../../Functions/Functions";
 
 const AuthModal = ({ onClose }) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  // let { user, token, error } = await Post(
-  //   `${process.env.SIT_API_URL}/api/${type}`,
-  //   userInfo
-  // );
-  // if (user && token) {
-  //   localStorage.setItem("jwt-token", data.token);
-  //   dispatch(logUserIn(data.user));
-  //   dispatch(changeLoggedIn(true));
-  //   dispatch(changeIsModalOpen(false));
-  // }
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"

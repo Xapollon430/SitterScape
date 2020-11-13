@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Spinner,
   Form,
@@ -10,8 +9,6 @@ import {
 import FormikInit from "./SignUpSchema";
 
 const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const {
     handleSubmit,
     handleChange,
@@ -20,8 +17,8 @@ const SignUp = () => {
     touched,
     handleBlur,
     isSubmitting,
-  } = FormikInit(setIsLoading);
-  console.log(isSubmitting);
+  } = FormikInit();
+
   return isSubmitting ? (
     <Spinner />
   ) : (
