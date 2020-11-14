@@ -28,17 +28,17 @@ export default (setErrorFromServer) => {
     },
     validationSchema: SignUpSchema,
     onSubmit: async (values) => {
-      let { data } = await Post(
-        `${process.env.SIT_API_URL}/api/sign-up`,
-        values
-      );
+      try {
+        let { data } = await Post(
+          `${process.env.SIT_API_URL}/api/sign-up`,
+          values
+        );
 
-      if (data.user && data.token) {
         localStorage.setItem("jwt-token", data.token);
         dispatch(logUserIn(data.user));
         dispatch(changeIsModalOpen(false));
-      } else {
-        setErrorFromServer(data.error);
+      } catch (e) {
+        setErrorFromServer(e.response.data);
       }
     },
   });

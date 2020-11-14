@@ -8,12 +8,13 @@ router.post("/sign-up", signUp);
 router.post("/login", login);
 
 router.use((req, res, next) => {
-  return next(new HttpError("Route doesnt exist", "400"));
+  return next(new HttpError("Route doesnt exist", 400));
 });
 
 router.use((error, req, res, next) => {
-  // Error handler route
-  return res.status(error.code).json({ error: error.message });
+  // Error handler route\
+  console.log(error.message);
+  return res.status(error.code).send(error.message);
 });
 
 export default router;
