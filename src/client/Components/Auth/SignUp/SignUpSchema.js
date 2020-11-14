@@ -16,7 +16,7 @@ const SignUpSchema = Yup.object().shape({
     .min(6, "Password is too short"),
 });
 
-export default (setIsLoading) => {
+export default (setErrorFromServer) => {
   const dispatch = useDispatch();
 
   return useFormik({
@@ -38,7 +38,7 @@ export default (setIsLoading) => {
         dispatch(logUserIn(data.user));
         dispatch(changeIsModalOpen(false));
       } else {
-        // setErrorMessageFromServer(data.error); Error from server
+        setErrorFromServer(data.error);
       }
     },
   });

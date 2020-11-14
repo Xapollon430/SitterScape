@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Spinner,
   Form,
@@ -9,6 +10,8 @@ import {
 import FormikInit from "./LoginSchema";
 
 const Login = () => {
+  const [errorFromServer, setErrorFromServer] = React.useState();
+
   const {
     handleSubmit,
     handleChange,
@@ -17,7 +20,7 @@ const Login = () => {
     touched,
     handleBlur,
     isSubmitting,
-  } = FormikInit();
+  } = FormikInit(setErrorFromServer);
 
   return isSubmitting ? (
     <Spinner />
@@ -49,6 +52,7 @@ const Login = () => {
         placeholder="Password"
         type="password"
       ></Input>
+      {errorFromServer && <ErrorText>{errorFromServer}</ErrorText>}
       <SubmitButton type="submit">SUBMIT</SubmitButton>
       <Text>Did somebody forget their password?</Text>
     </Form>

@@ -9,6 +9,8 @@ import {
 import FormikInit from "./SignUpSchema";
 
 const SignUp = () => {
+  const [errorFromServer, setErrorFromServer] = React.useState();
+
   const {
     handleSubmit,
     handleChange,
@@ -72,6 +74,7 @@ const SignUp = () => {
         placeholder="Password"
         type="password"
       ></Input>
+      {errorFromServer && <ErrorText>{errorFromServer}</ErrorText>}
       <SubmitButton type="submit">SUBMIT</SubmitButton>
       <Text>By signing up you agree to our</Text>
       <Text>Terms of service</Text>

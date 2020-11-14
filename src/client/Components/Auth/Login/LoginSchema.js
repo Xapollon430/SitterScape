@@ -10,7 +10,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
-export default () => {
+export default (setErrorFromServer) => {
   const dispatch = useDispatch();
 
   return useFormik({
@@ -27,7 +27,7 @@ export default () => {
         dispatch(logUserIn(data.user));
         dispatch(changeIsModalOpen(false));
       } else {
-        // setErrorMessageFromServer(data.error); Error from server
+        setErrorFromServer(data.error);
       }
     },
   });
