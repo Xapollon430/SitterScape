@@ -13,7 +13,6 @@ router.use((req, res, next) => {
 
 router.use((error, req, res, next) => {
   // Error handler route\
-  console.log(error.message);
   return res.status(error.code).send(error.message);
 });
 

@@ -9,7 +9,7 @@ export const signUp = async (req, res, next) => {
       let user = new User(signUpData);
       let token = user.generateAuthToken();
       await user.save();
-      res.send({ user, token });
+      res.json({ user, token });
     });
   } catch (e) {
     return next(new HttpError(e.message, 400));
@@ -27,7 +27,7 @@ export const login = async (req, res, next) => {
   }
 
   let token = await foundUser.generateAuthToken();
-  res.status(200).send({
+  res.status(200).json({
     user: foundUser,
     token,
   });

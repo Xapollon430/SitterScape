@@ -16,6 +16,11 @@ const spin = keyframes`
   }
 `;
 
+export const AuthWrap = styled.div`
+  display: grid;
+  justify-items: center;
+`;
+
 export const Spinner = styled.div`
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -23,6 +28,7 @@ export const Spinner = styled.div`
   width: 120px;
   height: 120px;
   animation: ${spin} 2s linear infinite;
+  margin: 10px;
 `;
 
 export const TabWrap = styled.div`
@@ -50,7 +56,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  border: ${(props) => (props.error ? "1px solid red" : "1px solid #cfcfcf")};
+  border: 1px solid ${(props) => (props.error ? "red" : "#cfcfcf")};
   outline: 0;
   height: 16px;
   padding: 0.8em 0 10px 0.8em;
