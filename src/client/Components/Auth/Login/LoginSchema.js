@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { changeIsModalOpen } from "../../../store/actions/AuthModalActions";
 import { logUserIn } from "../../../store/actions/GeneralActions";
 import { Post } from "../../../Functions/Functions";
 
@@ -20,13 +19,15 @@ export default (setErrorFromServer) => {
     },
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
-      let { data } = await Post(`${process.env.SIT_API_URL}/api/login`, values);
+      try {
+        let { data } = await Post(
+          `${process.env.SIT_API_URL}/api/login`,
+          values
+        );
 
-      if (data.user && data.token) {
         localStorage.setItem("jwt-token", data.token);
         dispatch(logUserIn(data.user));
-        dispatch(changeIsModalOpen(false));
-      } else {
+      } catch (e) {
         setErrorFromServer(data.error);
       }
     },
