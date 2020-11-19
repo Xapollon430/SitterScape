@@ -9,13 +9,11 @@ Startup names - SitterScape, Pupnest, Sitterry
 Sitterlux, Petcarify, Sytters, Searchsitter, Sitterpedia,
 Pupsytter.
 
+To Do
 
 1- Change fetch calls to axios?
 3- Signup email auth. (Later)
 4- Cleanup code. Remove deps, React scope etc, (Later)
-5- Rewrite auth modal css with styled comp, introduce formik and yup
-https://formik.org/docs/tutorial, https://www.smashingmagazine.com/2020/10/react-validation-formik-yup/
-
 6-Replace redux with hooks
 https://medium.com/@martin.crabtree/react-creating-a-redux-like-global-state-with-the-usecontext-and-usereducer-hooks-89aa2b27dbc5
 https://medium.com/javascript-in-plain-english/implementing-context-api-in-a-react-application-8b9b156a4154
@@ -24,3 +22,11 @@ https://stackoverflow.com/questions/59200785/react-usereducer-how-to-combine-mul
 7- Purchase and deploy to SitterScape.com
 
 https://developer.mozilla.org/en-US/docs/Web/API/DragEvent
+
+Done 
+
+* Rewrite auth modal css with styled comp, introduce formik and yup
+https://formik.org/docs/tutorial, https://www.smashingmagazine.com/2020/10/react-validation-formik-yup/
+
+
+https://trello.com/b/Rdw3a3M6/pet-app
