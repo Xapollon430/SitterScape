@@ -1,12 +1,23 @@
-import { combineReducers, createStore } from "redux";
-import AuthModalReducer from "./reducers/AuthModalReducer";
-import GeneralReducer from "./reducers/GeneralReducer";
+import { useReducer, createContext } from "react";
+import reducer from "./reducer";
 
-const rootReducer = combineReducers({
-  modalState: AuthModalReducer,
-  appState: GeneralReducer,
-});
+const initialState = {
+  user: null,
+  loggedIn: false,
+  isModalOpen: false,
+  isLogInOpen: false,
+  isSignUpOpen: false,
+};
 
-const store = createStore(rootReducer);
+export const StoreContext = createContext();
 
-export default store;
+const Store = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <StoreContext.Provider value={[state, dispatch]}>
+      {children}
+    </StoreContext.Provider>
+  );
+};
+
+export default Store;

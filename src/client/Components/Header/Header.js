@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -10,21 +10,20 @@ import {
   ButtonWrap,
 } from "./HeaderCss";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
-import { useSelector, useDispatch } from "react-redux";
+import { StoreContext } from "../../store/store";
 import {
   changeIsModalOpen,
   changeIsSignUpOpen,
   changeIsLogInOpen,
-} from "../../store/actions/AuthModalActions";
-import { changeLoggedIn } from "../../store/actions/GeneralActions";
+} from "../../store/actions";
+import { changeLoggedIn } from "../../store/actions";
 import { HamburgerSpin } from "react-animated-burgers";
 
 const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
-  const { appState } = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const [state, dispatch] = useContext(StoreContext); // {app}?
 
   const openModal = (event) => {
     dispatch(changeIsModalOpen(true));
@@ -61,10 +60,10 @@ const Header = () => {
 
         <Button>Blog</Button>
         <EmptyDiv />
-        {appState.loggedIn ? (
+        {state.loggedIn ? (
           <React.Fragment>
             <Button onClick={openProfileDropdownOpen}>
-              {appState.user.name}
+              {state.user.name}
               <ExpandIcon
                 className={`fas fa-chevron-${
                   isProfileDropdownOpen ? "up" : "down"

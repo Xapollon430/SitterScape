@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import { CancelIcon, TabWrap, TabText, AuthWrap } from "./AuthModalCss";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  changeIsLogInOpen,
-  changeIsSignUpOpen,
-} from "../../store/actions/AuthModalActions";
+import { StoreContext } from "../../store/store";
+import { changeIsLogInOpen, changeIsSignUpOpen } from "../../store/actions";
 
 const AuthModal = ({ onClose }) => {
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
+  const [state, dispatch] = useContext(StoreContext); // {app}?
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"
@@ -22,10 +18,10 @@ const AuthModal = ({ onClose }) => {
     <AuthWrap>
       <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
       <TabWrap onClick={changeTab}>
-        <TabText selected={state.modalState.isSignUpOpen}>Sign Up</TabText>
-        <TabText selected={state.modalState.isLogInOpen}>Login</TabText>
+        <TabText selected={state.isSignUpOpen}>Sign Up</TabText>
+        <TabText selected={state.isLogInOpen}>Login</TabText>
       </TabWrap>
-      {state.modalState.isLogInOpen ? <Login /> : <SignUp />}
+      {state.isLogInOpen ? <Login /> : <SignUp />}
     </AuthWrap>
   );
 };

@@ -1,7 +1,8 @@
+import { useContext } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { logUserIn } from "../../../store/actions/GeneralActions";
+import { StoreContext } from "../../../store/store";
+import { logUserIn } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
 
 const LoginSchema = Yup.object().shape({
@@ -10,7 +11,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default (setErrorFromServer) => {
-  const dispatch = useDispatch();
+  const [_, dispatch] = useContext(StoreContext); // {app}?
 
   return useFormik({
     initialValues: {

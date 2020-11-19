@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { changeIsModalOpen } from "../../../store/actions/AuthModalActions";
-import { logUserIn } from "../../../store/actions/GeneralActions";
+import { StoreContext } from "../../../store/store";
+import { changeIsModalOpen } from "../../../store/actions";
+import { logUserIn } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
 
 const SignUpSchema = Yup.object().shape({
@@ -17,7 +18,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 export default (setErrorFromServer) => {
-  const dispatch = useDispatch();
+  const [_, dispatch] = useContext(StoreContext); // {app}?
 
   return useFormik({
     initialValues: {
@@ -33,10 +34,8 @@ export default (setErrorFromServer) => {
           `${process.env.SIT_API_URL}/api/sign-up`,
           values
         );
-
         localStorage.setItem("jwt-token", data.token);
         dispatch(logUserIn(data.user));
-        dispatch(changeIsModalOpen(false));
       } catch (e) {
         setErrorFromServer(e.response.data);
       }

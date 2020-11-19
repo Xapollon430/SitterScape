@@ -1,10 +1,4 @@
-const initialReducerState = {
-  isModalOpen: false,
-  isLogInOpen: false,
-  isSignUpOpen: false,
-};
-
-const AuthModalReducer = (state = initialReducerState, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case "IS_MODAL_OPEN":
       return {
@@ -23,9 +17,25 @@ const AuthModalReducer = (state = initialReducerState, action) => {
         isLogInOpen: false,
         isSignUpOpen: action.payload,
       };
+    case "USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case "LOGGED_IN":
+      return {
+        ...state,
+        loggedIn: action.payload,
+      };
+
+    case "GENERAL_BUNDLE":
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
 };
 
-export default AuthModalReducer;
+export default reducer;
