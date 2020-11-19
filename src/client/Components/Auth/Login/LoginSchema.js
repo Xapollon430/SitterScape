@@ -2,7 +2,7 @@ import { useContext } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { logUserIn } from "../../../store/actions";
+import { generalDispatchBundler } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
 
 const LoginSchema = Yup.object().shape({
@@ -19,7 +19,7 @@ export default (setErrorFromServer) => {
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         let { data } = await Post(
           `${process.env.SIT_API_URL}/api/login`,
@@ -27,9 +27,16 @@ export default (setErrorFromServer) => {
         );
 
         localStorage.setItem("jwt-token", data.token);
-        dispatch(logUserIn(data.user));
+        dispatch(
+          generalDispatchBundler({
+            user: data.user,
+            isModalOpen: false,
+            loggedIn: true,
+          })
+        );
       } catch (e) {
-        setErrorFromServer(data.error);
+        setErrorFromServer(e.response.data);
+        resetForm();
       }
     },
   });

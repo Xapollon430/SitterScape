@@ -15,6 +15,7 @@ import {
   changeIsModalOpen,
   changeIsSignUpOpen,
   changeIsLogInOpen,
+  generalDispatchBundler,
 } from "../../store/actions";
 import { changeLoggedIn } from "../../store/actions";
 import { HamburgerSpin } from "react-animated-burgers";
@@ -34,7 +35,12 @@ const Header = () => {
 
   const logOut = () => {
     localStorage.removeItem("jwt-token");
-    dispatch(changeLoggedIn(false));
+    dispatch(
+      generalDispatchBundler({
+        loggedIn: false,
+        user: null,
+      })
+    );
   };
 
   const openHamburger = () => setIsOpenHamburger(!isHamburgerOpen);

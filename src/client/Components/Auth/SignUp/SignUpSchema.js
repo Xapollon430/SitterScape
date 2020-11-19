@@ -2,7 +2,7 @@ import { useContext } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { changeIsModalOpen } from "../../../store/actions";
+import { generalDispatchBundler } from "../../../store/actions";
 import { logUserIn } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
 
@@ -35,7 +35,13 @@ export default (setErrorFromServer) => {
           values
         );
         localStorage.setItem("jwt-token", data.token);
-        dispatch(logUserIn(data.user));
+        dispatch(
+          generalDispatchBundler({
+            user: data.user,
+            isModalOpen: false,
+            loggedIn: true,
+          })
+        );
       } catch (e) {
         setErrorFromServer(e.response.data);
       }
