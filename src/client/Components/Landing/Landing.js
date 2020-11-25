@@ -11,7 +11,6 @@ import { StoreContext } from "../../store/store";
 
 function Landing() {
   const [state, dispatch] = useContext(StoreContext);
-  console.log(state);
   const closeRegisterModal = () => {
     dispatch(changeIsModalOpen(false));
   };
