@@ -4,7 +4,7 @@ import HttpError from "../error/HttpError";
 export const signUp = async (req, res, next) => {
   const signUpData = req.body;
   try {
-    let userExists = User.findOne({ email: signUpData.email });
+    let userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return next(new HttpError("Email already used!", 409));
 
     let user = new User(signUpData);
