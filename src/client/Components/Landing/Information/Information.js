@@ -1,90 +1,74 @@
-import React from "react";
-import {
-  InformationWrapper,
-  Title,
-  InformationParagraph,
-  StepWrapper,
-  Step,
-  StepTitle,
-  StepImage,
-  StepNumber,
-  StepParagraph,
-  CustomerWrap,
-  CustomerImage,
-  CustomerQuoteWrap,
-  CustomerQuote,
-  CustomerName,
-  GreenLine,
-  SitterName,
-  InformationTitle,
-} from "./InformationCss";
+import { memo } from "react";
+import * as S from "./Information.styles";
 
-const Information = React.memo(() => {
+const Information = memo(() => {
   return (
-    <InformationWrapper>
-      <Title>How We Make It All Work</Title>
-      <StepWrapper>
-        <Step>
-          <StepImage
+    <S.InformationWrapper>
+      <S.Title>How We Make It All Work</S.Title>
+      <S.StepWrapper>
+        <S.Step>
+          <S.StepImage
             src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
           />
-          <StepNumber>STEP 1</StepNumber>
-          <StepTitle>Create a Sit Account and Get Comfortable</StepTitle>
-          <StepParagraph>
+          <S.StepNumber>STEP 1</S.StepNumber>
+          <S.StepTitle>Create a Sit Account and Get Comfortable</S.StepTitle>
+          <S.StepParagraph>
             Start your Sit account whether you are a Sitter or an Owner. Fill
             your information for us to find a good match for you.
-          </StepParagraph>
-        </Step>
-        <Step>
-          <StepImage
+          </S.StepParagraph>
+        </S.Step>
+        <S.Step>
+          <S.StepImage
             src={`${process.env.SIT_API_URL}/static/images/steps-search.png`}
           />
-          <StepNumber>STEP 2</StepNumber>
-          <StepTitle>Sort for a Sitter Using Our Connections</StepTitle>
-          <StepParagraph>
+          <S.StepNumber>STEP 2</S.StepNumber>
+          <S.StepTitle>Sort for a Sitter Using Our Connections</S.StepTitle>
+          <S.StepParagraph>
             Use our directory to read reviews and filter for someone with your
             desired skills to take care of your pet.
-          </StepParagraph>
-        </Step>
-        <Step>
-          <StepImage
+          </S.StepParagraph>
+        </S.Step>
+        <S.Step>
+          <S.StepImage
             src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
           />
-          <StepNumber>STEP 3</StepNumber>
-          <StepTitle>Meet the Most Qualified Sitters In Your Area</StepTitle>
-          <StepParagraph>
+          <S.StepNumber>STEP 3</S.StepNumber>
+          <S.StepTitle>
+            Meet the Most Qualified Sitters In Your Area
+          </S.StepTitle>
+          <S.StepParagraph>
             After picking out the perfect Sitter you can book and pay securely
             on our website. Then it is time for you to relax.
-          </StepParagraph>
-        </Step>
-      </StepWrapper>
+          </S.StepParagraph>
+        </S.Step>
+      </S.StepWrapper>
 
-      <CustomerWrap>
-        <CustomerImage
+      <S.CustomerWrap>
+        <S.CustomerImage
           src={`${process.env.SIT_API_URL}/static/images/petsitter.jpg`}
         />
-        <CustomerQuoteWrap>
-          <GreenLine />
-          <CustomerQuote>
+        <S.CustomerQuoteWrap>
+          <S.GreenLine />
+          <S.CustomerQuote>
             My sitter sent me pictures everytime she took Buddy for walks. It
             was so thoughtful and reassuring!
-          </CustomerQuote>
-          <CustomerName> - Abby H.</CustomerName>
-        </CustomerQuoteWrap>
-        <SitterName>
-          <strong>Audrey F. </strong> in Vienna, VA
-        </SitterName>
-      </CustomerWrap>
+          </S.CustomerQuote>
+          <S.CustomerName> - Abby H.</S.CustomerName>
+        </S.CustomerQuoteWrap>
+        <S.SitterName>
+          <S.Strong>Audrey F. </S.Strong> in Vienna, VA
+        </S.SitterName>
+      </S.CustomerWrap>
 
-      <InformationTitle>Who We Are</InformationTitle>
+      <S.InformationTitle>Who We Are</S.InformationTitle>
 
-      <InformationParagraph>
+      <S.InformationParagraph>
         Are you looking for a Pet sitter or Pet sitting job? At Sit we have
         built a community that revolves around our love for pets. Sit makes it
         easier for everyone to connect other pet lovers for their services. We
         can find care for your pets when you can't take care of them.
-      </InformationParagraph>
-    </InformationWrapper>
+      </S.InformationParagraph>
+    </S.InformationWrapper>
   );
 });
 

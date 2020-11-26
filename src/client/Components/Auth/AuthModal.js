@@ -1,28 +1,32 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import { StoreContext } from "../../store/store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons"; // can i * as icon? performance?
+import * as actions from "../../store/actions";
+import * as S from "./AuthModal.styles";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import { CancelIcon, TabWrap, TabText, AuthWrap } from "./AuthModalCss";
-import { StoreContext } from "../../store/store";
-import { changeIsLogInOpen, changeIsSignUpOpen } from "../../store/actions";
 
 const AuthModal = ({ onClose }) => {
-  const [state, dispatch] = useContext(StoreContext); // {app}?
+  const [{ isSignUpOpen, isLogInOpen }, dispatch] = useContext(StoreContext);
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"
-      ? dispatch(changeIsLogInOpen(true))
-      : dispatch(changeIsSignUpOpen(true));
+      ? dispatch(actions.changeIsLogInOpen(true))
+      : dispatch(actions.changeIsSignUpOpen(true));
   };
 
   return (
-    <AuthWrap>
-      <CancelIcon onClick={onClose} className="fas fa-times fa-2x" />
-      <TabWrap onClick={changeTab}>
-        <TabText selected={state.isSignUpOpen}>Sign Up</TabText>
-        <TabText selected={state.isLogInOpen}>Login</TabText>
-      </TabWrap>
-      {state.isLogInOpen ? <Login /> : <SignUp />}
-    </AuthWrap>
+    <S.AuthWrap>
+      <S.CancelIcon>
+        <FontAwesomeIcon onClick={onClose} icon={faTimes} size="2x" />
+      </S.CancelIcon>
+      <S.TabWrap onClick={changeTab}>
+        <S.TabText selected={isSignUpOpen}>Sign Up</S.TabText>
+        <S.TabText selected={isLogInOpen}>Login</S.TabText>
+      </S.TabWrap>
+      {isLogInOpen ? <Login /> : <SignUp />}
+    </S.AuthWrap>
   );
 };
 

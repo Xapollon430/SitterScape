@@ -1,24 +1,24 @@
-import React from "react";
-import { DropdownWrapper, DropdownItem } from "../HeaderCss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faCog,
   faQuestion,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"; // can i * as icon? performance?
+import * as S from "./ProfileDropdown.styles";
+
 const ProfileDropdown = ({ open }) => {
   return (
-    <DropdownWrapper open={open}>
-      <DropdownItem>
+    <S.DropdownWrapper open={open}>
+      <S.DropdownItem>
         <FontAwesomeIcon icon={faUserCircle} /> Profile
-      </DropdownItem>
-      <DropdownItem>
+      </S.DropdownItem>
+      <S.DropdownItem>
         <FontAwesomeIcon icon={faCog} /> Settings
-      </DropdownItem>
-      <DropdownItem>
+      </S.DropdownItem>
+      <S.DropdownItem>
         <FontAwesomeIcon icon={faQuestion} /> Help
-      </DropdownItem>
-    </DropdownWrapper>
+      </S.DropdownItem>
+    </S.DropdownWrapper>
   );
 };
 

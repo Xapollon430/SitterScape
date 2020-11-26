@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import { generalDispatchBundler } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
+import * as Yup from "yup";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required("Email is required"),

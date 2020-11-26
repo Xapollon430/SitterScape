@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Spinner,
-  Form,
-  Input,
-  SubmitButton,
-  Text,
-  ErrorText,
-} from "../AuthModalCss";
+import * as S from "../AuthModal.styles";
 import FormikInit from "./LoginSchema";
 
 const Login = () => {
@@ -23,13 +16,13 @@ const Login = () => {
   } = FormikInit(setErrorFromServer);
 
   return isSubmitting ? (
-    <Spinner />
+    <S.Spinner />
   ) : (
-    <Form onSubmit={handleSubmit}>
+    <S.Form onSubmit={handleSubmit}>
       {errors.email && touched.email ? (
-        <ErrorText>{errors.email}</ErrorText>
+        <S.ErrorText>{errors.email}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.email && touched.email}
         value={values.email}
         onChange={handleChange}
@@ -37,12 +30,12 @@ const Login = () => {
         id="email"
         name="email"
         placeholder="Email"
-      ></Input>
+      ></S.Input>
 
       {errors.password && touched.password ? (
-        <ErrorText>{errors.password}</ErrorText>
+        <S.ErrorText>{errors.password}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.password && touched.password}
         value={values.password}
         onChange={handleChange}
@@ -51,11 +44,11 @@ const Login = () => {
         name="password"
         placeholder="Password"
         type="password"
-      ></Input>
-      {errorFromServer && <ErrorText>{errorFromServer}</ErrorText>}
-      <SubmitButton type="submit">SUBMIT</SubmitButton>
-      <Text>Did somebody forget their password?</Text>
-    </Form>
+      ></S.Input>
+      {errorFromServer && <S.ErrorText>{errorFromServer}</S.ErrorText>}
+      <S.SubmitButton type="submit">SUBMIT</S.SubmitButton>
+      <S.Text>Did somebody forget their password?</S.Text>
+    </S.Form>
   );
 };
 

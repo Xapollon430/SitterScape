@@ -1,102 +1,88 @@
-import React from "react";
-import {
-  FooterWrap,
-  Menu,
-  Contact,
-  RecentPosts,
-  NewsLetter,
-  GridWrap,
-  FooterTitle,
-  FooterText,
-  FooterLink,
-  NewsLetterInput,
-  NewsLetterButton,
-  SocialMediaImage,
-  Copyright,
-} from "./FooterCss";
+import { memo, Fragment } from "react";
+import * as S from "./Footer.styles";
 
-const Footer = React.memo(() => {
+const Footer = memo(() => {
   return (
-    <FooterWrap>
-      <GridWrap>
-        <Menu>
-          <FooterTitle>MENU</FooterTitle>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+    <S.FooterWrap>
+      <S.GridWrap>
+        <S.Menu>
+          <S.FooterTitle>MENU</S.FooterTitle>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Home
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Our Blog
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Products
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Sitters
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             About
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Careers
-          </FooterLink>
-        </Menu>
-        <RecentPosts>
-          <FooterTitle>RECENT POSTS</FooterTitle>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+        </S.Menu>
+        <S.RecentPosts>
+          <S.FooterTitle>RECENT POSTS</S.FooterTitle>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Why Are Dogs Better Than Cats?
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Best Dog Diets
-          </FooterLink>
-          <FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          </S.FooterLink>
+          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Checklist Before Adoption
-          </FooterLink>
-        </RecentPosts>
-        <Contact>
-          <FooterTitle>CONTACT</FooterTitle>
-          <FooterText>
+          </S.FooterLink>
+        </S.RecentPosts>
+        <S.Contact>
+          <S.FooterTitle>CONTACT</S.FooterTitle>
+          <S.FooterText>
             Street: 8380 Greensboro Drive <br />
             City: Mc Lean <br />
             State: Virginia <br />
             Zip Code: 22182 <br />
             Phone Number: 703-589-3760
-          </FooterText>
-        </Contact>
-        <NewsLetter>
-          <FooterTitle>NEWS LETTER</FooterTitle>
-          <NewsLetterInput placeholder="Your email adress..."></NewsLetterInput>
-          <NewsLetterButton>Subscribe</NewsLetterButton>
-          <div>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              <SocialMediaImage
+          </S.FooterText>
+        </S.Contact>
+        <S.NewsLetter>
+          <S.FooterTitle>NEWS LETTER</S.FooterTitle>
+          <S.NewsLetterInput placeholder="Your email adress..."></S.NewsLetterInput>
+          <S.NewsLetterButton>Subscribe</S.NewsLetterButton>
+          <Fragment>
+            <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-facebook-64.png`}
               />
-            </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              <SocialMediaImage
+            </S.Link>
+            <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-instagram-64.png`}
               />
-            </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              <SocialMediaImage
+            </S.Link>
+            <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-play-button-64.png`}
               />
-            </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              <SocialMediaImage
+            </S.Link>
+            <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-pinterest-64.png`}
               />
-            </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              <SocialMediaImage
+            </S.Link>
+            <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-twitter-64.png`}
               />
-            </a>
-          </div>
-        </NewsLetter>
-      </GridWrap>
-      <Copyright>© 2020 Sit. All Rights Reserved</Copyright>
-    </FooterWrap>
+            </S.Link>
+          </Fragment>
+        </S.NewsLetter>
+      </S.GridWrap>
+      <S.Copyright>© 2020 Sit. All Rights Reserved</S.Copyright>
+    </S.FooterWrap>
   );
 });
 

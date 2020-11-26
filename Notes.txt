@@ -10,6 +10,9 @@ https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work
 JS Memory Pointer
 https://gist.github.com/siwalikm/dbf0e71f6e7e3406369b2cff1a6eb416
 
+React Router Render vs Component
+https://stackoverflow.com/questions/48150567/react-router-difference-between-component-and-render
+
 Interview Question
 https://stackoverflow.com/questions/56026987/array-being-pushed-into-another-array-isnt-displaying
 
@@ -20,7 +23,7 @@ How styled components work
 https://medium.com/styled-components/how-styled-components-works-618a69970421
 
 Styled Components Best Practices
-https://www.reddit.com/r/reactjs/comments/jp5lbe/b est_practices_for_styled_components/
+https://www.reddit.com/r/reactjs/comments/jp5lbe/best_practices_for_styled_components/
 
 JWT Implementing
 https://medium.com/@weinberger.ariel/json-web-token-jwt-the-only-explanation-youll-ever-need-cf53f0822f50

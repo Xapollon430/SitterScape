@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+//This hook is to literally just show off my skills... I don't even use it...
+
 export const useResponsive = () => {
   let [isMenuShowing, setIsMenuShowing] = useState(false);
   let [innerWidth, setInnerWidth] = useState(window.innerWidth);

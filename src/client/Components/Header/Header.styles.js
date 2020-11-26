@@ -1,13 +1,12 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const Navbar = styled.div`
-  padding: 20px 30px 20px 20px;
+  padding: 20px 40px 20px 20px;
   display: grid;
   grid-template-areas: "brand nav";
-  grid-template-columns: 100px auto;
-  align-items: center;
+  grid-template-columns: 200px auto;
   justify-items: center;
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     grid-template-areas:
       "brand menu"
       "nav nav";
@@ -21,7 +20,7 @@ export const Nav = styled.div`
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     height: ${(props) => (props.open ? "160px" : "0px")};
     overflow: hidden;
     grid-template-columns: none;
@@ -34,7 +33,7 @@ export const ButtonWrap = styled.div`
   grid-area: menu;
   display: none;
   color: white;
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     display: block;
     justify-self: end;
     padding-right: 20px;
@@ -43,19 +42,18 @@ export const ButtonWrap = styled.div`
 
 export const Brand = styled.h1`
   grid-area: brand;
-  font-size: 3rem;
+  font-size: 2rem;
   color: white;
+
   margin: 0px;
-  font-family: "Quicksand", sans-serif;
-  @media (max-width: 700px) {
-    display: block;
+  @media (max-width: 800px) {
     grid-area: brand;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 `;
 
 export const EmptyDiv = styled.div`
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `;
@@ -73,44 +71,12 @@ export const Button = styled.button`
   font-size: 1.1rem;
   height: 45px;
   border-radius: 5px;
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     height: 35px;
     font-size: 1rem;
   }
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
-  }
-`;
-
-export const DropdownWrapper = styled.div`
-  display: ${(props) => (props.open ? "grid" : "none")};
-  grid-auto-rows: 50px;
-  width: 100%;
-  position: absolute;
-  top: 46px;
-  right: -2px;
-  border-radius: 5px;
-  border: white 2px solid;
-  cursor: pointer;
-  outline: none;
-  z-index: 100;
-
-  @media (max-width: 700px) {
-    top: 38px;
-    grid-auto-rows: 40px;
-  }
-`;
-
-export const DropdownItem = styled.span`
-  color: white;
-  padding-top: 14px;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  @media (max-width: 700px) {
-    padding-top: 10px;
-    background: #28a55f;
-    border: 1px solid white;
   }
 `;
 

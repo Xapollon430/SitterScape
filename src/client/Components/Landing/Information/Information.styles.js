@@ -148,6 +148,8 @@ export const SitterName = styled.span`
   border-radius: 5px;
 `;
 
+export const Strong = styled.strong``;
+
 export const InformationParagraph = styled.p`
   font-size: 1.2rem;
   color: rgb(100, 100, 105);
@@ -160,13 +162,6 @@ export const Footer = styled.footer`
   height: 250px;
   width: 100vw;
   background: rgb(53, 58, 64);
-`;
-
-export const Brand = styled.h1`
-  font-size: 3rem;
-  color: white;
-  margin: 0px;
-  font-family: "Quicksand", sans-serif;
 `;
 
 export const InformationTitle = styled.h1`

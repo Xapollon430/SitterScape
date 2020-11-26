@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import { generalDispatchBundler } from "../../../store/actions";
-import { logUserIn } from "../../../store/actions";
 import { Post } from "../../../Functions/Functions";
+import * as Yup from "yup";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string()
@@ -18,7 +17,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 export default (setErrorFromServer) => {
-  const [_, dispatch] = useContext(StoreContext); // {app}?
+  const [_, dispatch] = useContext(StoreContext);
 
   return useFormik({
     initialValues: {

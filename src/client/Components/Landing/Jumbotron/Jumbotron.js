@@ -1,28 +1,28 @@
-import React from "react";
-import { Section, Title, Paragraph, Button, Info, Link } from "./JumbotronCss";
+import { memo } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import * as S from "./Jumbotron.styles";
 
-const Jumbotron = React.memo(() => {
+const Jumbotron = memo(() => {
   return (
-    <Section>
-      <Title>
+    <S.Section>
+      <S.Title>
         You love your pets, <br /> so do we.
-      </Title>
-      <Paragraph>
+      </S.Title>
+      <S.Paragraph>
         At Sit.com we provide the quality <br />
         caretakers to your beloved pets.
-      </Paragraph>
+      </S.Paragraph>
       <RouterLink to="/search">
-        <Button>Find a Sitter!</Button>
+        <S.Button>Find a Sitter!</S.Button>
       </RouterLink>
 
-      <Info>
+      <S.Info>
         Are you looking for a pet sitting job?
-        <Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+        <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
           Apply Now.
-        </Link>
-      </Info>
-    </Section>
+        </S.Link>
+      </S.Info>
+    </S.Section>
   );
 });
 

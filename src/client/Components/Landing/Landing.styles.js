@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-let BackgroundImage = styled.div`
+export const StyledBackground = styled.div`
   height: 100vh;
   width: 100vw;
   min-width: 334px;
@@ -12,5 +12,3 @@ let BackgroundImage = styled.div`
     .SIT_API_URL}/static/images/background.jpg");
   background-position: center;
 `;
-
-export default BackgroundImage;

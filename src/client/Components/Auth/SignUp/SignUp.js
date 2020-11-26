@@ -1,16 +1,9 @@
-import React from "react";
-import {
-  Spinner,
-  Form,
-  Input,
-  SubmitButton,
-  Text,
-  ErrorText,
-} from "../AuthModalCss";
+import { useState } from "react";
+import * as S from "../AuthModal.styles";
 import FormikInit from "./SignUpSchema";
 
 const SignUp = () => {
-  const [errorFromServer, setErrorFromServer] = React.useState();
+  const [errorFromServer, setErrorFromServer] = useState();
 
   const {
     handleSubmit,
@@ -23,13 +16,13 @@ const SignUp = () => {
   } = FormikInit(setErrorFromServer);
 
   return isSubmitting ? (
-    <Spinner />
+    <S.Spinner />
   ) : (
-    <Form onSubmit={handleSubmit}>
+    <S.Form onSubmit={handleSubmit}>
       {errors.email && touched.email ? (
-        <ErrorText>{errors.email}</ErrorText>
+        <S.ErrorText>{errors.email}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.email && touched.email}
         value={values.email}
         onChange={handleChange}
@@ -37,11 +30,11 @@ const SignUp = () => {
         id="email"
         name="email"
         placeholder="Email"
-      ></Input>
+      ></S.Input>
       {errors.name && touched.name ? (
-        <ErrorText>{errors.name}</ErrorText>
+        <S.ErrorText>{errors.name}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.name && touched.name}
         value={values.name}
         onChange={handleChange}
@@ -49,11 +42,11 @@ const SignUp = () => {
         id="name"
         name="name"
         placeholder="Name"
-      ></Input>
+      ></S.Input>
       {errors.surname && touched.surname ? (
-        <ErrorText>{errors.surname}</ErrorText>
+        <S.ErrorText>{errors.surname}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.surname && touched.surname}
         value={values.surname}
         onChange={handleChange}
@@ -61,11 +54,11 @@ const SignUp = () => {
         id="surname"
         name="surname"
         placeholder="Surname"
-      ></Input>
+      ></S.Input>
       {errors.password && touched.password ? (
-        <ErrorText>{errors.password}</ErrorText>
+        <S.ErrorText>{errors.password}</S.ErrorText>
       ) : null}
-      <Input
+      <S.Input
         error={errors.password && touched.password}
         value={values.password}
         onChange={handleChange}
@@ -74,12 +67,12 @@ const SignUp = () => {
         name="password"
         placeholder="Password"
         type="password"
-      ></Input>
-      {errorFromServer && <ErrorText>{errorFromServer}</ErrorText>}
-      <SubmitButton type="submit">SUBMIT</SubmitButton>
-      <Text>By signing up you agree to our</Text>
-      <Text>Terms of service</Text>
-    </Form>
+      ></S.Input>
+      {errorFromServer && <S.ErrorText>{errorFromServer}</S.ErrorText>}
+      <S.SubmitButton type="submit">SUBMIT</S.SubmitButton>
+      <S.Text>By signing up you agree to our</S.Text>
+      <S.Text>Terms of service</S.Text>
+    </S.Form>
   );
 };
 

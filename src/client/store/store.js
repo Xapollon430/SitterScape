@@ -12,11 +12,9 @@ const initialState = {
 export const StoreContext = createContext();
 
 const Store = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const value = useReducer(reducer, initialState);
   return (
-    <StoreContext.Provider value={[state, dispatch]}>
-      {children}
-    </StoreContext.Provider>
+    <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
   );
 };
 

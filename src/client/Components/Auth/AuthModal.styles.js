@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-export const CancelIcon = styled.i`
+export const CancelIcon = styled.span`
   color: rgb(20, 169, 109);
   position: absolute;
   right: 10px;

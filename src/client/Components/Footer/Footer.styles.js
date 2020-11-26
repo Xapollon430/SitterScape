@@ -91,3 +91,5 @@ export const Copyright = styled.p`
   text-align: center;
   padding-bottom: 10px;
 `;
+
+export const Link = styled.a``;

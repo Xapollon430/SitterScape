@@ -1,34 +1,29 @@
-import React, { useState, useContext, useCallback } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Brand, Nav, EmptyDiv, Button, ButtonWrap } from "./HeaderCss";
-import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
+import { useState, useContext, useCallback, Fragment } from "react";
 import { StoreContext } from "../../store/store";
-import {
-  changeIsModalOpen,
-  changeIsSignUpOpen,
-  changeIsLogInOpen,
-  generalDispatchBundler,
-} from "../../store/actions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
+import * as S from "./Header.styles";
+import * as actions from "../../store/actions";
+import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
+  const [{ user, loggedIn }, dispatch] = useContext(StoreContext); // Double destructure?
 
   const openModal = (event) => {
     event.target.innerHTML == "Log In"
-      ? dispatch(changeIsLogInOpen(true))
-      : dispatch(changeIsSignUpOpen(true));
-    dispatch(changeIsModalOpen(true));
+      ? dispatch(actions.changeIsLogInOpen(true))
+      : dispatch(actions.changeIsSignUpOpen(true));
+    dispatch(actions.changeIsModalOpen(true));
   };
 
   const logOut = useCallback(() => {
     localStorage.removeItem("jwt-token");
     dispatch(
-      generalDispatchBundler({
+      actions.generalDispatchBundler({
         loggedIn: false,
         user: null,
       })
@@ -40,45 +35,46 @@ const Header = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   return (
-    <Navbar>
-      <Brand>Sit!</Brand>
-      <ButtonWrap>
+    <S.Navbar>
+      <S.Brand>SitterScape</S.Brand>
+      <S.ButtonWrap>
         <HamburgerSpin
           style={{ outline: "none" }}
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
           barColor="white"
         />
-      </ButtonWrap>
+      </S.ButtonWrap>
 
-      <Nav open={isHamburgerOpen}>
+      <S.Nav open={isHamburgerOpen}>
         <Link to="/search">
-          <Button>Find A Sitter</Button>
+          <S.Button>Find A Sitter</S.Button>
         </Link>
 
-        <Button>Blog</Button>
-        <EmptyDiv />
+        <S.Button>Blog</S.Button>
+        <S.EmptyDiv />
         {loggedIn ? (
-          <React.Fragment>
-            <Button onClick={openProfileDropdownOpen}>
+          <Fragment>
+            <S.Button onClick={openProfileDropdownOpen}>
               {user.name}
               <FontAwesomeIcon
                 style={{ paddingLeft: "8px" }}
                 icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
               ></FontAwesomeIcon>
               <ProfileDropdown open={isProfileDropdownOpen} />
-            </Button>
-            <Button onClick={logOut}>Log Out</Button>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Button onClick={openModal}>Log In</Button>
+            </S.Button>
 
-            <Button onClick={openModal}>Sign Up</Button>
-          </React.Fragment>
+            <S.Button onClick={logOut}>Log Out</S.Button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <S.Button onClick={openModal}>Log In</S.Button>
+
+            <S.Button onClick={openModal}>Sign Up</S.Button>
+          </Fragment>
         )}
-      </Nav>
-    </Navbar>
+      </S.Nav>
+    </S.Navbar>
   );
 };
 
