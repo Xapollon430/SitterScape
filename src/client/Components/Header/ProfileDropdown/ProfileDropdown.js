@@ -1,17 +1,22 @@
 import React from "react";
 import { DropdownWrapper, DropdownItem } from "../HeaderCss";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserCircle,
+  faCog,
+  faQuestion,
+} from "@fortawesome/free-solid-svg-icons";
 const ProfileDropdown = ({ open }) => {
   return (
     <DropdownWrapper open={open}>
       <DropdownItem>
-        <i className="fas fa-user-circle"></i> Profile
+        <FontAwesomeIcon icon={faUserCircle} /> Profile
       </DropdownItem>
       <DropdownItem>
-        <i className="fas fa-cog"></i> Settings
+        <FontAwesomeIcon icon={faCog} /> Settings
       </DropdownItem>
       <DropdownItem>
-        <i className="fas fa-question"></i> Help
+        <FontAwesomeIcon icon={faQuestion} /> Help
       </DropdownItem>
     </DropdownWrapper>
   );

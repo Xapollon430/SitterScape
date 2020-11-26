@@ -19,6 +19,7 @@ export const signUp = async (req, res, next) => {
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
   let foundUser = await User.findOne({ email });
+  console.log(foundUser, password);
   if (!foundUser || password !== foundUser.password) {
     return next(new HttpError("Wrong password or email", 401));
   }

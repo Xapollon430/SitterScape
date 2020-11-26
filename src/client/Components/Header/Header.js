@@ -1,14 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Brand,
-  Nav,
-  EmptyDiv,
-  Button,
-  ExpandIcon,
-  ButtonWrap,
-} from "./HeaderCss";
+import { Navbar, Brand, Nav, EmptyDiv, Button, ButtonWrap } from "./HeaderCss";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import { StoreContext } from "../../store/store";
 import {
@@ -17,23 +9,23 @@ import {
   changeIsLogInOpen,
   generalDispatchBundler,
 } from "../../store/actions";
-import { changeLoggedIn } from "../../store/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { HamburgerSpin } from "react-animated-burgers";
 
 const Header = () => {
   const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-
-  const [state, dispatch] = useContext(StoreContext); // {app}?
+  const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
 
   const openModal = (event) => {
-    dispatch(changeIsModalOpen(true));
-    event.target.getAttribute("name") === "login"
+    event.target.innerHTML == "Log In"
       ? dispatch(changeIsLogInOpen(true))
       : dispatch(changeIsSignUpOpen(true));
+    dispatch(changeIsModalOpen(true));
   };
 
-  const logOut = () => {
+  const logOut = useCallback(() => {
     localStorage.removeItem("jwt-token");
     dispatch(
       generalDispatchBundler({
@@ -41,7 +33,7 @@ const Header = () => {
         user: null,
       })
     );
-  };
+  });
 
   const openHamburger = () => setIsOpenHamburger(!isHamburgerOpen);
   const openProfileDropdownOpen = () =>
@@ -66,24 +58,21 @@ const Header = () => {
 
         <Button>Blog</Button>
         <EmptyDiv />
-        {state.loggedIn ? (
+        {loggedIn ? (
           <React.Fragment>
             <Button onClick={openProfileDropdownOpen}>
-              {state.user.name}
-              <ExpandIcon
-                className={`fas fa-chevron-${
-                  isProfileDropdownOpen ? "up" : "down"
-                }`}
-              />
+              {user.name}
+              <FontAwesomeIcon
+                style={{ paddingLeft: "8px" }}
+                icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+              ></FontAwesomeIcon>
               <ProfileDropdown open={isProfileDropdownOpen} />
             </Button>
             <Button onClick={logOut}>Log Out</Button>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Button onClick={openModal} name="login">
-              Log In
-            </Button>
+            <Button onClick={openModal}>Log In</Button>
 
             <Button onClick={openModal}>Sign Up</Button>
           </React.Fragment>
