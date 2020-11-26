@@ -36,7 +36,7 @@ export const ButtonWrap = styled.div`
   @media (max-width: 800px) {
     display: block;
     justify-self: end;
-    padding-right: 20px;
+    margin-top: -10px;
   }
 `;
 

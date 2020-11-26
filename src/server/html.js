@@ -5,32 +5,26 @@ const X = () => <button>HUZEYFE</button>;
 
 const ServerSideMarkup = () => {
   return `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    
-        <link
-          href="https://fonts.googleapis.com/css?family=Quicksand&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-        />
-      <link rel="stylesheet" href="./static/stylesheets/index.css">
-        <title>Sit</title>
-
-      </head>
-      <body>
-
-        <div id="modal-hook"></div>
-        <div id="backdrop-hook"></div>
-        <div id="root">123</div>
-         <script src="./static/react-bundle.js"></script>
-
-      </body>
-    </html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="initial-scale=1,width=device-width" />
+  
+      <link
+        rel="stylesheet"
+        href="/static/stylesheets/index.css"
+      />
+  
+      <title>SitterScape</title>
+    </head>
+    <body>
+      <div id="modal-hook"></div>
+      <div id="backdrop-hook"></div>
+      <div id="root"><h1>123</h1></div>
+    </body>
+    <script src="/static/react-bundle.js"></script>
+  </html>
+  
     `;
 };
 
