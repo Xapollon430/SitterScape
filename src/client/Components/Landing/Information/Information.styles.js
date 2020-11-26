@@ -72,7 +72,7 @@ export const CustomerWrap = styled.div`
   width: 60%;
   min-width: 334px;
 
-  margin: 100px auto;
+  margin: 100px auto 40px auto;
   position: relative;
   @media (max-width: 1100px) {
     width: 100vw;
@@ -153,7 +153,7 @@ export const Strong = styled.strong``;
 export const InformationParagraph = styled.p`
   font-size: 1.2rem;
   color: rgb(100, 100, 105);
-  margin: 5px 0px 50px 0px;
+  margin: 5px 0px 100px 0px;
   width: 70%;
   text-align: center;
 `;

@@ -19,9 +19,9 @@ const Login = () => {
     <S.Spinner />
   ) : (
     <S.Form onSubmit={handleSubmit}>
-      {errors.email && touched.email ? (
+      {errors.email && touched.email && (
         <S.ErrorText>{errors.email}</S.ErrorText>
-      ) : null}
+      )}
       <S.Input
         error={errors.email && touched.email}
         value={values.email}
@@ -32,9 +32,9 @@ const Login = () => {
         placeholder="Email"
       ></S.Input>
 
-      {errors.password && touched.password ? (
+      {errors.password && touched.password && (
         <S.ErrorText>{errors.password}</S.ErrorText>
-      ) : null}
+      )}
       <S.Input
         error={errors.password && touched.password}
         value={values.password}

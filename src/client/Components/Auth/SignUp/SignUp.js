@@ -19,9 +19,9 @@ const SignUp = () => {
     <S.Spinner />
   ) : (
     <S.Form onSubmit={handleSubmit}>
-      {errors.email && touched.email ? (
+      {errors.email && touched.email && (
         <S.ErrorText>{errors.email}</S.ErrorText>
-      ) : null}
+      )}
       <S.Input
         error={errors.email && touched.email}
         value={values.email}
@@ -31,9 +31,7 @@ const SignUp = () => {
         name="email"
         placeholder="Email"
       ></S.Input>
-      {errors.name && touched.name ? (
-        <S.ErrorText>{errors.name}</S.ErrorText>
-      ) : null}
+      {errors.name && touched.name && <S.ErrorText>{errors.name}</S.ErrorText>}
       <S.Input
         error={errors.name && touched.name}
         value={values.name}
@@ -43,9 +41,9 @@ const SignUp = () => {
         name="name"
         placeholder="Name"
       ></S.Input>
-      {errors.surname && touched.surname ? (
+      {errors.surname && touched.surname && (
         <S.ErrorText>{errors.surname}</S.ErrorText>
-      ) : null}
+      )}
       <S.Input
         error={errors.surname && touched.surname}
         value={values.surname}
@@ -55,9 +53,9 @@ const SignUp = () => {
         name="surname"
         placeholder="Surname"
       ></S.Input>
-      {errors.password && touched.password ? (
+      {errors.password && touched.password && (
         <S.ErrorText>{errors.password}</S.ErrorText>
-      ) : null}
+      )}
       <S.Input
         error={errors.password && touched.password}
         value={values.password}

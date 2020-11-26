@@ -81,6 +81,8 @@ export const NewsLetterButton = styled.button`
   cursor: pointer;
 `;
 
+export const SocialMediaWrap = styled.div``;
+
 export const SocialMediaImage = styled.img`
   width: 30px;
   margin: 5px 5px 0px 0px;

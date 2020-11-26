@@ -1,4 +1,4 @@
-import { memo, Fragment } from "react";
+import { memo } from "react";
 import * as S from "./Footer.styles";
 
 const Footer = memo(() => {
@@ -52,7 +52,7 @@ const Footer = memo(() => {
           <S.FooterTitle>NEWS LETTER</S.FooterTitle>
           <S.NewsLetterInput placeholder="Your email adress..."></S.NewsLetterInput>
           <S.NewsLetterButton>Subscribe</S.NewsLetterButton>
-          <Fragment>
+          <S.SocialMediaWrap>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
                 src={`${process.env.SIT_API_URL}/static/images/icons8-facebook-64.png`}
@@ -78,7 +78,7 @@ const Footer = memo(() => {
                 src={`${process.env.SIT_API_URL}/static/images/icons8-twitter-64.png`}
               />
             </S.Link>
-          </Fragment>
+          </S.SocialMediaWrap>
         </S.NewsLetter>
       </S.GridWrap>
       <S.Copyright>© 2020 Sit. All Rights Reserved</S.Copyright>

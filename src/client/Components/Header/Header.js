@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback, Fragment } from "react";
+import { useState, useContext, useCallback, Fragment, useEffect } from "react";
 import { StoreContext } from "../../store/store";
 import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import * as actions from "../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
 const Header = () => {
-  const [isHamburgerOpen, setIsOpenHamburger] = useState(false);
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext); // Double destructure?
 
@@ -30,7 +30,7 @@ const Header = () => {
     );
   });
 
-  const openHamburger = () => setIsOpenHamburger(!isHamburgerOpen);
+  const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);
   const openProfileDropdownOpen = () =>
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 

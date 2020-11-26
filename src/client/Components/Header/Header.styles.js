@@ -44,7 +44,6 @@ export const Brand = styled.h1`
   grid-area: brand;
   font-size: 2rem;
   color: white;
-
   margin: 0px;
   @media (max-width: 800px) {
     grid-area: brand;
