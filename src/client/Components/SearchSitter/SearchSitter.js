@@ -1,33 +1,36 @@
-import { useContext, Fragment } from "react";
+import { Fragment, useEffect, useRef, useContext } from "react";
 import { StoreContext } from "../../store/store";
+import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
-import * as S from "./Landing.styles";
-
+import L from "leaflet";
 import Header from "../Header/Header";
-import Jumbotron from "./Jumbotron/Jumbotron";
 import Modal from "../../UI/Modal/Modal";
-import Information from "./Information/Information";
 import AuthModal from "../Auth/AuthModal";
-import Footer from "../Footer/Footer";
 
-function Landing() {
+const SearchSitter = () => {
   const [state, dispatch] = useContext(StoreContext);
+  const mapRef = useRef(null);
+
   const closeAuthModal = () => {
     dispatch(actions.changeIsModalOpen(false));
   };
+
+  useEffect(() => {
+    const mymap = L.map(mapRef.current).setView([51.505, -0.09], 13);
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+    ).addTo(mymap);
+  }, []);
+
   return (
     <Fragment>
-      <S.StyledBackground>
-        <Header />
-        <Jumbotron />
-      </S.StyledBackground>
+      <Header />
       <Modal showModal={state.isModalOpen} onClose={closeAuthModal}>
         <AuthModal onClose={closeAuthModal} />
       </Modal>
-      <Information />
-      <Footer />
+      <S.LeafletMap ref={mapRef}></S.LeafletMap>
     </Fragment>
   );
-}
+};
 
-export default Landing;
+export default SearchSitter;

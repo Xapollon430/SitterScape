@@ -1,12 +1,18 @@
 import Landing from "./Components/Landing/Landing";
-import FindSitter from "./Components/FindSitter/FindSitter";
+import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import { Route, Switch } from "react-router-dom";
+import { useContext } from "react";
+import { StoreContext } from "./store/store";
 
-const App = () => {
+const App = (props) => {
+  const x = useContext(StoreContext);
+
+  console.log(x[0]);
+
   return (
     <Switch>
       <Route exact path="/" render={() => <Landing />} />
-      <Route exact path="/search" render={() => <FindSitter />} />\
+      <Route exact path="/search" render={() => <SearchSitter />} />\
     </Switch>
   );
 };
