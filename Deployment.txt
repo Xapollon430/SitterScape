@@ -5,3 +5,4 @@ To deploy this application the following steps in the order must be taken:
 2- Build the client side application with "npm run client:build". This will use webpack and babel to produce one output javascript file that will be put into the production folder created by the first step.
 
 The server will send back an html string through the "/" route instead of sending an html file back. This will later be used for server side rendering.
+oc
