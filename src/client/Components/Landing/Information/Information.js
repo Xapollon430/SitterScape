@@ -32,6 +32,9 @@ const Information = memo(() => {
           <S.StepImage
             src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
           />
+          <S.StepImage
+            src=""
+          />
           <S.StepNumber>STEP 3</S.StepNumber>
           <S.StepTitle>
             Meet the Most Qualified Sitters In Your Area

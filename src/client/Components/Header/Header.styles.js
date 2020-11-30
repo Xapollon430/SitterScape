@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Navbar = styled.div`
-  padding: 20px 40px 20px 20px;
+  padding: 20px;
   display: grid;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
@@ -19,17 +19,21 @@ export const Nav = styled.div`
   width: 100%;
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
-
   @media (max-width: 800px) {
-    height: ${(props) => (props.open ? "160px" : "0px")};
+    height: ${(props) =>
+      props.profileOpen && props.hamburgerOpen
+        ? "250px"
+        : props.hamburgerOpen && !props.profileOpen
+        ? "160px"
+        : "0px"};
     overflow: hidden;
+    transition: height ease-in-out 0.6s;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    transition: height 0.5s ease-in-out;
   }
 `;
 
-export const ButtonWrap = styled.div`
+export const BurgerWrap = styled.div`
   grid-area: menu;
   display: none;
   color: white;
@@ -60,16 +64,18 @@ export const EmptyDiv = styled.div`
 export const Button = styled.button`
   font-family: inherit;
   color: white;
-  position: relative;
   width: 100%;
   background-color: Transparent;
-  background-repeat: no-repeat;
-  border: white 2px solid;
   cursor: pointer;
   outline: none;
   font-size: 1.1rem;
   height: 45px;
+  border: white 2px solid;
+
   border-radius: 5px;
+  margin: 0px;
+  padding: 0px;
+
   @media (max-width: 800px) {
     height: 35px;
     font-size: 1rem;
@@ -77,6 +83,10 @@ export const Button = styled.button`
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
+`;
+
+export const ProfileWrapper = styled.div`
+  position: relative;
 `;
 
 export const ExpandIcon = styled.i`

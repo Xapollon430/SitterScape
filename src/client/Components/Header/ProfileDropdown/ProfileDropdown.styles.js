@@ -1,33 +1,31 @@
 import styled from "styled-components";
+import { Button } from "../Header.styles";
 
 export const DropdownWrapper = styled.div`
-  display: ${(props) => (props.open ? "grid" : "none")};
-  grid-auto-rows: 50px;
-  width: 100%;
+  height: ${(props) => (props.profileOpen ? "140px" : "0px")};
+  display: grid;
   position: absolute;
-  top: 46px;
-  right: -2px;
-  border-radius: 5px;
-  border: white 2px solid;
-  cursor: pointer;
+  width: 100%;
+  top: 48px;
   outline: none;
-  z-index: 100;
+  z-index: 10;
+  grid-auto-rows: 42px;
+  transition: height ease-in-out 0.6s;
+  overflow: hidden;
 
-  @media (max-width: 700px) {
-    top: 38px;
-    grid-auto-rows: 40px;
+  grid-gap: 5px;
+  @media (max-width: 800px) {
+    width: 100%;
+    top: 40px;
+    grid-auto-rows: 35px;
   }
 `;
 
-export const DropdownItem = styled.span`
-  color: white;
-  padding-top: 14px;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  @media (max-width: 700px) {
-    padding-top: 10px;
+export const ProfileButton = styled(Button)`
+  @media (max-width: 800px) {
     background: #28a55f;
-    border: 1px solid white;
+    &:hover {
+      background-color: #28a55f;
+    }
   }
 `;

@@ -3,7 +3,7 @@ import { StoreContext } from "../../store/store";
 import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { HamburgerSpin } from "react-animated-burgers";
+import { HamburgerSpin } from "react-animated-burgers";
 import * as S from "./Header.styles";
 import * as actions from "../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
@@ -32,22 +32,25 @@ const Header = ({ url }) => {
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);
-  const openProfileDropdownOpen = () =>
+  const openProfileDropdown = () =>
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   return (
-    <S.Navbar style={{ backgroundColor: "black" }}>
+    <S.Navbar>
       <S.Brand>SitterScape</S.Brand>
-      <S.ButtonWrap>
-        {/* <HamburgerSpin
+      <S.BurgerWrap>
+        <HamburgerSpin
           style={{ outline: "none" }}
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
           barColor="white"
-        /> */}
-      </S.ButtonWrap>
+        />
+      </S.BurgerWrap>
 
-      <S.Nav open={isHamburgerOpen}>
+      <S.Nav
+        hamburgerOpen={isHamburgerOpen}
+        profileOpen={isProfileDropdownOpen}
+      >
         <Link to="/search">
           <S.Button>Find A Sitter</S.Button>
         </Link>
@@ -56,20 +59,32 @@ const Header = ({ url }) => {
         <S.EmptyDiv />
         {loggedIn ? (
           <Fragment>
-            <S.Button onClick={openProfileDropdownOpen}>
-              {user.name}
-              <FontAwesomeIcon
-                style={{ paddingLeft: "8px" }}
-                icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-              ></FontAwesomeIcon>
-              <ProfileDropdown open={isProfileDropdownOpen} />
-            </S.Button>
+            <S.ProfileWrapper>
+              <S.Button onClick={openProfileDropdown}>
+                {123}
+                <FontAwesomeIcon
+                  style={{ paddingLeft: "8px" }}
+                  icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+                ></FontAwesomeIcon>
+              </S.Button>
+              <ProfileDropdown profileOpen={isProfileDropdownOpen} />
+            </S.ProfileWrapper>
 
             <S.Button onClick={logOut}>Log Out</S.Button>
           </Fragment>
         ) : (
           <Fragment>
-            <S.Button onClick={openModal}>Log In</S.Button>
+            {/* <S.Button onClick={openModal}>Log In</S.Button> */}
+            <S.ProfileWrapper>
+              <S.Button onClick={openProfileDropdown}>
+                {123}
+                <FontAwesomeIcon
+                  style={{ paddingLeft: "8px" }}
+                  icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+                ></FontAwesomeIcon>
+              </S.Button>
+              <ProfileDropdown profileOpen={isProfileDropdownOpen} />
+            </S.ProfileWrapper>
 
             <S.Button onClick={openModal}>Sign Up</S.Button>
           </Fragment>
