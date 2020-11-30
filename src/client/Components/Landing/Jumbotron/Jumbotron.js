@@ -9,7 +9,7 @@ const Jumbotron = memo(() => {
         You love your pets, <br /> so do we.
       </S.Title>
       <S.Paragraph>
-        At Sit.com we provide the quality <br />
+        At SitterScape.com we provide the quality <br />
         caretakers to your beloved pets.
       </S.Paragraph>
       <RouterLink to="/search">

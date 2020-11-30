@@ -13,8 +13,8 @@ const Information = memo(() => {
           <S.StepNumber>STEP 1</S.StepNumber>
           <S.StepTitle>Create a Sit Account and Get Comfortable</S.StepTitle>
           <S.StepParagraph>
-            Start your Sit account whether you are a Sitter or an Owner. Fill
-            your information for us to find a good match for you.
+            Create your SitterScape account whether you are a sitter or an
+            owner. Fill your information for us to find a match for you.
           </S.StepParagraph>
         </S.Step>
         <S.Step>
@@ -32,9 +32,7 @@ const Information = memo(() => {
           <S.StepImage
             src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
           />
-          <S.StepImage
-            src=""
-          />
+          <S.StepImage src="" />
           <S.StepNumber>STEP 3</S.StepNumber>
           <S.StepTitle>
             Meet the Most Qualified Sitters In Your Area
@@ -66,10 +64,10 @@ const Information = memo(() => {
       <S.InformationTitle>Who We Are</S.InformationTitle>
 
       <S.InformationParagraph>
-        Are you looking for a Pet sitter or Pet sitting job? At Sit we have
-        built a community that revolves around our love for pets. Sit makes it
-        easier for everyone to connect other pet lovers for their services. We
-        can find care for your pets when you can't take care of them.
+        Are you looking for a pet sitter or pet sitting job? At SitterScape we
+        have built a community that revolves around our love for pets. Sit makes
+        it easier for everyone to connect other pet lovers for their services.
+        We can find care for your pets when you can't take care of them.
       </S.InformationParagraph>
     </S.InformationWrapper>
   );

@@ -14,7 +14,6 @@ const Header = ({ url }) => {
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
 
   const openModal = (event) => {
-    console.log(123);
     event.target.innerHTML == "Log In"
       ? dispatch(actions.changeIsLogInOpen(true))
       : dispatch(actions.changeIsSignUpOpen(true));
@@ -61,7 +60,7 @@ const Header = ({ url }) => {
           <Fragment>
             <S.ProfileWrapper>
               <S.Button onClick={openProfileDropdown}>
-                {123}
+                {user.name}
                 <FontAwesomeIcon
                   style={{ paddingLeft: "8px" }}
                   icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
@@ -74,17 +73,7 @@ const Header = ({ url }) => {
           </Fragment>
         ) : (
           <Fragment>
-            {/* <S.Button onClick={openModal}>Log In</S.Button> */}
-            <S.ProfileWrapper>
-              <S.Button onClick={openProfileDropdown}>
-                {123}
-                <FontAwesomeIcon
-                  style={{ paddingLeft: "8px" }}
-                  icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-                ></FontAwesomeIcon>
-              </S.Button>
-              <ProfileDropdown profileOpen={isProfileDropdownOpen} />
-            </S.ProfileWrapper>
+            <S.Button onClick={openModal}>Log In</S.Button>
 
             <S.Button onClick={openModal}>Sign Up</S.Button>
           </Fragment>
