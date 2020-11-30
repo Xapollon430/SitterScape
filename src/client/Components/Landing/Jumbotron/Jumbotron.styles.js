@@ -29,19 +29,18 @@ export const Paragraph = styled.p`
 export const Button = styled.button`
   background: none;
   color: white;
-  width: 250px;
+  width: 170px;
   height: 50px;
   font-size: 1.3rem;
   outline: none;
   cursor: pointer;
   border: 1px solid white;
-
   &:hover {
     color: black;
     background: white;
   }
   @media (max-width: 800px) {
-    width: 120px;
+    width: 140px;
     height: 40px;
     font-size: 1rem;
   }
