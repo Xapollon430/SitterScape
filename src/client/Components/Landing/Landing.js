@@ -2,8 +2,7 @@ import { useContext, Fragment } from "react";
 import { StoreContext } from "../../store/store";
 import * as actions from "../../store/actions";
 import * as S from "./Landing.styles";
-
-import Header from "../Header/Header";
+import Header from "./Header/Header";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import Modal from "../../UI/Modal/Modal";
 import Information from "./Information/Information";

@@ -3,7 +3,6 @@ import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
-import Header from "../Header/Header";
 import Modal from "../../UI/Modal/Modal";
 import AuthModal from "../Auth/AuthModal";
 
@@ -24,7 +23,6 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
-      <Header />
       <Modal showModal={state.isModalOpen} onClose={closeAuthModal}>
         <AuthModal onClose={closeAuthModal} />
       </Modal>

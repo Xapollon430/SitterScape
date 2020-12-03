@@ -19,6 +19,7 @@ export const Nav = styled.div`
   width: 100%;
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
+  padding-right: 20px;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
@@ -30,6 +31,7 @@ export const Nav = styled.div`
     transition: height ease-in-out 0.6s;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
+    padding-right: 0px;
   }
 `;
 

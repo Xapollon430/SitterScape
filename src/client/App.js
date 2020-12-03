@@ -2,7 +2,7 @@ import Landing from "./Components/Landing/Landing";
 import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import { Route, Switch } from "react-router-dom";
 
-const App = (props) => {
+const App = () => {
   return (
     <Switch>
       <Route exact path="/" render={() => <Landing />} />

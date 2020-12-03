@@ -1,12 +1,10 @@
 import User from "../database/models/User";
 import HttpError from "../error/HttpError";
-
 export const signUp = async (req, res, next) => {
   const signUpData = req.body;
   try {
     let userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return next(new HttpError("Email already used!", 409));
-    console.log(userExists);
     let user = new User(signUpData);
     let token = user.generateAuthToken();
     await user.save();

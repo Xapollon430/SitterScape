@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-const connectDB = async () => {
+
+const connectDB = () => {
   try {
     mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
@@ -7,7 +8,6 @@ const connectDB = async () => {
     });
   } catch (err) {
     console.error(err);
-    process.exit(1);
   }
 };
 
