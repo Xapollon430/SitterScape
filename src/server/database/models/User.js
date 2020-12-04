@@ -17,11 +17,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    // validate(email) {
-    //   if (!Validator.isEmail(email)) {
-    //     throw new Error("Please enter a valid email");
-    //   }
-    // },
     trim: true,
     lowercase: true,
   },

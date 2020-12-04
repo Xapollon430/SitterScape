@@ -4,7 +4,9 @@ import path from "path";
 import Routes from "./routes/route";
 import connectDB from "./database/db";
 import ServerSideMarkup from "./html";
-import { graphql, buildSchema } from "graphql";
+import { graphqlHTTP } from "express-graphql";
+import schema from "./graphql/schema";
+import root from "./graphql/resolver";
 import { config } from "dotenv";
 
 config();
@@ -15,7 +17,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("graphql");
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true,
+  })
+);
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 

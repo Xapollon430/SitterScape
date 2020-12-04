@@ -7,7 +7,8 @@
     "client:dev": "webpack-dev-server --env.ENV=development",
     "client:build": "webpack --mode production --env.ENV=production",
     "server:dev": "nodemon --exec babel-node src/server/server.js",
-    "server:build": "babel src/server --copy-files --out-dir prod-bundle"
+    "server:build": "babel src/server --copy-files --out-dir prod-bundle",
+    "deploy" : "git add . && git commit -m \"predeploy\" && git push heroku master"
   },
   "repository": {},
   "keywords": [
