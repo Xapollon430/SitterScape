@@ -5,6 +5,7 @@ import * as actions from "../../store/actions";
 import L from "leaflet";
 import Modal from "../../UI/Modal/Modal";
 import AuthModal from "../Auth/AuthModal";
+import Header from "./Header/Header";
 
 const SearchSitter = () => {
   const [state, dispatch] = useContext(StoreContext);
@@ -23,6 +24,7 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
+      <Header />
       <Modal showModal={state.isModalOpen} onClose={closeAuthModal}>
         <AuthModal onClose={closeAuthModal} />
       </Modal>

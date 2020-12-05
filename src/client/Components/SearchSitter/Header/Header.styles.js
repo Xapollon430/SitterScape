@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HamburgerSpin } from "react-animated-burgers";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = styled.div`
@@ -13,6 +13,7 @@ export const Navbar = styled.div`
       "brand menu"
       "nav nav";
   }
+  background-color: #28a55f;
 `;
 
 export const Nav = styled.div`
@@ -48,23 +49,21 @@ export const BurgerWrap = styled.div`
   }
 `;
 
-export const Brand = styled.h1`
-  grid-area: brand;
-  font-size: 2rem;
-  color: white;
-  margin: 0px;
-  @media (max-width: 800px) {
-    grid-area: brand;
-    font-size: 1.8rem;
-  }
-`;
-
 export const StyledIcon = styled(FontAwesomeIcon)`
   padding-left: 8px;
 `;
 
-export const StyledBurgerSpin = styled(HamburgerSpin)`
-  outline: none;
+export const BrandLink = styled(Link)`
+  grid-area: brand;
+  font-size: 2rem;
+  color: white;
+  margin: 0px;
+  text-decoration: none;
+  font-weight: 600;
+  @media (max-width: 800px) {
+    grid-area: brand;
+    font-size: 1.8rem;
+  }
 `;
 
 export const EmptyDiv = styled.div`

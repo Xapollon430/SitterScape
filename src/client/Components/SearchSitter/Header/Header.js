@@ -2,10 +2,12 @@ import { useState, useContext, useCallback, Fragment, useEffect } from "react";
 import { StoreContext } from "../../../store/store";
 import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 import * as S from "./Header.styles";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
+import styled from "styled-components";
 
 const Header = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -35,9 +37,11 @@ const Header = () => {
 
   return (
     <S.Navbar>
-      <S.Brand>SitterScape</S.Brand>
+      <S.BrandLink to="/">SitterScape</S.BrandLink>
+
       <S.BurgerWrap>
-        <S.StyledBurgerSpin
+        <HamburgerSpin
+          style={{ outline: "none" }}
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
           barColor="white"
@@ -48,10 +52,6 @@ const Header = () => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
-        <Link to="/search">
-          <S.Button>Find A Sitter</S.Button>
-        </Link>
-
         <S.Button>Blog</S.Button>
         <S.EmptyDiv />
         {loggedIn ? (
