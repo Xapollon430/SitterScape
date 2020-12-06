@@ -65,9 +65,10 @@ const Information = memo(() => {
 
       <S.InformationParagraph>
         Are you looking for a pet sitter or pet sitting job? At SitterScape we
-        have built a community that revolves around our love for pets. Sit makes
-        it easier for everyone to connect other pet lovers for their services.
-        We can find care for your pets when you can't take care of them.
+        have built a community that revolves around our love for pets.
+        SitterScape makes it easier for everyone to connect other pet lovers for
+        their services. We can find care for your pets when you can't take care
+        of them.
       </S.InformationParagraph>
     </S.InformationWrapper>
   );

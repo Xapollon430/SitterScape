@@ -81,7 +81,7 @@ const Footer = memo(() => {
           </S.SocialMediaWrap>
         </S.NewsLetter>
       </S.GridWrap>
-      <S.Copyright>© 2020 Sit. All Rights Reserved</S.Copyright>
+      <S.Copyright>© 2020 SitterScape. All Rights Reserved</S.Copyright>
     </S.FooterWrap>
   );
 });

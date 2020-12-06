@@ -2,16 +2,21 @@ import styled from "styled-components";
 
 export const InformationWrapper = styled.div`
   width: 100vw;
+  min-width: 340px;
   margin: 50px auto 0px auto;
   display: grid;
   justify-items: center;
   background-color: FFFFF;
+  @media (max-width: 340px) {
+    margin: 50px 0px 0px 0px;
+  }
 `;
 
 export const Title = styled.h1`
   color: rgb(100, 100, 105);
   font-size: 3rem;
-
+  width: 100%;
+  text-align: center;
   @media (max-width: 420px) {
     font-size: 1.7rem;
   }
@@ -37,6 +42,7 @@ export const StepWrapper = styled.div`
 export const Step = styled.div`
   display: grid;
   justify-items: center;
+  width: 100%;
 `;
 
 export const StepNumber = styled.h3`
@@ -45,9 +51,6 @@ export const StepNumber = styled.h3`
 
 export const StepImage = styled.img`
   @media (min-width: 950px) and (max-width: 1200px) {
-    width: 200px;
-  }
-  @media (max-width: 500px) {
     width: 200px;
   }
 `;
@@ -62,17 +65,18 @@ export const StepTitle = styled.h2`
 export const StepParagraph = styled.p`
   color: rgb(100, 100, 105);
   font-size: 20px;
+
   @media (max-width: 950px) {
-    width: 300px;
+    width: 100%;
   }
   line-height: 1.5;
 `;
 
 export const CustomerWrap = styled.div`
   width: 60%;
-  min-width: 334px;
+  min-width: 340px;
 
-  margin: 100px auto 40px auto;
+  margin: 100px 0px 40px 0px;
   position: relative;
   @media (max-width: 1100px) {
     width: 100vw;
@@ -81,7 +85,7 @@ export const CustomerWrap = styled.div`
 
 export const CustomerImage = styled.img`
   width: 100%;
-  min-width: 334px;
+  min-width: 340px;
 `;
 
 export const CustomerQuoteWrap = styled.div`
@@ -90,7 +94,7 @@ export const CustomerQuoteWrap = styled.div`
   top: -50px;
   left: 50px;
   width: 370px;
-  min-width: 334px;
+  min-width: 340px;
   height: 220px;
   padding: 20px;
   background-color: white;

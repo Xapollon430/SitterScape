@@ -1,13 +1,10 @@
-import { useState, useContext, useCallback, Fragment, useEffect } from "react";
+import { useState, useContext, useCallback, Fragment } from "react";
 import { StoreContext } from "../../../store/store";
-import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { HamburgerSpin } from "react-animated-burgers";
+import { Link } from "react-router-dom";
 import * as S from "./Header.styles";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
-import styled from "styled-components";
 
 const Header = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -40,8 +37,7 @@ const Header = () => {
       <S.BrandLink to="/">SitterScape</S.BrandLink>
 
       <S.BurgerWrap>
-        <HamburgerSpin
-          style={{ outline: "none" }}
+        <S.StyledBurgerSpin
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
           barColor="white"
@@ -52,8 +48,14 @@ const Header = () => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
-        <S.Button>Blog</S.Button>
+        <Link to="/search">
+          <S.Button>Filter</S.Button>
+        </Link>
+        <Link to="/sitter-apply">
+          <S.Button>Be A Sitter</S.Button>
+        </Link>
         <S.EmptyDiv />
+
         {loggedIn ? (
           <Fragment>
             <S.ProfileWrapper>

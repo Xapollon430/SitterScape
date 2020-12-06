@@ -9,6 +9,8 @@ export const Navbar = styled.div`
   grid-template-columns: 200px auto;
   justify-items: center;
   @media (max-width: 800px) {
+    padding: 10px 5px 5px 5px;
+
     grid-template-areas:
       "brand menu"
       "nav nav";

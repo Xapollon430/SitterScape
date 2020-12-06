@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
-  padding: 20px;
+  padding: 10px 10px 10px 0px;
   display: grid;
+  position: fixed;
+
+  width: 100vw;
+  min-width: 340px;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
   justify-items: center;
   @media (max-width: 800px) {
+    padding: 10px 0px 0px 0px;
     grid-template-areas:
       "brand menu"
       "nav nav";
@@ -19,22 +25,21 @@ export const Navbar = styled.div`
 export const Nav = styled.div`
   grid-area: nav;
   display: grid;
-  width: 100%;
   grid-gap: 10px;
+  width: 100%;
+
   grid-template-columns: 120px 120px 1fr 120px 120px;
-  padding-right: 20px;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
-        ? "250px"
+        ? "200px"
         : props.hamburgerOpen && !props.profileOpen
-        ? "160px"
+        ? "120px;"
         : "0px"};
     overflow: hidden;
     transition: height ease-in-out 0.6s;
     grid-template-columns: none;
-    grid-template-rows: repeat(4, 30px);
-    padding-right: 0px;
+    grid-template-rows: repeat(3, 30px);
   }
 `;
 
@@ -51,6 +56,10 @@ export const BurgerWrap = styled.div`
 
 export const StyledIcon = styled(FontAwesomeIcon)`
   padding-left: 8px;
+`;
+
+export const StyledBurgerSpin = styled(HamburgerSpin)`
+  outline: none;
 `;
 
 export const BrandLink = styled(Link)`

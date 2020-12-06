@@ -28,7 +28,9 @@ const SearchSitter = () => {
       <Modal showModal={state.isModalOpen} onClose={closeAuthModal}>
         <AuthModal onClose={closeAuthModal} />
       </Modal>
-      <S.LeafletMap ref={mapRef}></S.LeafletMap>
+      <S.ContentWrap>
+        <S.LeafletMap ref={mapRef}></S.LeafletMap>
+      </S.ContentWrap>
     </Fragment>
   );
 };
