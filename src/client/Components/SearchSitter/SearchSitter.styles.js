@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-export const ContentWrap = styled.div`
-  margin-top: 200px;
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-  grid-template-areas: "sitters map";
-`;
+export const ContentWrap = styled.div``;
 
 export const LeafletMap = styled.div`
-  width: 100%;
+  height: calc(100% - 65px);
   max-width: 800px;
   min-width: 200px;
-  grid-area: map;
+  width: 50%;
+  right: 0px;
+  top: 65px;
+  position: fixed;
 `;
 
 export const SittersWrap = styled.div`

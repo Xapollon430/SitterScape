@@ -653,14 +653,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* Default App CSS */
 
-body,
-#root {
+body {
   margin: 0;
   padding: 0;
-  height: 100vh;
   width: 100vw;
-  min-width: 334px;
-  min-height: 800px;
   font-family: "Quicksand";
   overflow-x: hidden !important;
 }
