@@ -30,6 +30,7 @@ const SearchSitter = () => {
       </Modal>
       <S.ContentWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
+        <S.SittersWrap>sa</S.SittersWrap>
       </S.ContentWrap>
     </Fragment>
   );

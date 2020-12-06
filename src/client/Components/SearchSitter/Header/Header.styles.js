@@ -4,22 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
-  padding: 10px 10px 10px 0px;
+  padding: 10px;
   display: grid;
   position: fixed;
-
+  box-sizing: border-box;
   width: 100vw;
   min-width: 340px;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
   justify-items: center;
+  background-color: #28a55f;
   @media (max-width: 800px) {
     padding: 10px 0px 0px 0px;
     grid-template-areas:
       "brand menu"
       "nav nav";
   }
-  background-color: #28a55f;
 `;
 
 export const Nav = styled.div`
