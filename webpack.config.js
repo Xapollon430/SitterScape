@@ -34,7 +34,7 @@ module.exports = (env) => {
       new webpack.DefinePlugin({
         "process.env.SIT_API_URL":
           env.ENV === "production"
-            ? JSON.stringify("https://sitterscape.herokuapp.com")
+            ? JSON.stringify("http://18.216.59.137:5000")
             : JSON.stringify("http://localhost:5000"),
       }),
     ],
