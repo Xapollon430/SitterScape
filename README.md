@@ -1,6 +1,6 @@
 # SitterScape
 
-of SitterScape.com -- https://vk-sit.herokuapp.com/
+of SitterScape.com -- http://sitterscape.com/
 
 SitterScape.com is an innovative platform to connect pet sitters and owners.
 
