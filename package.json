@@ -8,7 +8,7 @@
     "client:build": "webpack --mode production --env.ENV=production",
     "server:dev": "nodemon --exec babel-node src/server/server.js",
     "server:build": "babel src/server --copy-files --out-dir prod-bundle",
-    "deploy": "npm run server:build && npm run client:build && git add . && git commit -m \"predeploy\" && git push heroku master"
+    "deploy": "npm run server:build && npm run client:build && git add . && git commit -m \"predeploy\""
   },
   "repository": {},
   "keywords": [
@@ -31,6 +31,7 @@
     "express-graphql": "^0.12.0",
     "formik": "^2.2.1",
     "graphql": "^15.4.0",
+    "heroku": "^7.46.2",
     "jsonwebtoken": "^8.5.1",
     "leaflet": "^1.7.1",
     "mongoose": "^5.10.11",

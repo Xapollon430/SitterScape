@@ -28,7 +28,7 @@ const Footer = memo(() => {
         </S.Menu>
         <S.RecentPosts>
           <S.FooterTitle>RECENT POSTS</S.FooterTitle>
-          <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          <S.FooterLink href="/joke">
             Why Are Dogs Better Than Cats?
           </S.FooterLink>
           <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">

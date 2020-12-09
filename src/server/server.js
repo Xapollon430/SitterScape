@@ -4,9 +4,9 @@ import path from "path";
 import Routes from "./routes/route";
 import connectDB from "./database/db";
 import ServerSideMarkup from "./html";
-import { graphqlHTTP } from "express-graphql";
 import schema from "./graphql/schema";
 import root from "./graphql/resolver";
+import { graphqlHTTP } from "express-graphql";
 import { config } from "dotenv";
 
 config();

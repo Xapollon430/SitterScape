@@ -34,7 +34,7 @@ module.exports = (env) => {
       new webpack.DefinePlugin({
         "process.env.SIT_API_URL":
           env.ENV === "production"
-            ? JSON.stringify("http://sitterscape.com")
+            ? JSON.stringify("http://3.138.208.36")
             : JSON.stringify("http://localhost:5000"),
       }),
     ],
