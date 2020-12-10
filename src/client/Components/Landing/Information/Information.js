@@ -14,7 +14,7 @@ const Information = memo(() => {
           <S.StepTitle>Create a Sit Account and Get Comfortable</S.StepTitle>
           <S.StepParagraph>
             Create your SitterScape account whether you are a sitter or an
-            owner. Fill your information for us to find a match for you.
+            owner. Fill your information for us to find a match.
           </S.StepParagraph>
         </S.Step>
         <S.Step>
@@ -24,19 +24,17 @@ const Information = memo(() => {
           <S.StepNumber>STEP 2</S.StepNumber>
           <S.StepTitle>Sort for a Sitter Using Our Connections</S.StepTitle>
           <S.StepParagraph>
-            Use our directory to read reviews and filter for someone with your
-            desired skills to take care of your pet.
+            Use SitterScape's directory to read reviews and filter for someone
+            with your desired skills to take care of your pets.
           </S.StepParagraph>
         </S.Step>
         <S.Step>
           <S.StepImage
-            src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
+            src={`${process.env.SIT_API_URL}/static/images/steps-handshake.png`}
           />
-          <S.StepImage src="" />
+
           <S.StepNumber>STEP 3</S.StepNumber>
-          <S.StepTitle>
-            Meet the Most Qualified Sitters In Your Area
-          </S.StepTitle>
+          <S.StepTitle>Meet the Qualified Sitters In Your Area</S.StepTitle>
           <S.StepParagraph>
             After picking out the perfect Sitter you can book and pay securely
             on our website. Then it is time for you to relax.
