@@ -28,7 +28,7 @@ app.use(
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
-app.get("/", (_, res) => res.send(ServerSideMarkup()));
+app.get("/*", (_, res) => res.send(ServerSideMarkup()));
 
 app.listen(PORT, () => {
   console.log("Listening");
