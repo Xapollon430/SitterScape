@@ -1,14 +1,15 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as S from "./Auth.styles";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
+import Footer from "../Footer/Footer";
 
 const Auth = () => {
-  const { state } = useLocation();
-  const [selectedTab, setSelectedTab] = useState(state.type);
+  const { state = { type: "signUp", next: "/" } } = useLocation();
 
-  console.log(state);
+  const [selectedTab, setSelectedTab] = useState(state.type);
+  console.log(123);
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"
@@ -17,7 +18,7 @@ const Auth = () => {
   };
 
   return (
-    <Fragment>
+    <S.Wrap>
       <S.BrandWrap>
         <S.BrandLink to="/">SitterScape</S.BrandLink>
       </S.BrandWrap>
@@ -28,7 +29,8 @@ const Auth = () => {
         </S.TabWrap>
         {selectedTab === "login" ? <Login /> : <SignUp />}
       </S.AuthWrap>
-    </Fragment>
+      <Footer />
+    </S.Wrap>
   );
 };
 

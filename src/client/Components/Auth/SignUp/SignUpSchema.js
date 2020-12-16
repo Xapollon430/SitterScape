@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { generalDispatchBundler } from "../../../store/actions";
+import * as actions from "../../../store/actions";
+import { useHistory, useLocation } from "react-router-dom";
 import { Post } from "../../../Functions/Functions";
 import * as Yup from "yup";
 
@@ -18,6 +19,8 @@ const SignUpSchema = Yup.object().shape({
 
 export default (setErrorFromServer) => {
   const [_, dispatch] = useContext(StoreContext);
+  const { state = { type: "signUp", next: "/" } } = useLocation();
+  const history = useHistory();
 
   return useFormik({
     initialValues: {
@@ -35,12 +38,12 @@ export default (setErrorFromServer) => {
         );
         localStorage.setItem("jwt-token", data.token);
         dispatch(
-          generalDispatchBundler({
+          actions.generalDispatchBundler({
             user: data.user,
-            isModalOpen: false,
             loggedIn: true,
           })
         );
+        history.push(state.next);
       } catch (e) {
         setErrorFromServer(e.response.data);
       }

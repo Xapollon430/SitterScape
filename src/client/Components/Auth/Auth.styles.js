@@ -1,9 +1,14 @@
 import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
+export const Wrap = styled.div`
+  background-color: #e9ebed;
+  height: 100vh;
+  min-width: 340px;
+`;
+
 export const BrandLink = styled(Link)`
   font-size: 2rem;
-  width: 500px;
   text-align: center;
   color: black;
   text-decoration: none;
@@ -14,8 +19,9 @@ export const BrandLink = styled(Link)`
 `;
 
 export const BrandWrap = styled.div`
-  margin-top: 50px;
   text-align: center;
+  background-color: white;
+  padding: 20px 0px;
 `;
 
 const spin = keyframes`
@@ -30,8 +36,14 @@ const spin = keyframes`
 export const AuthWrap = styled.div`
   display: grid;
   justify-items: center;
-  max-width: 40vw;
-  margin: 0px auto;
+  width: 400px;
+  margin: 40px auto;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 export const Spinner = styled.div`

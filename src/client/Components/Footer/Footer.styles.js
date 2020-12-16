@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterWrap = styled.footer`
   width: 100vw;
-  min-width: 334px;
+  min-width: 340px;
   background: rgb(64, 72, 79);
 `;
 
