@@ -23,8 +23,7 @@ const ServerSideMarkup = () => {
     </body>
     <script src="/static/react-bundle.js"></script>
   </html>
-  
-    `;
+  `;
 };
 
 export default ServerSideMarkup;

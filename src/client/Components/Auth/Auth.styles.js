@@ -1,10 +1,21 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 
-export const CancelIcon = styled.span`
-  color: rgb(20, 169, 109);
-  position: absolute;
-  right: 10px;
-  top: 5px;
+export const BrandLink = styled(Link)`
+  font-size: 2rem;
+  width: 500px;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  @media (max-width: 800px) {
+    font-size: 1.8rem;
+  }
+`;
+
+export const BrandWrap = styled.div`
+  margin-top: 50px;
+  text-align: center;
 `;
 
 const spin = keyframes`
@@ -19,6 +30,8 @@ const spin = keyframes`
 export const AuthWrap = styled.div`
   display: grid;
   justify-items: center;
+  max-width: 40vw;
+  margin: 0px auto;
 `;
 
 export const Spinner = styled.div`

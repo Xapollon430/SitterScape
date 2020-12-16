@@ -68,7 +68,6 @@ export const BrandLink = styled(Link)`
   grid-area: brand;
   font-size: 2rem;
   color: white;
-  margin: 0px;
   text-decoration: none;
   font-weight: 600;
   @media (max-width: 800px) {

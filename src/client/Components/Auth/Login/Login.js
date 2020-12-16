@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../AuthModal.styles";
+import * as S from "../Auth.styles";
 import FormikInit from "./LoginSchema";
 
 const Login = () => {
