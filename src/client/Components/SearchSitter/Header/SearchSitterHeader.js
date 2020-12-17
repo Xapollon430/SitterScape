@@ -1,23 +1,15 @@
 import { useState, useContext, useCallback, Fragment } from "react";
 import { StoreContext } from "../../../store/store";
-import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useHistory } from "react-router-dom";
-import * as S from "./Header.styles";
+import { Link } from "react-router-dom";
+import * as S from "./SearchSitterHeader.styles";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const Header = ({ from }) => {
+const SearchSitterHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
-  const history = useHistory();
-
-  const redirectAuth = (event) => {
-    event.target.innerHTML == "Log In"
-      ? history.push("/auth", { type: "login", next: from })
-      : history.push("/auth", { type: "signUp", next: from });
-  };
 
   const logOut = useCallback(() => {
     localStorage.removeItem("jwt-token");
@@ -35,7 +27,8 @@ const Header = ({ from }) => {
 
   return (
     <S.Navbar>
-      <S.Brand>SitterScape</S.Brand>
+      <S.BrandLink to="/">SitterScape</S.BrandLink>
+
       <S.BurgerWrap>
         <S.StyledBurgerSpin
           isActive={isHamburgerOpen ? true : false}
@@ -49,11 +42,15 @@ const Header = ({ from }) => {
         profileOpen={isProfileDropdownOpen}
       >
         <Link to="/search">
-          <S.Button>Find A Sitter</S.Button>
+          <S.Button>Filter</S.Button>
         </Link>
 
-        <S.Button>Blog</S.Button>
+        <Link to="/sitter-apply?next=/search">
+          <S.Button>Be A Sitter</S.Button>
+        </Link>
+
         <S.EmptyDiv />
+
         {loggedIn ? (
           <Fragment>
             <S.ProfileWrapper>
@@ -70,9 +67,13 @@ const Header = ({ from }) => {
           </Fragment>
         ) : (
           <Fragment>
-            <S.Button onClick={redirectAuth}>Log In</S.Button>
+            <Link to="/auth?next=/search&type=login">
+              <S.Button>Log In</S.Button>
+            </Link>
 
-            <S.Button onClick={redirectAuth}>Sign Up</S.Button>
+            <Link to="/auth?next=/search&type=signUp">
+              <S.Button>Sign Up</S.Button>
+            </Link>
           </Fragment>
         )}
       </S.Nav>
@@ -80,4 +81,4 @@ const Header = ({ from }) => {
   );
 };
 
-export default Header;
+export default SearchSitterHeader;

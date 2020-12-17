@@ -3,7 +3,7 @@ import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
-import Header from "./Header/Header";
+import SearchSitterHeader from "./Header/SearchSitterHeader";
 
 const SearchSitter = () => {
   const [state, dispatch] = useContext(StoreContext);
@@ -18,7 +18,7 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
-      <Header from="/search" />
+      <SearchSitterHeader />
       <S.ContentWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
         <S.SittersWrap>sa</S.SittersWrap>

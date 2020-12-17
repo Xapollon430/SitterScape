@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { Post } from "../../../Functions/Functions";
-import { useHistory, useLocation } from "react-router-dom";
+import { Post, useQuery } from "../../../Functions/Functions";
+import { useHistory } from "react-router-dom";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";
 
@@ -13,8 +13,7 @@ const LoginSchema = Yup.object().shape({
 
 export default (setErrorFromServer) => {
   const [_, dispatch] = useContext(StoreContext); // {app}?
-  const { state = { type: "login", next: "/" } } = useLocation();
-  console.log(state);
+  const query = useQuery();
   const history = useHistory();
   return useFormik({
     initialValues: {
@@ -30,14 +29,14 @@ export default (setErrorFromServer) => {
         );
 
         localStorage.setItem("jwt-token", data.token);
-
         dispatch(
           actions.generalDispatchBundler({
             user: data.user,
             loggedIn: true,
           })
         );
-        history.push(state.next);
+
+        history.push(query.get("next"));
       } catch (e) {
         setErrorFromServer(e.response.data);
         resetForm();

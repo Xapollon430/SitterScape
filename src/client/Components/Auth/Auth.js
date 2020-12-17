@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useQuery } from "../../Functions/Functions";
 import * as S from "./Auth.styles";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import Footer from "../Footer/Footer";
 
 const Auth = () => {
-  const { state = { type: "signUp", next: "/" } } = useLocation();
+  const query = useQuery();
 
-  const [selectedTab, setSelectedTab] = useState(state.type);
-  console.log(123);
+  const [selectedTab, setSelectedTab] = useState(query.get("type") || "signUp");
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"

@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
+import { useHistory } from "react-router-dom";
+import { Post, useQuery } from "../../../Functions/Functions";
 import * as actions from "../../../store/actions";
-import { useHistory, useLocation } from "react-router-dom";
-import { Post } from "../../../Functions/Functions";
 import * as Yup from "yup";
 
 const SignUpSchema = Yup.object().shape({
@@ -19,7 +19,7 @@ const SignUpSchema = Yup.object().shape({
 
 export default (setErrorFromServer) => {
   const [_, dispatch] = useContext(StoreContext);
-  const { state = { type: "signUp", next: "/" } } = useLocation();
+  const query = useQuery();
   const history = useHistory();
 
   return useFormik({
@@ -30,7 +30,7 @@ export default (setErrorFromServer) => {
       password: "",
     },
     validationSchema: SignUpSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         let { data } = await Post(
           `${process.env.SIT_API_URL}/api/sign-up`,
@@ -43,9 +43,10 @@ export default (setErrorFromServer) => {
             loggedIn: true,
           })
         );
-        history.push(state.next);
+        history.push(query.get("next"));
       } catch (e) {
         setErrorFromServer(e.response.data);
+        resetForm();
       }
     },
   });
