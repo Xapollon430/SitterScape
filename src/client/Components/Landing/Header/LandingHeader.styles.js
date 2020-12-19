@@ -46,7 +46,7 @@ export const BurgerWrap = styled.div`
   @media (max-width: 800px) {
     display: block;
     justify-self: end;
-    margin-top: -10px;
+    margin-top: -8px;
   }
 `;
 
@@ -86,7 +86,7 @@ export const Button = styled.button`
   height: 45px;
   border: white 2px solid;
 
-  border-radius: 5px;
+  border-radius: 20px;
   margin: 0px;
   padding: 0px;
 

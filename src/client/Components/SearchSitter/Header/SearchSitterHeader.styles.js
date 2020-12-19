@@ -7,17 +7,17 @@ export const Navbar = styled.div`
   padding: 10px;
   display: grid;
   position: fixed;
-  box-sizing: border-box;
-  width: 100vw;
-  min-width: 340px;
+  width: 100%;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
   justify-items: center;
-  background-color: #28a55f;
-
+  background-color: white;
+  border-bottom: 3px #f4f4f4 solid;
   z-index: 1;
+
+  box-sizing: border-box;
   @media (max-width: 800px) {
-    padding: 10px 0px 0px 0px;
+    padding: 10px 5px 5px 5px;
     grid-template-areas:
       "brand menu"
       "nav nav";
@@ -27,32 +27,32 @@ export const Navbar = styled.div`
 export const Nav = styled.div`
   grid-area: nav;
   display: grid;
-  grid-gap: 10px;
   width: 100%;
-
+  grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
+  padding-right: 20px;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
         ? "240px"
         : props.hamburgerOpen && !props.profileOpen
-        ? "160px;"
+        ? "160px"
         : "0px"};
     overflow: hidden;
     transition: height ease-in-out 0.6s;
     grid-template-columns: none;
-    grid-template-rows: repeat(3, 30px);
+    grid-template-rows: repeat(4, 30px);
+    padding-right: 0px;
   }
 `;
 
 export const BurgerWrap = styled.div`
   grid-area: menu;
   display: none;
-  color: white;
   @media (max-width: 800px) {
     display: block;
     justify-self: end;
-    margin-top: -10px;
+    margin-top: -8px;
   }
 `;
 
@@ -67,7 +67,7 @@ export const StyledBurgerSpin = styled(HamburgerSpin)`
 export const BrandLink = styled(Link)`
   grid-area: brand;
   font-size: 2rem;
-  color: white;
+  color: #484847;
   text-decoration: none;
   font-weight: 600;
   @media (max-width: 800px) {
@@ -84,25 +84,20 @@ export const EmptyDiv = styled.div`
 
 export const Button = styled.button`
   font-family: inherit;
-  color: white;
+  color: #484847;
   width: 100%;
-  background-color: Transparent;
+  background: white;
   cursor: pointer;
   outline: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   height: 45px;
-  border: white 2px solid;
-
-  border-radius: 5px;
-  margin: 0px;
-  padding: 0px;
+  border: #484847 2px solid;
+  border-radius: 20px;
 
   @media (max-width: 800px) {
     height: 35px;
     font-size: 1rem;
-  }
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 800;
   }
 `;
 

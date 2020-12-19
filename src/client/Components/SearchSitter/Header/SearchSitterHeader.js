@@ -33,7 +33,7 @@ const SearchSitterHeader = () => {
         <S.StyledBurgerSpin
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
-          barColor="white"
+          barColor="#484847"
         />
       </S.BurgerWrap>
 

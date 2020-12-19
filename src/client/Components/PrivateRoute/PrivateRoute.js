@@ -8,7 +8,7 @@ const PrivateRoute = ({ render: C, path }) => {
   return state.isLoggedIn ? (
     <Route exact path={path} render={() => <C />} />
   ) : (
-    <Redirect to={`/auth?next=${path}&type="signUp`} />
+    <Redirect to={`/auth?next=${path}&type=signUp`} />
   );
 };
 

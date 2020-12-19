@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../SearchSitterHeader.styles";
 
 export const DropdownWrapper = styled.div`
-  height: ${(props) => (props.profileOpen ? "140px" : "0px")};
+  height: ${(props) => (props.profileOpen ? "120px" : "0px")};
   display: grid;
   position: absolute;
   width: 100%;
@@ -23,7 +23,9 @@ export const DropdownWrapper = styled.div`
 
 export const ProfileButton = styled(Button)`
   @media (max-width: 800px) {
-    background: #28a55f;
+    background: white;
+    color: #484847;
+
     &:hover {
       background-color: #28a55f;
     }
