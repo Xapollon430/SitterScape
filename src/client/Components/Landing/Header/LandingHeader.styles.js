@@ -86,7 +86,7 @@ export const Button = styled.button`
   height: 45px;
   border: white 2px solid;
 
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 0px;
   padding: 0px;
 

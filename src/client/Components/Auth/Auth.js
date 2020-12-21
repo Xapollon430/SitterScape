@@ -21,7 +21,7 @@ const Auth = () => {
       <S.BrandWrap>
         <S.BrandLink to="/">SitterScape</S.BrandLink>
       </S.BrandWrap>
-      <S.AuthWrap>
+      <S.AuthWrap isLoginOpen={selectedTab === "login"}>
         <S.TabWrap onClick={changeTab}>
           <S.TabText selected={selectedTab === "login"}>Sign Up</S.TabText>
           <S.TabText selected={selectedTab === "signUp"}>Login</S.TabText>

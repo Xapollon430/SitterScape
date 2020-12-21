@@ -22,7 +22,8 @@ const App = () => {
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/joke" render={() => <Joke />} />
       <Route exact path="/auth" render={() => <Auth />} />
-      <PrivateRoute path="/sitter-apply" render={() => <Joke />} />
+      <Route exact path="/inbox" render={() => <Inbox />} />
+      <Route path="/sitter-form" render={() => <Joke />} />
     </Switch>
   );
 };

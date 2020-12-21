@@ -5,6 +5,7 @@ export const Wrap = styled.div`
   background-color: #e9ebed;
   height: 100vh;
   min-width: 340px;
+  display: grid;
 `;
 
 export const BrandLink = styled(Link)`
@@ -22,6 +23,7 @@ export const BrandWrap = styled.div`
   text-align: center;
   background-color: white;
   padding: 20px 0px;
+  height: 40px;
 `;
 
 const spin = keyframes`
@@ -35,9 +37,10 @@ const spin = keyframes`
 
 export const AuthWrap = styled.div`
   display: grid;
-  justify-items: center;
   width: 400px;
-  margin: 40px auto;
+  height: ${(props) => (props.isLoginOpen ? "300px" : "400px")};
+  justify-self: center;
+  margin: 50px 0px;
   background-color: white;
   border: 1px solid gray;
   border-radius: 5px;
