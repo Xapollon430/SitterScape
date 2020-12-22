@@ -4,20 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
-  padding: 10px;
   display: grid;
-  position: fixed;
-  width: 100%;
+  width: 100vw;
+  min-width: 340px;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
   justify-items: center;
-  background-color: white;
-  border-bottom: 3px #f4f4f4 solid;
-  z-index: 1;
-
+  align-items: center;
   box-sizing: border-box;
+
   @media (max-width: 800px) {
-    padding: 10px 0px 0px 0px;
+    padding: 10px 5px;
     grid-template-areas:
       "brand menu"
       "nav nav";
@@ -27,10 +24,13 @@ export const Navbar = styled.div`
 export const Nav = styled.div`
   grid-area: nav;
   display: grid;
-  width: 100%;
   grid-gap: 10px;
-  grid-template-columns: 120px 120px 1fr 120px 120px;
+  grid-template-columns: 130px 120px 1fr 120px 120px;
+  width: 100%;
   padding-right: 20px;
+
+  background-color: white;
+  z-index: 2;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
@@ -42,7 +42,7 @@ export const Nav = styled.div`
     transition: height ease-in-out 0.6s;
     grid-template-columns: none;
     grid-template-rows: repeat(4, 30px);
-    padding-right: 0px;
+    padding: 0px 5px;
   }
 `;
 
@@ -73,6 +73,7 @@ export const BrandLink = styled(Link)`
   @media (max-width: 800px) {
     grid-area: brand;
     font-size: 1.8rem;
+    padding-bottom: 10px;
   }
 `;
 

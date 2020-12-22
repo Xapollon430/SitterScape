@@ -1,6 +1,7 @@
 import Landing from "./Components/Landing/Landing";
 import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import Auth from "./Components/Auth/Auth";
+import Inbox from "./Components/Inbox/Inbox";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";

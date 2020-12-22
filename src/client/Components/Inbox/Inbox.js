@@ -1,10 +1,11 @@
 import * as S from "./Inbox.styles.js";
+import Header from "./Header/InboxHeader";
 
 const Inbox = () => {
   return (
     <S.InboxWrap>
-      shit
-      <h1>132 </h1>
+      <Header />
+      <S.Inbox />
     </S.InboxWrap>
   );
 };
