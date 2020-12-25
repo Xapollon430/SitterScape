@@ -5,7 +5,7 @@ export const Section = styled.section`
   margin: 120px auto 0px auto;
   @media (max-width: 800px) {
     width: 80%;
-    margin: 60px auto 0px auto;
+    margin: 50px auto 0px auto;
   }
 `;
 

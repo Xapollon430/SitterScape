@@ -34,9 +34,9 @@ export const Nav = styled.div`
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
-        ? "240px"
+        ? "280px"
         : props.hamburgerOpen && !props.profileOpen
-        ? "160px"
+        ? "170px"
         : "0px"};
     overflow: hidden;
     transition: height ease-in-out 0.6s;

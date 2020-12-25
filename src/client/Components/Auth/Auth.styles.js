@@ -56,7 +56,7 @@ export const Spinner = styled.div`
   width: 120px;
   height: 120px;
   animation: ${spin} 2s linear infinite;
-  margin: 10px;
+  margin: 0px auto;
 `;
 
 export const TabWrap = styled.div`

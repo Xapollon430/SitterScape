@@ -1,4 +1,5 @@
-import { useState, useContext, useCallback, Fragment } from "react";
+import { useState, useContext, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { StoreContext } from "../../../store/store";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -9,7 +10,8 @@ import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 const SearchSitterHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
+  const [{ user }, dispatch] = useContext(StoreContext);
+  const history = useHistory();
 
   const logOut = useCallback(() => {
     localStorage.removeItem("jwt-token");
@@ -19,6 +21,7 @@ const SearchSitterHeader = () => {
         user: null,
       })
     );
+    history.replace("/");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);
@@ -49,31 +52,18 @@ const SearchSitterHeader = () => {
 
         <S.EmptyDiv />
 
-        {loggedIn ? (
-          <Fragment>
-            <S.ProfileWrapper>
-              <S.Button onClick={openProfileDropdown}>
-                {user.name}
-                <S.StyledIcon
-                  icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-                ></S.StyledIcon>
-              </S.Button>
-              <ProfileDropdown profileOpen={isProfileDropdownOpen} />
-            </S.ProfileWrapper>
+        <S.ProfileWrapper>
+          <S.Button onClick={openProfileDropdown}>
+            {/* {user.name } */}
+            simdilik vehbi
+            <S.StyledIcon
+              icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+            ></S.StyledIcon>
+          </S.Button>
+          <ProfileDropdown profileOpen={isProfileDropdownOpen} />
+        </S.ProfileWrapper>
 
-            <S.Button onClick={logOut}>Log Out</S.Button>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <Link to="/auth?next=/search&type=login">
-              <S.Button>Log In</S.Button>
-            </Link>
-
-            <Link to="/auth?next=/search&type=signUp">
-              <S.Button>Sign Up</S.Button>
-            </Link>
-          </Fragment>
-        )}
+        <S.Button onClick={logOut}>Log Out</S.Button>
       </S.Nav>
     </S.Navbar>
   );

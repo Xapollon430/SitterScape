@@ -15,7 +15,6 @@ export const Navbar = styled.div`
   grid-template-columns: 200px auto;
   justify-items: center;
   background-color: white;
-  border-bottom: 3px #f4f4f4 solid;
   z-index: 1;
 
   box-sizing: border-box;

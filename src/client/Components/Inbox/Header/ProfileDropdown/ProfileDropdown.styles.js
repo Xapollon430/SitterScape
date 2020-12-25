@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Button } from "../InboxHeader.styles";
 
 export const DropdownWrapper = styled.div`
-  height: ${(props) => (props.profileOpen ? "120px" : "0px")};
+  height: ${(props) => (props.profileOpen ? "150px" : "0px")};
   display: grid;
   position: absolute;
   width: 100%;
   top: 48px;
   outline: none;
-  z-index: 10;
+  z-index: 2;
   grid-auto-rows: 42px;
   transition: height ease-in-out 0.6s;
   overflow: hidden;
