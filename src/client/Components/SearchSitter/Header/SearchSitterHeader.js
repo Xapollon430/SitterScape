@@ -45,7 +45,7 @@ const SearchSitterHeader = () => {
           <S.Button>Filter</S.Button>
         </Link>
 
-        <Link to="/sitter-apply?next=/search">
+        <Link to="/sitter-form?next=/search">
           <S.Button>Be A Sitter</S.Button>
         </Link>
 

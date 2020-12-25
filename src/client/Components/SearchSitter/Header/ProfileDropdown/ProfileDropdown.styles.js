@@ -8,7 +8,6 @@ export const DropdownWrapper = styled.div`
   width: 100%;
   top: 48px;
   outline: none;
-  z-index: 10;
   grid-auto-rows: 42px;
   transition: height ease-in-out 0.6s;
   overflow: hidden;

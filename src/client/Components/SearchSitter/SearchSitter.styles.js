@@ -4,7 +4,7 @@ export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
   margin: 65px auto 0px auto;
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 1fr 1fr;
 
   @media (max-width: 800px) {
     margin: 63px auto 0px auto;
