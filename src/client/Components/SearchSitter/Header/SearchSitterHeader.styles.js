@@ -7,6 +7,8 @@ export const Navbar = styled.div`
   padding: 10px;
   display: grid;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;

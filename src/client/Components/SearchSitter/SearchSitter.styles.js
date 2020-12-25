@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
-export const ContentWrap = styled.div``;
+export const ContentWrap = styled.div`
+  height: calc(100vh - 65px);
+  margin: 65px auto 0px auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
 
-export const LeafletMap = styled.div`
-  height: calc(100% - 65px);
-  width: 50vw;
-  min-width: 200px;
-  right: 0px;
-  top: 65px;
-  position: fixed;
+  @media (max-width: 800px) {
+    margin: 63px auto 0px auto;
+  }
 `;
 
-export const SittersWrap = styled.div`
-  grid-area: sitters;
+export const LeafletMap = styled.div`
+  height: 100%;
+  min-width: 200px;
+`;
+
+export const ProfilesWrap = styled.div`
+  height: calc(100vh - 65px);
+  overflow-y: scroll;
+`;
+
+export const Profile = styled.div`
+  height: 100px;
 `;

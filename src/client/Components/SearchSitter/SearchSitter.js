@@ -3,6 +3,7 @@ import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
+import Footer from "../Footer/Footer";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 
 const SearchSitter = () => {
@@ -20,8 +21,21 @@ const SearchSitter = () => {
     <Fragment>
       <SearchSitterHeader />
       <S.ContentWrap>
+        <S.ProfilesWrap>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+          <S.Profile>123</S.Profile>
+        </S.ProfilesWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
-        <S.SittersWrap>sa</S.SittersWrap>
       </S.ContentWrap>
     </Fragment>
   );
