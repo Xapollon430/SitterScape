@@ -33,7 +33,7 @@ export default (setErrorFromServer) => {
     onSubmit: async (values, { resetForm }) => {
       try {
         let { data } = await Post(
-          `${process.env.SIT_API_URL}/api/sign-up`,
+          `${process.env.SITTERSCAPE_API_URL}/api/sign-up`,
           values
         );
         localStorage.setItem("jwt-token", data.token);

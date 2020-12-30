@@ -24,7 +24,7 @@ export default (setErrorFromServer) => {
     onSubmit: async (values, { resetForm }) => {
       try {
         let { data } = await Post(
-          `${process.env.SIT_API_URL}/api/login`,
+          `${process.env.SITTERSCAPE_API_URL}/api/login`,
           values
         );
 

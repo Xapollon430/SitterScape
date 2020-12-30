@@ -55,27 +55,27 @@ const Footer = memo(() => {
           <S.SocialMediaWrap>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
-                src={`${process.env.SIT_API_URL}/static/images/icons8-facebook-64.png`}
+                src={`${process.env.SITTERSCAPE_API_URL}/static/images/icons8-facebook-64.png`}
               />
             </S.Link>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
-                src={`${process.env.SIT_API_URL}/static/images/icons8-instagram-64.png`}
+                src={`${process.env.SITTERSCAPE_API_URL}/static/images/icons8-instagram-64.png`}
               />
             </S.Link>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
-                src={`${process.env.SIT_API_URL}/static/images/icons8-play-button-64.png`}
+                src={`${process.env.SITTERSCAPE_API_URL}/static/images/icons8-play-button-64.png`}
               />
             </S.Link>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
-                src={`${process.env.SIT_API_URL}/static/images/icons8-pinterest-64.png`}
+                src={`${process.env.SITTERSCAPE_API_URL}/static/images/icons8-pinterest-64.png`}
               />
             </S.Link>
             <S.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
               <S.SocialMediaImage
-                src={`${process.env.SIT_API_URL}/static/images/icons8-twitter-64.png`}
+                src={`${process.env.SITTERSCAPE_API_URL}/static/images/icons8-twitter-64.png`}
               />
             </S.Link>
           </S.SocialMediaWrap>

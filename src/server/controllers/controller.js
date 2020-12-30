@@ -1,5 +1,9 @@
 import User from "../database/models/User";
 import HttpError from "../error/HttpError";
+import jwt from "jsonwebtoken";
+import { config } from "dotenv";
+config();
+
 export const signUp = async (req, res, next) => {
   const signUpData = req.body;
   try {
@@ -27,4 +31,11 @@ export const login = async (req, res, next) => {
     user: foundUser,
     token,
   });
+};
+
+export const autoLogin = async (req, res, next) => {
+  console.log(123);
+  const { token } = req.body;
+  const x = jwt.verify(token, process.env.JWT_SECRET);
+  res.send(123);
 };

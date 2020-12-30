@@ -3,7 +3,6 @@ import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
-import Footer from "../Footer/Footer";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 
 const SearchSitter = () => {

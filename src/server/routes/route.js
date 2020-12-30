@@ -1,11 +1,12 @@
 import express from "express";
-import { login, signUp } from "../controllers/controller";
+import { login, signUp, autoLogin } from "../controllers/controller";
 import HttpError from "../error/HttpError";
 
 const router = express.Router();
 
 router.post("/sign-up", signUp);
 router.post("/login", login);
+router.post("/auto-login", autoLogin);
 
 router.use((req, res, next) => {
   return next(new HttpError("Route doesnt exist", 400));

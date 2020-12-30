@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 const Auth = () => {
   const query = useQuery();
 
-  const [selectedTab, setSelectedTab] = useState(query.get("type") || "signUp");
+  const [selectedTab, setSelectedTab] = useState(query.get("type") || "login");
 
   const changeTab = (e) => {
     e.target.innerHTML == "Login"

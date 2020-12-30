@@ -8,7 +8,7 @@ const Information = memo(() => {
       <S.StepWrapper>
         <S.Step>
           <S.StepImage
-            src={`${process.env.SIT_API_URL}/static/images/steps-profile.png`}
+            src={`${process.env.SITTERSCAPE_API_URL}/static/images/steps-profile.png`}
           />
           <S.StepNumber>STEP 1</S.StepNumber>
           <S.StepTitle>Create a Sit Account and Get Comfortable</S.StepTitle>
@@ -19,7 +19,7 @@ const Information = memo(() => {
         </S.Step>
         <S.Step>
           <S.StepImage
-            src={`${process.env.SIT_API_URL}/static/images/steps-search.png`}
+            src={`${process.env.SITTERSCAPE_API_URL}/static/images/steps-search.png`}
           />
           <S.StepNumber>STEP 2</S.StepNumber>
           <S.StepTitle>Sort for a Sitter Using Our Connections</S.StepTitle>
@@ -30,7 +30,7 @@ const Information = memo(() => {
         </S.Step>
         <S.Step>
           <S.StepImage
-            src={`${process.env.SIT_API_URL}/static/images/steps-handshake.png`}
+            src={`${process.env.SITTERSCAPE_API_URL}/static/images/steps-handshake.png`}
           />
 
           <S.StepNumber>STEP 3</S.StepNumber>
@@ -44,7 +44,7 @@ const Information = memo(() => {
 
       <S.CustomerWrap>
         <S.CustomerImage
-          src={`${process.env.SIT_API_URL}/static/images/petsitter.jpg`}
+          src={`${process.env.SITTERSCAPE_API_URL}/static/images/petsitter.jpg`}
         />
         <S.CustomerQuoteWrap>
           <S.GreenLine />

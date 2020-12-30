@@ -9,6 +9,6 @@ export const StyledBackground = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("${process.env
-    .SIT_API_URL}/static/images/background.jpg");
+    .SITTERSCAPE_API_URL}/static/images/background.jpg");
   background-position: center;
 `;

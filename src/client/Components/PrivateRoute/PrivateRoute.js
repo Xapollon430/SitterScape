@@ -4,18 +4,18 @@ import { StoreContext } from "../../store/store";
 
 const PrivateRoute = ({ render: C, path }) => {
   const [state] = useContext(StoreContext);
-
+  console.log(state);
   return (
     <Route
       exact
       path={path}
-      render={() => {
-        state.isLoggedIn ? (
+      render={() =>
+        state.loggedIn ? (
           <C />
         ) : (
-          <Redirect to={`/auth?next=${path}&type=signUp`} />
-        );
-      }}
+          <Redirect to={`/auth?next=${path}&type=login`} />
+        )
+      }
     />
   );
 };
