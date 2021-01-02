@@ -34,7 +34,6 @@ export const login = async (req, res, next) => {
 };
 
 export const autoLogin = async (req, res, next) => {
-  console.log(123);
   const { token } = req.body;
   const x = jwt.verify(token, process.env.JWT_SECRET);
   res.send(123);
