@@ -10,6 +10,16 @@ Icons from https://icons8.com/icons
 
 ---
 
+# Deployment
+
+To deploy this application the following steps in the order must be taken:
+
+1- Build the server side application by "npm run server:build". This will create a production folder with the node files transpiled through babel.
+
+2- Build the client side application with "npm run client:build". This will use webpack and babel to produce one output javascript file that will be put into the production folder created by the first step.
+
+---
+
 React state update batching example.
 https://codesandbox.io/s/402pn5l989?file=/src/index.js:327-340
 
@@ -23,7 +33,7 @@ JS Memory Pointer
 https://gist.github.com/siwalikm/dbf0e71f6e7e3406369b2cff1a6eb416
 
 React Router Render vs Component
-https://stackoverflow.com/questions/48150567/react-router-difference-between-component-and-render
+https://stackoverflow.com/questions/48150567/ react-router-difference-between-component-and-render
 
 Interview Question
 https://stackoverflow.com/questions/56026987/array-being-pushed-into-another-array-isnt-displaying
