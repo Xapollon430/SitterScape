@@ -20,6 +20,8 @@ To deploy this application the following steps in the order must be taken:
 
 ---
 
+# Notes - Credits
+
 React state update batching example.
 https://codesandbox.io/s/402pn5l989?file=/src/index.js:327-340
 
