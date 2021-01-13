@@ -10,10 +10,12 @@ export const signUp = async (req, res, next) => {
   try {
     let userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return next(new HttpError("Email already used!", 409));
+
     let user = new User(signUpData);
-    let token = user.generateAuthToken();
+    let { refreshToken, jwtToken } = user.generateAuthToken();
     await user.save();
-    res.json({ user, token });
+
+    res.json({ user, token: jwtToken });
   } catch (e) {
     return next(new HttpError(e.message, 400));
   }
@@ -21,16 +23,16 @@ export const signUp = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email);
   let foundUser = await User.findOne({ email });
-  console.log(foundUser);
+
   if (!foundUser || password !== foundUser.password) {
     return next(new HttpError("Wrong password or email", 401));
   }
-  let token = await foundUser.generateAuthToken();
+  let { refreshToken, jwtToken } = user.generateAuthToken();
+
   res.status(200).json({
     user: foundUser,
-    token,
+    token: jwtToken,
   });
 };
 

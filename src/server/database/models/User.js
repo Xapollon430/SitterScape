@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+import * as Crypto from "crypto-js";
+import { config } from "dotenv";
+import { ref } from "yup";
+config();
 
 const userSchema = mongoose.Schema({
   name: {
@@ -44,12 +48,23 @@ const userSchema = mongoose.Schema({
   animals: [{ kind: String, weight: String }],
 });
 
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ id: this._id.toString() }, process.env.JWT_SECRET, {
-    expiresIn: "10000",
-  });
+userSchema.methods.generateTokens = function () {
+  const jwtToken = jwt.sign(
+    { id: this._id.toString() },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: 1200000,
+    }
+  );
 
-  return token;
+  const jwtToken = jwt.sign(
+    { id: this._id.toString() },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "30d",
+    }
+  );
+  return { jwtToken, refreshToken };
 };
 
 const User = mongoose.model("User", userSchema);
