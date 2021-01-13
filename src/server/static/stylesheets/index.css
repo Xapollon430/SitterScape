@@ -659,5 +659,5 @@ body {
   width: 100vw;
   min-width: 340px;
   font-family: "Quicksand";
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }

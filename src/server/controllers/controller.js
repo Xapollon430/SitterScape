@@ -1,6 +1,7 @@
 import User from "../database/models/User";
 import HttpError from "../error/HttpError";
 import jwt from "jsonwebtoken";
+import { AES } from "crypto-js";
 import { config } from "dotenv";
 config();
 
@@ -35,6 +36,6 @@ export const login = async (req, res, next) => {
 
 export const autoLogin = async (req, res, next) => {
   const { token } = req.body;
-  const x = jwt.verify(token, process.env.JWT_SECRET);
+  // const x = jwt.verify(token, process.env.JWT_SECRET);
   res.send(123);
 };
