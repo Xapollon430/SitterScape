@@ -8,7 +8,8 @@
     "client:build": "webpack --mode production --env.ENV=production",
     "server:dev": "nodemon --exec babel-node src/server/server.js",
     "server:build": "babel src/server --copy-files --out-dir prod-bundle",
-    "build all": "npm run server:build && npm run client:build && git add . && git commit -m \"predeploy\""
+    "build all": "npm run server:build && npm run client:build && git add . && git commit -m \"predeploy\"",
+    "prod:server": "SET NODE_ENV=production && node prod-bundle/server.js"
   },
   "repository": {},
   "keywords": [
@@ -25,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "axios": "^0.21.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",

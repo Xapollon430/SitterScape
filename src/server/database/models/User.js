@@ -57,7 +57,7 @@ userSchema.methods.generateTokens = function () {
     }
   );
 
-  const jwtToken = jwt.sign(
+  const refreshToken = jwt.sign(
     { id: this._id.toString() },
     process.env.JWT_SECRET,
     {

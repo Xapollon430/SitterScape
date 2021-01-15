@@ -11,11 +11,20 @@ export const signUp = async (req, res, next) => {
     let userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return next(new HttpError("Email already used!", 409));
 
-    let user = new User(signUpData);
+    let newUser = new User(signUpData);
     let { refreshToken, jwtToken } = user.generateAuthToken();
     await user.save();
 
-    res.json({ user, token: jwtToken });
+    const monthToSeconds = 30 * 24 * 60 * 60 * 1000;
+
+    res.cookie("refreshToken", refreshToken, {
+      maxAge: monthToSeconds,
+      httpOnly: true,
+      // Forces to use https in production
+      secure: process.env.NODE_ENV === "production" ? true : false,
+    });
+
+    res.json({ user: newUser, token: jwtToken });
   } catch (e) {
     return next(new HttpError(e.message, 400));
   }
@@ -29,6 +38,15 @@ export const login = async (req, res, next) => {
     return next(new HttpError("Wrong password or email", 401));
   }
   let { refreshToken, jwtToken } = user.generateAuthToken();
+
+  const monthToSeconds = 30 * 24 * 60 * 60 * 1000;
+
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: monthToSeconds,
+    httpOnly: true,
+    // Forces to use https in production
+    secure: process.env.NODE_ENV === "production" ? true : false,
+  });
 
   res.status(200).json({
     user: foundUser,
