@@ -72,7 +72,7 @@ export const TabText = styled.h3`
   padding-top: 8px;
   height: 32px;
   background-color: ${(props) =>
-    props.selected ? `none` : `rgb(230, 231, 232)`};
+    props.selected ? `rgb(230, 231, 232)` : `none`};
 `;
 
 export const Form = styled.form`

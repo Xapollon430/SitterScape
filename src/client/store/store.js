@@ -7,6 +7,7 @@ const initialState = {
   isModalOpen: false,
   isLogInOpen: false,
   isSignUpOpen: false,
+  accessToken: null,
 };
 
 export const StoreContext = createContext();

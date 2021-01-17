@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import { useHistory } from "react-router-dom";
-import { Post, useQuery } from "../../../Functions/Functions";
+import { useQuery } from "../../../Functions/Functions";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";
 
@@ -32,20 +32,26 @@ export default (setErrorFromServer) => {
     validationSchema: SignUpSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        let { data } = await Post(
+        let response = await fetch(
           `${process.env.SITTERSCAPE_API_URL}/api/sign-up`,
-          values
+          {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(values),
+          }
         );
-        localStorage.setItem("jwt-token", data.token);
+
+        let data = await response.json();
         dispatch(
           actions.generalDispatchBundler({
             user: data.user,
             loggedIn: true,
+            accessToken: data.accessToken,
           })
         );
         history.push(query.get("next"));
       } catch (e) {
-        setErrorFromServer(e.response.data);
+        setErrorFromServer(e);
         resetForm();
       }
     },

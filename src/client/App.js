@@ -4,9 +4,10 @@ import Auth from "./Components/Auth/Auth";
 import Inbox from "./Components/Inbox/Inbox";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import styled from "styled-components";
+import * as actions from "./store/actions";
+import { StoreContext } from "./store/store";
 import { Route, Switch } from "react-router-dom";
-import { useEffect } from "react";
-import { Post } from "./Functions/Functions";
+import { useEffect, useContext } from "react";
 
 const BigBoi = styled.h1`
   font-size: 15rem;
@@ -19,23 +20,31 @@ const Joke = () => {
 };
 
 const App = () => {
-  useEffect(() => {
-    const token = localStorage.getItem("jwt-token");
+  const [_, dispatch] = useContext(StoreContext);
 
+  useEffect(() => {
     const autoLogin = async () => {
       try {
-        let response = await Post(
+        let response = await fetch(
           `${process.env.SITTERSCAPE_API_URL}/api/auto-login`,
           {
-            token,
+            credentials: "include",
           }
         );
+        let data = await response.json();
 
-        console.log(response);
+        dispatch(
+          actions.generalDispatchBundler({
+            user: data.user,
+            loggedIn: true,
+            accessToken: data.accessToken,
+          })
+        );
       } catch (e) {}
     };
 
-    token ? autoLogin() : null;
+    autoLogin();
+    setInterval(autoLogin, 1200000);
   }, []);
 
   return (

@@ -15,10 +15,15 @@ connectDB();
 
 const PORT = 5000;
 const app = express();
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://sitterscape.com"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
-app.use("/static", express.static(path.join(__dirname, "static")));
 
 app.use(
   "/graphql",
@@ -28,6 +33,7 @@ app.use(
     graphiql: true,
   })
 );
+app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
 app.get("/*", (_, res) => res.send(ServerSideMarkup()));

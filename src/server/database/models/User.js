@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import * as Crypto from "crypto-js";
 import { config } from "dotenv";
-import { ref } from "yup";
 config();
 
 const userSchema = mongoose.Schema({
@@ -49,22 +48,22 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.methods.generateTokens = function () {
-  const jwtToken = jwt.sign(
-    { id: this._id.toString() },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: 1200000,
-    }
-  );
+  const accessToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+    expiresIn: 1200000,
+  });
 
-  const refreshToken = jwt.sign(
-    { id: this._id.toString() },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "30d",
-    }
-  );
-  return { jwtToken, refreshToken };
+  const refreshToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+  return { accessToken, refreshToken };
+};
+
+userSchema.methods.generateAccessToken = function () {
+  const accessToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+    expiresIn: 1200000,
+  });
+
+  return accessToken;
 };
 
 const User = mongoose.model("User", userSchema);
