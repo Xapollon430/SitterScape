@@ -5,8 +5,7 @@ const initialState = {
   user: null,
   loggedIn: false,
   isModalOpen: false,
-  isLogInOpen: false,
-  isSignUpOpen: false,
+
   accessToken: null,
 };
 

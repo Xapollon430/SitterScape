@@ -5,20 +5,6 @@ export const changeIsModalOpen = (isModalOpen) => {
   };
 };
 
-export const changeIsLogInOpen = (isLogInOpen) => {
-  return {
-    type: "IS_LOG_IN_OPEN",
-    payload: isLogInOpen,
-  };
-};
-
-export const changeIsSignUpOpen = (isSignUpOpen) => {
-  return {
-    type: "IS_SIGN_UP_OPEN",
-    payload: isSignUpOpen,
-  };
-};
-
 export const changeLoggedIn = (loggedIn) => {
   return {
     type: "LOGGED_IN",

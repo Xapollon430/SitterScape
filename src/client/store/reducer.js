@@ -5,18 +5,6 @@ const reducer = (state, action) => {
         ...state,
         isModalOpen: action.payload,
       };
-    case "IS_LOG_IN_OPEN":
-      return {
-        ...state,
-        isSignUpOpen: false,
-        isLogInOpen: action.payload,
-      };
-    case "IS_SIGN_UP_OPEN":
-      return {
-        ...state,
-        isLogInOpen: false,
-        isSignUpOpen: action.payload,
-      };
     case "USER":
       return {
         ...state,
