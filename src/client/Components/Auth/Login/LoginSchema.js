@@ -30,7 +30,6 @@ export default (setErrorFromServer) => {
               "Content-Type": "application/json",
             },
             method: "POST",
-            mode: "cors",
             credentials: "include",
             body: JSON.stringify(values),
           }

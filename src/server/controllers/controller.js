@@ -5,7 +5,9 @@ import { AES } from "crypto-js";
 import { config } from "dotenv";
 config();
 
-export const signUp = async (req, res, next) => {
+const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
+
+export const signUp = async (req, res) => {
   try {
     const signUpData = req.body;
     let userExists = await User.findOne({ email: signUpData.email });
@@ -16,7 +18,6 @@ export const signUp = async (req, res, next) => {
     let { refreshToken, accessToken } = newUser.generateTokens();
     await newUser.save();
 
-    const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
       httpOnly: true,
@@ -29,7 +30,7 @@ export const signUp = async (req, res, next) => {
   }
 };
 
-export const login = async (req, res, next) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log(email);
@@ -38,7 +39,6 @@ export const login = async (req, res, next) => {
       return res.status(401).send("Wrong password or email!");
     }
     let { refreshToken, accessToken } = foundUser.generateTokens();
-    const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
       httpOnly: true,
@@ -55,7 +55,7 @@ export const login = async (req, res, next) => {
   }
 };
 
-export const autoLogin = async (req, res, next) => {
+export const autoLogin = async (req, res) => {
   try {
     const { refreshToken } = req.cookies;
     const token = jwt.verify(refreshToken, process.env.JWT_SECRET);
@@ -68,5 +68,10 @@ export const autoLogin = async (req, res, next) => {
 };
 
 export const logOut = async (req, res, next) => {
-  const { refreshToken } = req.cookies;
+  try {
+    res.clearCookie("refreshToken");
+    res.status(200).json("Succesfully logged out!");
+  } catch (e) {
+    return res.status(400).send("Couldn't log out!");
+  }
 };

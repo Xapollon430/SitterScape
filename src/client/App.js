@@ -31,6 +31,10 @@ const App = () => {
             credentials: "include",
           }
         );
+
+        if (response.status != 200) {
+          throw await response.text();
+        }
         let data = await response.json();
 
         dispatch(
@@ -40,7 +44,9 @@ const App = () => {
             accessToken: data.accessToken,
           })
         );
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     autoLogin();

@@ -12,7 +12,9 @@ const SearchSitterHeader = () => {
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
 
   const logOut = useCallback(() => {
-    localStorage.removeItem("jwt-token");
+    fetch(`${process.env.SITTERSCAPE_API_URL}/api/log-out`, {
+      credentials: "include",
+    });
     dispatch(
       actions.generalDispatchBundler({
         loggedIn: false,

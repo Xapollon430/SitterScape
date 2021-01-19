@@ -47,9 +47,11 @@ const userSchema = mongoose.Schema({
   animals: [{ kind: String, weight: String }],
 });
 
+const twentyMinutesInMiliseconds = 1200000;
+
 userSchema.methods.generateTokens = function () {
   const accessToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-    expiresIn: 1200000,
+    expiresIn: twentyMinutesInMiliseconds,
   });
 
   const refreshToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
@@ -60,7 +62,7 @@ userSchema.methods.generateTokens = function () {
 
 userSchema.methods.generateAccessToken = function () {
   const accessToken = jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-    expiresIn: 1200000,
+    expiresIn: twentyMinutesInMiliseconds,
   });
 
   return accessToken;

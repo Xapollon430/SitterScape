@@ -35,13 +35,21 @@ export default (setErrorFromServer) => {
         let response = await fetch(
           `${process.env.SITTERSCAPE_API_URL}/api/sign-up`,
           {
+            headers: {
+              "Content-Type": "application/json",
+            },
             method: "POST",
             credentials: "include",
             body: JSON.stringify(values),
           }
         );
 
+        if (response.status != 200) {
+          throw await response.text();
+        }
+
         let data = await response.json();
+
         dispatch(
           actions.generalDispatchBundler({
             user: data.user,
@@ -49,6 +57,7 @@ export default (setErrorFromServer) => {
             accessToken: data.accessToken,
           })
         );
+
         history.push(query.get("next"));
       } catch (e) {
         setErrorFromServer(e);
