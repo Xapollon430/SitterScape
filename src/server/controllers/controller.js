@@ -33,7 +33,6 @@ export const signUp = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
     let foundUser = await User.findOne({ email });
     if (!foundUser || password !== foundUser.password) {
       return res.status(401).send("Wrong password or email!");

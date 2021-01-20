@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOMServer from "react-dom";
 
 const X = () => <button>HUZEYFE</button>;
 
@@ -19,11 +20,11 @@ const ServerSideMarkup = () => {
     <body>
       <div id="modal-hook"></div>
       <div id="backdrop-hook"></div>
-      <div id="root">${(<X />)}</div>
+      <div id="root">${ReactDOMServer.renderToString(<X />)}</div>
     </body>
-    <script src="/static/react-bundle.js"></script>
   </html>
   `;
 };
+//    <script src="/static/react-bundle.js"></script>
 
 export default ServerSideMarkup;

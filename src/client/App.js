@@ -45,6 +45,13 @@ const App = () => {
           })
         );
       } catch (e) {
+        dispatch(
+          actions.generalDispatchBundler({
+            user: null,
+            loggedIn: false,
+            accessToken: null,
+          })
+        );
         console.log(e);
       }
     };
