@@ -52,7 +52,6 @@ const App = () => {
             accessToken: null,
           })
         );
-        console.log(e);
       }
     };
 
@@ -64,7 +63,6 @@ const App = () => {
     <Switch>
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <SearchSitter />} />
-      <Route exact path="/joke" render={() => <Joke />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute path="/inbox" render={() => <Inbox />} />
       <PrivateRoute path="/sitter-form" render={() => <Joke />} />
