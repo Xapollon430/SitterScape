@@ -22,6 +22,7 @@ const Joke = () => {
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
 
+  //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
       try {
@@ -64,8 +65,10 @@ const App = () => {
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
-      <PrivateRoute path="/inbox" render={() => <Inbox />} />
-      <PrivateRoute path="/sitter-form" render={() => <Joke />} />
+      <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
+      <PrivateRoute exact path="/sitter-form" render={() => <Joke />} />
+      <PrivateRoute exact path="/profile" render={() => <Joke />} />
+      <Route path="/*" render={() => <Landing />} />
     </Switch>
   );
 };
