@@ -16,7 +16,6 @@ export const Navbar = styled.div`
   background-color: white;
   z-index: 1;
 
-  box-sizing: border-box;
   @media (max-width: 800px) {
     padding: 10px 0px 0px 0px;
     grid-template-areas:

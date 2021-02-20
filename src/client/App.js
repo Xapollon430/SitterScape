@@ -22,10 +22,10 @@ const Joke = () => {
 
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
-
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
+      console.log(123);
       try {
         let response = await fetch(
           `${process.env.SITTERSCAPE_API_URL}/api/auto-login`,

@@ -4,7 +4,6 @@ import { StoreContext } from "../../store/store";
 
 const PrivateRoute = ({ render: C, path }) => {
   const [state] = useContext(StoreContext);
-  console.log(state);
   return (
     <Route
       exact
