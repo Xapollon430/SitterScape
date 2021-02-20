@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 import { StoreContext } from "../../../store/store";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import * as S from "./InboxHeader.styles";
+import * as S from "./ProfileHeader.styles";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const InboxHeader = () => {
+const ProfileHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user }, dispatch] = useContext(StoreContext);
@@ -72,4 +72,4 @@ const InboxHeader = () => {
   );
 };
 
-export default InboxHeader;
+export default ProfileHeader;

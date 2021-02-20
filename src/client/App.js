@@ -3,6 +3,7 @@ import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import Auth from "./Components/Auth/Auth";
 import Inbox from "./Components/Inbox/Inbox";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Profile from "./Components/Profile/Profile";
 import styled from "styled-components";
 import * as actions from "./store/actions";
 import { StoreContext } from "./store/store";
@@ -46,6 +47,7 @@ const App = () => {
           })
         );
       } catch (e) {
+        //If token runs out during user session.
         dispatch(
           actions.generalDispatchBundler({
             user: null,
@@ -67,7 +69,7 @@ const App = () => {
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
       <PrivateRoute exact path="/sitter-form" render={() => <Joke />} />
-      <PrivateRoute exact path="/profile" render={() => <Joke />} />
+      <PrivateRoute exact path="/profile" render={() => <Profile />} />
       <Route path="/*" render={() => <Landing />} />
     </Switch>
   );
