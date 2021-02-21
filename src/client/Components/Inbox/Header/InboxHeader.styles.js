@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
-  height: 70px;
   top: 0;
   left: 0;
   padding: 10px;
@@ -15,7 +14,8 @@ export const Navbar = styled.div`
   grid-template-columns: 200px auto;
   justify-items: center;
   background-color: white;
-  z-index: 1;
+  z-index: 5;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 
   box-sizing: border-box;
   @media (max-width: 800px) {
