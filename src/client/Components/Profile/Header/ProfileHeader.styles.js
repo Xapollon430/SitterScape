@@ -14,8 +14,10 @@ export const Navbar = styled.div`
   grid-template-columns: 200px auto;
   justify-items: center;
   background-color: white;
-  z-index: 1;
+  z-index: 5;
+  border-bottom: 3px #f4f4f4 solid;
 
+  box-sizing: border-box;
   @media (max-width: 800px) {
     padding: 10px 0px 0px 0px;
     grid-template-areas:
@@ -31,7 +33,7 @@ export const Nav = styled.div`
   width: 100%;
   grid-gap: 10px;
   grid-template-columns: 130px 120px 1fr 120px 120px;
-  padding-right: 20px;
+  padding-right: 10px;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen

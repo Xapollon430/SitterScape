@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../ProfileHeader.styles";
 
 export const DropdownWrapper = styled.div`
-  height: ${(props) => (props.profileOpen ? "150px" : "0px")};
+  height: ${(props) => (props.profileOpen ? "190px" : "0px")};
   display: grid;
   position: absolute;
   width: 100%;

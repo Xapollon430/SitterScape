@@ -7,7 +7,7 @@ import Profile from "./Components/Profile/Profile";
 import styled from "styled-components";
 import * as actions from "./store/actions";
 import { StoreContext } from "./store/store";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { useEffect, useContext } from "react";
 
 const BigBoi = styled.h1`
@@ -22,10 +22,10 @@ const Joke = () => {
 
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
+  const history = useHistory();
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
-      console.log(123);
       try {
         let response = await fetch(
           `${process.env.SITTERSCAPE_API_URL}/api/auto-login`,
@@ -46,7 +46,14 @@ const App = () => {
             accessToken: data.accessToken,
           })
         );
+
+        const url = new URL(window.location.href); //Redirect to the correct path after auto-login
+        const redirect = url.searchParams.get("next");
+        if (redirect) {
+          history.push(redirect);
+        }
       } catch (e) {
+        console.log(e);
         //If token runs out during user session.
         dispatch(
           actions.generalDispatchBundler({

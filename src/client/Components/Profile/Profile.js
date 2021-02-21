@@ -9,8 +9,38 @@ const Profile = () => {
     <Fragment>
       <ProfileHeader />
       <S.ProfileWrap>
-        <TextField id="outlined-basic" label="Your Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Your Name" variant="outlined" />
+        <S.FormWrap>
+          <S.PersonalInfoWrap>
+            <S.PersonalInfoText>
+              Add Your Personal Information
+            </S.PersonalInfoText>
+            <TextField
+              id="outlined-basic"
+              label="Your Name"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Your Name"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Your Name"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Your Name"
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-basic"
+              label="Your Name"
+              variant="outlined"
+            />
+          </S.PersonalInfoWrap>
+        </S.FormWrap>
       </S.ProfileWrap>
     </Fragment>
   );
