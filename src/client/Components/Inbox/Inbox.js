@@ -28,7 +28,6 @@ const Inbox = () => {
         </S.Profiles>
         <S.ChatBox />
       </S.Inbox>
-      <Footer />
     </S.InboxWrap>
   );
 };

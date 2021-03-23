@@ -1,17 +1,21 @@
 import { TextField } from "@material-ui/core";
 import styled from "styled-components";
 
+export const Wrap = styled.div`
+  height: 100vh;
+`;
+
 export const ProfileWrap = styled.div`
   width: 100%;
-  margin: 0px auto;
-  padding: 120px 0px 100px 0px;
+  height: 100%;
+  display: grid;
+  place-items: center;
   background-color: #eaebed;
 `;
 
 export const FormWrap = styled.div`
   max-width: 600px;
   width: 100%;
-  margin: 0px auto;
   padding: 20px;
   box-sizing: border-box;
   display: grid;
@@ -22,12 +26,12 @@ export const FormWrap = styled.div`
 
 export const PersonalInfoWrap = styled.div`
   display: grid;
-  grid-template-rows: 40px 50px 50px 50px;
+  grid-template-rows: 40px 50px;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 
   @media (max-width: 600px) {
-    grid-template-rows: repeat(6, 50px);
+    grid-template-rows: repeat(3, 50px);
     grid-template-columns: 1fr;
   }
 `;

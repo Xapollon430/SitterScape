@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const InboxWrap = styled.div`
   background-color: #e9ebed;
   height: 100vh;
+  width: 100vw;
   position: absolute;
   top: 0;
   left: 0;

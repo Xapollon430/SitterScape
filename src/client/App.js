@@ -3,22 +3,14 @@ import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import Auth from "./Components/Auth/Auth";
 import Inbox from "./Components/Inbox/Inbox";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
-import Profile from "./Components/Profile/Profile";
+import ProfileForm from "./Components/Profile/Profile";
+import ProfileForm from "./Components/Profile/Profile";
+
 import styled from "styled-components";
 import * as actions from "./store/actions";
 import { StoreContext } from "./store/store";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { useEffect, useContext } from "react";
-
-const BigBoi = styled.h1`
-  font-size: 15rem;
-  width: 100vw;
-  height: 100vh;
-`;
-
-const Joke = () => {
-  return <BigBoi>THEY ARENT BRO!</BigBoi>;
-};
 
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
@@ -75,8 +67,12 @@ const App = () => {
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
-      <PrivateRoute exact path="/sitter-form" render={() => <Joke />} />
-      <PrivateRoute exact path="/profile" render={() => <Profile />} />
+      <PrivateRoute exact path="/profile" render={() => <ProfileForm />} />
+      <PrivateRoute
+        exact
+        path="/profile/sitter"
+        render={() => <SitterForm />}
+      />
       <Route path="/*" render={() => <Landing />} />
     </Switch>
   );

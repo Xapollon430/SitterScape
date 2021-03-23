@@ -1,18 +1,18 @@
 import ProfileHeader from "./Header/ProfileHeader";
-import Footer from "../Footer/Footer";
 import * as S from "./Profile.Styles";
 import {
+  Button,
   TextField,
   Select,
   MenuItem,
   FormControl,
   InputLabel,
+  Link,
 } from "@material-ui/core";
-import { Fragment } from "react";
 
-const Profile = () => {
+const ProfileForm = () => {
   return (
-    <Fragment>
+    <S.Wrap>
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
@@ -20,8 +20,7 @@ const Profile = () => {
             <S.InfoText>Add Your Personal Information</S.InfoText>
             <TextField label="Your Name" variant="outlined" />
             <TextField label="Your Last Name" variant="outlined" />
-            <TextField label="Password" variant="outlined" />
-            <TextField label="Re-enter Password" variant="outlined" />
+
             <TextField label="Your Email" variant="outlined" />
           </S.PersonalInfoWrap>
           <S.AdressWrap>
@@ -103,11 +102,12 @@ const Profile = () => {
               src={`${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`}
             />
           </S.PhotoWrap>
+          <Button variant="contained">Save</Button>
+          <Link to="/profile/sitter">Want to become a sitter?</Link>
         </S.FormWrap>
       </S.ProfileWrap>
-      <Footer />
-    </Fragment>
+    </S.Wrap>
   );
 };
 
-export default Profile;
+export default ProfileForm;
