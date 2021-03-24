@@ -60,8 +60,8 @@ export const Spinner = styled.div`
 `;
 
 export const TabWrap = styled.div`
-  width: 100%;
-  margin-top: 25px;
+  width: 90%;
+  justify-self: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: white;
@@ -71,6 +71,8 @@ export const TabText = styled.h3`
   font-weight: 400;
   padding-top: 8px;
   height: 32px;
+  cursor: pointer;
+
   background-color: ${(props) =>
     props.selected ? `rgb(230, 231, 232)` : `none`};
 `;

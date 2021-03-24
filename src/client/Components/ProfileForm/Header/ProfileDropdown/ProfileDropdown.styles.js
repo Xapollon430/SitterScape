@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../ProfileHeader.styles";
+import { Button } from "../ProfileFormHeader.styles";
 
 export const DropdownWrapper = styled.div`
   height: ${(props) => (props.profileOpen ? "190px" : "0px")};

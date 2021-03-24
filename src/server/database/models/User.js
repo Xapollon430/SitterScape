@@ -20,7 +20,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    trim: true,
     lowercase: true,
   },
   password: {
@@ -38,13 +37,12 @@ const userSchema = mongoose.Schema({
       longitude: String,
     },
   },
-  // phoneNumber: String,
   rate: Number,
   rating: Number,
   // profileComments,
   picture: String,
   isActiveSitter: { type: Boolean, default: false },
-  animals: [{ kind: String, weight: String }],
+  animals: [{ kind: String, weight: Number }],
 });
 
 const twentyMinutesInMiliseconds = 1200000;

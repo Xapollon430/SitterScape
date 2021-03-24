@@ -2,25 +2,22 @@ import styled from "styled-components";
 
 export const InboxWrap = styled.div`
   background-color: #e9ebed;
+  width: 100%;
   height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: grid;
+  place-items: center;
 `;
 export const Inbox = styled.div`
-  width: 100vw;
+  width: 100%;
   max-width: 1000px;
   min-width: 340px;
-  margin: 80px auto 20px auto;
   height: calc(100vh - 100px);
   background-color: red;
-
+  margin-top: 80px;
   display: grid;
   grid-template-columns: 1fr 2fr;
 
   @media (max-width: 800px) {
-    margin: 70px auto 0px auto;
     height: calc(100vh - 70px);
     grid-template-columns: 1fr;
   }

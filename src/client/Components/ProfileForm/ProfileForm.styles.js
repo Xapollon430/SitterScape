@@ -1,4 +1,5 @@
 import { TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrap = styled.div`
@@ -15,6 +16,7 @@ export const ProfileWrap = styled.div`
 
 export const FormWrap = styled.div`
   max-width: 600px;
+  margin-top: 50px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -34,6 +36,24 @@ export const PersonalInfoWrap = styled.div`
     grid-template-rows: repeat(3, 50px);
     grid-template-columns: 1fr;
   }
+`;
+
+export const TabWrap = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+`;
+export const TabText = styled.h3`
+  text-align: center;
+  margin: 0px;
+  font-weight: 400;
+  padding-top: 8px;
+  height: 32px;
+  cursor: pointer;
+
+  background-color: ${(props) =>
+    props.selected ? `rgb(230, 231, 232)` : `none`};
 `;
 
 export const InfoText = styled.h3`
@@ -78,4 +98,8 @@ export const PhotoTextWrap = styled.div``;
 
 export const UploadButton = styled.input`
   margin-top: 20px;
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

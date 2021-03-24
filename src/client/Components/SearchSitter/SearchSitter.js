@@ -4,6 +4,7 @@ import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
+import { Route } from "react-router";
 
 const SearchSitter = () => {
   const [state, dispatch] = useContext(StoreContext);
