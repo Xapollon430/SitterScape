@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOMServer from "react-dom";
+import  ReactDOMServer from "react-dom/server";
+
 
 const X = () => <button>HUZEYFE</button>;
 

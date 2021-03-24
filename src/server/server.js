@@ -7,6 +7,7 @@ import ServerSideMarkup from "./html";
 import schema from "./graphql/schema";
 import root from "./graphql/resolver";
 import cookieParser from "cookie-parser";
+
 import { graphqlHTTP } from "express-graphql";
 import { config } from "dotenv";
 
@@ -24,6 +25,7 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+
 
 app.use(
   "/graphql",
