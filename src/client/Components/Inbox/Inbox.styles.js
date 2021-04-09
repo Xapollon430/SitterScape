@@ -18,7 +18,7 @@ export const Inbox = styled.div`
   grid-template-columns: 1fr 2fr;
 
   @media (max-width: 800px) {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 80px);
     grid-template-columns: 1fr;
   }
 `;

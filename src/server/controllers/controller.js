@@ -16,7 +16,7 @@ export const signUp = async (req, res) => {
     let newUser = new User(signUpData);
 
     let { refreshToken, accessToken } = newUser.generateTokens();
-    await newUser.save();
+    await newUser.save();  
 
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
