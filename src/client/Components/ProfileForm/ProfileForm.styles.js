@@ -2,21 +2,18 @@ import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Wrap = styled.div`
-  height: 100vh;
-`;
+export const Wrap = styled.div``;
 
 export const ProfileWrap = styled.div`
   width: 100%;
-  height: 100%;
   display: grid;
-  place-items: center;
+  justify-items: center;
   background-color: #eaebed;
 `;
 
 export const FormWrap = styled.div`
   max-width: 600px;
-  margin-top: 50px;
+  margin: 80px 0px 20px 0px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;

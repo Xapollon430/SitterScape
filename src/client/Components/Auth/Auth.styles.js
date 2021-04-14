@@ -72,9 +72,8 @@ export const TabText = styled.h3`
   padding-top: 8px;
   height: 32px;
   cursor: pointer;
-
-  background-color: ${(props) =>
-    props.selected ? `rgb(230, 231, 232)` : `none`};
+  border-radius: 5px;
+  border: ${(props) => (props.selected ? `1px solid black` : `none`)};
 `;
 
 export const Form = styled.form`

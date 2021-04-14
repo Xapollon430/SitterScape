@@ -16,6 +16,8 @@ const Auth = () => {
       : setSelectedTab("signUp");
   };
 
+  console.log(selectedTab);
+
   return (
     <S.Wrap>
       <S.BrandWrap>
@@ -23,8 +25,8 @@ const Auth = () => {
       </S.BrandWrap>
       <S.AuthWrap isLoginOpen={selectedTab === "login"}>
         <S.TabWrap onClick={changeTab}>
-          <S.TabText selected={selectedTab === "login"}>Sign Up</S.TabText>
-          <S.TabText selected={selectedTab === "signUp"}>Login</S.TabText>
+          <S.TabText selected={selectedTab === "signUp"}>Sign Up</S.TabText>
+          <S.TabText selected={selectedTab === "login"}>Login</S.TabText>
         </S.TabWrap>
         {selectedTab === "login" ? <Login /> : <SignUp />}
       </S.AuthWrap>

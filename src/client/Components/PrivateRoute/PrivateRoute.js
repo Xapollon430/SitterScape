@@ -6,7 +6,6 @@ const PrivateRoute = ({ render: C, path }) => {
   const [state] = useContext(StoreContext);
   return (
     <Route
-      exact
       path={path}
       render={() =>
         state.loggedIn ? (

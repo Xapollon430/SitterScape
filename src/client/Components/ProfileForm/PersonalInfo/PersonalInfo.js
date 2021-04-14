@@ -95,7 +95,9 @@ const PersonalInfo = () => {
         />
       </S.PhotoWrap>
       <Button variant="contained">Save</Button>
-      <S.StyledLink to="/sitter-form">Want to become a sitter?</S.StyledLink>
+      <S.StyledLink to="/profile/change-password">
+        Want to become a sitter?
+      </S.StyledLink>
     </Fragment>
   );
 };

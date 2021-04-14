@@ -1,10 +1,16 @@
 import { StoreContext } from "../../store/store";
 import { useContext, useState } from "react";
+import { Route, useRouteMatch } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import * as S from "./ProfileForm.styles";
 
+const X = () => {
+  return <h1>123</h1>;
+};
+
 const ProfileForm = () => {
+  const { path, url } = useRouteMatch();
   const [state, dispatch] = useContext(StoreContext);
   const [selectedTab, setSelectedTab] = useState("personal");
 
@@ -19,6 +25,7 @@ const ProfileForm = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
+          {/* <X /> */}
           <S.TabWrap>
             <S.TabText
               selected={selectedTab === "personal"}

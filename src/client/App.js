@@ -64,7 +64,7 @@ const App = () => {
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
-      <PrivateRoute exact path="/profile" render={() => <ProfileForm />} />
+      <PrivateRoute path="/profile" render={() => <ProfileForm />} />
 
       <Route path="/*" render={() => <Landing />} />
     </Switch>
