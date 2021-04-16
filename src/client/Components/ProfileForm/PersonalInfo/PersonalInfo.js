@@ -1,5 +1,5 @@
 import * as S from "./PersonalInfo.styles";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import {
   Button,
   TextField,
@@ -8,12 +8,13 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
-import Modal from "../../../UI/Modal/Modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../../UI/Modal/Modal";
+import { StoreContext } from "../../../store/store";
 
 const PersonalInfo = () => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
+  const [state, dispatch] = useContext(StoreContext);
 
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);

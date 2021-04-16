@@ -16,8 +16,6 @@ const Auth = () => {
       : setSelectedTab("signUp");
   };
 
-  console.log(selectedTab);
-
   return (
     <S.Wrap>
       <S.BrandWrap>

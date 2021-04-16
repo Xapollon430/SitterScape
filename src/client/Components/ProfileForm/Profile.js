@@ -1,6 +1,5 @@
 import { StoreContext } from "../../store/store";
 import { useContext, useState } from "react";
-import { Route, useRouteMatch } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import * as S from "./Profile.styles";
