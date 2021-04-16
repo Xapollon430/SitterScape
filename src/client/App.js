@@ -3,7 +3,7 @@ import SearchSitter from "./Components/SearchSitter/SearchSitter";
 import Auth from "./Components/Auth/Auth";
 import Inbox from "./Components/Inbox/Inbox";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
-import ProfileForm from "./Components/ProfileForm/ProfileForm";
+import Profile from "./Components/ProfileForm/Profile";
 import * as actions from "./store/actions";
 import { StoreContext } from "./store/store";
 import { Route, Switch, useHistory } from "react-router-dom";
@@ -64,7 +64,7 @@ const App = () => {
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
-      <PrivateRoute path="/profile" render={() => <ProfileForm />} />
+      <PrivateRoute path="/profile" render={() => <Profile />} />
 
       <Route path="/*" render={() => <Landing />} />
     </Switch>

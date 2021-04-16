@@ -3,16 +3,17 @@ import { useContext, useState } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
-import * as S from "./ProfileForm.styles";
+import * as S from "./Profile.styles";
 
 const X = () => {
   return <h1>123</h1>;
 };
 
-const ProfileForm = () => {
-  const { path, url } = useRouteMatch();
+const Profile = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [selectedTab, setSelectedTab] = useState("personal");
+
+  console.log(state);
 
   const changeTab = (e) => {
     e.target.innerHTML == "Personal Information"
@@ -44,4 +45,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default Profile;

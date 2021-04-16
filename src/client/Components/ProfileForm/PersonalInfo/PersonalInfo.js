@@ -1,5 +1,5 @@
 import * as S from "./PersonalInfo.styles";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import {
   Button,
   TextField,
@@ -8,8 +8,17 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
+import Modal from "../../../UI/Modal/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const PersonalInfo = () => {
+  const [passwordModalOpen, changePasswordModalOpen] = useState(false);
+
+  const passwordModalHandler = () => {
+    changePasswordModalOpen(!passwordModalOpen);
+  };
+
   return (
     <Fragment>
       <S.PersonalInfoWrap>
@@ -17,7 +26,9 @@ const PersonalInfo = () => {
         <TextField label="Your Name" variant="outlined" />
         <TextField label="Your Last Name" variant="outlined" />
 
-        <TextField label="Your Email" variant="outlined" />
+        <Button variant="contained" onClick={passwordModalHandler}>
+          Change Password
+        </Button>
       </S.PersonalInfoWrap>
       <S.AdressWrap>
         <S.InfoText>Add Your Adress</S.InfoText>
@@ -98,6 +109,19 @@ const PersonalInfo = () => {
       <S.StyledLink to="/profile/change-password">
         Want to become a sitter?
       </S.StyledLink>
+      <Modal onClose={passwordModalHandler} showModal={passwordModalOpen}>
+        <S.ModalCancel
+          icon={faTimes}
+          size="2x"
+          onClick={passwordModalHandler}
+        />
+        <S.PasswordModalWrap>
+          <TextField label="Old password" variant="outlined" />
+          <TextField label="New password" variant="outlined" />
+          <TextField label="Re-enter new password" variant="outlined" />
+          <Button variant="contained">Save</Button>
+        </S.PasswordModalWrap>
+      </Modal>
     </Fragment>
   );
 };

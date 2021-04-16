@@ -6,6 +6,7 @@ export const Wrap = styled.div``;
 
 export const ProfileWrap = styled.div`
   width: 100%;
+  min-height: 100vh;
   display: grid;
   justify-items: center;
   background-color: #eaebed;
@@ -49,8 +50,10 @@ export const TabText = styled.h3`
   height: 32px;
   cursor: pointer;
 
-  background-color: ${(props) =>
-    props.selected ? `rgb(230, 231, 232)` : `none`};
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+  }
+  border: ${(props) => (props.selected ? `1px solid black` : `none`)};
 `;
 
 export const InfoText = styled.h3`

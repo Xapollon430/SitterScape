@@ -1,5 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 export const ProfileWrap = styled.div`
@@ -78,4 +80,18 @@ export const UploadButton = styled.input`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+export const ModalCancel = styled((props) => <FontAwesomeIcon {...props} />)`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
+
+export const PasswordModalWrap = styled.div`
+  padding: 35px 10px 10px 10px;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 2fr 2fr 2fr 1fr;
+  grid-gap: 10px;
 `;
