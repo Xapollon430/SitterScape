@@ -7,9 +7,9 @@ import ServerSideMarkup from "./html";
 import schema from "./graphql/schema";
 import root from "./graphql/resolver";
 import cookieParser from "cookie-parser";
-
 import { graphqlHTTP } from "express-graphql";
 import { config } from "dotenv";
+import "./aws-s3-upload/aws";
 
 config();
 connectDB();

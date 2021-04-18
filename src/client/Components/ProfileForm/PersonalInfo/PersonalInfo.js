@@ -15,9 +15,19 @@ import { StoreContext } from "../../../store/store";
 const PersonalInfo = () => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
   const [state, dispatch] = useContext(StoreContext);
+  const [file, setFile] = useState();
+
+  console.log(file);
 
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
+  };
+
+  const submitProfileChanges = () => {
+    const profileData = new FormData();
+    profileData.append("profile-picture", file);
+
+    fetch()
   };
 
   return (
@@ -100,13 +110,18 @@ const PersonalInfo = () => {
             This is the first photo pet owners will see. Build trust! Well-lit,
             clear frontal face photos (no sunglasses) are recommended.
           </S.PhotoTextExplanation>
-          <S.UploadButton type="file" />
+          <S.UploadButton
+            type="file"
+            onChange={(e) => setFile(e.target.files)}
+          />
         </S.PhotoTextWrap>
         <S.UserImage
           src={`${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`}
         />
       </S.PhotoWrap>
-      <Button variant="contained">Save</Button>
+      <Button onClick={submitProfileChanges} variant="contained">
+        Save
+      </Button>
       <S.StyledLink to="/profile/change-password">
         Want to become a sitter?
       </S.StyledLink>

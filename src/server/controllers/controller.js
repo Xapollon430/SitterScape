@@ -66,11 +66,15 @@ export const autoLogin = async (req, res) => {
   }
 };
 
-export const logOut = async (req, res, next) => {
+export const logOut = async (req, res) => {
   try {
     res.clearCookie("refreshToken");
     res.status(200).json("Succesfully logged out!");
   } catch (e) {
     return res.status(400).send("Couldn't log out!");
   }
+};
+
+export const uploadProfilePicture = async (req, res) => {
+  console.log(req.files);
 };
