@@ -13,19 +13,15 @@ const s3 = new AWS.S3({
 
 const uploadFile = (fileName) => {
   const fileContent = fs.readFileSync(path.join(__dirname, fileName));
-
   const params = {
     Bucket: BUCKET_NAME,
-    Key: "salak12.jpg", // File name you want to save as in S3
+    Key: "boi.jpg", // File name you want to save as in S3
     Body: fileContent,
   };
-
-  //   s3.upload(params, function (err, data) {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     console.log(`File uploaded successfully. ${data.Location}`);
-  //   });
+  s3.upload(params, function (err, data) {
+    if (err) {
+      throw err;
+    }
+    console.log(`File uploaded successfully. ${data.Location}`);
+  });
 };
-
-// uploadFile("cat.jpg");

@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/sign-up", controllers.signUp);
 router.post("/login", controllers.login);
 router.post(
-  "upload-profile-picture",
+  "/upload-profile-picture",
   upload.single("profile-picture"),
   controllers.uploadProfilePicture
 );

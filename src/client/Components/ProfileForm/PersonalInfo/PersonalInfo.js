@@ -26,8 +26,10 @@ const PersonalInfo = () => {
   const submitProfileChanges = () => {
     const profileData = new FormData();
     profileData.append("profile-picture", file);
-
-    fetch()
+    fetch("http://localhost:5000/api/upload-profile-picture", {
+      method: "POST",
+      body: profileData,
+    });
   };
 
   return (
@@ -112,7 +114,7 @@ const PersonalInfo = () => {
           </S.PhotoTextExplanation>
           <S.UploadButton
             type="file"
-            onChange={(e) => setFile(e.target.files)}
+            onChange={(e) => setFile(e.target.files[0])}
           />
         </S.PhotoTextWrap>
         <S.UserImage
