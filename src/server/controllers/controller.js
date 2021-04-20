@@ -76,6 +76,6 @@ export const logOut = async (req, res) => {
 };
 
 export const uploadProfilePicture = async (req, res) => {
-  console.log(req.file.buffer.toString());
-  AES.encrypt(req.file.buffer.toString(), );
+  console.log(req.body);
+  console.log(req.file);
 };

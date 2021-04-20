@@ -17,8 +17,6 @@ const PersonalInfo = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [file, setFile] = useState();
 
-  console.log(file);
-
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
