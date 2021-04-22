@@ -27,7 +27,6 @@ const SignUp = () => {
         value={values.email}
         onChange={handleChange}
         onBlur={handleBlur}
-        id="email"
         name="email"
         placeholder="Email"
       ></S.Input>
@@ -37,7 +36,6 @@ const SignUp = () => {
         value={values.name}
         onChange={handleChange}
         onBlur={handleBlur}
-        id="name"
         name="name"
         placeholder="Name"
       ></S.Input>
@@ -49,7 +47,6 @@ const SignUp = () => {
         value={values.surname}
         onChange={handleChange}
         onBlur={handleBlur}
-        id="surname"
         name="surname"
         placeholder="Surname"
       ></S.Input>
@@ -61,7 +58,6 @@ const SignUp = () => {
         value={values.password}
         onChange={handleChange}
         onBlur={handleBlur}
-        id="password"
         name="password"
         placeholder="Password"
         type="password"

@@ -9,21 +9,31 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import Modal from "../../../UI/Modal/Modal";
 import { StoreContext } from "../../../store/store";
+import Modal from "../../../UI/Modal/Modal";
+import PersonalInfoInit from "./PersonalInfoSchema";
 
 const PersonalInfo = () => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
   const [state, dispatch] = useContext(StoreContext);
-  const [file, setFile] = useState();
+  const {
+    handleSubmit,
+    handleChange,
+    setFieldValue,
+    values,
+    errors,
+    touched,
+    handleBlur,
+    isSubmitting,
+  } = PersonalInfoInit();
+
+  console.log(values);
 
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
 
   const submitProfileChanges = () => {
-    const profileData = new FormData();
-    profileData.append("profile-picture", file);
     fetch("http://localhost:5000/api/upload-profile-picture", {
       method: "POST",
       body: profileData,
@@ -34,20 +44,65 @@ const PersonalInfo = () => {
     <Fragment>
       <S.PersonalInfoWrap>
         <S.InfoText>Add Your Personal Information</S.InfoText>
-        <TextField label="Your Name" variant="outlined" />
-        <TextField label="Your Last Name" variant="outlined" />
+        <TextField
+          error={errors.name && touched.name}
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="name"
+          placeholder="Your Name"
+          variant="outlined"
+        />
+        <TextField
+          error={errors.surname && touched.surname}
+          value={values.surname}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="surname"
+          placeholder="Your Last Name"
+          variant="outlined"
+        />
 
         <Button variant="contained" onClick={passwordModalHandler}>
           Change Password
         </Button>
       </S.PersonalInfoWrap>
       <S.AdressWrap>
-        <S.InfoText>Add Your Adress</S.InfoText>
-        <S.AdressField label="Your Adress" variant="outlined" />
-        <TextField label="City" variant="outlined" />
+        <S.InfoText>Add Your Address</S.InfoText>
+        <S.AdressField
+          error={errors.address && touched.address}
+          value={values.address}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="address"
+          variant="outlined"
+          label="Your Address"
+          variant="outlined"
+        />
+        <TextField
+          error={errors.city && touched.city}
+          value={values.city}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="city"
+          variant="outlined"
+          label="Your City"
+          variant="outlined"
+        />
         <FormControl variant="outlined">
           <InputLabel>State</InputLabel>
-          <Select label="State" MenuProps={{ style: { maxHeight: "400px" } }}>
+          <Select
+            error={errors.state && touched.state}
+            value={values.state}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            name="state"
+            placeholder="Your State"
+            variant="outlined"
+            label="Your State"
+            variant="outlined"
+            MenuProps={{ style: { maxHeight: "400px" } }}
+          >
             <MenuItem value="AK">Alaska</MenuItem>
             <MenuItem value="AL">Alabama</MenuItem>
             <MenuItem value="AZ">Arizona</MenuItem>
@@ -112,7 +167,7 @@ const PersonalInfo = () => {
           </S.PhotoTextExplanation>
           <S.UploadButton
             type="file"
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => setFieldValue("profilePicture", e.target.files[0])}
           />
         </S.PhotoTextWrap>
         <S.UserImage

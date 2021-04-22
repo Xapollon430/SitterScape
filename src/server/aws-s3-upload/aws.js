@@ -11,7 +11,7 @@ const s3 = new AWS.S3({
   secretAccessKey: SECRET,
 });
 
-const uploadFile = (fileName) => {
+export const uploadFile = (fileName) => {
   const fileContent = fs.readFileSync(path.join(__dirname, fileName));
   const params = {
     Bucket: BUCKET_NAME,

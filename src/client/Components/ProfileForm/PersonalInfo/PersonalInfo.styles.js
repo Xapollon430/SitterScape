@@ -1,7 +1,6 @@
 import { TextField } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 export const ProfileWrap = styled.div`

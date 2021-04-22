@@ -7,7 +7,8 @@ import * as actions from "../../../store/actions";
 import * as Yup from "yup";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().required("Email is required"),
+  email: Yup.string()
+  .required("Email is required"),
   password: Yup.string().required("Password is required"),
 });
 

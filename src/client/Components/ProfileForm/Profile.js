@@ -4,15 +4,9 @@ import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import * as S from "./Profile.styles";
 
-const X = () => {
-  return <h1>123</h1>;
-};
-
 const Profile = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [selectedTab, setSelectedTab] = useState("personal");
-
-  console.log(state);
 
   const changeTab = (e) => {
     e.target.innerHTML == "Personal Information"
@@ -25,7 +19,6 @@ const Profile = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
-          {/* <X /> */}
           <S.TabWrap>
             <S.TabText
               selected={selectedTab === "personal"}
