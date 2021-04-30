@@ -52,7 +52,10 @@ const PersonalInfo = () => {
           placeholder="Your Name"
           variant="outlined"
           helperText={errors.name && touched.name && "Don't leave this empty!"}
-        />
+        >
+          123
+        </TextField>
+
         <TextField
           error={errors.surname && touched.surname}
           value={values.surname}
@@ -66,7 +69,6 @@ const PersonalInfo = () => {
             errors.surname && touched.surname && "Don't leave this empty!"
           }
         />
-
         <Button variant="contained" onClick={passwordModalHandler}>
           Change Password
         </Button>
@@ -195,9 +197,10 @@ const PersonalInfo = () => {
       <Button onClick={handleSubmit} variant="contained">
         Save
       </Button>
-      <S.StyledLink to="/profile/change-password">
-        Want to become a sitter?
-      </S.StyledLink>
+      {state.isActiveSitter || (
+        <S.StyledLink>Want to become a sitter?</S.StyledLink>
+      )}
+
       <Modal onClose={passwordModalHandler} showModal={passwordModalOpen}>
         <S.ModalCancel
           icon={faTimes}

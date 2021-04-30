@@ -77,8 +77,10 @@ export const UploadButton = styled.input`
   margin-top: 20px;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.a`
   text-decoration: none;
+  cursor: pointer;
+  color: #000000;
 `;
 
 export const ModalCancel = styled((props) => <FontAwesomeIcon {...props} />)`

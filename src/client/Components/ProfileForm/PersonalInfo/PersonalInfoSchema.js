@@ -19,12 +19,12 @@ export default (setErrorFromServer) => {
 
   return useFormik({
     initialValues: {
-      name: "",
-      surname: "",
-      address: "",
-      state: "",
-      city: "",
-      zip: "",
+      name: state.user.name,
+      surname: state.user.surname,
+      address: state.user.address,
+      state: state.user.state,
+      city: state.user.city,
+      zip: state.user.zip,
       profilePicture: "",
     },
     validationSchema: PersonalInfoSchema,

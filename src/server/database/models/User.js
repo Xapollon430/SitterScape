@@ -27,21 +27,51 @@ const userSchema = mongoose.Schema({
     trim: true,
     minlength: 6,
   },
-  adress: {
-    street: String,
-    city: String,
-    state: String,
-    zip: Number,
-    location: {
-      latitude: String,
-      longitude: String,
+
+  address: String,
+  city: String,
+  state: String,
+  zip: Number,
+  location: {
+    latitude: String,
+    longitude: String,
+  },
+
+  services: {
+    walking: {
+      active: Boolean,
+      rate: Number,
+    },
+    boarding: {
+      active: Boolean,
+      rate: Number,
+    },
+    houseSitting: {
+      active: Boolean,
+      rate: Number,
+    },
+    dropInVisit: {
+      active: Boolean,
+      rate: Number,
     },
   },
-  rate: Number,
   rating: Number,
+  hasChild: Boolean,
   // profileComments,
   profilePicture: String,
   isActiveSitter: { type: Boolean, default: false },
+  homeType: String,
+  smokes: Boolean,
+  petPreferences: {
+    small: Boolean,
+    medium: Boolean,
+    large: Boolean,
+    giant: Boolean,
+  },
+  aboutMe: String,
+  headline: String,
+  yearsOfExperience: Number,
+  hasYard: Boolean,
   animals: [{ kind: String, weight: Number }],
 });
 

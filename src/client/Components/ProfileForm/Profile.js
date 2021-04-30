@@ -19,17 +19,24 @@ const Profile = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
-          <S.TabWrap>
-            <S.TabText
-              selected={selectedTab === "personal"}
-              onClick={changeTab}
-            >
-              Personal Information
-            </S.TabText>
-            <S.TabText selected={selectedTab === "sitter"} onClick={changeTab}>
-              Sitter Information
-            </S.TabText>
-          </S.TabWrap>
+          {state.activeSitter ? (
+            <S.TabText>Personal Information</S.TabText>
+          ) : (
+            <S.TabWrap>
+              <S.TabText
+                selected={selectedTab === "personal"}
+                onClick={changeTab}
+              >
+                Personal Information
+              </S.TabText>
+              <S.TabText
+                selected={selectedTab === "sitter"}
+                onClick={changeTab}
+              >
+                Sitter Information
+              </S.TabText>
+            </S.TabWrap>
+          )}
           <PersonalInfo />
         </S.FormWrap>
       </S.ProfileWrap>
