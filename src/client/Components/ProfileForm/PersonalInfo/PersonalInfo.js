@@ -27,18 +27,16 @@ const PersonalInfo = () => {
     isSubmitting,
   } = PersonalInfoInit();
 
-  console.log(values);
-
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
 
-  const submitProfileChanges = () => {
-    fetch("http://localhost:5000/api/upload-profile-picture", {
-      method: "POST",
-      body: profileData,
-    });
-  };
+  // const submitProfileChanges = () => {
+  //   fetch("http://localhost:5000/api/upload-profile-picture", {
+  //     method: "POST",
+  //     body: profileData,
+  //   });
+  // };
 
   return (
     <Fragment>
@@ -50,8 +48,10 @@ const PersonalInfo = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           name="name"
+          label="Your Name"
           placeholder="Your Name"
           variant="outlined"
+          helperText={errors.name && touched.name && "Don't leave this empty!"}
         />
         <TextField
           error={errors.surname && touched.surname}
@@ -59,8 +59,12 @@ const PersonalInfo = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           name="surname"
+          label="Your Last Name"
           placeholder="Your Last Name"
           variant="outlined"
+          helperText={
+            errors.surname && touched.surname && "Don't leave this empty!"
+          }
         />
 
         <Button variant="contained" onClick={passwordModalHandler}>
@@ -156,7 +160,18 @@ const PersonalInfo = () => {
             <MenuItem value="WY">Wyoming</MenuItem>
           </Select>
         </FormControl>
-        <TextField label="ZIP/postal" variant="outlined" />
+        <TextField
+          error={errors.zip && touched.zip}
+          value={values.zip}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="zip"
+          variant="outlined"
+          label="Your Zip"
+          variant="outlined"
+          label="ZIP/postal"
+          variant="outlined"
+        />
       </S.AdressWrap>
       <S.PhotoWrap>
         <S.PhotoTextWrap>
@@ -167,14 +182,17 @@ const PersonalInfo = () => {
           </S.PhotoTextExplanation>
           <S.UploadButton
             type="file"
-            onChange={(e) => setFieldValue("profilePicture", e.target.files[0])}
+            id="file"
+            onChange={(e) =>
+              setFieldValue("profilePicture", e.currentTarget.files[0])
+            }
           />
         </S.PhotoTextWrap>
         <S.UserImage
           src={`${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`}
         />
       </S.PhotoWrap>
-      <Button onClick={submitProfileChanges} variant="contained">
+      <Button onClick={handleSubmit} variant="contained">
         Save
       </Button>
       <S.StyledLink to="/profile/change-password">

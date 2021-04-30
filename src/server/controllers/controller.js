@@ -14,9 +14,9 @@ export const signUp = async (req, res) => {
     if (userExists) return res.status(409).send("Email is already in use!");
 
     let newUser = new User(signUpData);
+    await newUser.save();
 
     let { refreshToken, accessToken } = newUser.generateTokens();
-    await newUser.save();
 
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
@@ -75,7 +75,7 @@ export const logOut = async (req, res) => {
   }
 };
 
-export const uploadProfilePicture = async (req, res) => {
+export const updateUpdatePersonalInfo = async (req, res) => {
   console.log(req.body);
   console.log(req.file);
 };

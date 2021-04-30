@@ -14,7 +14,7 @@ export const ProfileWrap = styled.div`
 
 export const FormWrap = styled.div`
   max-width: 600px;
-  margin: 80px 0px 20px 0px;
+  margin: 75px 0px 8px 0px;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;

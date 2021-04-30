@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
-import * as Crypto from "crypto-js";
 import { config } from "dotenv";
 config();
 
@@ -31,6 +30,7 @@ const userSchema = mongoose.Schema({
   adress: {
     street: String,
     city: String,
+    state: String,
     zip: Number,
     location: {
       latitude: String,
@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
   rate: Number,
   rating: Number,
   // profileComments,
-  picture: String,
+  profilePicture: String,
   isActiveSitter: { type: Boolean, default: false },
   animals: [{ kind: String, weight: Number }],
 });

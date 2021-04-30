@@ -25,7 +25,7 @@ export const PersonalInfoWrap = styled.div`
   display: grid;
   grid-template-rows: 40px 50px;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 30px;
 
   @media (max-width: 600px) {
     grid-template-rows: repeat(3, 50px);
