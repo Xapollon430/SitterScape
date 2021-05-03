@@ -52,9 +52,7 @@ const PersonalInfo = () => {
           placeholder="Your Name"
           variant="outlined"
           helperText={errors.name && touched.name && "Don't leave this empty!"}
-        >
-          123
-        </TextField>
+        ></TextField>
 
         <TextField
           error={errors.surname && touched.surname}

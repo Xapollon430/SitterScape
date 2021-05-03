@@ -1,5 +1,4 @@
 import { TextField } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
@@ -33,7 +32,7 @@ export const PersonalInfoWrap = styled.div`
   }
 `;
 
-export const InfoText = styled.h3`
+export const InfoText = styled.h2`
   grid-column: 1/-1;
   align-self: center;
 `;

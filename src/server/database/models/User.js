@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema({
   address: String,
   city: String,
   state: String,
-  zip: Number,
+  zip: String,
   location: {
     latitude: String,
     longitude: String,
@@ -56,7 +56,7 @@ const userSchema = mongoose.Schema({
     },
   },
   rating: Number,
-  hasChild: Boolean,
+  hasChildren: Boolean,
   // profileComments,
   profilePicture: String,
   isActiveSitter: { type: Boolean, default: false },
@@ -72,7 +72,6 @@ const userSchema = mongoose.Schema({
   headline: String,
   yearsOfExperience: Number,
   hasYard: Boolean,
-  animals: [{ kind: String, weight: Number }],
 });
 
 const twentyMinutesInMiliseconds = 1200000;

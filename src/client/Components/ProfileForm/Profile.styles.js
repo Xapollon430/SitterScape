@@ -13,7 +13,7 @@ export const ProfileWrap = styled.div`
 `;
 
 export const FormWrap = styled.div`
-  max-width: 600px;
+  max-width: 700px;
   margin: 75px 0px 8px 0px;
   width: 100%;
   padding: 20px;
@@ -22,18 +22,6 @@ export const FormWrap = styled.div`
   grid-gap: 30px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: white;
-`;
-
-export const PersonalInfoWrap = styled.div`
-  display: grid;
-  grid-template-rows: 40px 50px;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-
-  @media (max-width: 600px) {
-    grid-template-rows: repeat(3, 50px);
-    grid-template-columns: 1fr;
-  }
 `;
 
 export const TabWrap = styled.div`
