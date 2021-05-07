@@ -25,14 +25,15 @@ export default (setErrorFromServer) => {
       state: state.user.state,
       city: state.user.city,
       zip: state.user.zip,
-      profilePicture: "",
+      profilePicture: undefined,
     },
     validationSchema: PersonalInfoSchema,
     onSubmit: async (values) => {
       try {
         const updatedProfileData = new FormData();
+        console.log(values);
         for (const data in values) {
-          data !== "" && updatedProfileData.append(data, values[data]);
+          values[data] != null && updatedProfileData.append(data, values[data]);
         }
 
         console.log(updatedProfileData);

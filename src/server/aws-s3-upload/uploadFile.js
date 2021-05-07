@@ -1,6 +1,4 @@
 import AWS from "aws-sdk";
-import fs from "fs";
-import path from "path";
 
 const ID = process.env.AWS_S3_ID;
 const SECRET = process.env.AWS_S3_SECRET;
@@ -11,12 +9,13 @@ const s3 = new AWS.S3({
   secretAccessKey: SECRET,
 });
 
-export const uploadFile = (fileName) => {
-  const fileContent = fs.readFileSync(path.join(__dirname, fileName));
+export default (file) => {
+  const base64data = Buffer.from(file.buffer);
+
   const params = {
     Bucket: BUCKET_NAME,
     Key: "boi.jpg", // File name you want to save as in S3
-    Body: fileContent,
+    Body: base64data,
   };
   s3.upload(params, function (err, data) {
     if (err) {

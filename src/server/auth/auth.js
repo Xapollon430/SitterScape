@@ -9,6 +9,7 @@ const auth = async (req, res, next) => {
       throw new Error();
     }
     req.user = User.findById(checkToken.id);
+    console.log(req.user);
     next();
   } catch (e) {
     res.status(401).send({ error: "Authorize" });

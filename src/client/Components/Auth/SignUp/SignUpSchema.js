@@ -50,6 +50,7 @@ export default (setErrorFromServer) => {
 
         let data = await response.json();
 
+       
         dispatch(
           actions.generalDispatchBundler({
             user: data.user,

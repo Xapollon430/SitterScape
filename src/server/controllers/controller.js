@@ -1,7 +1,6 @@
 import User from "../database/models/User";
-import HttpError from "../error/HttpError";
 import jwt from "jsonwebtoken";
-import { AES } from "crypto-js";
+import uploadFile from "../aws-s3-upload/uploadFile";
 import { config } from "dotenv";
 config();
 
@@ -76,6 +75,21 @@ export const logOut = async (req, res) => {
 };
 
 export const updateUpdatePersonalInfo = async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
+  try {
+    const values = req.body;
+    if (req.file) {
+      // Upload a profie picture to AWS S3
+      uploadFile(req.file);
+    }
+    console.log(values);
+    console.log(req.user._id);
+    User.findById(req.user.id, (updatedUser) => {
+      console.log(updatedUser);
+
+      return res.status(200).json("Succesfully updated!");
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).send("Couldn't update user!");
+  }
 };
