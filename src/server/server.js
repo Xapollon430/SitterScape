@@ -9,7 +9,6 @@ import root from "./graphql/resolver";
 import cookieParser from "cookie-parser";
 import { graphqlHTTP } from "express-graphql";
 import { config } from "dotenv";
-import "./aws-s3-upload/uploadFile";
 
 config();
 connectDB();

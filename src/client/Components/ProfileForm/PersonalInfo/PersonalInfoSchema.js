@@ -21,10 +21,10 @@ export default (setErrorFromServer) => {
     initialValues: {
       name: state.user.name,
       surname: state.user.surname,
-      address: state.user.address,
-      state: state.user.state,
-      city: state.user.city,
-      zip: state.user.zip,
+      address: state.user.address || "",
+      state: state.user.state || "",
+      city: state.user.city || "",
+      zip: state.user.zip || "",
       profilePicture: undefined,
     },
     validationSchema: PersonalInfoSchema,
@@ -33,7 +33,8 @@ export default (setErrorFromServer) => {
         const updatedProfileData = new FormData();
         console.log(values);
         for (const data in values) {
-          values[data] != null && updatedProfileData.append(data, values[data]);
+          values[data] != undefined &&
+            updatedProfileData.append(data, values[data]);
         }
 
         console.log(updatedProfileData);

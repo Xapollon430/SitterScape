@@ -8,9 +8,15 @@ const auth = async (req, res, next) => {
     if (!checkToken) {
       throw new Error();
     }
-    req.user = User.findById(checkToken.id);
-    console.log(req.user);
-    next();
+
+    User.findById(checkToken.id, (err, foundUser) => {
+      if (!err) {
+        req.user = foundUser;
+        next();
+      } else {
+        throw new Error();
+      }
+    });
   } catch (e) {
     res.status(401).send({ error: "Authorize" });
   }

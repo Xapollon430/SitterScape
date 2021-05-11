@@ -1,6 +1,6 @@
 import User from "../database/models/User";
 import jwt from "jsonwebtoken";
-import uploadFile from "../aws-s3-upload/uploadFile";
+import uploadProfilePicture from "../aws-s3-upload/uploadProfilePicture";
 import { config } from "dotenv";
 config();
 
@@ -78,16 +78,14 @@ export const updateUpdatePersonalInfo = async (req, res) => {
   try {
     const values = req.body;
     if (req.file) {
-      // Upload a profie picture to AWS S3
-      uploadFile(req.file);
+      uploadProfilePicture(req.file, req.user);
     }
-    console.log(values);
-    console.log(req.user._id);
-    User.findById(req.user.id, (updatedUser) => {
-      console.log(updatedUser);
 
-      return res.status(200).json("Succesfully updated!");
-    });
+    for (const data in values) {
+      req.user[data] = values[data];
+    }
+
+    req.user.save();
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't update user!");

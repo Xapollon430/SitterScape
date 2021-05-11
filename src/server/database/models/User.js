@@ -59,6 +59,7 @@ const userSchema = mongoose.Schema({
   hasChildren: Boolean,
   // profileComments,
   profilePicture: String,
+  profilePictureName: String,
   isActiveSitter: { type: Boolean, default: false },
   homeType: String,
   smokes: Boolean,
