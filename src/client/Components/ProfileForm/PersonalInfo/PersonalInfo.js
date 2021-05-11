@@ -189,7 +189,11 @@ const PersonalInfo = () => {
           />
         </S.PhotoTextWrap>
         <S.UserImage
-          src={`${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`}
+          src={
+            state.user.profilePicture
+              ? state.user.profilePicture
+              : `${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`
+          }
         />
       </S.PhotoWrap>
       <Button onClick={handleSubmit} variant="contained">

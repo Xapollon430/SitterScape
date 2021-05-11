@@ -31,8 +31,6 @@ export default (file, user) => {
     user.profilePicture = data.Location;
     user.profilePictureName = keyName;
     user.save();
-
-    console.log(`File uploaded successfully. ${data.Location}`);
   });
 };
 
@@ -42,10 +40,7 @@ const deleteFile = (profilePicture) => {
     Key: profilePicture, // File name you want to delete from S3
   };
 
-  console.log(params);
-
   s3.deleteObject(params, (err, data) => {
     if (err) console.log(err, err.stack);
-    else console.log("Deleted"); // deleted
   });
 };
