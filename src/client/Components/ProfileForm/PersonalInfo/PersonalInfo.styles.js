@@ -63,7 +63,10 @@ export const PhotoTextExplanation = styled.div`
 `;
 
 export const UserImage = styled.img`
-  width: 250px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+
   @media (max-width: 600px) {
     margin-top: 15px;
     max-width: 150px;

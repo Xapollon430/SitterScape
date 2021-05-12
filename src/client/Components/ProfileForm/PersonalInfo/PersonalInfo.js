@@ -13,7 +13,7 @@ import { StoreContext } from "../../../store/store";
 import Modal from "../../../UI/Modal/Modal";
 import PersonalInfoInit from "./PersonalInfoSchema";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ changeShowTabs }) => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
   const [state, dispatch] = useContext(StoreContext);
   const {
@@ -30,6 +30,8 @@ const PersonalInfo = () => {
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
+
+  console.log(changeShowTabs);
 
   // const submitProfileChanges = () => {
   //   fetch("http://localhost:5000/api/upload-profile-picture", {
@@ -200,7 +202,9 @@ const PersonalInfo = () => {
         Save
       </Button>
       {state.isActiveSitter || (
-        <S.StyledLink>Want to become a sitter?</S.StyledLink>
+        <S.StyledLink onClick={changeShowTabs}>
+          Want to become a sitter?
+        </S.StyledLink>
       )}
 
       <Modal onClose={passwordModalHandler} showModal={passwordModalOpen}>

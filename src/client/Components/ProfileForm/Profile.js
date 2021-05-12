@@ -8,6 +8,12 @@ import * as S from "./Profile.styles";
 const Profile = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [selectedTab, setSelectedTab] = useState("personal");
+  const [showBothTabs, setShowBothTabs] = useState(state.user.isActiveSitter);
+
+  const changeShowTabs = () => {
+    setShowBothTabs(true);
+    setSelectedTab("sitter");
+  };
 
   const changeTab = (e) => {
     e.target.innerHTML == "Personal Information"
@@ -20,9 +26,7 @@ const Profile = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
-          {state.activeSitter ? (
-            <S.TabText>Personal Information</S.TabText>
-          ) : (
+          {showBothTabs ? (
             <S.TabWrap>
               <S.TabText
                 selected={selectedTab === "personal"}
@@ -37,9 +41,15 @@ const Profile = () => {
                 Sitter Information
               </S.TabText>
             </S.TabWrap>
+          ) : (
+            <S.TabText>Personal Information</S.TabText>
           )}
 
-          {selectedTab === "personal" ? <PersonalInfo /> : <SitterInfo />}
+          {selectedTab === "personal" ? (
+            <PersonalInfo changeShowTabs={changeShowTabs} />
+          ) : (
+            <SitterInfo />
+          )}
         </S.FormWrap>
       </S.ProfileWrap>
     </S.Wrap>
