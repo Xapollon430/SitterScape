@@ -12,8 +12,22 @@ import {
   Button,
 } from "@material-ui/core";
 import * as S from "./SitterInfo.styles";
+import SitterInfoInit from "./SitterInfoSchema";
 
 const SitterInfo = () => {
+  const {
+    handleSubmit,
+    handleChange,
+    setFieldValue,
+    values,
+    errors,
+    touched,
+    handleBlur,
+    isSubmitting,
+  } = SitterInfoInit();
+
+  console.log(values);
+
   return (
     <Fragment>
       <S.ServiceWrap>
@@ -26,7 +40,15 @@ const SitterInfo = () => {
         <S.ServiceOption>
           <FormControlLabel
             value="bottom"
-            control={<Switch color="secondary" />}
+            control={
+              <Switch
+                checked={values.boarding}
+                onChange={(e) => {
+                  setFieldValue("boarding", e.target.checked);
+                }}
+                color="secondary"
+              />
+            }
             label="Inactive"
             labelPlacement="bottom"
           />
@@ -326,7 +348,9 @@ const SitterInfo = () => {
           src={`${process.env.SITTERSCAPE_API_URL}/static/images/default-user.png`}
         />
       </S.PhotoWrap>
-      <Button variant="contained">Save</Button>
+      <Button onClick={handleSubmit} variant="contained">
+        Save
+      </Button>
     </Fragment>
   );
 };

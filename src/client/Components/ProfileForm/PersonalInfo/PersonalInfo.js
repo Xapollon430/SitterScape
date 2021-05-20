@@ -31,8 +31,6 @@ const PersonalInfo = ({ changeShowTabs }) => {
     changePasswordModalOpen(!passwordModalOpen);
   };
 
-  console.log(changeShowTabs);
-
   // const submitProfileChanges = () => {
   //   fetch("http://localhost:5000/api/upload-profile-picture", {
   //     method: "POST",
@@ -43,7 +41,7 @@ const PersonalInfo = ({ changeShowTabs }) => {
   return (
     <Fragment>
       <S.PersonalInfoWrap>
-        <S.InfoText>Add Your Personal Information</S.InfoText>
+        <S.InfoText>Your Personal Information</S.InfoText>
         <TextField
           error={errors.name && touched.name}
           value={values.name}
@@ -74,7 +72,7 @@ const PersonalInfo = ({ changeShowTabs }) => {
         </Button>
       </S.PersonalInfoWrap>
       <S.AdressWrap>
-        <S.InfoText>Add Your Address</S.InfoText>
+        <S.InfoText>Your Address</S.InfoText>
         <S.AdressField
           error={errors.address && touched.address}
           value={values.address}

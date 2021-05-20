@@ -26,7 +26,7 @@ const Profile = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
-          {showBothTabs ? (
+          {showBothTabs || (
             <S.TabWrap>
               <S.TabText
                 selected={selectedTab === "personal"}
@@ -41,8 +41,6 @@ const Profile = () => {
                 Sitter Information
               </S.TabText>
             </S.TabWrap>
-          ) : (
-            <S.TabText>Personal Information</S.TabText>
           )}
 
           {selectedTab === "personal" ? (
