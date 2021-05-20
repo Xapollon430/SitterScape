@@ -49,74 +49,143 @@ const SitterInfo = () => {
                 color="secondary"
               />
             }
-            label="Inactive"
+            label={values.boarding ? "Active" : "Inactive"}
             labelPlacement="bottom"
           />
         </S.ServiceOption>
-        <S.Text>What do you want clients to pay per dog per night?</S.Text>
-        <TextField disabled={true} label="$" type="number" variant="filled" />
-        <S.Text>Are there any smokers in your house? </S.Text>
-        <S.RadioWrap>
-          <RadioGroup
-            value={true}
-            name="smokes"
-            onChange={(e) => {
-              console.log(e.target);
-            }}
-            row
-          >
-            <FormControlLabel value={false} control={<Radio />} label="No" />
-            <FormControlLabel value={true} control={<Radio />} label="Yes" />
-          </RadioGroup>
-        </S.RadioWrap>
-        <S.Text>Are there any children in your house? </S.Text>
+        {values.boarding && (
+          <Fragment>
+            <S.Text>What do you want clients to pay per dog per night?</S.Text>
+            <TextField
+              onChange={(e) => {
+                setFieldValue("boardingRate", e.target.value);
+              }}
+              label="$"
+              type="number"
+              variant="filled"
+            />
+            <S.Text>Are there any smokers in your house? </S.Text>
+            <S.RadioWrap>
+              <RadioGroup row>
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={
+                        values.smokes === undefined
+                          ? false
+                          : values.smokes === false
+                          ? true
+                          : false
+                      }
+                      onChange={() => {
+                        setFieldValue("smokes", false);
+                      }}
+                    />
+                  }
+                  label="No"
+                />
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={
+                        values.smokes === undefined
+                          ? false
+                          : values.smokes === false
+                          ? false
+                          : true
+                      }
+                      onChange={() => {
+                        setFieldValue("smokes", true);
+                      }}
+                    />
+                  }
+                  label="Yes"
+                />
+              </RadioGroup>
+            </S.RadioWrap>
+            <S.Text>Are there any children in your house? </S.Text>
 
-        <S.RadioWrap>
-          <RadioGroup
-            value={true}
-            name="hasChildren"
-            onChange={(e) => {
-              console.log(e.target);
-            }}
-            row
-          >
-            <FormControlLabel value={false} control={<Radio />} label="No" />
-            <FormControlLabel value={true} control={<Radio />} label="Yes" />
-          </RadioGroup>
-        </S.RadioWrap>
-        <S.Text>What type of a home do you live in?</S.Text>
-        <FormControl variant="outlined">
-          <InputLabel>Home Type</InputLabel>
-          <Select
-            // error={errors.state && touched.state}
-            // value={values.state}
-            // onChange={handleChange}
-            // onBlur={handleBlur}
-            name="state"
-            placeholder="Your State"
-            variant="outlined"
-            label="Your State"
-            variant="outlined"
-          >
-            <MenuItem value="house">House</MenuItem>
-            <MenuItem value="apartment">Apartment</MenuItem>
-          </Select>
-        </FormControl>
-        <S.Text>Do you have a yard?</S.Text>
+            <S.RadioWrap>
+              <RadioGroup row>
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={
+                        values.hasChildren === undefined
+                          ? false
+                          : values.hasChildren === false
+                          ? true
+                          : false
+                      }
+                      onChange={() => {
+                        setFieldValue("hasChildren", false);
+                      }}
+                    />
+                  }
+                  label="No"
+                />
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={
+                        values.hasChildren === undefined
+                          ? false
+                          : values.hasChildren === false
+                          ? false
+                          : true
+                      }
+                      onChange={() => {
+                        setFieldValue("hasChildren", true);
+                      }}
+                    />
+                  }
+                  label="Yes"
+                />
+              </RadioGroup>
+            </S.RadioWrap>
+            <S.Text>What type of a home do you live in?</S.Text>
+            <FormControl variant="outlined">
+              <InputLabel>Home Type</InputLabel>
+              <Select
+                // error={errors.state && touched.state}
+                // value={values.state}
+                // onChange={handleChange}
+                // onBlur={handleBlur}
+                name="state"
+                placeholder="Your State"
+                variant="outlined"
+                label="Your State"
+                variant="outlined"
+              >
+                <MenuItem value="house">House</MenuItem>
+                <MenuItem value="apartment">Apartment</MenuItem>
+              </Select>
+            </FormControl>
+            <S.Text>Do you have a yard?</S.Text>
 
-        <S.RadioWrap>
-          <RadioGroup
-            value={true}
-            name="hasYard"
-            onChange={(e) => {
-              console.log(e.target);
-            }}
-            row
-          >
-            <FormControlLabel value={false} control={<Radio />} label="No" />
-            <FormControlLabel value={true} control={<Radio />} label="Yes" />
-          </RadioGroup>
-        </S.RadioWrap>
+            <S.RadioWrap>
+              <RadioGroup
+                value={true}
+                name="hasYard"
+                onChange={(e) => {
+                  console.log(e.target);
+                }}
+                row
+              >
+                <FormControlLabel
+                  value={false}
+                  control={<Radio />}
+                  label="No"
+                />
+                <FormControlLabel
+                  value={true}
+                  control={<Radio />}
+                  label="Yes"
+                />
+              </RadioGroup>
+            </S.RadioWrap>
+          </Fragment>
+        )}
       </S.ServiceWrap>
       <S.ServiceWrap>
         <S.ServiceType>

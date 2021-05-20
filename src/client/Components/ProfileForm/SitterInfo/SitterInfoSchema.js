@@ -23,6 +23,7 @@ const PersonalInfoSchema = Yup.object().shape({
   aboutMe: Yup.string(),
   yearsOfExperience: Yup.string(),
   hasYard: Yup.boolean(),
+  smokes: Yup.boolean(),
   profilePicture: Yup.mixed(),
 });
 
@@ -31,10 +32,10 @@ export default (setErrorFromServer) => {
 
   return useFormik({
     initialValues: {
-      address: state.user.address,
-      state: state.user.state,
-      city: state.user.city,
-      zip: state.user.zip,
+      address: state.user.address || "",
+      state: state.user.state || "",
+      city: state.user.city || "",
+      zip: state.user.zip || "",
       boarding: state.user?.services?.boarding?.active || false,
       boardingRate: state.user?.services?.boarding?.rate || 0,
       walking: state.user?.services?.walking?.active || false,
@@ -43,17 +44,18 @@ export default (setErrorFromServer) => {
       houseSittingRate: state.user?.services?.houseSitting?.rate || 0,
       dropInVisit: state.user?.services?.dropInVisit?.active || false,
       dropInVisitRate: state.user?.services?.dropInVisitRate?.rate || 0,
-      hasChild: state.user.hasChild,
+      hasChildren: state.user.hasChild,
       homeType: state.user.homeType,
       petPreferences: state.user.petPreferences,
+      smokes: state.user.smokes,
       aboutMe: state.user.aboutMe,
       yearsOfExperience: state.user.yearsOfExperience,
       hasYard: state.user.hasYard,
       profilePicture: "",
     },
-    // validate: (x, y) => {
-    //   console.log(x, y);
-    // },
+    validate: (x, y) => {
+      return { x: 12 };
+    },
     validationSchema: PersonalInfoSchema,
     onSubmit: async (values, actions) => {
       try {
