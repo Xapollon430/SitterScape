@@ -27,6 +27,8 @@ const PersonalInfo = ({ changeShowTabs }) => {
     isSubmitting,
   } = PersonalInfoInit();
 
+  console.log(values);
+
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
@@ -81,7 +83,6 @@ const PersonalInfo = ({ changeShowTabs }) => {
           name="address"
           variant="outlined"
           label="Your Address"
-          variant="outlined"
         />
         <TextField
           error={errors.city && touched.city}
@@ -91,7 +92,6 @@ const PersonalInfo = ({ changeShowTabs }) => {
           name="city"
           variant="outlined"
           label="Your City"
-          variant="outlined"
         />
         <FormControl variant="outlined">
           <InputLabel>State</InputLabel>
@@ -167,10 +167,8 @@ const PersonalInfo = ({ changeShowTabs }) => {
           onBlur={handleBlur}
           name="zip"
           variant="outlined"
-          label="Your Zip"
           variant="outlined"
           label="ZIP/postal"
-          variant="outlined"
         />
       </S.AdressWrap>
       <S.PhotoWrap>

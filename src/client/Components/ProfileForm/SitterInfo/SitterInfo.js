@@ -26,8 +26,6 @@ const SitterInfo = () => {
     isSubmitting,
   } = SitterInfoInit();
 
-  console.log(values);
-
   return (
     <Fragment>
       <S.ServiceWrap>
@@ -61,6 +59,7 @@ const SitterInfo = () => {
                 setFieldValue("boardingRate", e.target.value);
               }}
               label="$"
+              value={values.boardingRate}
               type="number"
               variant="filled"
             />
@@ -148,14 +147,12 @@ const SitterInfo = () => {
               <InputLabel>Home Type</InputLabel>
               <Select
                 // error={errors.state && touched.state}
-                // value={values.state}
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                name="state"
-                placeholder="Your State"
+                value={values.homeType}
+                onChange={(e) => {
+                  setFieldValue("homeType", e.target.value);
+                }}
                 variant="outlined"
-                label="Your State"
-                variant="outlined"
+                label="Home Type"
               >
                 <MenuItem value="house">House</MenuItem>
                 <MenuItem value="apartment">Apartment</MenuItem>
@@ -164,22 +161,39 @@ const SitterInfo = () => {
             <S.Text>Do you have a yard?</S.Text>
 
             <S.RadioWrap>
-              <RadioGroup
-                value={true}
-                name="hasYard"
-                onChange={(e) => {
-                  console.log(e.target);
-                }}
-                row
-              >
+              <RadioGroup row>
                 <FormControlLabel
-                  value={false}
-                  control={<Radio />}
+                  control={
+                    <Radio
+                      checked={
+                        values.hasYard === undefined
+                          ? false
+                          : values.hasYard === false
+                          ? true
+                          : false
+                      }
+                      onChange={() => {
+                        setFieldValue("hasYard", false);
+                      }}
+                    />
+                  }
                   label="No"
                 />
                 <FormControlLabel
-                  value={true}
-                  control={<Radio />}
+                  control={
+                    <Radio
+                      checked={
+                        values.hasYard === undefined
+                          ? false
+                          : values.hasYard === false
+                          ? false
+                          : true
+                      }
+                      onChange={() => {
+                        setFieldValue("hasYard", true);
+                      }}
+                    />
+                  }
                   label="Yes"
                 />
               </RadioGroup>
@@ -198,13 +212,33 @@ const SitterInfo = () => {
         <S.ServiceOption>
           <FormControlLabel
             value="bottom"
-            control={<Switch color="secondary" />}
-            label="Inactive"
+            control={
+              <Switch
+                checked={values.houseSitting}
+                onChange={(e) => {
+                  setFieldValue("houseSitting", e.target.checked);
+                }}
+                color="secondary"
+              />
+            }
+            label={values.houseSitting ? "Active" : "Inactive"}
             labelPlacement="bottom"
           />
         </S.ServiceOption>
-        <S.Text>What do you want clients to pay per dog per night?</S.Text>
-        <TextField label="$" type="number" variant="filled" />
+        {values.houseSitting && (
+          <Fragment>
+            <S.Text>What do you want clients to pay per dog per night?</S.Text>
+            <TextField
+              onChange={(e) => {
+                setFieldValue("houseSittingRate", e.target.value);
+              }}
+              label="$"
+              type="number"
+              value={values.houseSittingRate}
+              variant="filled"
+            />
+          </Fragment>
+        )}
       </S.ServiceWrap>
       <S.ServiceWrap>
         <S.ServiceType>
@@ -217,13 +251,33 @@ const SitterInfo = () => {
         <S.ServiceOption>
           <FormControlLabel
             value="bottom"
-            control={<Switch color="secondary" />}
-            label="Inactive"
+            control={
+              <Switch
+                checked={values.dropInVisit}
+                onChange={(e) => {
+                  setFieldValue("dropInVisit", e.target.checked);
+                }}
+                color="secondary"
+              />
+            }
+            label={values.dropInVisit ? "Active" : "Inactive"}
             labelPlacement="bottom"
           />
         </S.ServiceOption>
-        <S.Text>What do you want clients to pay per dog per visit?</S.Text>
-        <TextField label="$" type="number" variant="filled" />
+        {values.dropInVisit && (
+          <Fragment>
+            <S.Text>What do you want clients to pay per dog per visit?</S.Text>
+            <TextField
+              onChange={(e) => {
+                setFieldValue("dropInVisitRate", e.target.value);
+              }}
+              label="$"
+              type="number"
+              value={values.dropInVisitRate}
+              variant="filled"
+            />
+          </Fragment>
+        )}
       </S.ServiceWrap>
       <S.ServiceWrap>
         <S.ServiceType>
@@ -235,54 +289,104 @@ const SitterInfo = () => {
         <S.ServiceOption>
           <FormControlLabel
             value="bottom"
-            control={<Switch color="secondary" />}
-            label="Inactive"
+            control={
+              <Switch
+                checked={values.walking}
+                onChange={(e) => {
+                  setFieldValue("walking", e.target.checked);
+                }}
+                color="secondary"
+              />
+            }
+            label={values.walking ? "Active" : "Inactive"}
             labelPlacement="bottom"
           />
         </S.ServiceOption>
-        <S.Text>What do you want clients to pay for one dog walk?</S.Text>
-        <TextField label="$" type="number" variant="filled" />
+        {values.walking && (
+          <Fragment>
+            <S.Text>What do you want clients to pay for one dog walk?</S.Text>
+            <TextField
+              onChange={(e) => {
+                setFieldValue("walkingRate", e.target.value);
+              }}
+              label="$"
+              type="number"
+              value={values.walkingRate}
+              variant="filled"
+            />
+          </Fragment>
+        )}
       </S.ServiceWrap>
       <S.PetPreferencesWrap>
-        {" "}
         <S.PetPreferences>Your Pet Preferences </S.PetPreferences>
         <S.PetPreferencesText>
           What size pets do you prefer offering services to?
         </S.PetPreferencesText>
         <S.PetPreferencesRadioWrap>
-          <RadioGroup
-            value={true}
-            name="hasYard"
-            onChange={(e) => {
-              console.log(e.target);
-            }}
-            row
-          >
-            <FormControlLabel
-              label="Small 0-15 lbs"
-              labelPlacement="bottom"
-              value={false}
-              control={<Radio />}
-            />
-            <FormControlLabel
-              label="Medium 16-40 lbs"
-              labelPlacement="bottom"
-              value={false}
-              control={<Radio />}
-            />
-            <FormControlLabel
-              label="Large 41-100 lbs"
-              labelPlacement="bottom"
-              value={false}
-              control={<Radio />}
-            />
-            <FormControlLabel
-              label="Giant 100+ lbs"
-              labelPlacement="bottom"
-              value={false}
-              control={<Radio />}
-            />
-          </RadioGroup>
+          <FormControlLabel
+            label="Small 0-15 lbs"
+            labelPlacement="bottom"
+            value={values.petPreferencesSmall}
+            control={
+              <Radio
+                checked={values.petPreferencesSmall}
+                onChange={() => {
+                  setFieldValue(
+                    "petPreferencesSmall",
+                    !values.petPreferencesSmall
+                  );
+                }}
+              />
+            }
+          />
+          <FormControlLabel
+            label="Medium 16-40 lbs"
+            labelPlacement="bottom"
+            value={values.petPreferencesMedium}
+            control={
+              <Radio
+                checked={values.petPreferencesMedium}
+                onChange={() => {
+                  setFieldValue(
+                    "petPreferencesMedium",
+                    !values.petPreferencesMedium
+                  );
+                }}
+              />
+            }
+          />
+          <FormControlLabel
+            label="Large 41-100 lbs"
+            labelPlacement="bottom"
+            value={values.petPreferencesLarge}
+            control={
+              <Radio
+                checked={values.petPreferencesLarge}
+                onChange={() => {
+                  setFieldValue(
+                    "petPreferencesLarge",
+                    !values.petPreferencesLarge
+                  );
+                }}
+              />
+            }
+          />
+          <FormControlLabel
+            label="Giant 100+ lbs"
+            labelPlacement="bottom"
+            value={values.petPreferencesGiant}
+            control={
+              <Radio
+                checked={values.petPreferencesGiant}
+                onChange={() => {
+                  setFieldValue(
+                    "petPreferencesGiant",
+                    !values.petPreferencesGiant
+                  );
+                }}
+              />
+            }
+          />
         </S.PetPreferencesRadioWrap>
       </S.PetPreferencesWrap>
 
@@ -292,22 +396,25 @@ const SitterInfo = () => {
           name="address"
           variant="outlined"
           label="Your Address"
-          variant="outlined"
+          value={values.address}
+          onChange={handleChange}
         />
         <TextField
           name="city"
-          variant="outlined"
           label="Your City"
           variant="outlined"
+          value={values.city}
+          onChange={handleChange}
         />
         <FormControl variant="outlined">
           <InputLabel>State</InputLabel>
           <Select
             name="state"
+            value={values.state}
             placeholder="Your State"
             variant="outlined"
             label="Your State"
-            variant="outlined"
+            onChange={handleChange}
             MenuProps={{ style: { maxHeight: "400px" } }}
           >
             <MenuItem value="AK">Alaska</MenuItem>
@@ -366,10 +473,9 @@ const SitterInfo = () => {
         <TextField
           name="zip"
           variant="outlined"
-          label="Your Zip"
-          variant="outlined"
           label="ZIP/postal"
-          variant="outlined"
+          value={values.zip}
+          onChange={handleChange}
         />
       </S.AdressWrap>
       <S.ExperienceWrap>
@@ -378,13 +484,23 @@ const SitterInfo = () => {
           <S.YearsOfExperienceText>
             How many years of experience do you have?
           </S.YearsOfExperienceText>
-          <TextField type="number" variant="filled" />
+          <TextField
+            onChange={(e) => {
+              setFieldValue("yearsOfExperience", e.target.value);
+            }}
+            value={values.yearsOfExperience}
+            type="number"
+            variant="filled"
+          />
         </S.YearsOfExperienceWrap>
         <S.Text>Write an eye-catching headline</S.Text>
         <TextField
-          name="headline"
           label="Your headline"
           variant="outlined"
+          onBlur={(e) => {
+            console.log(123);
+            setFieldValue("headline", e.target.value);
+          }}
           fullWidth
         ></TextField>
         <S.Text>Craft an engaging "About Me"</S.Text>
@@ -393,7 +509,9 @@ const SitterInfo = () => {
           label="About me"
           multiline
           rows={8}
-          value={123}
+          onBlur={(e) => {
+            setFieldValue("aboutMe", e.target.value);
+          }}
           fullWidth
           variant="outlined"
         />

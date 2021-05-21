@@ -63,12 +63,11 @@ const userSchema = mongoose.Schema({
   isActiveSitter: { type: Boolean, default: false },
   homeType: String,
   smokes: Boolean,
-  petPreferences: {
-    small: Boolean,
-    medium: Boolean,
-    large: Boolean,
-    giant: Boolean,
-  },
+  petPreferencesSmall: Boolean,
+  petPreferencesMedium: Boolean,
+  petPreferencesLarge: Boolean,
+  petPreferencesGiant: Boolean,
+
   aboutMe: String,
   headline: String,
   yearsOfExperience: Number,
