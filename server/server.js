@@ -6,6 +6,7 @@ const connectDB = require("./database/db");
 const schema = require("./graphql/schema");
 const root = require("./graphql/resolver");
 const cookieParser = require("cookie-parser");
+const serverless = require("serverless-http");
 const { graphqlHTTP } = require("express-graphql");
 const { config } = require("dotenv");
 
@@ -35,8 +36,8 @@ app.use(
 app.use("/static", express.static(path.resolve(__dirname, "static")));
 app.use("/api", Routes);
 
-// app.get("/*", (_, res) => res.send(ServerSideMarkup()));
-
 app.listen(PORT, () => {
   console.log("Listening");
 });
+
+module.exports.handler = serverless(app);
