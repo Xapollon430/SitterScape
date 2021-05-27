@@ -4,7 +4,7 @@
   "description": "A platform for pet sitters and owners to meet",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "start": "nodemon server.js"
   },
   "repository": {},
   "keywords": [
