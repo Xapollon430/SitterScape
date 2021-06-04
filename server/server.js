@@ -10,37 +10,37 @@ const serverless = require("serverless-http");
 const { graphqlHTTP } = require("express-graphql");
 const { config } = require("dotenv");
 
-// config();
-// connectDB();
+config();
+connectDB();
 
 const PORT = 5000;
 const app = express();
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000", "https://sitterscape.com"], // send and receive tokens
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://sitterscape.com"], // send and receive tokens
+    credentials: true,
+  })
+);
 
-// app.use(express.json());
-// app.use(cookieParser());
+app.use(express.json());
+app.use(cookieParser());
 
-// app.use(
-//   "/graphql",
-//   graphqlHTTP({
-//     schema,
-//     rootValue: root,
-//     graphiql: true,
-//   })
-// );
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true,
+  })
+);
 
-// app.use("/api", Routes);
+app.use("/api", Routes);
 
-app.use(express.static(path.resolve(__dirname, "../fake/build")));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve("../client/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("Listening");

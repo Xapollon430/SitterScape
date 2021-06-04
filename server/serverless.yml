@@ -1,4 +1,5 @@
 service: sitterscape
+provider:
   name: aws
   runtime: nodejs12.x
   stage: api
