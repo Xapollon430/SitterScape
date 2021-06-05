@@ -23,7 +23,7 @@ export const AdressWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 40px 50px 50px;
-  grid-gap: 20px;
+  grid-gap: 30px;
 `;
 export const InfoText = styled.h2`
   grid-column: 1/-1;
@@ -31,6 +31,7 @@ export const InfoText = styled.h2`
 `;
 export const AdressField = styled(TextField)`
   grid-column: 1/-1;
+  m
 `;
 export const PetPreferences = styled.h2``;
 export const PetPreferencesText = styled.h4`
@@ -73,4 +74,8 @@ export const UserImage = styled.img`
 export const PhotoTextWrap = styled.div``;
 export const UploadButton = styled.input`
   margin-top: 20px;
+`;
+
+export const ErrorText = styled.p`
+  color: red;
 `;

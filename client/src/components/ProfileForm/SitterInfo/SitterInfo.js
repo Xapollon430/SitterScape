@@ -10,6 +10,7 @@ import {
   Select,
   MenuItem,
   Button,
+  FormHelperText,
 } from "@material-ui/core";
 import * as S from "./SitterInfo.styles";
 import SitterInfoInit from "./SitterInfoSchema";
@@ -27,7 +28,7 @@ const SitterInfo = () => {
     isSubmitting,
   } = SitterInfoInit();
 
-  console.log(errors);
+  console.log(values);
 
   return (
     <Fragment>
@@ -65,91 +66,60 @@ const SitterInfo = () => {
               value={values.boardingRate}
               type="number"
               variant="filled"
+              error={errors.boardingRate ? true : false}
+              helperText={errors.boardingRate}
             />
-            <S.Text>Are there any smokers in your house? </S.Text>
-            <S.RadioWrap>
-              <RadioGroup row>
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.smokes === undefined
-                          ? false
-                          : values.smokes === false
-                          ? true
-                          : false
-                      }
-                      onChange={() => {
-                        setFieldValue("smokes", false);
-                      }}
-                    />
-                  }
-                  label="No"
-                />
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.smokes === undefined
-                          ? false
-                          : values.smokes === false
-                          ? false
-                          : true
-                      }
-                      onChange={() => {
-                        setFieldValue("smokes", true);
-                      }}
-                    />
-                  }
-                  label="Yes"
-                />
-              </RadioGroup>
-            </S.RadioWrap>
-            <S.Text>Are there any children in your house? </S.Text>
+            <S.Text>Are there any smokers in your house?</S.Text>
+            <FormControl
+              variant="outlined"
+              error={errors.smokes ? true : false}
+            >
+              <InputLabel>Smoking</InputLabel>
+              <Select
+                value={values.smokes}
+                onChange={(e) => {
+                  setFieldValue("smokes", e.target.value);
+                }}
+                variant="outlined"
+                label="Smoking"
+              >
+                <MenuItem value={true}>Yes</MenuItem>
+                <MenuItem value={false}>No</MenuItem>
+              </Select>
+              {errors.smokes && (
+                <FormHelperText>{errors.smokes}</FormHelperText>
+              )}
+            </FormControl>
+            <S.Text>Are there any children in your house?</S.Text>
 
-            <S.RadioWrap>
-              <RadioGroup row>
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.hasChildren === undefined
-                          ? false
-                          : values.hasChildren === false
-                          ? true
-                          : false
-                      }
-                      onChange={() => {
-                        setFieldValue("hasChildren", false);
-                      }}
-                    />
-                  }
-                  label="No"
-                />
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.hasChildren === undefined
-                          ? false
-                          : values.hasChildren === false
-                          ? false
-                          : true
-                      }
-                      onChange={() => {
-                        setFieldValue("hasChildren", true);
-                      }}
-                    />
-                  }
-                  label="Yes"
-                />
-              </RadioGroup>
-            </S.RadioWrap>
+            <FormControl
+              variant="outlined"
+              error={errors.hasChildren ? true : false}
+            >
+              <InputLabel>Children</InputLabel>
+              <Select
+                value={values.hasChildren}
+                onChange={(e) => {
+                  setFieldValue("hasChildren", e.target.value);
+                }}
+                variant="outlined"
+                label="Children"
+              >
+                <MenuItem value={true}>Yes</MenuItem>
+                <MenuItem value={false}>No</MenuItem>
+              </Select>
+              {errors.hasChildren && (
+                <FormHelperText>{errors.hasChildren}</FormHelperText>
+              )}
+            </FormControl>
+
             <S.Text>What type of a home do you live in?</S.Text>
-            <FormControl variant="outlined">
+            <FormControl
+              variant="outlined"
+              error={errors.homeType ? true : false}
+            >
               <InputLabel>Home Type</InputLabel>
               <Select
-                // error={errors.state && touched.state}
                 value={values.homeType}
                 onChange={(e) => {
                   setFieldValue("homeType", e.target.value);
@@ -160,47 +130,32 @@ const SitterInfo = () => {
                 <MenuItem value="house">House</MenuItem>
                 <MenuItem value="apartment">Apartment</MenuItem>
               </Select>
+              {errors.homeType && (
+                <FormHelperText>{errors.homeType}</FormHelperText>
+              )}
             </FormControl>
             <S.Text>Do you have a yard?</S.Text>
 
-            <S.RadioWrap>
-              <RadioGroup row>
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.hasYard === undefined
-                          ? false
-                          : values.hasYard === false
-                          ? true
-                          : false
-                      }
-                      onChange={() => {
-                        setFieldValue("hasYard", false);
-                      }}
-                    />
-                  }
-                  label="No"
-                />
-                <FormControlLabel
-                  control={
-                    <Radio
-                      checked={
-                        values.hasYard === undefined
-                          ? false
-                          : values.hasYard === false
-                          ? false
-                          : true
-                      }
-                      onChange={() => {
-                        setFieldValue("hasYard", true);
-                      }}
-                    />
-                  }
-                  label="Yes"
-                />
-              </RadioGroup>
-            </S.RadioWrap>
+            <FormControl
+              variant="outlined"
+              error={errors.hasYard ? true : false}
+            >
+              <InputLabel>Yard</InputLabel>
+              <Select
+                value={values.hasYard}
+                onChange={(e) => {
+                  setFieldValue("hasYard", e.target.value);
+                }}
+                variant="outlined"
+                label="hasYard"
+              >
+                <MenuItem value={true}>Yes</MenuItem>
+                <MenuItem value={false}>No</MenuItem>
+              </Select>
+              {errors.hasYard && (
+                <FormHelperText>{errors.hasYard}</FormHelperText>
+              )}
+            </FormControl>
           </Fragment>
         )}
       </S.ServiceWrap>
@@ -239,6 +194,8 @@ const SitterInfo = () => {
               type="number"
               value={values.houseSittingRate}
               variant="filled"
+              error={errors.houseSittingRate}
+              helperText={errors.houseSittingRate}
             />
           </Fragment>
         )}
@@ -278,6 +235,8 @@ const SitterInfo = () => {
               type="number"
               value={values.dropInVisitRate}
               variant="filled"
+              error={errors.dropInVisitRate}
+              helperText={errors.dropInVisitRate}
             />
           </Fragment>
         )}
@@ -316,6 +275,8 @@ const SitterInfo = () => {
               type="number"
               value={values.walkingRate}
               variant="filled"
+              error={errors.walkingRate}
+              helperText={errors.walkingRate}
             />
           </Fragment>
         )}
@@ -324,6 +285,7 @@ const SitterInfo = () => {
         <S.PetPreferences>Your Pet Preferences </S.PetPreferences>
         <S.PetPreferencesText>
           What size pets do you prefer offering services to?
+          <S.ErrorText>{errors.petPreferences}</S.ErrorText>
         </S.PetPreferencesText>
         <S.PetPreferencesRadioWrap>
           <FormControlLabel
@@ -401,6 +363,8 @@ const SitterInfo = () => {
           label="Your Address"
           value={values.address}
           onChange={handleChange}
+          error={errors.address ? true : false}
+          helperText={errors.address}
         />
         <TextField
           name="city"
@@ -408,8 +372,10 @@ const SitterInfo = () => {
           variant="outlined"
           value={values.city}
           onChange={handleChange}
+          error={errors.city ? true : false}
+          helperText={errors.city}
         />
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" error={errors.state ? true : false}>
           <InputLabel>State</InputLabel>
           <Select
             name="state"
@@ -472,12 +438,15 @@ const SitterInfo = () => {
             <MenuItem value="WI">Wisconsin</MenuItem>
             <MenuItem value="WY">Wyoming</MenuItem>
           </Select>
+          {errors.state && <FormHelperText>{errors.state}</FormHelperText>}
         </FormControl>
         <TextField
           name="zip"
           variant="outlined"
           label="ZIP/postal"
           value={values.zip}
+          error={errors.zip ? true : false}
+          helperText={errors.zip}
           onChange={handleChange}
         />
       </S.AdressWrap>
@@ -505,6 +474,8 @@ const SitterInfo = () => {
             setFieldValue("headline", e.target.value);
           }}
           fullWidth
+          error={errors.headline ? true : false}
+          helperText={errors.headline}
         ></TextField>
         <S.Text>Craft an engaging "About Me"</S.Text>
 
@@ -518,6 +489,8 @@ const SitterInfo = () => {
           fullWidth
           defaultValue="stuff"
           variant="outlined"
+          error={errors.aboutMe ? true : false}
+          helperText={errors.aboutMe}
         />
       </S.ExperienceWrap>
       <S.PhotoWrap>

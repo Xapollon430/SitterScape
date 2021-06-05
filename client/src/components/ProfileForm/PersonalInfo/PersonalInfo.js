@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { StoreContext } from "../../../store/store";
-import Modal from "../../../UI/Modal/Modal";
+import Modal from "../../Modal/Modal";
 import PersonalInfoInit from "./PersonalInfoSchema";
 import defaultUserImage from "../../../images/default-user.png";
 

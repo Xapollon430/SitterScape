@@ -32,6 +32,7 @@ export default (setErrorFromServer) => {
   const [state, dispatch] = useContext(StoreContext);
 
   return useFormik({
+    validateOnChange: false,
     initialValues: {
       address: state.user.address || "",
       state: state.user.state || "",
@@ -58,39 +59,46 @@ export default (setErrorFromServer) => {
       hasYard: state.user.hasYard,
       profilePicture: "",
     },
-    // validate: (values) => {
-    //   let errors;
-    //   let errorExists = false;
+    validate: (values) => {
+      let errors = {};
+      let errorExists = false;
 
-    //   console.log(123);
+      if (values.boarding && values.boardingRate <= 0) {
+        errors.boardingRate = "Please choose a rate above $0";
 
-    //   if (values.boarding && values.boardingRate <= 0) {
-    //     errors.boardingRate = "Please choose a rate above $0";
-    //     errorExists = true;
-    //   }
+        errorExists = true;
+      }
 
-    //   if (values.dropInVisit && values.dropInVisitRate <= 0) {
-    //     errors.dropInVisitRate = "Please choose a rate above $0";
-    //     errorExists = true;
-    //   }
+      if (values.dropInVisit && values.dropInVisitRate <= 0) {
+        errors.dropInVisitRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
 
-    //   if (values.houseSitting && values.houseSittingRate <= 0) {
-    //     errors.houseSittingRate = "Please choose a rate above $0";
-    //     errorExists = true;
-    //   }
+      if (values.houseSitting && values.houseSittingRate <= 0) {
+        errors.houseSittingRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
 
-    //   if (values.walking && values.walkingRate <= 0) {
-    //     errors.walkingRate = "Please choose a rate above $0";
-    //     errorExists = true;
-    //   }
+      if (values.walking && values.walkingRate <= 0) {
+        errors.walkingRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
 
-    //   if (errorExists) {
-    //     return errors;
-    //   }
+      if (
+        values.petPreferencesSmall == false &&
+        values.petPreferencesMedium == false &&
+        values.petPreferencesLarge == false &&
+        values.petPreferencesGiant == false
+      ) {
+        errors.petPreferences = "Please pick at least one!";
+      }
+      if (errorExists) {
+        return errors;
+      }
 
-    //   return true;
-    // },
-    // validationSchema: PersonalInfoSchema,
+      return true;
+    },
+    validationSchema: PersonalInfoSchema,
     onSubmit: async (values, { resetForm }) => {
       console.log(values, actions);
       try {
