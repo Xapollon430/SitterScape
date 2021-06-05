@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import {
   FormControlLabel,
   Switch,
@@ -12,11 +12,15 @@ import {
   Button,
   FormHelperText,
 } from "@material-ui/core";
+
+import { StoreContext } from "../../../store/store";
 import * as S from "./SitterInfo.styles";
 import SitterInfoInit from "./SitterInfoSchema";
 import defaultUserImage from "../../../images/default-user.png";
 
 const SitterInfo = () => {
+  const [state, dispatch] = useContext(StoreContext);
+
   const {
     handleSubmit,
     handleChange,
@@ -28,7 +32,7 @@ const SitterInfo = () => {
     isSubmitting,
   } = SitterInfoInit();
 
-  console.log(values);
+  console.log(errors);
 
   return (
     <Fragment>
@@ -76,7 +80,13 @@ const SitterInfo = () => {
             >
               <InputLabel>Smoking</InputLabel>
               <Select
-                value={values.smokes}
+                value={
+                  values.smokes === false
+                    ? false
+                    : values.smokes === true
+                    ? true
+                    : ""
+                }
                 onChange={(e) => {
                   setFieldValue("smokes", e.target.value);
                 }}
@@ -98,7 +108,13 @@ const SitterInfo = () => {
             >
               <InputLabel>Children</InputLabel>
               <Select
-                value={values.hasChildren}
+                value={
+                  values.hasChildren === false
+                    ? false
+                    : values.hasChildren === true
+                    ? true
+                    : ""
+                }
                 onChange={(e) => {
                   setFieldValue("hasChildren", e.target.value);
                 }}
@@ -120,7 +136,13 @@ const SitterInfo = () => {
             >
               <InputLabel>Home Type</InputLabel>
               <Select
-                value={values.homeType}
+                value={
+                  values.homeType === false
+                    ? false
+                    : values.homeType === true
+                    ? true
+                    : ""
+                }
                 onChange={(e) => {
                   setFieldValue("homeType", e.target.value);
                 }}
@@ -142,7 +164,13 @@ const SitterInfo = () => {
             >
               <InputLabel>Yard</InputLabel>
               <Select
-                value={values.hasYard}
+                value={
+                  values.hasYard === false
+                    ? false
+                    : values.hasYard === true
+                    ? true
+                    : ""
+                }
                 onChange={(e) => {
                   setFieldValue("hasYard", e.target.value);
                 }}
@@ -500,6 +528,7 @@ const SitterInfo = () => {
             This is the first photo pet owners will see. Build trust! Well-lit,
             clear frontal face photos (no sunglasses) are recommended.
           </S.PhotoTextExplanation>
+          <S.ErrorText>{errors.profilePicture}</S.ErrorText>
           <S.UploadButton
             type="file"
             id="file"
@@ -508,7 +537,13 @@ const SitterInfo = () => {
             }
           />
         </S.PhotoTextWrap>
-        <S.UserImage src={defaultUserImage} />
+        <S.UserImage
+          src={
+            state.user.profilePicture
+              ? state.user.profilePicture
+              : defaultUserImage
+          }
+        />
       </S.PhotoWrap>
       <Button onClick={handleSubmit} variant="contained">
         Save

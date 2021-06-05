@@ -17,14 +17,14 @@ const PersonalInfoSchema = Yup.object().shape({
   houseSittingRate: Yup.number(),
   dropInVisit: Yup.boolean(),
   dropInVisitRate: Yup.number(),
-  hasChildren: Yup.boolean().required("Please select an option!"),
-  homeType: Yup.string().required("Please select an option!"),
+  hasChildren: Yup.boolean(),
+  homeType: Yup.string(),
   headline: Yup.string().required("A headline is required!"),
   petPreferences: Yup.mixed(),
   aboutMe: Yup.string().required("An about me is required!"),
   yearsOfExperience: Yup.string(),
-  hasYard: Yup.boolean().required("Please select an option."),
-  smokes: Yup.boolean().required("Please select an option."),
+  hasYard: Yup.boolean(),
+  smokes: Yup.boolean(),
   profilePicture: Yup.mixed().required("A profile picture is required!"),
 });
 
@@ -46,26 +46,40 @@ export default (setErrorFromServer) => {
       houseSittingRate: state.user?.services?.houseSitting?.rate || 0,
       dropInVisit: state.user?.services?.dropInVisit?.active || false,
       dropInVisitRate: state.user?.services?.dropInVisitRate?.rate || 0,
-      hasChildren: state.user.hasChildren,
+      hasChildren: state.user.hasChildren || "",
       homeType: state.user.homeType || "",
       petPreferencesSmall: state.user.petPreferencesSmall || false,
       petPreferencesMedium: state.user.petPreferencesMedium || false,
       petPreferencesLarge: state.user.petPreferencesLarge || false,
       petPreferencesGiant: state.user.petPreferencesGiant || false,
       headline: state.user.headline || "",
-      smokes: state.user.smokes,
+      smokes: state.user.smokes || "",
       aboutMe: state.user.aboutMe || "",
       yearsOfExperience: state.user.yearsOfExperience || 0,
-      hasYard: state.user.hasYard,
+      hasYard: state.user.hasYard || "",
       profilePicture: "",
     },
     validate: (values) => {
       let errors = {};
       let errorExists = false;
 
-      if (values.boarding && values.boardingRate <= 0) {
-        errors.boardingRate = "Please choose a rate above $0";
+      if (values.boarding) {
+        if (values.boardingRate <= 0) {
+          errors.boardingRate = "Please choose a rate above $0";
+        }
 
+        if (values.smokes === "") {
+          errors.smokes = "Please select an option.";
+        }
+        if (values.hasYard === "") {
+          errors.hasYard = "Please select an option.";
+        }
+        if (values.hasChildren === "") {
+          errors.hasChildren = "Please select an option.";
+        }
+        if (values.homeType === "") {
+          errors.homeType = "Please select an option.";
+        }
         errorExists = true;
       }
 
@@ -84,6 +98,8 @@ export default (setErrorFromServer) => {
         errorExists = true;
       }
 
+      console.log(values);
+
       if (
         values.petPreferencesSmall == false &&
         values.petPreferencesMedium == false &&
@@ -91,7 +107,13 @@ export default (setErrorFromServer) => {
         values.petPreferencesGiant == false
       ) {
         errors.petPreferences = "Please pick at least one!";
+        errorExists = true;
       }
+
+      if (values.profilePicture === "") {
+        errors.profilePicture = "Please upload a photo!";
+      }
+
       if (errorExists) {
         return errors;
       }
