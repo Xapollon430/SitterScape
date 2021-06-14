@@ -2,8 +2,8 @@ import { memo } from "react";
 import * as S from "./Information.styles";
 
 import profile from "../../../images/steps-profile.png";
-import search from "../../../images/steps-profile.png";
-import handshake from "../../../images/steps-profile.png";
+import search from "../../../images/steps-search.png";
+import handshake from "../../../images/steps-handshake.png";
 import petsitter from "../../../images/petsitter.jpg";
 
 const Information = memo(() => {

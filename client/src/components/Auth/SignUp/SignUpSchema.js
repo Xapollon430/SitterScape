@@ -58,6 +58,8 @@ export default (setErrorFromServer) => {
           })
         );
 
+        
+
         history.push(query.get("next"));
       } catch (e) {
         setErrorFromServer(e);

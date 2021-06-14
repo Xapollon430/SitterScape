@@ -5,13 +5,16 @@ import Inbox from "./components/Inbox/Inbox";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Profile from "./components/ProfileForm/Profile";
 import * as actions from "./store/actions";
+import * as S from "./App.styles";
 import { StoreContext } from "./store/store";
 import { Route, Switch, useHistory } from "react-router-dom";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
   const history = useHistory();
+  const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
+
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
@@ -24,6 +27,7 @@ const App = () => {
         );
 
         if (response.status != 200) {
+          setAutoLoginAttempted(true);
           throw await response.text();
         }
         let data = await response.json();
@@ -41,6 +45,7 @@ const App = () => {
         if (redirect) {
           history.push(redirect);
         }
+        setAutoLoginAttempted(true);
       } catch (e) {
         console.log(e);
         //If token runs out during user session.
@@ -58,16 +63,19 @@ const App = () => {
     setInterval(autoLogin, 1200000);
   }, []);
 
-  return (
+  return autoLoginAttempted ? (
     <Switch>
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
       <PrivateRoute path="/profile" render={() => <Profile />} />
-
       <Route path="/*" render={() => <Landing />} />
     </Switch>
+  ) : (
+    <S.SpinnerWrapper>
+      <S.Spinner />
+    </S.SpinnerWrapper>
   );
 };
 
