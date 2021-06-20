@@ -1,10 +1,9 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState} from "react";
 import {
   FormControlLabel,
   Switch,
   TextField,
   Radio,
-  RadioGroup,
   FormControl,
   InputLabel,
   Select,
@@ -12,14 +11,18 @@ import {
   Button,
   FormHelperText,
 } from "@material-ui/core";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 import { StoreContext } from "../../../store/store";
 import * as S from "./SitterInfo.styles";
 import SitterInfoInit from "./SitterInfoSchema";
 import defaultUserImage from "../../../images/default-user.png";
 
 const SitterInfo = () => {
-  const [state, dispatch] = useContext(StoreContext);
+  const [state, _] = useContext(StoreContext)
+  const [showErrorSnackbar, setShowErrorSnackbar] = useState(false)
+
+  const snackbarHandle = (setShowErrorSnackbar)
 
   const {
     handleSubmit,
@@ -30,9 +33,7 @@ const SitterInfo = () => {
     touched,
     handleBlur,
     isSubmitting,
-  } = SitterInfoInit();
-
-  console.log(errors);
+  } = SitterInfoInit(setShowErrorSnackbar);
 
   return (
     <Fragment>
@@ -66,6 +67,7 @@ const SitterInfo = () => {
               onChange={(e) => {
                 setFieldValue("boardingRate", e.target.value);
               }}
+              InputProps={{ inputProps: { min: 0 } }}
               label="$"
               value={values.boardingRate}
               type="number"
@@ -137,10 +139,10 @@ const SitterInfo = () => {
               <InputLabel>Home Type</InputLabel>
               <Select
                 value={
-                  values.homeType === false
-                    ? false
-                    : values.homeType === true
-                    ? true
+                  values.homeType === "House"
+                    ? "House"
+                    : values.homeType === "Apartment"
+                    ? "Apartment"
                     : ""
                 }
                 onChange={(e) => {
@@ -149,8 +151,8 @@ const SitterInfo = () => {
                 variant="outlined"
                 label="Home Type"
               >
-                <MenuItem value="house">House</MenuItem>
-                <MenuItem value="apartment">Apartment</MenuItem>
+                <MenuItem value={"House"}>House</MenuItem>
+                <MenuItem value={"Apartment"}>Apartment</MenuItem>
               </Select>
               {errors.homeType && (
                 <FormHelperText>{errors.homeType}</FormHelperText>
@@ -220,6 +222,7 @@ const SitterInfo = () => {
               }}
               label="$"
               type="number"
+              InputProps={{ inputProps: { min: 0 } }}
               value={values.houseSittingRate}
               variant="filled"
               error={errors.houseSittingRate}
@@ -261,6 +264,7 @@ const SitterInfo = () => {
               }}
               label="$"
               type="number"
+              InputProps={{ inputProps: { min: 0 } }}
               value={values.dropInVisitRate}
               variant="filled"
               error={errors.dropInVisitRate}
@@ -299,6 +303,7 @@ const SitterInfo = () => {
               onChange={(e) => {
                 setFieldValue("walkingRate", e.target.value);
               }}
+              InputProps={{ inputProps: { min: 0 } }}
               label="$"
               type="number"
               value={values.walkingRate}
@@ -382,7 +387,6 @@ const SitterInfo = () => {
           />
         </S.PetPreferencesRadioWrap>
       </S.PetPreferencesWrap>
-
       <S.AdressWrap>
         <S.InfoText>Add Your Address</S.InfoText>
         <S.AdressField
@@ -497,7 +501,7 @@ const SitterInfo = () => {
         <TextField
           label="Your headline"
           variant="outlined"
-          defaultValue="stuff"
+          defaultValue={values.headline}
           onBlur={(e) => {
             setFieldValue("headline", e.target.value);
           }}
@@ -515,7 +519,7 @@ const SitterInfo = () => {
             setFieldValue("aboutMe", e.target.value);
           }}
           fullWidth
-          defaultValue="stuff"
+          defaultValue={values.aboutMe}
           variant="outlined"
           error={errors.aboutMe ? true : false}
           helperText={errors.aboutMe}
@@ -545,6 +549,15 @@ const SitterInfo = () => {
           }
         />
       </S.PhotoWrap>
+      <Snackbar
+        style={{ marginTop: "50px" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={showErrorSnackbar ? true : false}
+      >
+        <Alert variant="filled" severity="error">
+          There is an error!
+        </Alert>
+      </Snackbar>
       <Button onClick={handleSubmit} variant="contained">
         Save
       </Button>

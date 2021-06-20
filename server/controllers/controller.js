@@ -75,7 +75,27 @@ const logOut = async (req, res) => {
   }
 };
 
-const updateUpdatePersonalInfo = async (req, res) => {
+const updatePersonalInfo = async (req, res) => {
+  try {
+    const values = req.body;
+    const user = req.user;
+    if (req.file) {
+      uploadProfilePicture(req.file, user);
+    }
+
+    for (const data in values) {
+      user[data] = values[data];
+    }
+
+    await user.save();
+
+    return res.status(200).send(user);
+  } catch (e) {
+    return res.status(400).send("Couldn't update user!");
+  }
+};
+
+const updateSitterInfo = async (req, res) => {
   try {
     const values = req.body;
     if (req.file) {
@@ -87,8 +107,8 @@ const updateUpdatePersonalInfo = async (req, res) => {
     }
 
     req.user.save();
+    return res.status(200).send(user);
   } catch (e) {
-    console.log(e);
     return res.status(400).send("Couldn't update user!");
   }
 };
@@ -98,5 +118,6 @@ module.exports = {
   logOut,
   login,
   autoLogin,
-  updateUpdatePersonalInfo,
+  updatePersonalInfo,
+  updateSitterInfo,
 };

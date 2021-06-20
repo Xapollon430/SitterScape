@@ -9,26 +9,12 @@ const PersonalInfoSchema = Yup.object().shape({
   state: Yup.string().required("State is required!"),
   city: Yup.string().required("City is required"),
   zip: Yup.string().max(5).required("Zip code is required!"),
-  boarding: Yup.boolean(),
-  boardingRate: Yup.number(),
-  walking: Yup.boolean(),
-  walkingRate: Yup.number(),
-  houseSitting: Yup.boolean(),
-  houseSittingRate: Yup.number(),
-  dropInVisit: Yup.boolean(),
-  dropInVisitRate: Yup.number(),
-  hasChildren: Yup.boolean(),
-  homeType: Yup.string(),
   headline: Yup.string().required("A headline is required!"),
-  petPreferences: Yup.mixed(),
   aboutMe: Yup.string().required("An about me is required!"),
-  yearsOfExperience: Yup.string(),
-  hasYard: Yup.boolean(),
-  smokes: Yup.boolean(),
   profilePicture: Yup.mixed().required("A profile picture is required!"),
 });
 
-export default (setErrorFromServer) => {
+export default ({ setShowErrorSnackbar }) => {
   const [state, dispatch] = useContext(StoreContext);
 
   return useFormik({
@@ -57,7 +43,7 @@ export default (setErrorFromServer) => {
       aboutMe: state.user.aboutMe || "",
       yearsOfExperience: state.user.yearsOfExperience || 0,
       hasYard: state.user.hasYard || "",
-      profilePicture: "",
+      profilePicture: state.user.profilePicture || "",
     },
     validate: (values) => {
       let errors = {};
@@ -66,21 +52,25 @@ export default (setErrorFromServer) => {
       if (values.boarding) {
         if (values.boardingRate <= 0) {
           errors.boardingRate = "Please choose a rate above $0";
+          errorExists = true;
         }
 
         if (values.smokes === "") {
           errors.smokes = "Please select an option.";
+          errorExists = true;
         }
         if (values.hasYard === "") {
           errors.hasYard = "Please select an option.";
+          errorExists = true;
         }
         if (values.hasChildren === "") {
           errors.hasChildren = "Please select an option.";
+          errorExists = true;
         }
         if (values.homeType === "") {
           errors.homeType = "Please select an option.";
+          errorExists = true;
         }
-        errorExists = true;
       }
 
       if (values.dropInVisit && values.dropInVisitRate <= 0) {
@@ -98,8 +88,6 @@ export default (setErrorFromServer) => {
         errorExists = true;
       }
 
-      console.log(values);
-
       if (
         values.petPreferencesSmall == false &&
         values.petPreferencesMedium == false &&
@@ -112,44 +100,45 @@ export default (setErrorFromServer) => {
 
       if (values.profilePicture === "") {
         errors.profilePicture = "Please upload a photo!";
+        errorExists = true;
       }
 
-      if (errorExists) {
+      let yupCheck = PersonalInfoSchema.isValidSync(values);
+
+      if (errorExists || !yupCheck) {
+        setShowErrorSnackbar(true);
         return errors;
       }
 
       return true;
     },
-    validationSchema: PersonalInfoSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log(values, actions);
       try {
-        // const updatedProfileData = new FormData();
-        // for (const data in values) {
-        //   data !== "" && updatedProfileData.append(data, values[data]);
-        // }
-        // console.log(updatedProfileData);
-        // let response = await fetch(
-        //   `${process.env.SITTERSCAPE_API_URL}/api/update-personal-info`,
-        //   {
-        //     method: "PATCH",
-        //     body: updatedProfileData,
-        //     headers: {
-        //       Authorization: "Bearer " + state.accessToken,
-        //     },
-        //   }
-        // );
-        // if (response.status != 200) {
-        //   throw await response.text();
-        // }
-        // let data = await response.json();
-        // dispatch(
-        //   actions.generalDispatchBundler({
-        //     user: data.user,
-        //   })
-        // );
+        const updatedProfileData = new FormData();
+        for (const data in values) {
+          data !== "" && updatedProfileData.append(data, values[data]);
+        }
+        let response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/api/update-sitter-info`,
+          {
+            method: "PATCH",
+            body: updatedProfileData,
+            headers: {
+              Authorization: "Bearer " + state.accessToken,
+            },
+          }
+        );
+        if (response.status != 200) {
+          throw await response.text();
+        }
+        let data = await response.json();
+        dispatch(
+          actions.generalDispatchBundler({
+            user: data.user,
+          })
+        );
       } catch (e) {
-        setErrorFromServer(e);
+        // setErrorFromServer(e);
         resetForm();
       }
     },

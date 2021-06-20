@@ -17,10 +17,17 @@ router.patch(
   "/update-personal-info",
   auth,
   upload.single("profilePicture"),
-  controllers.updateUpdatePersonalInfo
+  controllers.updatePersonalInfo
 );
 
-router.use((req, res, next) => {
+router.patch(
+  "/update-sitter-info",
+  auth,
+  upload.single("profilePicture"),
+  controllers.updateSitterInfo
+);
+
+router.use((req, res) => {
   return res.status(400).send("Route doesn't exist!");
 });
 

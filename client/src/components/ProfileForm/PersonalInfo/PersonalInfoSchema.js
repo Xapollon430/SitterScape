@@ -50,12 +50,13 @@ export default (setErrorFromServer) => {
         if (response.status != 200) {
           throw await response.text();
         }
-        // let data = await response.json();
-        // dispatch(
-        //   actions.generalDispatchBundler({
-        //     user: data.user,
-        //   })
-        // );
+        let updatedUser = await response.json();
+
+        dispatch(
+          actions.generalDispatchBundler({
+            user: updatedUser,
+          })
+        );
       } catch (e) {
         setErrorFromServer(e);
         resetForm();
