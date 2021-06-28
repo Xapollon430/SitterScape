@@ -22,8 +22,6 @@ const SitterInfo = () => {
   const [state, _] = useContext(StoreContext);
   const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
 
-  // const snackbarHandle = (setShowErrorSnackbar)
-
   const {
     handleSubmit,
     handleChange,
@@ -34,8 +32,6 @@ const SitterInfo = () => {
     handleBlur,
     isSubmitting,
   } = SitterInfoInit(setShowErrorSnackbar);
-
-  console.log(values);
 
   return (
     <Fragment>
@@ -85,11 +81,11 @@ const SitterInfo = () => {
               <InputLabel>Smoking</InputLabel>
               <Select
                 value={
-                  values.smokes === "false"
+                  values.smokes === false
                     ? false
-                    : values.smokes === "true"
+                    : values.smokes === true
                     ? true
-                    : ""
+                    : undefined
                 }
                 onChange={(e) => {
                   setFieldValue("smokes", e.target.value);
@@ -113,11 +109,11 @@ const SitterInfo = () => {
               <InputLabel>Children</InputLabel>
               <Select
                 value={
-                  values.hasChildren === "false"
+                  values.hasChildren === false
                     ? false
-                    : values.hasChildren === "true"
+                    : values.hasChildren === true
                     ? true
-                    : ""
+                    : undefined
                 }
                 onChange={(e) => {
                   setFieldValue("hasChildren", e.target.value);
@@ -169,11 +165,11 @@ const SitterInfo = () => {
               <InputLabel>Yard</InputLabel>
               <Select
                 value={
-                  values.hasYard === "false"
+                  values.hasYard === false
                     ? false
-                    : values.hasYard === "true"
+                    : values.hasYard === true
                     ? true
-                    : ""
+                    : undefined
                 }
                 onChange={(e) => {
                   setFieldValue("hasYard", e.target.value);
@@ -544,13 +540,7 @@ const SitterInfo = () => {
             }
           />
         </S.PhotoTextWrap>
-        <S.UserImage
-          src={
-            state.user.profilePicture
-              ? state.user.profilePicture
-              : defaultUserImage
-          }
-        />
+        <S.UserImage src={state.user.profilePicture || defaultUserImage} />
       </S.PhotoWrap>
       <Snackbar
         style={{ marginTop: "50px" }}

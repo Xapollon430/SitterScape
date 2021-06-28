@@ -79,8 +79,10 @@ const updatePersonalInfo = async (req, res) => {
   try {
     const values = req.body;
     const user = req.user;
-    if (req.file) {
-      uploadProfilePicture(req.file, user);
+    const file = req.file;
+
+    if (file) {
+      uploadProfilePicture(file, user);
     }
 
     for (const data in values) {
@@ -100,7 +102,8 @@ const updateSitterInfo = async (req, res) => {
     const values = req.body;
     const user = req.user;
     const file = req.file;
-    if (req.file) {
+
+    if (file) {
       uploadProfilePicture(file, user);
     }
 

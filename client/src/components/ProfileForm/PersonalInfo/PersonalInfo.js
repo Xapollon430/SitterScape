@@ -16,7 +16,7 @@ import defaultUserImage from "../../../images/default-user.png";
 
 const PersonalInfo = ({ changeShowTabs }) => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
-  const [state, dispatch] = useContext(StoreContext);
+  const [state] = useContext(StoreContext);
   const {
     handleSubmit,
     handleChange,
@@ -31,6 +31,8 @@ const PersonalInfo = ({ changeShowTabs }) => {
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
+
+  console.log(state.user);
 
   return (
     <Fragment>
@@ -61,9 +63,11 @@ const PersonalInfo = ({ changeShowTabs }) => {
             errors.surname && touched.surname && "Don't leave this empty!"
           }
         />
+        {/* <S.ButtonWrap> */}
         <Button variant="contained" onClick={passwordModalHandler}>
           Change Password
         </Button>
+        {/* </S.ButtonWrap> */}
       </S.PersonalInfoWrap>
       <S.AdressWrap>
         <S.InfoText>Your Address</S.InfoText>
@@ -178,18 +182,16 @@ const PersonalInfo = ({ changeShowTabs }) => {
             }
           />
         </S.PhotoTextWrap>
-        <S.UserImage
-          src={
-            state.user.profilePicture
-              ? state.user.profilePicture
-              : defaultUserImage
-          }
-        />
+        <S.UserImage src={state.user.profilePicture || defaultUserImage} />
       </S.PhotoWrap>
-      <Button onClick={handleSubmit} variant="contained">
+      <Button
+        onClick={handleSubmit}
+        style={{ height: "50px" }}
+        variant="contained"
+      >
         Save
       </Button>
-      {state.isActiveSitter || (
+      {state.user.isActiveSitter || (
         <S.StyledLink onClick={changeShowTabs}>
           Want to become a sitter?
         </S.StyledLink>

@@ -1,26 +1,40 @@
 import { StoreContext } from "../../store/store";
-import { useContext, useState } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Route, useHistory, useLocation } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import SitterInfo from "./SitterInfo/SitterInfo";
 import * as S from "./Profile.styles";
 
 const Profile = () => {
-  const [state] = useContext(StoreContext);
   const history = useHistory();
-  const [selectedTab, setSelectedTab] = useState("personal");
+  const location = useLocation();
+  const [state] = useContext(StoreContext);
+  const [selectedTab, setSelectedTab] = useState();
   const [showBothTabs, setShowBothTabs] = useState(state.user.isActiveSitter);
+
+  useEffect(() => {
+    location.pathname.includes("sitter")
+      ? setSelectedTab("sitter")
+      : setSelectedTab("personal");
+  }, []);
 
   const changeShowTabs = () => {
     setShowBothTabs(true);
     setSelectedTab("sitter");
+    history.push("/profile/sitter");
   };
 
   const changeTab = (e) => {
     e.target.innerHTML == "Personal Information"
-      ? setSelectedTab("personal")
-      : setSelectedTab("sitter");
+      ? (() => {
+          setSelectedTab("personal");
+          history.push("/profile");
+        })()
+      : (() => {
+          setSelectedTab("sitter");
+          history.push("/profile/sitter");
+        })();
   };
 
   return (
@@ -28,7 +42,7 @@ const Profile = () => {
       <ProfileHeader />
       <S.ProfileWrap>
         <S.FormWrap>
-          {showBothTabs || (
+          {showBothTabs && (
             <S.TabWrap>
               <S.TabText
                 selected={selectedTab === "personal"}
@@ -51,7 +65,6 @@ const Profile = () => {
             render={() => <PersonalInfo changeShowTabs={changeShowTabs} />}
           />
           <Route exact path="/profile/sitter" render={() => <SitterInfo />} />
-          
         </S.FormWrap>
       </S.ProfileWrap>
     </S.Wrap>

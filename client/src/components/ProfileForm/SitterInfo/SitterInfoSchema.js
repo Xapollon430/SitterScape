@@ -2,17 +2,6 @@ import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import * as actions from "../../../store/actions";
-import * as Yup from "yup";
-
-const PersonalInfoSchema = Yup.object().shape({
-  address: Yup.string().required("Address is required!"),
-  state: Yup.string().required("State is required!"),
-  city: Yup.string().required("City is required"),
-  zip: Yup.string().max(5).required("Zip code is required!"),
-  headline: Yup.string().required("A headline is required!"),
-  aboutMe: Yup.string().required("An about me is required!"),
-  profilePicture: Yup.mixed().required("A profile picture is required!"),
-});
 
 export default (setShowErrorSnackbar) => {
   const [state, dispatch] = useContext(StoreContext);
@@ -32,17 +21,17 @@ export default (setShowErrorSnackbar) => {
       houseSittingRate: state.user.houseSittingRate || 0,
       dropInVisit: state.user.dropInVisit || false,
       dropInVisitRate: state.user.dropInVisitRate || 0,
-      hasChildren: state.user.hasChildren || "",
+      hasChildren: state.user.hasChildren,
       homeType: state.user.homeType || "",
       petPreferencesSmall: state.user.petPreferencesSmall || false,
       petPreferencesMedium: state.user.petPreferencesMedium || false,
       petPreferencesLarge: state.user.petPreferencesLarge || false,
       petPreferencesGiant: state.user.petPreferencesGiant || false,
       headline: state.user.headline || "",
-      smokes: state.user.smokes || "",
+      smokes: state.user.smokes,
       aboutMe: state.user.aboutMe || "",
       yearsOfExperience: state.user.yearsOfExperience || 0,
-      hasYard: state.user.hasYard || "",
+      hasYard: state.user.hasYard,
       profilePicture: state.user.profilePicture || "",
     },
     validate: async (values) => {
@@ -55,15 +44,15 @@ export default (setShowErrorSnackbar) => {
           errorExists = true;
         }
 
-        if (values.smokes === "") {
+        if (values.smokes === undefined) {
           errors.smokes = "Please select an option.";
           errorExists = true;
         }
-        if (values.hasYard === "") {
+        if (values.hasYard === undefined) {
           errors.hasYard = "Please select an option.";
           errorExists = true;
         }
-        if (values.hasChildren === "") {
+        if (values.hasChildren === undefined) {
           errors.hasChildren = "Please select an option.";
           errorExists = true;
         }
@@ -141,6 +130,9 @@ export default (setShowErrorSnackbar) => {
         for (const data in values) {
           data !== "" && updatedProfileData.append(data, values[data]);
         }
+
+        updatedProfileData.append("isActiveSitter", true);
+
         let response = await fetch(
           `${process.env.REACT_APP_SERVER_URL}/api/update-sitter-info`,
           {
