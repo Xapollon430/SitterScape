@@ -1,12 +1,14 @@
 import { StoreContext } from "../../store/store";
 import { useContext, useState } from "react";
+import { Route, useHistory } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import SitterInfo from "./SitterInfo/SitterInfo";
 import * as S from "./Profile.styles";
 
 const Profile = () => {
-  const [state, dispatch] = useContext(StoreContext);
+  const [state] = useContext(StoreContext);
+  const history = useHistory();
   const [selectedTab, setSelectedTab] = useState("personal");
   const [showBothTabs, setShowBothTabs] = useState(state.user.isActiveSitter);
 
@@ -43,11 +45,13 @@ const Profile = () => {
             </S.TabWrap>
           )}
 
-          {selectedTab === "personal" ? (
-            <PersonalInfo changeShowTabs={changeShowTabs} />
-          ) : (
-            <SitterInfo />
-          )}
+          <Route
+            exact
+            path="/profile"
+            render={() => <PersonalInfo changeShowTabs={changeShowTabs} />}
+          />
+          <Route exact path="/profile/sitter" render={() => <SitterInfo />} />
+          
         </S.FormWrap>
       </S.ProfileWrap>
     </S.Wrap>

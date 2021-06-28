@@ -95,7 +95,10 @@ export const Button = styled.button`
   font-size: 1.2rem;
   height: 45px;
   border: #484847 2px solid;
-  border-radius: 20px;
+  border-radius: 5px;
+  border-radius: 5px;
+  margin: 0px;
+  padding: 0px;
 
   @media (max-width: 800px) {
     height: 35px;

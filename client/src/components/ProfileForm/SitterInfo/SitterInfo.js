@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState} from "react";
+import { Fragment, useContext, useState } from "react";
 import {
   FormControlLabel,
   Switch,
@@ -19,10 +19,10 @@ import SitterInfoInit from "./SitterInfoSchema";
 import defaultUserImage from "../../../images/default-user.png";
 
 const SitterInfo = () => {
-  const [state, _] = useContext(StoreContext)
-  const [showErrorSnackbar, setShowErrorSnackbar] = useState(false)
+  const [state, _] = useContext(StoreContext);
+  const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
 
-  const snackbarHandle = (setShowErrorSnackbar)
+  // const snackbarHandle = (setShowErrorSnackbar)
 
   const {
     handleSubmit,
@@ -34,6 +34,8 @@ const SitterInfo = () => {
     handleBlur,
     isSubmitting,
   } = SitterInfoInit(setShowErrorSnackbar);
+
+  console.log(values);
 
   return (
     <Fragment>
@@ -83,9 +85,9 @@ const SitterInfo = () => {
               <InputLabel>Smoking</InputLabel>
               <Select
                 value={
-                  values.smokes === false
+                  values.smokes === "false"
                     ? false
-                    : values.smokes === true
+                    : values.smokes === "true"
                     ? true
                     : ""
                 }
@@ -111,9 +113,9 @@ const SitterInfo = () => {
               <InputLabel>Children</InputLabel>
               <Select
                 value={
-                  values.hasChildren === false
+                  values.hasChildren === "false"
                     ? false
-                    : values.hasChildren === true
+                    : values.hasChildren === "true"
                     ? true
                     : ""
                 }
@@ -167,9 +169,9 @@ const SitterInfo = () => {
               <InputLabel>Yard</InputLabel>
               <Select
                 value={
-                  values.hasYard === false
+                  values.hasYard === "false"
                     ? false
-                    : values.hasYard === true
+                    : values.hasYard === "true"
                     ? true
                     : ""
                 }
@@ -492,6 +494,7 @@ const SitterInfo = () => {
             onChange={(e) => {
               setFieldValue("yearsOfExperience", e.target.value);
             }}
+            InputProps={{ inputProps: { min: 0 } }}
             value={values.yearsOfExperience}
             type="number"
             variant="filled"

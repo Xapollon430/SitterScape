@@ -98,17 +98,21 @@ const updatePersonalInfo = async (req, res) => {
 const updateSitterInfo = async (req, res) => {
   try {
     const values = req.body;
+    const user = req.user;
+    const file = req.file;
     if (req.file) {
-      uploadProfilePicture(req.file, req.user);
+      uploadProfilePicture(file, user);
     }
 
     for (const data in values) {
-      req.user[data] = values[data];
+      user[data] = values[data];
     }
 
-    req.user.save();
+    await user.save();
+
     return res.status(200).send(user);
   } catch (e) {
+    console.log(e);
     return res.status(400).send("Couldn't update user!");
   }
 };

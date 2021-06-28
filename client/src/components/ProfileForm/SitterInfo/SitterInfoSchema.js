@@ -14,7 +14,7 @@ const PersonalInfoSchema = Yup.object().shape({
   profilePicture: Yup.mixed().required("A profile picture is required!"),
 });
 
-export default ({ setShowErrorSnackbar }) => {
+export default (setShowErrorSnackbar) => {
   const [state, dispatch] = useContext(StoreContext);
 
   return useFormik({
@@ -24,14 +24,14 @@ export default ({ setShowErrorSnackbar }) => {
       state: state.user.state || "",
       city: state.user.city || "",
       zip: state.user.zip || "",
-      boarding: state.user?.services?.boarding?.active || false,
-      boardingRate: state.user?.services?.boarding?.rate || 0,
-      walking: state.user?.services?.walking?.active || false,
-      walkingRate: state.user?.services?.walking?.rate || 0,
-      houseSitting: state.user?.services?.houseSitting?.active || false,
-      houseSittingRate: state.user?.services?.houseSitting?.rate || 0,
-      dropInVisit: state.user?.services?.dropInVisit?.active || false,
-      dropInVisitRate: state.user?.services?.dropInVisitRate?.rate || 0,
+      boarding: state.user.boarding || false,
+      boardingRate: state.user.boardingRate || 0,
+      walking: state.user.walking || false,
+      walkingRate: state.user.walkingRate || 0,
+      houseSitting: state.user.houseSitting || false,
+      houseSittingRate: state.user.houseSittingRate || 0,
+      dropInVisit: state.user.dropInVisit || false,
+      dropInVisitRate: state.user.dropInVisitRate || 0,
       hasChildren: state.user.hasChildren || "",
       homeType: state.user.homeType || "",
       petPreferencesSmall: state.user.petPreferencesSmall || false,
@@ -45,7 +45,7 @@ export default ({ setShowErrorSnackbar }) => {
       hasYard: state.user.hasYard || "",
       profilePicture: state.user.profilePicture || "",
     },
-    validate: (values) => {
+    validate: async (values) => {
       let errors = {};
       let errorExists = false;
 
@@ -103,9 +103,32 @@ export default ({ setShowErrorSnackbar }) => {
         errorExists = true;
       }
 
-      let yupCheck = PersonalInfoSchema.isValidSync(values);
+      if (values.address === "") {
+        errors.address = "Address is required!";
+        errorExists = true;
+      }
+      if (values.zip === "") {
+        errors.zip = "Zip is required!";
+        errorExists = true;
+      }
+      if (values.state === "") {
+        errors.state = "State is required!";
+        errorExists = true;
+      }
+      if (values.city === "") {
+        errors.city = "City is required!";
+        errorExists = true;
+      }
+      if (values.aboutMe === "") {
+        errors.aboutMe = "About me is required!";
+        errorExists = true;
+      }
+      if (values.headline === "") {
+        errors.headline = "Headline is required!";
+        errorExists = true;
+      }
 
-      if (errorExists || !yupCheck) {
+      if (errorExists) {
         setShowErrorSnackbar(true);
         return errors;
       }
@@ -134,7 +157,7 @@ export default ({ setShowErrorSnackbar }) => {
         let data = await response.json();
         dispatch(
           actions.generalDispatchBundler({
-            user: data.user,
+            user: data,
           })
         );
       } catch (e) {

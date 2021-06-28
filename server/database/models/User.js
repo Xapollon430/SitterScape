@@ -37,32 +37,23 @@ const userSchema = mongoose.Schema({
     longitude: String,
   },
 
-  services: {
-    walking: {
-      active: Boolean,
-      rate: Number,
-    },
-    boarding: {
-      active: Boolean,
-      rate: Number,
-    },
-    houseSitting: {
-      active: Boolean,
-      rate: Number,
-    },
-    dropInVisit: {
-      active: Boolean,
-      rate: Number,
-    },
-  },
+  boarding: Boolean,
+  boardingRate: Number,
+  walking: Boolean,
+  walkingRate: Number,
+  houseSitting: Boolean,
+  houseSittingRate: Number,
+  dropInVisit: Boolean,
+  dropInVisitRate: Number,
+
   rating: Number,
-  hasChildren: Boolean,
+  hasChildren: mongoose.Schema.Types.Mixed,
   // profileComments,
   profilePicture: String,
   profilePictureName: String,
   isActiveSitter: { type: Boolean, default: false },
-  homeType: String,
-  smokes: Boolean,
+  homeType: mongoose.Schema.Types.Mixed,
+  smokes: mongoose.Schema.Types.Mixed,
   petPreferencesSmall: Boolean,
   petPreferencesMedium: Boolean,
   petPreferencesLarge: Boolean,
@@ -71,7 +62,7 @@ const userSchema = mongoose.Schema({
   aboutMe: String,
   headline: String,
   yearsOfExperience: Number,
-  hasYard: Boolean,
+  hasYard: mongoose.Schema.Types.Mixed,
 });
 
 const twentyMinutesInMiliseconds = 1200000;
