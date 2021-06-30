@@ -10,13 +10,25 @@ Icons from https://icons8.com/icons
 
 ---
 
-# Deployment
+# How To Run
 
 To deploy this application the following steps in the order must be taken:
 
 1- Build the server side application by "npm run server:build". This will create a production folder with the node files transpiled through babel.
 
 2- Build the client side application with "npm run client:build". This will use webpack and babel to produce one output javascript file that will be put into the production folder created by the first step.
+
+---
+
+# Tools used
+
+ AWS S3            To store user profile images
+ AWS Lambda        To host the express server
+ AWS API Gateway   Server API Routing
+ PositionStack     Geocoding API
+ MongoDB Atlas     NOSQL Cloud Database 
+ Netlify           To host the client application
+ Namecheap         DNS Domain provider
 
 ---
 
