@@ -22,19 +22,19 @@ To deploy this application the following steps in the order must be taken:
 
 # Tools used
 
-AWS S3 To store user profile images
+AWS S3 - To store user profile images
 
-AWS Lambda To host the express server
+AWS Lambda - To host the express server
 
-AWS API Gateway Server API Routing
+AWS API Gateway - Server API Routing
 
-PositionStack Geocoding API
+PositionStack - Geocoding API
 
-MongoDB Atlas NOSQL Cloud Database
+MongoDB Atlas - NOSQL Cloud Database
 
-Netlify To host the client application
+Netlify - To host the client application
 
-Namecheap DNS Domain provider
+Namecheap - DNS Domain provider
 
 ---
 
