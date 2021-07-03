@@ -36,7 +36,6 @@ export default (setErrorFromServer) => {
           values[data] != "" && updatedProfileData.append(data, values[data]);
         }
 
-        console.log(updatedProfileData);
         let response = await fetch(
           `${process.env.REACT_APP_SERVER_URL}/api/update-personal-info`,
           {

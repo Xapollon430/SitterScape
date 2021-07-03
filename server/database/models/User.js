@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const { config } = require("dotenv");
-config();
 
 const userSchema = mongoose.Schema({
   name: {
@@ -32,11 +30,10 @@ const userSchema = mongoose.Schema({
   city: String,
   state: String,
   zip: String,
-  location: {
-    latitude: String,
-    longitude: String,
+  geocode: {
+    latitude: Number,
+    longitude: Number,
   },
-
   boarding: Boolean,
   boardingRate: Number,
   walking: Boolean,
@@ -45,7 +42,6 @@ const userSchema = mongoose.Schema({
   houseSittingRate: Number,
   dropInVisit: Boolean,
   dropInVisitRate: Number,
-
   rating: Number,
   hasChildren: Boolean,
   // profileComments,
@@ -58,7 +54,6 @@ const userSchema = mongoose.Schema({
   petPreferencesMedium: Boolean,
   petPreferencesLarge: Boolean,
   petPreferencesGiant: Boolean,
-
   aboutMe: String,
   headline: String,
   yearsOfExperience: Number,

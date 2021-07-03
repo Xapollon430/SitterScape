@@ -14,7 +14,7 @@ const uploadProfilePicture = (file, user) => {
 
   const params = {
     Bucket: BUCKET_NAME,
-    Key: keyName, // File name you want to save as in S3
+    Key: keyName,
     Body: Buffer.from(file.buffer),
   };
 
@@ -25,7 +25,7 @@ const uploadProfilePicture = (file, user) => {
 
   s3.upload(params, function (err, data) {
     if (err) {
-      throw err;
+      console.log(err);
     }
 
     user.profilePicture = data.Location;
@@ -40,7 +40,7 @@ const deleteFile = (profilePicture) => {
     Key: profilePicture, // File name you want to delete from S3
   };
 
-  s3.deleteObject(params, (err, data) => {
+  s3.deleteObject(params, (err) => {
     if (err) console.log(err, err.stack);
   });
 };

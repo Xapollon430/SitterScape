@@ -80,7 +80,7 @@ const updatePersonalInfo = async (req, res) => {
     const values = req.body;
     const user = req.user;
     const file = req.file;
-
+    console.log(values);
     if (file) {
       uploadProfilePicture(file, user);
     }

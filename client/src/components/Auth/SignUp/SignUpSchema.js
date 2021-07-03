@@ -35,12 +35,9 @@ export default (setErrorFromServer) => {
         let response = await fetch(
           `${process.env.REACT_APP_SERVER_URL}/api/sign-up`,
           {
-            headers: {
-              "Content-Type": "application/json",
-            },
             method: "POST",
             credentials: "include",
-            body: JSON.stringify(values),
+            body: values,
           }
         );
 
@@ -57,8 +54,6 @@ export default (setErrorFromServer) => {
             accessToken: data.accessToken,
           })
         );
-
-        
 
         history.push(query.get("next"));
       } catch (e) {

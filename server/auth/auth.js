@@ -8,7 +8,6 @@ const auth = async (req, res, next) => {
     if (!checkToken) {
       throw new Error();
     }
-
     User.findById(checkToken.id, (err, foundUser) => {
       if (!err) {
         req.user = foundUser;

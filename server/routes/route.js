@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const auth = require("../auth/auth");
+const geocodeConverterMiddleware = require("../geocoding/geocoding");
 const controllers = require("../controllers/controller");
 
 const upload = multer();
@@ -17,6 +18,7 @@ router.patch(
   "/update-personal-info",
   auth,
   upload.single("profilePicture"),
+  geocodeConverterMiddleware,
   controllers.updatePersonalInfo
 );
 
@@ -24,10 +26,11 @@ router.patch(
   "/update-sitter-info",
   auth,
   upload.single("profilePicture"),
+  geocodeConverterMiddleware,
   controllers.updateSitterInfo
 );
 
-router.use((req, res) => {
+router.use((_, res) => {
   return res.status(400).send("Route doesn't exist!");
 });
 

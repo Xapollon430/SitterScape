@@ -26,12 +26,9 @@ export default (setErrorFromServer) => {
         let response = await fetch(
           `${process.env.REACT_APP_SERVER_URL}/api/login`,
           {
-            headers: {
-              "Content-Type": "application/json",
-            },
             method: "POST",
             credentials: "include",
-            body: JSON.stringify(values),
+            body: values,
           }
         );
 

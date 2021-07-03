@@ -28,11 +28,11 @@ const PersonalInfo = ({ changeShowTabs }) => {
     isSubmitting,
   } = PersonalInfoInit();
 
+  console.log(values);
+
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
   };
-
-  console.log(state.user);
 
   return (
     <Fragment>
