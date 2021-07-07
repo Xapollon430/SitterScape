@@ -10,13 +10,13 @@ const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
 const signUp = async (req, res) => {
   try {
     const signUpData = req.body;
-    let userExists = await User.findOne({ email: signUpData.email });
+    const userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return res.status(409).send("Email is already in use!");
 
-    let newUser = new User(signUpData);
+    const newUser = new User(signUpData);
     await newUser.save();
 
-    let { refreshToken, accessToken } = newUser.generateTokens();
+    const { refreshToken, accessToken } = newUser.generateTokens();
 
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
@@ -26,6 +26,7 @@ const signUp = async (req, res) => {
 
     res.json({ user: newUser, accessToken });
   } catch (e) {
+    console.log(e);
     return res.status(500).send("Something went wrong");
   }
 };
@@ -80,7 +81,6 @@ const updatePersonalInfo = async (req, res) => {
     const values = req.body;
     const user = req.user;
     const file = req.file;
-    console.log(values);
     if (file) {
       uploadProfilePicture(file, user);
     }
