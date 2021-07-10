@@ -2,7 +2,7 @@ service: sitterscape
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: api
+  stage: v1
   region: us-east-1
   memorySize: 128
 functions:

@@ -47,7 +47,7 @@ const App = () => {
         }
         setAutoLoginAttempted(true);
       } catch (e) {
-    
+        setAutoLoginAttempted(true);
         //If token runs out during user session.
         dispatch(
           actions.generalDispatchBundler({

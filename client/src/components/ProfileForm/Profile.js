@@ -15,11 +15,14 @@ const Profile = () => {
 
   useEffect(() => {
     location.pathname.includes("sitter")
-      ? setSelectedTab("sitter")
+      ? (() => {
+          setSelectedTab("sitter");
+          setShowBothTabs(true);
+        })()
       : setSelectedTab("personal");
   }, []);
 
-  const changeShowTabs = () => {
+  const changeShowBothTabs = () => {
     setShowBothTabs(true);
     setSelectedTab("sitter");
     history.push("/profile/sitter");
@@ -62,7 +65,9 @@ const Profile = () => {
           <Route
             exact
             path="/profile"
-            render={() => <PersonalInfo changeShowTabs={changeShowTabs} />}
+            render={() => (
+              <PersonalInfo changeShowBothTabs={changeShowBothTabs} />
+            )}
           />
           <Route exact path="/profile/sitter" render={() => <SitterInfo />} />
         </S.FormWrap>

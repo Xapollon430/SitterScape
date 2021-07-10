@@ -31,7 +31,6 @@ export default (setErrorFromServer) => {
     onSubmit: async (values, { resetForm }) => {
       try {
         const updatedProfileData = new FormData();
-        console.log(values);
         for (const data in values) {
           values[data] != "" && updatedProfileData.append(data, values[data]);
         }

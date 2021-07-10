@@ -19,19 +19,21 @@ export const RadioWrap = styled.div`
   display: grid;
   justify-content: center;
 `;
-export const AdressWrap = styled.div`
+export const AddressWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 40px 50px 50px;
-  grid-gap: 30px;
+  grid-template-rows: 40px 50px 30px 50px;
+  grid-gap: 20px;
 `;
 export const InfoText = styled.h2`
   grid-column: 1/-1;
   align-self: center;
 `;
-export const AdressField = styled(TextField)`
+export const AddressInfo = styled.b`
   grid-column: 1/-1;
-  m
+`;
+export const AddressField = styled(TextField)`
+  grid-column: 1/-1;
 `;
 export const PetPreferences = styled.h2``;
 export const PetPreferencesText = styled.h4`
@@ -51,7 +53,7 @@ export const YearsOfExperienceText = styled.h4`
 export const ExperienceWrap = styled.div``;
 export const PhotoWrap = styled.div`
   display: grid;
-  grid-template-columns: 5fr 2fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   @media (max-width: 600px) {
     grid-template-rows: auto auto;
@@ -64,10 +66,10 @@ export const PhotoTextExplanation = styled.div`
 `;
 
 export const UserImage = styled.img`
-  width: 200px;
+  object-fit: cover;
+  height: 200px;
   @media (max-width: 600px) {
     margin-top: 15px;
-    max-width: 150px;
   }
 `;
 

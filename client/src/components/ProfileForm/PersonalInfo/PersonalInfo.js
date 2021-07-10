@@ -14,7 +14,7 @@ import Modal from "../../Modal/Modal";
 import PersonalInfoInit from "./PersonalInfoSchema";
 import defaultUserImage from "../../../images/default-user.png";
 
-const PersonalInfo = ({ changeShowTabs }) => {
+const PersonalInfo = ({ changeShowBothTabs }) => {
   const [passwordModalOpen, changePasswordModalOpen] = useState(false);
   const [state] = useContext(StoreContext);
   const {
@@ -27,8 +27,6 @@ const PersonalInfo = ({ changeShowTabs }) => {
     handleBlur,
     isSubmitting,
   } = PersonalInfoInit();
-
-  console.log(values);
 
   const passwordModalHandler = () => {
     changePasswordModalOpen(!passwordModalOpen);
@@ -69,9 +67,9 @@ const PersonalInfo = ({ changeShowTabs }) => {
         </Button>
         {/* </S.ButtonWrap> */}
       </S.PersonalInfoWrap>
-      <S.AdressWrap>
+      <S.AddressWrap>
         <S.InfoText>Your Address</S.InfoText>
-        <S.AdressField
+        <S.AddressField
           error={errors.address && touched.address}
           value={values.address}
           onChange={handleChange}
@@ -80,6 +78,7 @@ const PersonalInfo = ({ changeShowTabs }) => {
           variant="outlined"
           label="Your Address"
         />
+        <S.AddressInfo>Your address will not be shared publicly.</S.AddressInfo>
         <TextField
           error={errors.city && touched.city}
           value={values.city}
@@ -166,7 +165,7 @@ const PersonalInfo = ({ changeShowTabs }) => {
           variant="outlined"
           label="ZIP/postal"
         />
-      </S.AdressWrap>
+      </S.AddressWrap>
       <S.PhotoWrap>
         <S.PhotoTextWrap>
           <S.InfoText>Profile Image</S.InfoText>
@@ -192,7 +191,7 @@ const PersonalInfo = ({ changeShowTabs }) => {
         Save
       </Button>
       {state.user.isActiveSitter || (
-        <S.StyledLink onClick={changeShowTabs}>
+        <S.StyledLink onClick={changeShowBothTabs}>
           Want to become a sitter?
         </S.StyledLink>
       )}

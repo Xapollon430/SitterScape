@@ -37,20 +37,24 @@ export const InfoText = styled.h2`
   align-self: center;
 `;
 
-export const AdressWrap = styled.div`
+export const AddressWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 40px 50px 50px;
+  grid-template-rows: 40px 50px 30px 50px;
   grid-gap: 20px;
 `;
 
-export const AdressField = styled(TextField)`
+export const AddressField = styled(TextField)`
+  grid-column: 1/-1;
+`;
+
+export const AddressInfo = styled.b`
   grid-column: 1/-1;
 `;
 
 export const PhotoWrap = styled.div`
   display: grid;
-  grid-template-columns: 5fr 2fr;
+  grid-template-columns: 1fr 1fr;
   justify-items: center;
   @media (max-width: 600px) {
     grid-template-rows: auto auto;
@@ -63,13 +67,10 @@ export const PhotoTextExplanation = styled.div`
 `;
 
 export const UserImage = styled.img`
-  width: 200px;
-  height: 200px;
   object-fit: cover;
-
+  height: 200px;
   @media (max-width: 600px) {
     margin-top: 15px;
-    max-width: 150px;
   }
 `;
 

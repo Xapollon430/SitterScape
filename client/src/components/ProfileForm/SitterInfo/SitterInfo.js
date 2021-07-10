@@ -385,9 +385,9 @@ const SitterInfo = () => {
           />
         </S.PetPreferencesRadioWrap>
       </S.PetPreferencesWrap>
-      <S.AdressWrap>
+      <S.AddressWrap>
         <S.InfoText>Add Your Address</S.InfoText>
-        <S.AdressField
+        <S.AddressField
           name="address"
           variant="outlined"
           label="Your Address"
@@ -396,6 +396,7 @@ const SitterInfo = () => {
           error={errors.address ? true : false}
           helperText={errors.address}
         />
+        <S.AddressInfo>Your address will not be shared publicly.</S.AddressInfo>
         <TextField
           name="city"
           label="Your City"
@@ -479,7 +480,7 @@ const SitterInfo = () => {
           helperText={errors.zip}
           onChange={handleChange}
         />
-      </S.AdressWrap>
+      </S.AddressWrap>
       <S.ExperienceWrap>
         <S.InfoText>Your Experience</S.InfoText>
         <S.YearsOfExperienceWrap>

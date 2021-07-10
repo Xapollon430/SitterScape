@@ -79,6 +79,7 @@ export const BrandLink = styled(Link)`
   }
 `;
 
+
 export const EmptyDiv = styled.div`
   @media (max-width: 800px) {
     display: none;

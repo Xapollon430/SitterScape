@@ -28,7 +28,10 @@ export default (setErrorFromServer) => {
           {
             method: "POST",
             credentials: "include",
-            body: values,
+            body: JSON.stringify(values),
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         );
 
