@@ -9,7 +9,6 @@ const Routes = require("./routes/route");
 const schema = require("./graphql/schema");
 const root = require("./graphql/resolver");
 const cookieParser = require("cookie-parser");
-const serverless = require("serverless-http");
 const { graphqlHTTP } = require("express-graphql");
 
 const PORT = 5000;
@@ -45,5 +44,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log("Listening");
 });
-
-module.exports.handler = serverless(app);
