@@ -1,14 +1,19 @@
-import { Fragment, useEffect, useRef, useContext } from "react";
+import { Fragment, useEffect, useRef, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import L from "leaflet";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
+import Modal from "../Modal/Modal";
 import fakeData from "./fakedata";
-import { Route } from "react-router";
 
 const SearchSitter = () => {
   const mapRef = useRef(null);
+  const [showFilter, setShowFilter] = useState(false);
+
+  const toggleFilterModal = () => {
+    setShowFilter(!showFilter);
+  };
 
   useEffect(() => {
     const mymap = L.map(mapRef.current).setView([51.505, -0.09], 13);
@@ -21,8 +26,11 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
-      <SearchSitterHeader />
+      <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
+        <Modal onClose={toggleFilterModal} showModal={showFilter}>
+          <h1>test</h1>
+        </Modal>
         <S.ProfilesWrap>
           {fakeData.map((profile, key) => {
             return (

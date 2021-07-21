@@ -6,7 +6,7 @@ import * as S from "./SearchSitterHeader.styles";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const SearchSitterHeader = () => {
+const SearchSitterHeader = ({ toggleFilterModal }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
@@ -43,7 +43,7 @@ const SearchSitterHeader = () => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
-        <Link to="/search">
+        <Link onClick={toggleFilterModal}>
           <S.Button>Filter</S.Button>
         </Link>
 

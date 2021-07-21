@@ -15,7 +15,7 @@ export const Navbar = styled.div`
   justify-items: center;
   background-color: white;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
-  z-index: 1001;
+  z-index: 10;
 
   box-sizing: border-box;
   @media (max-width: 800px) {
@@ -78,7 +78,6 @@ export const BrandLink = styled(Link)`
     font-size: 1.8rem;
   }
 `;
-
 
 export const EmptyDiv = styled.div`
   @media (max-width: 800px) {
