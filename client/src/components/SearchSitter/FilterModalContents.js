@@ -35,7 +35,7 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
       </S.FilterPriceWrap>
 
       <S.MoreFilterText onClick={toggleShowMoreFilter}>
-        More Filtersssssssss <S.StyledIcon showMoreFilter={showMoreFilter} />
+        More Filters <S.StyledIcon showMoreFilter={showMoreFilter} />
       </S.MoreFilterText>
       {showMoreFilter && (
         <div>
