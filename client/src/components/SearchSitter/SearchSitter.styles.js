@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
@@ -83,4 +85,53 @@ export const Rate = styled.span`
   font-size: 24px;
   font-weight: 600;
   color: rgb(204, 78, 0);
+`;
+
+export const FilterWrap = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+`;
+
+export const FilterTitle = styled.h2``;
+
+export const FilterPriceWrap = styled.div``;
+
+export const FilterPriceRangeWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+
+export const FilterPriceRangeLow = styled.b`
+  font-size: 1.2rem;
+  justify-self: left;
+`;
+
+export const FilterPriceRangeHigh = styled.b`
+  font-size: 1.2rem;
+  justify-self: right;
+`;
+
+export const StyledIcon = styled((props) => {
+  return (
+    <FontAwesomeIcon
+      {...props}
+      icon={props.showMoreFilter ? faChevronDown : faChevronUp}
+    />
+  );
+})`
+  padding-left: 8px;
+`;
+
+export const MoreFilterText = styled.b`
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: rgb(20, 85, 94);
+`;
+
+export const FilterText = styled.b``;
+
+export const FilterTextWrap = styled.div`
+  display: grid;
+  align-items: center;
 `;

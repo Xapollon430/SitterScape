@@ -43,11 +43,9 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
-        <Link onClick={toggleFilterModal}>
-          <S.Button>Filter</S.Button>
-        </Link>
+        <S.Button onClick={toggleFilterModal}>Filter</S.Button>
 
-        <Link to="/sitter-form?next=/search">
+        <Link to="/profile/sitter?next=/search">
           <S.Button>Be A Sitter</S.Button>
         </Link>
 

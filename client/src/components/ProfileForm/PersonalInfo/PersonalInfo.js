@@ -197,11 +197,6 @@ const PersonalInfo = ({ changeShowBothTabs }) => {
       )}
 
       <Modal onClose={passwordModalHandler} showModal={passwordModalOpen}>
-        <S.ModalCancel
-          icon={faTimes}
-          size="2x"
-          onClick={passwordModalHandler}
-        />
         <S.PasswordModalWrap>
           <TextField label="Old password" variant="outlined" />
           <TextField label="New password" variant="outlined" />

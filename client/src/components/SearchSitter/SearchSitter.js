@@ -5,15 +5,18 @@ import * as actions from "../../store/actions";
 import L from "leaflet";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
+import FilterModalContent from "./FilterModalContents";
+
 import fakeData from "./fakedata";
 
 const SearchSitter = () => {
-  const mapRef = useRef(null);
+  const mapRef = useRef();
   const [showFilter, setShowFilter] = useState(false);
+  const [showMoreFilter, setShowMoreFilter] = useState(false);
 
-  const toggleFilterModal = () => {
-    setShowFilter(!showFilter);
-  };
+  const toggleFilterModal = () => setShowFilter(!showFilter);
+
+  const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
   useEffect(() => {
     const mymap = L.map(mapRef.current).setView([51.505, -0.09], 13);
@@ -28,9 +31,6 @@ const SearchSitter = () => {
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
-        <Modal onClose={toggleFilterModal} showModal={showFilter}>
-          <h1>test</h1>
-        </Modal>
         <S.ProfilesWrap>
           {fakeData.map((profile, key) => {
             return (
@@ -57,6 +57,12 @@ const SearchSitter = () => {
         </S.ProfilesWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
       </S.ContentWrap>
+      <Modal onClose={toggleFilterModal} showModal={showFilter}>
+        <FilterModalContent
+          toggleShowMoreFilter={toggleShowMoreFilter}
+          showMoreFilter={showMoreFilter}
+        />
+      </Modal>
     </Fragment>
   );
 };

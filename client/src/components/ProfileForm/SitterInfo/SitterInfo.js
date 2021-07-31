@@ -149,8 +149,8 @@ const SitterInfo = () => {
                 variant="outlined"
                 label="Home Type"
               >
-                <MenuItem value={"House"}>House</MenuItem>
-                <MenuItem value={"Apartment"}>Apartment</MenuItem>
+                <MenuItem value="House">House</MenuItem>
+                <MenuItem value="Apartment">Apartment</MenuItem>
               </Select>
               {errors.homeType && (
                 <FormHelperText>{errors.homeType}</FormHelperText>

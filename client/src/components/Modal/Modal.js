@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { Fragment } from "react";
+
 import * as S from "./Modal.styles";
 
 const Backdrop = (props) => {
@@ -11,7 +12,12 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
-  const content = <S.ModalWrap>{props.children}</S.ModalWrap>;
+  const content = (
+    <S.ModalWrap>
+      <S.ModalCancel onClick={props.onClose} />
+      {props.children}
+    </S.ModalWrap>
+  );
   return ReactDOM.createPortal(content, document.getElementById("modal-hook"));
 };
 

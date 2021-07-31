@@ -86,11 +86,6 @@ export const StyledLink = styled.a`
   color: #000000;
 `;
 
-export const ModalCancel = styled((props) => <FontAwesomeIcon {...props} />)`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-`;
 
 export const PasswordModalWrap = styled.div`
   padding: 35px 10px 10px 10px;
