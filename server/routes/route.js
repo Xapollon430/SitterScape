@@ -13,6 +13,7 @@ router.post("/login", controllers.login);
 
 router.get("/auto-login", controllers.autoLogin);
 router.get("/log-out", controllers.logOut);
+router.get("/sitters", controllers.searchSitters)
 
 router.patch(
   "/update-personal-info",

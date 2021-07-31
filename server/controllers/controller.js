@@ -120,6 +120,10 @@ const updateSitterInfo = async (req, res) => {
   }
 };
 
+const searchSitters = (req, res) => {
+
+};
+
 module.exports = {
   signUp,
   logOut,
@@ -127,4 +131,5 @@ module.exports = {
   autoLogin,
   updatePersonalInfo,
   updateSitterInfo,
+  searchSitters,
 };
