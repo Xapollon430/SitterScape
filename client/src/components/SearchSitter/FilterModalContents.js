@@ -34,12 +34,12 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
         />
       </S.FilterPriceWrap>
 
-      <S.MoreFilterText onClick={toggleShowMoreFilter}>
+      <S.More onClick={toggleShowMoreFilter}>
         More Filters <S.StyledIcon showMoreFilter={showMoreFilter} />
-      </S.MoreFilterText>
+      </S.More>
       {showMoreFilter && (
-        <div>
-          <div>
+        <S.FilterContentWrap>
+          <S.FilterGroupWrap>
             <S.FilterText>Smoking home</S.FilterText>
             <FormControl
               variant="outlined"
@@ -65,8 +65,8 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
                 <MenuItem value={false}>No</MenuItem>
               </Select>
             </FormControl>
-          </div>
-          <div>
+          </S.FilterGroupWrap>
+          <S.FilterGroupWrap>
             <S.FilterText>Has children</S.FilterText>
             <FormControl
               variant="outlined"
@@ -92,8 +92,8 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
                 <MenuItem value={false}>No</MenuItem>
               </Select>
             </FormControl>
-          </div>
-          <div>
+          </S.FilterGroupWrap>
+          <S.FilterGroupWrap>
             <S.FilterText>Home Type</S.FilterText>
             <FormControl
               variant="outlined"
@@ -119,8 +119,8 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
                 <MenuItem value="Apartment">Apartment</MenuItem>
               </Select>
             </FormControl>
-          </div>
-          <div>
+          </S.FilterGroupWrap>
+          <S.FilterGroupWrap>
             <S.FilterText>Has Yard</S.FilterText>
             <FormControl
               variant="outlined"
@@ -146,8 +146,8 @@ const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
                 <MenuItem value={false}>No</MenuItem>
               </Select>
             </FormControl>
-          </div>
-        </div>
+          </S.FilterGroupWrap>
+        </S.FilterContentWrap>
       )}
       <Button variant="contained">Save</Button>
     </S.FilterWrap>

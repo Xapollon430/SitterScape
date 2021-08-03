@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
@@ -15,12 +17,12 @@ export const ContentWrap = styled.div`
 export const LeafletMap = styled.div`
   height: 100%;
   width: 100%;
-  min-width: 200px;
+  /* min-width: 200px; */
 `;
 
 export const ProfilesWrap = styled.div`
-  height: calc(100vh - 65px);
   overflow-y: scroll;
+  height: 100%;
 `;
 
 export const Profile = styled.div`
@@ -89,11 +91,13 @@ export const Rate = styled.span`
 
 export const FilterWrap = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 1fr;
   grid-gap: 10px;
 `;
 
-export const FilterTitle = styled.h2``;
+export const FilterTitle = styled.h2`
+  margin: 0px;
+`;
 
 export const FilterPriceWrap = styled.div``;
 
@@ -123,7 +127,7 @@ export const StyledIcon = styled((props) => {
   padding-left: 8px;
 `;
 
-export const MoreFilterText = styled.b`
+export const More = styled.b`
   font-size: 1.2rem;
   cursor: pointer;
   color: rgb(20, 85, 94);
@@ -131,7 +135,17 @@ export const MoreFilterText = styled.b`
 
 export const FilterText = styled.b``;
 
-export const FilterTextWrap = styled.div`
+export const FilterGroupWrap = styled.div`
   display: grid;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
 `;
+
+export const FilterContentWrap = styled.div`
+  display: grid;
+  grid-gap: 15px;
+`;
+
+export const StyledSelect = styled(Select)``;
+
+export const StyledText = styled(TextField)``;

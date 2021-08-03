@@ -10,5 +10,4 @@ export const StyledBackground = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(${background});
-  background-position: center;
 `;

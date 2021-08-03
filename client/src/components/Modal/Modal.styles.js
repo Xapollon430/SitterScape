@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ModalWrap = styled.div`
   z-index: 1002;
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
@@ -14,6 +14,15 @@ export const ModalWrap = styled.div`
   box-shadow: 0 2px 8px r gba(0, 0, 0, 0.26);
   border-radius: 8px;
   padding: 20px;
+
+  @media (max-width: 800px) {
+    width: 100vw;
+    max-width: 100vw;
+
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: scroll;
+  }
 `;
 
 export const GrayBackdrop = styled.div`
