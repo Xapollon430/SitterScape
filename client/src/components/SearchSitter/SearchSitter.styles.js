@@ -23,6 +23,9 @@ export const LeafletMap = styled.div`
 export const ProfilesWrap = styled.div`
   overflow-y: scroll;
   height: 100%;
+  @media (max-width: 800px) {
+    grid-column: 1 / span2;
+  }
 `;
 
 export const Profile = styled.div`
@@ -33,14 +36,20 @@ export const Profile = styled.div`
   grid-gap: 15px;
   box-sizing: border-box;
   box-shadow: 0 4px 2px -2px rgb(0 0 0 / 20%);
+
+  @media (max-width: 500px) {
+    grid-template-columns: 3fr 1fr;
+  }
 `;
 
 export const ProfileImage = styled.img`
   width: 100%;
   height: 175px;
   object-fit: cover;
-  @media (max-width: 800px) {
-    height: 75px;
+  @media (max-width: 500px) {
+    grid-column: 1 / span2;
+    width: 300px;
+    justify-self: center;
   }
 `;
 
@@ -91,7 +100,7 @@ export const Rate = styled.span`
 
 export const FilterWrap = styled.div`
   display: grid;
-  grid-template-rows: 50px 1fr 1fr 1fr;
+  grid-template-rows: 30px 1fr 1fr 1fr;
   grid-gap: 10px;
 `;
 
@@ -149,3 +158,13 @@ export const FilterContentWrap = styled.div`
 export const StyledSelect = styled(Select)``;
 
 export const StyledText = styled(TextField)``;
+
+export const FilterMapToggleButton = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 50px;
+  background-color: red;
+`;

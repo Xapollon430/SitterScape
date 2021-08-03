@@ -18,9 +18,10 @@ export const ModalWrap = styled.div`
   @media (max-width: 800px) {
     width: 100vw;
     max-width: 100vw;
-
+    max-height: 90%;
+    overflow-y: scroll;
     box-sizing: border-box;
-    height: 100%;
+
     overflow-y: scroll;
   }
 `;

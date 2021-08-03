@@ -13,6 +13,7 @@ const SearchSitter = () => {
   const mapRef = useRef();
   const [showFilter, setShowFilter] = useState(false);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
+  const [showMap, setShowMap] = useState(false);
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
@@ -56,6 +57,7 @@ const SearchSitter = () => {
           })}
         </S.ProfilesWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
+        <S.FilterMapToggleButton></S.FilterMapToggleButton>
       </S.ContentWrap>
       <Modal onClose={toggleFilterModal} showModal={showFilter}>
         <FilterModalContent
