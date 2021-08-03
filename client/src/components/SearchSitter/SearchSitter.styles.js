@@ -3,6 +3,9 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import TuneIcon from "@material-ui/icons/Tune";
+import MapIcon from "@material-ui/icons/Map";
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
@@ -48,7 +51,7 @@ export const ProfileImage = styled.img`
   object-fit: cover;
   @media (max-width: 500px) {
     grid-column: 1 / span2;
-    width: 300px;
+    width: 250px;
     justify-self: center;
   }
 `;
@@ -161,10 +164,27 @@ export const StyledText = styled(TextField)``;
 
 export const FilterMapToggleButton = styled.div`
   position: absolute;
-  top: 50%;
+  display: grid;
+  grid-template-columns: 100px 100px;
   left: 50%;
+  bottom: 50px;
   transform: translate(-50%, -50%);
-  height: 50px;
-  width: 50px;
-  background-color: red;
+
+  @media (min-width: 800px) {
+    display: none;
+  }
+`;
+
+export const MapButton = styled(Button)`
+  &&& {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+`;
+
+export const FilterButton = styled(Button)`
+  &&& {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 `;

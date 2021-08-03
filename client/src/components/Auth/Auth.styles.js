@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Wrap = styled.div`
   background-color: #e9ebed;
   height: 100vh;
-  min-width: 340px;
+  min-width: 280px;
   display: grid;
 `;
 

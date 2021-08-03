@@ -7,6 +7,11 @@ import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
 import FilterModalContent from "./FilterModalContents";
 
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@material-ui/core/Button";
+import TuneIcon from "@material-ui/icons/Tune";
+import MapIcon from "@material-ui/icons/Map";
+
 import fakeData from "./fakedata";
 
 const SearchSitter = () => {
@@ -57,8 +62,25 @@ const SearchSitter = () => {
           })}
         </S.ProfilesWrap>
         <S.LeafletMap ref={mapRef}></S.LeafletMap>
-        <S.FilterMapToggleButton></S.FilterMapToggleButton>
+        <S.FilterMapToggleButton>
+          <S.FilterButton
+            variant="contained"
+            color="primary"
+            size="large"
+            startIcon={<TuneIcon />}
+          >
+            Filter
+          </S.FilterButton>
+          <S.MapButton
+            variant="contained"
+            color="primary"
+            endIcon={<MapIcon />}
+          >
+            Map
+          </S.MapButton>
+        </S.FilterMapToggleButton>
       </S.ContentWrap>
+
       <Modal onClose={toggleFilterModal} showModal={showFilter}>
         <FilterModalContent
           toggleShowMoreFilter={toggleShowMoreFilter}

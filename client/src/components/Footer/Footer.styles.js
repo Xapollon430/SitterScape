@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterWrap = styled.footer`
   width: 100vw;
-  min-width: 340px;
+  min-width: 280px;
   background: rgb(64, 72, 79);
 `;
 
@@ -25,7 +25,7 @@ export const GridWrap = styled.div`
     margin: 0;
   }
   @media (max-width: 442px) {
-    grid-template-columns: 100px 200px;
+    grid-template-columns: 1fr 2fr;
     margin: 0;
   }
 `;

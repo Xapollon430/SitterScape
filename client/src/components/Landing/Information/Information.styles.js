@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InformationWrapper = styled.div`
   width: 100vw;
-  min-width: 340px;
+  min-width: 280px;
   margin: 50px auto 0px auto;
   display: grid;
   justify-items: center;
@@ -74,7 +74,7 @@ export const StepParagraph = styled.p`
 
 export const CustomerWrap = styled.div`
   width: 60%;
-  min-width: 340px;
+  min-width: 280px;
 
   margin: 100px 0px 40px 0px;
   position: relative;
@@ -85,7 +85,7 @@ export const CustomerWrap = styled.div`
 
 export const CustomerImage = styled.img`
   width: 100%;
-  min-width: 340px;
+  min-width: 280px;
 `;
 
 export const CustomerQuoteWrap = styled.div`
@@ -94,7 +94,7 @@ export const CustomerQuoteWrap = styled.div`
   top: -50px;
   left: 50px;
   width: 370px;
-  min-width: 340px;
+  min-width: 280px;
   height: 220px;
   padding: 20px;
   background-color: white;

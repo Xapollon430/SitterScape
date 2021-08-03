@@ -10,7 +10,7 @@ export const InboxWrap = styled.div`
 export const Inbox = styled.div`
   width: 100%;
   max-width: 1000px;
-  min-width: 340px;
+  min-width: 280px;
   height: calc(100vh - 100px);
   background-color: red;
   margin-top: 80px;
