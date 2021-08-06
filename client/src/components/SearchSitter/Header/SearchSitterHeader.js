@@ -45,7 +45,7 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
       >
         <S.Button onClick={toggleFilterModal}>Filter</S.Button>
 
-        <Link to="/profile/sitter?next=/search">
+        <Link to="/profile/sitter">
           <S.Button>Be A Sitter</S.Button>
         </Link>
 

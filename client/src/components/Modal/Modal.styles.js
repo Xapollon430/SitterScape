@@ -3,7 +3,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"; // can i * as icon?
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ModalWrap = styled.div`
-  z-index: 1002;
+  z-index: 1010;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -15,7 +15,7 @@ export const ModalWrap = styled.div`
   border-radius: 8px;
   padding: 20px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 500px) {
     width: 100vw;
     max-width: 100vw;
     max-height: 90%;
@@ -33,7 +33,7 @@ export const GrayBackdrop = styled.div`
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.75);
-  z-index: 1001;
+  z-index: 1006;
 `;
 
 export const ModalCancel = styled((props) => (

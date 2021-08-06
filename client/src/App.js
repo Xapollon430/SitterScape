@@ -15,6 +15,7 @@ const App = () => {
   const history = useHistory();
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
 
+  console.log(_);
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
@@ -69,7 +70,8 @@ const App = () => {
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
-      <PrivateRoute path="/profile" render={() => <Profile />} />
+      <PrivateRoute exact path="/profile" render={() => <Profile />} />
+      <PrivateRoute exact path="/profile/sitter" render={() => <Profile />} />
       <Route path="/*" render={() => <Landing />} />
     </Switch>
   ) : (

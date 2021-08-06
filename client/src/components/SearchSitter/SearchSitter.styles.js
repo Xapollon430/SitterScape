@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import TuneIcon from "@material-ui/icons/Tune";
-import MapIcon from "@material-ui/icons/Map";
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
@@ -13,21 +11,21 @@ export const ContentWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media (max-width: 800px) {
-    padding-top: 63px;
+    grid-template-columns: 1fr;
+    padding-top: 60px;
   }
-`;
-
-export const LeafletMap = styled.div`
-  height: 100%;
-  width: 100%;
-  /* min-width: 200px; */
 `;
 
 export const ProfilesWrap = styled.div`
   overflow-y: scroll;
-  height: 100%;
   @media (max-width: 800px) {
-    grid-column: 1 / span2;
+    display: ${({ showMap }) => (showMap ? "none" : "block")};
+  }
+`;
+
+export const LeafletMap = styled.div`
+  @media (max-width: 800px) {
+    display: ${({ showMap }) => (showMap ? "block" : "none")};
   }
 `;
 
@@ -169,6 +167,7 @@ export const FilterMapToggleButton = styled.div`
   left: 50%;
   bottom: 50px;
   transform: translate(-50%, -50%);
+  z-index: 1010;
 
   @media (min-width: 800px) {
     display: none;
@@ -177,14 +176,19 @@ export const FilterMapToggleButton = styled.div`
 
 export const MapButton = styled(Button)`
   &&& {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    /* border: 2px solid black;
+    border-right: none; */
+
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
   }
 `;
 
 export const FilterButton = styled(Button)`
   &&& {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    /* border: 2px solid black;
+    border-left: none; */
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
   }
 `;

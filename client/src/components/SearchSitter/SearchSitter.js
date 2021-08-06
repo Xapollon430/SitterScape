@@ -2,16 +2,15 @@ import { Fragment, useEffect, useRef, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
-import L from "leaflet";
+// import L from "leaflet";
+import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
 import FilterModalContent from "./FilterModalContents";
 
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
 import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
-
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
 const SearchSitter = () => {
@@ -24,20 +23,22 @@ const SearchSitter = () => {
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
-  useEffect(() => {
-    const mymap = L.map(mapRef.current).setView([51.505, -0.09], 13);
-    L.tileLayer(
-      "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-    ).addTo(mymap);
+  const toggleMap = () => setShowMap(!showMap);
 
-    return () => mymap.remove();
-  }, []);
+  useEffect(() => {
+    // const leafletMap = L.map(mapRef.current).setView([51.505, -0.09], 13);
+    // L.tileLayer(
+    //   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+    // ).addTo(leafletMap);
+    // leafletMap.invalidateSize();
+    // return () => leafletMap.remove();
+  }, [showMap]);
 
   return (
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
-        <S.ProfilesWrap>
+        <S.ProfilesWrap showMap={showMap}>
           {fakeData.map((profile, key) => {
             return (
               <S.Profile key={key}>
@@ -61,25 +62,38 @@ const SearchSitter = () => {
             );
           })}
         </S.ProfilesWrap>
-        <S.LeafletMap ref={mapRef}></S.LeafletMap>
-        <S.FilterMapToggleButton>
-          <S.FilterButton
-            variant="contained"
-            color="primary"
-            size="large"
-            startIcon={<TuneIcon />}
-          >
-            Filter
-          </S.FilterButton>
-          <S.MapButton
-            variant="contained"
-            color="primary"
-            endIcon={<MapIcon />}
-          >
-            Map
-          </S.MapButton>
-        </S.FilterMapToggleButton>
+        <GoogleMap
+          bootstrapURLKeys={{ key: "AIzaSyCv-hUZEazimO2vdGgBoyHq_jF8wJa5wyg" }}
+          defaultCenter={{
+            lat: 59.95,
+            lng: 30.33,
+          }}
+          defaultZoom={11}
+        >
+          <span lat={59.95} lng={30.33}>
+            123
+          </span>
+        </GoogleMap>
       </S.ContentWrap>
+
+      <S.FilterMapToggleButton>
+        <S.MapButton
+          variant="contained"
+          color="primary"
+          startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
+          onClick={toggleMap}
+        >
+          {showMap ? "Back" : "Map"}
+        </S.MapButton>
+        <S.FilterButton
+          variant="contained"
+          color="primary"
+          endIcon={<TuneIcon />}
+          onClick={toggleFilterModal}
+        >
+          Filter
+        </S.FilterButton>
+      </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilter}>
         <FilterModalContent
