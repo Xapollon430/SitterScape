@@ -63,7 +63,7 @@ const SearchSitter = () => {
           })}
         </S.ProfilesWrap>
         <GoogleMap
-          bootstrapURLKeys={{ key: "AIzaSyCv-hUZEazimO2vdGgBoyHq_jF8wJa5wyg" }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
           defaultCenter={{
             lat: 59.95,
             lng: 30.33,
