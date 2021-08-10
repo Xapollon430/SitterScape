@@ -14,7 +14,7 @@ const geocodeConverterMiddleware = async (req, res, next) => {
       const queryString = `${address} ${zip} ${city} ${state}`;
 
       const response = await fetch(
-        `http://api.positionstack.com/v1/forward?access_key=${process.env.POSITIONSTACK_API_KEY}&query=${queryString}`
+        `https://maps.googleapis.com/maps/api/geocode/json&key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${queryString}`
       );
       const { data } = await response.json();
 

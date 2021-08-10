@@ -33,6 +33,7 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log(typeof req);
     const { email, password } = req.body;
     let foundUser = await User.findOne({ email });
     if (!foundUser || password !== foundUser.password) {
@@ -120,9 +121,7 @@ const updateSitterInfo = async (req, res) => {
   }
 };
 
-const searchSitters = (req, res) => {
-
-};
+const searchSitters = (req, res) => {};
 
 module.exports = {
   signUp,
