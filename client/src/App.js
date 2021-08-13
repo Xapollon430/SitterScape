@@ -14,8 +14,6 @@ const App = () => {
   const [_, dispatch] = useContext(StoreContext);
   const history = useHistory();
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
-
-  console.log(_);
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {

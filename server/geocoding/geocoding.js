@@ -14,13 +14,13 @@ const geocodeConverterMiddleware = async (req, res, next) => {
       const queryString = `${address} ${zip} ${city} ${state}`;
 
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json&key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${queryString}`
+        `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${queryString}`
       );
-      const { data } = await response.json();
+      const { results } = await response.json();
 
       user.geocode = {
-        latitude: data[0].latitude,
-        longitude: data[0].longitude,
+        latitude: results[0].geometry.location.lat,
+        longitude: results[0].geometry.location.lng,
       };
 
       await user.save();
@@ -28,6 +28,7 @@ const geocodeConverterMiddleware = async (req, res, next) => {
 
     next();
   } catch (e) {
+    console.log(e);
     return res.status(400).send("Server error");
   }
 };

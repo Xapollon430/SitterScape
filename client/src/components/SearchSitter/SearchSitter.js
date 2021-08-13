@@ -1,8 +1,7 @@
-import { Fragment, useEffect, useRef, useContext, useState } from "react";
+import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
-// import L from "leaflet";
 import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
@@ -14,10 +13,11 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
 const SearchSitter = () => {
-  const mapRef = useRef();
+  const [state, _] = useContext(StoreContext);
   const [showFilter, setShowFilter] = useState(false);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [mapCenter, setMapCenter] = useState();
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
@@ -25,14 +25,25 @@ const SearchSitter = () => {
 
   const toggleMap = () => setShowMap(!showMap);
 
+  //Grab the users location to center the map.
   useEffect(() => {
-    // const leafletMap = L.map(mapRef.current).setView([51.505, -0.09], 13);
-    // L.tileLayer(
-    //   "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-    // ).addTo(leafletMap);
-    // leafletMap.invalidateSize();
-    // return () => leafletMap.remove();
-  }, [showMap]);
+    let userLocation;
+
+    if (
+      state.loggedIn &&
+      state.user?.geocode?.latitude &&
+      state.user?.geocode?.langitude
+    ) {
+      userLocation = [
+        state.user?.geocode?.latitude,
+        state.user?.geocode?.langitude,
+      ];
+    } else {
+      if(navigator.geolocation){
+        // navigator.geolocation
+      }
+    } 
+  }, []);
 
   return (
     <Fragment>
@@ -65,14 +76,28 @@ const SearchSitter = () => {
         <GoogleMap
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
           defaultCenter={{
-            lat: 59.95,
-            lng: 30.33,
+            lat: 38.7,
+            lng: -77.5,
           }}
-          defaultZoom={11}
+          options={{
+            maxZoom: 15,
+            minZoom: 10,
+            styles: [
+              {
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
+              },
+            ],
+          }}
+          disableDefaultUI
+          defaultZoom={10}
+          yesIWantToUseGoogleMapApiInternals
+          onChange={({ center, zoom, bounds }) => {}}
         >
-          <span lat={59.95} lng={30.33}>
-            123
-          </span>
+          <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
+            19
+          </S.MapLocationSitter>
         </GoogleMap>
       </S.ContentWrap>
 

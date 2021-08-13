@@ -121,7 +121,11 @@ const updateSitterInfo = async (req, res) => {
   }
 };
 
-const searchSitters = (req, res) => {};
+const searchSitters = (req, res) => {
+  
+
+
+};
 
 module.exports = {
   signUp,

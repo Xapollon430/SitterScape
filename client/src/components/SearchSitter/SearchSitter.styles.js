@@ -192,3 +192,16 @@ export const FilterButton = styled(Button)`
     border-bottom-left-radius: 0px;
   }
 `;
+
+export const MapLocationSitter = styled.div`
+  border-radius: 50%;
+  background-color: rgb(2, 129, 162);
+
+  display: grid;
+  place-items: center;
+
+  color: white;
+
+  width: 25px;
+  height: 25px;
+`;

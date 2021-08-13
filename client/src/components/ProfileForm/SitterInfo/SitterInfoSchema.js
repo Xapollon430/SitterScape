@@ -154,7 +154,7 @@ export default (setShowErrorSnackbar) => {
         );
       } catch (e) {
         // setErrorFromServer(e);
-        resetForm();
+        // resetForm();
       }
     },
   });

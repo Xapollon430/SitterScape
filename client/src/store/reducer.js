@@ -1,5 +1,4 @@
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "IS_MODAL_OPEN":
       return {
