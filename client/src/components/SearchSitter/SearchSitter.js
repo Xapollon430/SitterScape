@@ -17,35 +17,13 @@ const SearchSitter = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [mapCenter, setMapCenter] = useState();
+  const [mapCenter, setMapCenter] = useState({ lat: 38.7, lng: -77.5 });
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
   const toggleMap = () => setShowMap(!showMap);
-
-  //Grab the users location to center the map.
-  useEffect(() => {
-    let userLocation;
-
-    console.log(state);
-    if (
-      state.loggedIn &&
-      state.user?.geocode?.latitude &&
-      state.user?.geocode?.langitude
-    ) {
-      userLocation = [
-        state.user?.geocode?.latitude,
-        state.user?.geocode?.langitude,
-      ];
-    } else {
-      console.log(123);
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {});
-      }
-    }
-  }, []);
 
   return (
     <Fragment>
@@ -77,10 +55,7 @@ const SearchSitter = () => {
         </S.ProfilesWrap>
         <GoogleMap
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-          defaultCenter={{
-            lat: 38.7,
-            lng: -77.5,
-          }}
+          defaultCenter={mapCenter}
           options={{
             maxZoom: 15,
             minZoom: 10,

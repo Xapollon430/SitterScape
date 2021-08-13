@@ -33,7 +33,6 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    console.log(typeof req);
     const { email, password } = req.body;
     let foundUser = await User.findOne({ email });
     if (!foundUser || password !== foundUser.password) {
@@ -64,7 +63,7 @@ const autoLogin = async (req, res) => {
     const accessToken = user.generateAccessToken();
     res.status(200).json({ accessToken, user });
   } catch (e) {
-    return res.status(400).send("Couldn't log in!");
+    return res.status(401).send("Couldn't log in!");
   }
 };
 
@@ -121,11 +120,7 @@ const updateSitterInfo = async (req, res) => {
   }
 };
 
-const searchSitters = (req, res) => {
-  
-
-
-};
+const searchSitters = (req, res) => {};
 
 module.exports = {
   signUp,

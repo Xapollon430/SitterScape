@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 //This hook is to literally just show off my skills... I don't even use it...
 
@@ -21,4 +22,8 @@ export const useResponsive = () => {
   }, [innerWidth]);
 
   return [showMenu, isMenuShowing];
+};
+
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
 };

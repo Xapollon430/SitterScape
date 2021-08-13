@@ -7,13 +7,34 @@ import Profile from "./components/ProfileForm/Profile";
 import * as actions from "./store/actions";
 import * as S from "./App.styles";
 import { StoreContext } from "./store/store";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 
+const getUserLocation = (state) => {
+  let userLocation = localStorage.getItem("userLocation");
+
+  // if (state.user?.geocode?.latitude && state.user?.geocode?.langitude) {
+  //   userLocation = [
+  //     state.user?.geocode?.latitude,
+  //     state.user?.geocode?.langitude,
+  //   ];
+  // } else {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+};
+
 const App = () => {
-  const [_, dispatch] = useContext(StoreContext);
-  const history = useHistory();
+  const [state, dispatch] = useContext(StoreContext);
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
+
   //Automatic Login On Refresh
   useEffect(() => {
     const autoLogin = async () => {
@@ -25,10 +46,10 @@ const App = () => {
           }
         );
 
-        if (response.status != 200) {
-          setAutoLoginAttempted(true);
+        if (!response.ok) {
           throw await response.text();
         }
+
         let data = await response.json();
 
         dispatch(
@@ -38,6 +59,7 @@ const App = () => {
             accessToken: data.accessToken,
           })
         );
+        getUserLocation();
 
         setAutoLoginAttempted(true);
       } catch (e) {
