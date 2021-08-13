@@ -29,6 +29,7 @@ const SearchSitter = () => {
   useEffect(() => {
     let userLocation;
 
+    console.log(state);
     if (
       state.loggedIn &&
       state.user?.geocode?.latitude &&
@@ -39,10 +40,11 @@ const SearchSitter = () => {
         state.user?.geocode?.langitude,
       ];
     } else {
-      if(navigator.geolocation){
-        // navigator.geolocation
+      console.log(123);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {});
       }
-    } 
+    }
   }, []);
 
   return (

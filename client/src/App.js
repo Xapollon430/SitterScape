@@ -39,11 +39,6 @@ const App = () => {
           })
         );
 
-        const url = new URL(window.location.href); //Redirect to the correct path after auto-login
-        const redirect = url.searchParams.get("next");
-        if (redirect) {
-          history.push(redirect);
-        }
         setAutoLoginAttempted(true);
       } catch (e) {
         setAutoLoginAttempted(true);
