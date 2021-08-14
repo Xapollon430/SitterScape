@@ -127,10 +127,11 @@ export const FilterPriceRangeHigh = styled.b`
 `;
 
 export const StyledIcon = styled((props) => {
+  const { showMoreFilter, className } = props;
   return (
     <FontAwesomeIcon
-      {...props}
-      icon={props.showMoreFilter ? faChevronDown : faChevronUp}
+      className={className}
+      icon={showMoreFilter ? faChevronDown : faChevronUp}
     />
   );
 })`

@@ -1,10 +1,5 @@
 const reducer = (state, action) => {
   switch (action.type) {
-    case "IS_MODAL_OPEN":
-      return {
-        ...state,
-        isModalOpen: action.payload,
-      };
     case "USER":
       return {
         ...state,

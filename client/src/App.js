@@ -9,33 +9,12 @@ import * as S from "./App.styles";
 import { StoreContext } from "./store/store";
 import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
-
-const getUserLocation = (state) => {
-  let userLocation = localStorage.getItem("userLocation");
-
-  // if (state.user?.geocode?.latitude && state.user?.geocode?.langitude) {
-  //   userLocation = [
-  //     state.user?.geocode?.latitude,
-  //     state.user?.geocode?.langitude,
-  //   ];
-  // } else {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-};
+import { getUserLocation } from "./Functions/helpers";
 
 const App = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
-
-  //Automatic Login On Refresh
+  //Automatic login on refresh
   useEffect(() => {
     const autoLogin = async () => {
       try {
@@ -59,11 +38,10 @@ const App = () => {
             accessToken: data.accessToken,
           })
         );
-        getUserLocation();
 
+        getUserLocation(data.user);
         setAutoLoginAttempted(true);
       } catch (e) {
-        setAutoLoginAttempted(true);
         //If token runs out during user session.
         dispatch(
           actions.generalDispatchBundler({
@@ -72,6 +50,8 @@ const App = () => {
             accessToken: null,
           })
         );
+        getUserLocation(state);
+        setAutoLoginAttempted(true);
       }
     };
 

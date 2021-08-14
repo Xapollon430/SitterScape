@@ -1,10 +1,3 @@
-export const changeIsModalOpen = (isModalOpen) => {
-  return {
-    type: "IS_MODAL_OPEN",
-    payload: isModalOpen,
-  };
-};
-
 export const changeLoggedIn = (loggedIn) => {
   return {
     type: "LOGGED_IN",
