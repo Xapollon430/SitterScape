@@ -11,6 +11,9 @@ import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { getUserLocation } from "./Functions/helpers";
 
+console.log(process.env.REACT_APP_SERVER_URL);
+console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+
 const App = () => {
   const [state, dispatch] = useContext(StoreContext);
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
