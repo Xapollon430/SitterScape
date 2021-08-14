@@ -1,6 +1,6 @@
 import Landing from "./components/Landing/Landing";
 import SearchSitter from "./components/SearchSitter/SearchSitter";
-import Auth from "./components/Auth/Auth";
+// import Auth from "./components/Auth/Auth";
 import Inbox from "./components/Inbox/Inbox";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Profile from "./components/ProfileForm/Profile";
@@ -63,7 +63,7 @@ const App = () => {
     <Switch>
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <SearchSitter />} />
-      <Route exact path="/auth" render={() => <Auth />} />
+      {/* <Route exact path="/auth" render={() => <Auth />} /> */}
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
       <PrivateRoute exact path="/profile" render={() => <Profile />} />
       <PrivateRoute exact path="/profile/sitter" render={() => <Profile />} />
