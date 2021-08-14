@@ -24,6 +24,8 @@ const InboxHeader = () => {
       })
     );
 
+    localStorage.removeItem("userLocation")
+
     history.push("/");
   });
 

@@ -23,6 +23,7 @@ const ProfileFormHeader = () => {
         user: null,
       })
     );
+    localStorage.removeItem("userLocation");
 
     history.push("/");
   });

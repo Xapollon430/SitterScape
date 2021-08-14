@@ -11,8 +11,6 @@ const LandingHeader = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
 
-  
-
   const logOut = useCallback(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/api/log-out`, {
       credentials: "include",
@@ -23,6 +21,8 @@ const LandingHeader = () => {
         user: null,
       })
     );
+
+    localStorage.removeItem("userLocation");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);

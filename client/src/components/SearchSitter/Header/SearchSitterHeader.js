@@ -21,6 +21,7 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
         user: null,
       })
     );
+    localStorage.removeItem("userLocation");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);

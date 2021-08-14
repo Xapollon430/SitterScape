@@ -12,12 +12,16 @@ import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
+const centerDefault = localStorage.getItem("userLocation") || {
+  lat: 38.7,
+  lng: -77.5,
+};
 const SearchSitter = () => {
   const [state, _] = useContext(StoreContext);
   const [showFilter, setShowFilter] = useState(false);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [mapCenter, setMapCenter] = useState({ lat: 38.7, lng: -77.5 });
+  const [mapCenter, setMapCenter] = useState(centerDefault);
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
