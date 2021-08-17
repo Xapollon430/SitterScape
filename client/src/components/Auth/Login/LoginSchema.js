@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import { useQuery } from "../../../Functions/hooks";
 import { useHistory } from "react-router-dom";
+import { setLocalStorageWithLocation } from "../../../Functions/helpers";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";
 
@@ -47,6 +48,10 @@ export default (setErrorFromServer) => {
             loggedIn: true,
             accessToken: data.accessToken,
           })
+        );
+
+        setLocalStorageWithLocation(
+          data?.user?.latitude && data?.user?.longitude
         );
 
         history.push(query.get("next"));
