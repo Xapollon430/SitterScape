@@ -1,21 +1,22 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
+import { getUserLocation } from "../../Functions/helpers";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
 import FilterModalContent from "./FilterModalContents";
-
 import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
-const centerDefault = localStorage.getItem("userLocation") || {
-  lat: 38.7,
+const centerDefault = {
+  lat: 50,
   lng: -77.5,
 };
+
 const SearchSitter = () => {
   const [state, _] = useContext(StoreContext);
   const [showFilter, setShowFilter] = useState(false);
@@ -28,6 +29,13 @@ const SearchSitter = () => {
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
   const toggleMap = () => setShowMap(!showMap);
+
+  console.log(mapCenter);
+
+  useEffect(() => {
+    const setMapCenterCallBack = (lat, lng) => setMapCenter({ lat, lng });
+    getUserLocation(state?.user?.geocode, setMapCenterCallBack);
+  }, []);
 
   return (
     <Fragment>
@@ -59,7 +67,7 @@ const SearchSitter = () => {
         </S.ProfilesWrap>
         <GoogleMap
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-          defaultCenter={mapCenter}
+          center={mapCenter}
           options={{
             maxZoom: 15,
             minZoom: 10,

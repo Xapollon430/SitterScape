@@ -9,7 +9,6 @@ import * as S from "./App.styles";
 import { StoreContext } from "./store/store";
 import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
-import { getUserLocation } from "./Functions/helpers";
 
 const App = () => {
   const [state, dispatch] = useContext(StoreContext);
@@ -39,7 +38,6 @@ const App = () => {
           })
         );
 
-        getUserLocation(data.user);
         setAutoLoginAttempted(true);
       } catch (e) {
         //If token runs out during user session.
@@ -50,7 +48,6 @@ const App = () => {
             accessToken: null,
           })
         );
-        getUserLocation();
         setAutoLoginAttempted(true);
       }
     };
