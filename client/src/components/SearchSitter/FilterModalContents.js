@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import * as S from "./SearchSitter.styles";
 import { useState } from "react";
+import { useFormik } from "formik";
 
 const defaultFilterData = {
   serviceType: "",
@@ -33,7 +34,7 @@ const FilterModalContent = () => {
       <FormControl variant="outlined" fullWidth>
         <InputLabel>Service</InputLabel>
         <Select
-          value={filterData?.serviceType || ""}
+          value={filterData.serviceType}
           onChange={(e) => {
             changeHandler("serviceType", e.target.value);
           }}
@@ -45,14 +46,24 @@ const FilterModalContent = () => {
           <MenuItem value={"Drop In Visit"}>Drop In Visit</MenuItem>
         </Select>
       </FormControl>
-      <TextField label="Address or Zip Code" variant="outlined" />
+      <TextField
+        value={filterData.location}
+        onChange={(e) => {
+          changeHandler("location", e.target.value);
+        }}
+        label="Address or Zip Code"
+        variant="outlined"
+      />
       <S.FilterPriceWrap>
         <S.FilterPriceRangeWrap>
-          <S.FilterPriceRangeLow>$33</S.FilterPriceRangeLow>
-          <S.FilterPriceRangeHigh>$66</S.FilterPriceRangeHigh>
+          <S.FilterPriceRangeLow>${filterData.price[0]}</S.FilterPriceRangeLow>
+          <S.FilterPriceRangeHigh>
+            ${filterData.price[1]}
+          </S.FilterPriceRangeHigh>
         </S.FilterPriceRangeWrap>
         <Slider
-          value={[33, 66]}
+          value={filterData.price}
+          onChange={(e, value) => changeHandler("price", value)}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
         />
@@ -173,9 +184,116 @@ const FilterModalContent = () => {
           </S.FilterGroupWrap>
         </S.FilterContentWrap>
       )}
-      <Button variant="contained">Save</Button>
+      <Button variant="contained">Search</Button>
     </S.FilterWrap>
   );
+};
+
+const FilterModalContentSchema = () => {
+  return useFormik({
+    validateOnChange: false,
+    initialValues: {
+      location: "",
+      price: [33, 66],
+      hasChildren: "",
+      homeType: "",
+      smokes: "",
+      hasYard: "",
+    },
+    validate: async (values) => {
+      let errors = {};
+      let errorExists = false;
+
+      if (values.boarding) {
+        if (values.boardingRate <= 0) {
+          errors.boardingRate = "Please choose a rate above $0";
+          errorExists = true;
+        }
+
+        if (values.smokes === undefined) {
+          errors.smokes = "Please select an option.";
+          errorExists = true;
+        }
+        if (values.hasYard === undefined) {
+          errors.hasYard = "Please select an option.";
+          errorExists = true;
+        }
+        if (values.hasChildren === undefined) {
+          errors.hasChildren = "Please select an option.";
+          errorExists = true;
+        }
+        if (values.homeType === "") {
+          errors.homeType = "Please select an option.";
+          errorExists = true;
+        }
+      }
+
+      if (values.dropInVisit && values.dropInVisitRate <= 0) {
+        errors.dropInVisitRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
+
+      if (values.houseSitting && values.houseSittingRate <= 0) {
+        errors.houseSittingRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
+
+      if (values.walking && values.walkingRate <= 0) {
+        errors.walkingRate = "Please choose a rate above $0";
+        errorExists = true;
+      }
+
+      if (
+        values.petPreferencesSmall == false &&
+        values.petPreferencesMedium == false &&
+        values.petPreferencesLarge == false &&
+        values.petPreferencesGiant == false
+      ) {
+        errors.petPreferences = "Please pick at least one!";
+        errorExists = true;
+      }
+
+      if (values.profilePicture === "") {
+        errors.profilePicture = "Please upload a photo!";
+        errorExists = true;
+      }
+
+      if (values.address === "") {
+        errors.address = "Address is required!";
+        errorExists = true;
+      }
+      if (values.zip === "") {
+        errors.zip = "Zip is required!";
+        errorExists = true;
+      }
+      if (values.state === "") {
+        errors.state = "State is required!";
+        errorExists = true;
+      }
+      if (values.city === "") {
+        errors.city = "City is required!";
+        errorExists = true;
+      }
+      if (values.aboutMe === "") {
+        errors.aboutMe = "About me is required!";
+        errorExists = true;
+      }
+      if (values.headline === "") {
+        errors.headline = "Headline is required!";
+        errorExists = true;
+      }
+
+      if (errorExists) {
+        return errors;
+      }
+
+      return true;
+    },
+    onSubmit: async (values, { resetForm }) => {
+      try {
+      } catch (e) {}
+    },
+  });
 };
 
 export default FilterModalContent;
