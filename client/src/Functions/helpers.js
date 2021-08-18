@@ -20,6 +20,7 @@ export const getUserLocation = (
             possibleUserCoords.longitude
           );
         } else {
+          setMapCenterCallBack("no-op", "no-op", true);
           console.log("please allow location services in your browser");
         }
       }

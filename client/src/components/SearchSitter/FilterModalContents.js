@@ -5,20 +5,44 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
 import * as S from "./SearchSitter.styles";
+import { useState } from "react";
 
-const FilterModalContent = ({ showMoreFilter, toggleShowMoreFilter }) => {
+const defaultFilterData = {
+  serviceType: "",
+  location: "",
+  price: [33, 66],
+};
+
+const FilterModalContent = () => {
+  const [showMoreFilter, setShowMoreFilter] = useState(false);
+  const [filterData, setFilterData] = useState(defaultFilterData);
+
+  const changeHandler = (key, value) => {
+    setFilterData({
+      ...filterData,
+      [key]: value,
+    });
+  };
+
+  const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
+
   return (
     <S.FilterWrap>
-      <S.FilterTitle>Filter For Sitters</S.FilterTitle>
+      <S.FilterTitle>Find your pawfect sitter!</S.FilterTitle>
       <FormControl variant="outlined" fullWidth>
         <InputLabel>Service</InputLabel>
-        <Select label="Service">
-          <MenuItem value={10}>Boarding</MenuItem>
-          <MenuItem value={20}>Home Sitting</MenuItem>
-          <MenuItem value={30}>Dog Walking</MenuItem>
-          <MenuItem value={30}>Drop In Visit</MenuItem>
+        <Select
+          value={filterData?.serviceType || ""}
+          onChange={(e) => {
+            changeHandler("serviceType", e.target.value);
+          }}
+          label="Service"
+        >
+          <MenuItem value={"Boarding"}>Boarding</MenuItem>
+          <MenuItem value={"Home Sitting"}>Home Sitting</MenuItem>
+          <MenuItem value={"Dog Walking"}>Dog Walking</MenuItem>
+          <MenuItem value={"Drop In Visit"}>Drop In Visit</MenuItem>
         </Select>
       </FormControl>
       <TextField label="Address or Zip Code" variant="outlined" />

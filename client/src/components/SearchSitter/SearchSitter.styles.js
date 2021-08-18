@@ -101,7 +101,7 @@ export const Rate = styled.span`
 
 export const FilterWrap = styled.div`
   display: grid;
-  grid-template-rows: 30px 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 1fr;
   grid-gap: 10px;
 `;
 
@@ -177,9 +177,6 @@ export const FilterMapToggleButton = styled.div`
 
 export const MapButton = styled(Button)`
   &&& {
-    /* border: 2px solid black;
-    border-right: none; */
-
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
@@ -187,8 +184,6 @@ export const MapButton = styled(Button)`
 
 export const FilterButton = styled(Button)`
   &&& {
-    /* border: 2px solid black;
-    border-left: none; */
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
   }

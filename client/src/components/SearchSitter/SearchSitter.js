@@ -19,22 +19,20 @@ const centerDefault = {
 
 const SearchSitter = () => {
   const [state, _] = useContext(StoreContext);
-  const [showFilter, setShowFilter] = useState(false);
-  const [showMoreFilter, setShowMoreFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState(true);
   const [showMap, setShowMap] = useState(false);
-  const [mapCenter, setMapCenter] = useState(centerDefault);
+  const [mapCenter, setMapCenter] = useState();
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
-  const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
-
   const toggleMap = () => setShowMap(!showMap);
 
-  console.log(mapCenter);
-
   useEffect(() => {
-    const setMapCenterCallBack = (lat, lng) => setMapCenter({ lat, lng });
-    getUserLocation(state?.user?.geocode, setMapCenterCallBack);
+    console.log(state);
+    getUserLocation(state?.user?.geocode, (lat, lng, noOpCheck) => {
+      if (noOpCheck) return setMapCenter(centerDefault);
+      setMapCenter({ lat, lng });
+    });
   }, []);
 
   return (
@@ -79,9 +77,7 @@ const SearchSitter = () => {
               },
             ],
           }}
-          disableDefaultUI
           defaultZoom={10}
-          yesIWantToUseGoogleMapApiInternals
           onChange={({ center, zoom, bounds }) => {}}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
@@ -110,10 +106,7 @@ const SearchSitter = () => {
       </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilter}>
-        <FilterModalContent
-          toggleShowMoreFilter={toggleShowMoreFilter}
-          showMoreFilter={showMoreFilter}
-        />
+        <FilterModalContent />
       </Modal>
     </Fragment>
   );
