@@ -22,16 +22,8 @@ const SitterInfo = () => {
   const [state, _] = useContext(StoreContext);
   const [showErrorSnackbar, setShowErrorSnackbar] = useState(false);
 
-  const {
-    handleSubmit,
-    handleChange,
-    setFieldValue,
-    values,
-    errors,
-    touched,
-    handleBlur,
-    isSubmitting,
-  } = SitterInfoInit(setShowErrorSnackbar);
+  const { handleSubmit, handleChange, setFieldValue, values, errors } =
+    SitterInfoInit(setShowErrorSnackbar);
 
   return (
     <Fragment>
@@ -80,13 +72,7 @@ const SitterInfo = () => {
             >
               <InputLabel>Smoking</InputLabel>
               <Select
-                value={
-                  values.smokes === false
-                    ? false
-                    : values.smokes === true
-                    ? true
-                    : undefined
-                }
+                value={values.smokes}
                 onChange={(e) => {
                   setFieldValue("smokes", e.target.value);
                 }}
@@ -113,7 +99,7 @@ const SitterInfo = () => {
                     ? false
                     : values.hasChildren === true
                     ? true
-                    : undefined
+                    : values.hasChildren
                 }
                 onChange={(e) => {
                   setFieldValue("hasChildren", e.target.value);
@@ -169,7 +155,7 @@ const SitterInfo = () => {
                     ? false
                     : values.hasYard === true
                     ? true
-                    : undefined
+                    : values.hasYard
                 }
                 onChange={(e) => {
                   setFieldValue("hasYard", e.target.value);

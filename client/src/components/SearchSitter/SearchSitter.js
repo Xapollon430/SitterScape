@@ -21,19 +21,12 @@ const SearchSitter = () => {
   const [state, _] = useContext(StoreContext);
   const [showFilter, setShowFilter] = useState(true);
   const [showMap, setShowMap] = useState(false);
-  const [mapCenter, setMapCenter] = useState();
+  const [mapCenter, setMapCenter] = useState(centerDefault);
+  const [sitters, setSitters] = useState([]);
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
 
   const toggleMap = () => setShowMap(!showMap);
-
-  useEffect(() => {
-    console.log(state);
-    getUserLocation(state?.user?.geocode, (lat, lng, noOpCheck) => {
-      if (noOpCheck) return setMapCenter(centerDefault);
-      setMapCenter({ lat, lng });
-    });
-  }, []);
 
   return (
     <Fragment>

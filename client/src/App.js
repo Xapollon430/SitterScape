@@ -11,7 +11,7 @@ import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 
 const App = () => {
-  const [state, dispatch] = useContext(StoreContext);
+  const [_, dispatch] = useContext(StoreContext);
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
   //Automatic login on refresh
   useEffect(() => {
