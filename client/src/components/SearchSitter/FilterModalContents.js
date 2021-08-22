@@ -10,15 +10,14 @@ import {
 } from "@material-ui/core";
 import * as S from "./SearchSitter.styles";
 import { useState } from "react";
-import { useFormik } from "formik";
 
-const FilterModalContent = () => {
+const FilterModalContent = ({
+  handleSubmit,
+  setFieldValue,
+  values,
+  errors,
+}) => {
   const [showMoreFilter, setShowMoreFilter] = useState(false);
-
-  const { handleSubmit, setFieldValue, values, errors } =
-    FilterModalContentSchema();
-
-  console.log(errors);
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
@@ -34,10 +33,10 @@ const FilterModalContent = () => {
           }}
           label="Service"
         >
-          <MenuItem value={"Boarding"}>Boarding</MenuItem>
-          <MenuItem value={"Home Sitting"}>Home Sitting</MenuItem>
-          <MenuItem value={"Dog Walking"}>Dog Walking</MenuItem>
-          <MenuItem value={"Drop In Visit"}>Drop In Visit</MenuItem>
+          <MenuItem value={"boarding"}>Boarding</MenuItem>
+          <MenuItem value={"home Sitting"}>Home Sitting</MenuItem>
+          <MenuItem value={"dogWalking"}>Dog Walking</MenuItem>
+          <MenuItem value={"dropInVisit"}>Drop In Visit</MenuItem>
         </Select>
         {errors.serviceType && (
           <FormHelperText>{errors.serviceType}</FormHelperText>
@@ -66,13 +65,13 @@ const FilterModalContent = () => {
         />
       </S.FilterPriceWrap>
 
-      {values.serviceType === "Boarding" && (
+      {values.serviceType === "boarding" && (
         <S.More onClick={toggleShowMoreFilter}>
           More Filters <S.StyledIcon showMoreFilter={showMoreFilter} />
         </S.More>
       )}
 
-      {showMoreFilter && values.serviceType === "Boarding" && (
+      {showMoreFilter && values.serviceType === "boarding" && (
         <S.FilterContentWrap>
           <S.FilterGroupWrap>
             <S.FilterText>Smoking home</S.FilterText>
@@ -82,13 +81,7 @@ const FilterModalContent = () => {
             >
               <InputLabel>Smoking</InputLabel>
               <Select
-                value={
-                  values.smokes === false
-                    ? false
-                    : values.smokes === true
-                    ? true
-                    : undefined
-                }
+                value={values.smokes}
                 onChange={(e) => {
                   setFieldValue("smokes", e.target.value);
                 }}
@@ -134,13 +127,7 @@ const FilterModalContent = () => {
             >
               <InputLabel>Home Type</InputLabel>
               <Select
-                value={
-                  values.homeType === false
-                    ? false
-                    : values.homeType === true
-                    ? true
-                    : undefined
-                }
+                value={values.homeType}
                 onChange={(e) => {
                   setFieldValue("homeType", e.target.value);
                 }}
@@ -163,13 +150,7 @@ const FilterModalContent = () => {
             >
               <InputLabel>Yard</InputLabel>
               <Select
-                value={
-                  values.hasYard === false
-                    ? false
-                    : values.hasYard === true
-                    ? true
-                    : undefined
-                }
+                value={values.hasYard}
                 onChange={(e) => {
                   setFieldValue("hasYard", e.target.value);
                 }}
@@ -191,46 +172,6 @@ const FilterModalContent = () => {
       </Button>
     </S.FilterWrap>
   );
-};
-
-const FilterModalContentSchema = () => {
-  return useFormik({
-    validateOnChange: false,
-    initialValues: {
-      serviceType: "",
-      location: "",
-      price: [33, 66],
-      hasChildren: "",
-      homeType: "",
-      smokes: "",
-      hasYard: "",
-    },
-    validate: async (values) => {
-      let errors = {};
-      let errorExists = false;
-
-      if (values.serviceType === "") {
-        errors.serviceType = "Please select a service.";
-        errorExists = true;
-      }
-
-      if (values.location === "") {
-        errors.location = "Please enter your location.";
-        errorExists = true;
-      }
-
-      if (errorExists) {
-        return errors;
-      }
-
-      return true;
-    },
-    onSubmit: async (values) => {
-      try {
-        console.log(values);
-      } catch (e) {}
-    },
-  });
 };
 
 export default FilterModalContent;
