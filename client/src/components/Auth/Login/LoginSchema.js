@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { useQuery } from "../../../Functions/hooks";
+import { useQuery } from "../../../utils/hooks";
 import { useHistory } from "react-router-dom";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";

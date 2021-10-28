@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
-import { useFormik } from "formik";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
@@ -34,8 +33,6 @@ const SearchSitter = () => {
 
     console.log(filterQuery);
   };
-
-  const formikData = FilterModalContentSchema(findSitter);
 
   const toggleFilterModal = () => setShowFilter(!showFilter);
   const toggleMap = () => setShowMap(!showMap);
@@ -111,50 +108,10 @@ const SearchSitter = () => {
       </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilter}>
-        <FilterModalContent {...formikData} />
+        <FilterModalContent findSitter={findSitter} />
       </Modal>
     </Fragment>
   );
-};
-
-const FilterModalContentSchema = (findSitter) => {
-  return useFormik({
-    validateOnChange: false,
-    initialValues: {
-      serviceType: "",
-      location: "",
-      price: [33, 66],
-      hasChildren: "",
-      homeType: "",
-      smokes: "",
-      hasYard: "",
-    },
-    validate: async (values) => {
-      let errors = {};
-      let errorExists = false;
-
-      if (values.serviceType === "") {
-        errors.serviceType = "Please select a service.";
-        errorExists = true;
-      }
-
-      if (values.location === "") {
-        errors.location = "Please enter your location.";
-        errorExists = true;
-      }
-
-      if (errorExists) {
-        return errors;
-      }
-
-      return true;
-    },
-    onSubmit: async (values) => {
-      try {
-        findSitter(values);
-      } catch (e) {}
-    },
-  });
 };
 
 export default SearchSitter;

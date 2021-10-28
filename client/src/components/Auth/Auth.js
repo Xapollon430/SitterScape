@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "../../Functions/hooks";
+import { useQuery } from "../../utils/hooks";
 import * as S from "./Auth.styles";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";

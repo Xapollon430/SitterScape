@@ -131,7 +131,7 @@ export const StyledIcon = styled((props) => {
   return (
     <FontAwesomeIcon
       className={className}
-      icon={showMoreFilter ? faChevronDown : faChevronUp}
+      icon={showMoreFilter ? faChevronUp : faChevronDown}
     />
   );
 })`

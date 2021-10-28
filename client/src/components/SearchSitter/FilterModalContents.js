@@ -1,3 +1,4 @@
+import * as S from "./SearchSitter.styles";
 import {
   TextField,
   Slider,
@@ -8,16 +9,14 @@ import {
   Button,
   FormHelperText,
 } from "@material-ui/core";
-import * as S from "./SearchSitter.styles";
 import { useState } from "react";
+import { useFormik } from "formik";
 
-const FilterModalContent = ({
-  handleSubmit,
-  setFieldValue,
-  values,
-  errors,
-}) => {
+const FilterModalContent = ({ findSitter }) => {
   const [showMoreFilter, setShowMoreFilter] = useState(false);
+
+  const { values, errors, setFieldValue, handleSubmit } =
+    FilterModalContentSchema(findSitter);
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
@@ -172,6 +171,46 @@ const FilterModalContent = ({
       </Button>
     </S.FilterWrap>
   );
+};
+
+const FilterModalContentSchema = (findSitter) => {
+  return useFormik({
+    validateOnChange: false,
+    initialValues: {
+      serviceType: "",
+      location: "",
+      price: [33, 66],
+      hasChildren: "",
+      homeType: "",
+      smokes: "",
+      hasYard: "",
+    },
+    validate: async (values) => {
+      let errors = {};
+      let errorExists = false;
+
+      if (values.serviceType === "") {
+        errors.serviceType = "Please select a service.";
+        errorExists = true;
+      }
+
+      if (values.location === "") {
+        errors.location = "Please enter your location.";
+        errorExists = true;
+      }
+
+      if (errorExists) {
+        return errors;
+      }
+
+      return true;
+    },
+    onSubmit: async (values) => {
+      try {
+        findSitter(values);
+      } catch (e) {}
+    },
+  });
 };
 
 export default FilterModalContent;
