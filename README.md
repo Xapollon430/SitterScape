@@ -40,6 +40,8 @@ Namecheap - DNS Domain provider
 
 # Notes - Credits
 
+https://javascript.plainenglish.io/websocket-an-in-depth-beginners-guide-96f617c4c7a5
+
 React state update batching example.
 https://codesandbox.io/s/402pn5l989?file=/src/index.js:327-340
 
