@@ -12,13 +12,14 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
 const centerDefault = {
-  lat: 50,
-  lng: -77.5,
+  lat: 38.8082415,
+  lng: -77.662807,
 };
 
 const SearchSitter = () => {
   const [state, _] = useContext(StoreContext);
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilterModal, setShowFilterModal] = useState(true);
+  const [filterData, setFilterData] = useState();
   const [showMap, setShowMap] = useState(false);
   const [mapCenter, setMapCenter] = useState(centerDefault);
   const [sitters, setSitters] = useState([]);
@@ -34,7 +35,7 @@ const SearchSitter = () => {
     console.log(filterQuery);
   };
 
-  const toggleFilterModal = () => setShowFilter(!showFilter);
+  const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
 
   return (
@@ -107,7 +108,7 @@ const SearchSitter = () => {
         </S.FilterButton>
       </S.FilterMapToggleButton>
 
-      <Modal onClose={toggleFilterModal} showModal={showFilter}>
+      <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
         <FilterModalContent findSitter={findSitter} />
       </Modal>
     </Fragment>

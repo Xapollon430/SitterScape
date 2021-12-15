@@ -11,8 +11,9 @@ export const ContentWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media (max-width: 800px) {
-    grid-template-columns: 1fr;
+    height: calc(100vh - 60px);
     padding-top: 60px;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -198,6 +199,6 @@ export const MapLocationSitter = styled.div`
 
   color: white;
 
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 `;

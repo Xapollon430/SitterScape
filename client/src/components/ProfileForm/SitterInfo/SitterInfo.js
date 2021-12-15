@@ -25,6 +25,7 @@ const SitterInfo = () => {
   const { handleSubmit, handleChange, setFieldValue, values, errors } =
     SitterInfoInit(setShowErrorSnackbar);
 
+  console.log(values);
   return (
     <Fragment>
       <S.ServiceWrap>
