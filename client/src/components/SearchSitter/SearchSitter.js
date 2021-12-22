@@ -24,7 +24,7 @@ const SearchSitter = () => {
   const [mapCenter, setMapCenter] = useState(centerDefault);
   const [sitters, setSitters] = useState([]);
 
-  const findSitter = (filterData) => {
+  const findSitter = async (filterData) => {
     let filterQuery = "";
     for (let key in filterData) {
       if (filterData[key] !== "") {
@@ -32,7 +32,9 @@ const SearchSitter = () => {
       }
     }
 
-    console.log(filterQuery);
+    const filteredSitters = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+    );
   };
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);

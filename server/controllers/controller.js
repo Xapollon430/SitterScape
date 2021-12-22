@@ -1,6 +1,7 @@
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
 const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
+const { normalizeSitterFilterData } = require("../utils/helpers");
 const { config } = require("dotenv");
 
 config();
@@ -35,6 +36,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     let foundUser = await User.findOne({ email });
+    console.log(foundUser);
     if (!foundUser || password !== foundUser.password) {
       return res.status(401).send("Wrong password or email!");
     }
@@ -120,7 +122,32 @@ const updateSitterInfo = async (req, res) => {
   }
 };
 
-const searchSitters = (req, res) => {};
+// Given filter data through URL Query, we will first find sitters
+// by querying the database without the location, we will use location to filter
+// afterwards with 200 iq math.
+const searchSitters = async (req, res) => {
+  try {
+    const sitterFilterData = normalizeSitterFilterData(req.query);
+
+    // Take location out of the calculation for now.
+    const filterDataToQuery = { ...sitterFilterData };
+
+    delete filterDataToQuery.location;
+
+    console.log(filterDataToQuery);
+
+    sittersFoundWithoutLocation = await User.find({
+      ...filterDataToQuery,
+    });
+
+    console.log(sittersFoundWithoutLocation);
+
+    res.send("123");
+  } catch (e) {
+    console.log(e);
+    return res.status(400).send("Couldn't search sitters");
+  }
+};
 
 module.exports = {
   signUp,

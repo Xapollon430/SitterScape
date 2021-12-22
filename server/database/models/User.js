@@ -43,13 +43,13 @@ const userSchema = mongoose.Schema({
   dropInVisit: Boolean,
   dropInVisitRate: Number,
   rating: Number,
-  hasChildren: mongoose.Schema.Types.Mixed,
+  hasChildren: Boolean,
   // profileComments,
   profilePicture: String,
   profilePictureName: String,
   isActiveSitter: { type: Boolean, default: false },
   homeType: String,
-  smokes: mongoose.Schema.Types.Mixed,
+  smokes: Boolean,
   petPreferencesSmall: Boolean,
   petPreferencesMedium: Boolean,
   petPreferencesLarge: Boolean,
@@ -57,7 +57,7 @@ const userSchema = mongoose.Schema({
   aboutMe: String,
   headline: String,
   yearsOfExperience: Number,
-  hasYard: mongoose.Schema.Types.Mixed,
+  hasYard: Boolean,
 });
 
 const twentyMinutesInMiliseconds = 1200000;

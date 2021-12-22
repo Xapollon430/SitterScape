@@ -20,6 +20,8 @@ const FilterModalContent = ({ findSitter }) => {
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
+  console.log(values);
+
   return (
     <S.FilterWrap>
       <S.FilterTitle>Find your pawfect sitter!</S.FilterTitle>
@@ -33,8 +35,8 @@ const FilterModalContent = ({ findSitter }) => {
           label="Service"
         >
           <MenuItem value={"boarding"}>Boarding</MenuItem>
-          <MenuItem value={"home Sitting"}>Home Sitting</MenuItem>
-          <MenuItem value={"dogWalking"}>Dog Walking</MenuItem>
+          <MenuItem value={"houseSitting"}>House Sitting</MenuItem>
+          <MenuItem value={"walking"}>Dog Walking</MenuItem>
           <MenuItem value={"dropInVisit"}>Drop In Visit</MenuItem>
         </Select>
         {errors.serviceType && (
@@ -197,6 +199,14 @@ const FilterModalContentSchema = (findSitter) => {
       if (values.location === "") {
         errors.location = "Please enter your location.";
         errorExists = true;
+      }
+
+      //if the service type being searched for is not boarding, clean unnecessary search filters.
+      if (values.serviceType !== "boarding") {
+        values.homeType = "";
+        values.smokes = "";
+        values.hasYard = "";
+        values.hasChildren = "";
       }
 
       if (errorExists) {

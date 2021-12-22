@@ -8,16 +8,16 @@ const auth = async (req, res, next) => {
     if (!checkToken) {
       throw new Error();
     }
-    User.findById(checkToken.id, (err, foundUser) => {
-      if (!err) {
-        req.user = foundUser;
-        next();
-      } else {
-        throw new Error();
-      }
-    });
+    let foundUser = await User.findById(checkToken.id);
+
+    if (foundUser) {
+      req.user = foundUser;
+      next();
+    } else {
+      throw new Error();
+    }
   } catch (e) {
-    res.status(401).send({ error: "Authorize" });
+    res.status(401).send({ error: "Can't Authorize" });
   }
 };
 module.exports = auth;

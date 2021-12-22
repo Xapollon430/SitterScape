@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 
+
+// Middleware to handle calculating the new lat and lang of user if their address in changed.
 const geocodeConverterMiddleware = async (req, res, next) => {
   try {
     const { address, zip, city, state } = req.body;

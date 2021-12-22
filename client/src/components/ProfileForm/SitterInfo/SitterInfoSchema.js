@@ -21,17 +21,32 @@ export default (setShowErrorSnackbar) => {
       houseSittingRate: state.user.houseSittingRate || 0,
       dropInVisit: state.user.dropInVisit || false,
       dropInVisitRate: state.user.dropInVisitRate || 0,
-      hasChildren: state.user.hasChildren || "",
       homeType: state.user.homeType || "",
       petPreferencesSmall: state.user.petPreferencesSmall || false,
       petPreferencesMedium: state.user.petPreferencesMedium || false,
       petPreferencesLarge: state.user.petPreferencesLarge || false,
       petPreferencesGiant: state.user.petPreferencesGiant || false,
       headline: state.user.headline || "",
-      smokes: state.user.smokes || "",
+      smokes:
+        state.user.smokes === false
+          ? false
+          : state.user.smokes === true
+          ? true
+          : "",
+      hasChildren:
+        state.user.hasChildren === false
+          ? false
+          : state.user.hasChildren === true
+          ? true
+          : "",
+      hasYard:
+        state.user.hasYard === false
+          ? false
+          : state.user.hasYard === true
+          ? true
+          : "",
       aboutMe: state.user.aboutMe || "",
       yearsOfExperience: state.user.yearsOfExperience || 0,
-      hasYard: state.user.hasYard || "",
       profilePicture: state.user.profilePicture || "",
     },
     validate: async (values) => {
@@ -44,15 +59,15 @@ export default (setShowErrorSnackbar) => {
           errorExists = true;
         }
 
-        if (values.smokes === undefined) {
+        if (values.smokes === "") {
           errors.smokes = "Please select an option.";
           errorExists = true;
         }
-        if (values.hasYard === undefined) {
+        if (values.hasYard === "") {
           errors.hasYard = "Please select an option.";
           errorExists = true;
         }
-        if (values.hasChildren === undefined) {
+        if (values.hasChildren === "") {
           errors.hasChildren = "Please select an option.";
           errorExists = true;
         }

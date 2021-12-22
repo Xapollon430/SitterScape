@@ -26,6 +26,7 @@ const SitterInfo = () => {
     SitterInfoInit(setShowErrorSnackbar);
 
   console.log(values);
+
   return (
     <Fragment>
       <S.ServiceWrap>
@@ -95,13 +96,7 @@ const SitterInfo = () => {
             >
               <InputLabel>Children</InputLabel>
               <Select
-                value={
-                  values.hasChildren === false
-                    ? false
-                    : values.hasChildren === true
-                    ? true
-                    : values.hasChildren
-                }
+                value={values.hasChildren}
                 onChange={(e) => {
                   setFieldValue("hasChildren", e.target.value);
                 }}
@@ -151,13 +146,7 @@ const SitterInfo = () => {
             >
               <InputLabel>Yard</InputLabel>
               <Select
-                value={
-                  values.hasYard === false
-                    ? false
-                    : values.hasYard === true
-                    ? true
-                    : values.hasYard
-                }
+                value={values.hasYard}
                 onChange={(e) => {
                   setFieldValue("hasYard", e.target.value);
                 }}
