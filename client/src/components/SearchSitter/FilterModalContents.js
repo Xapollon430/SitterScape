@@ -11,16 +11,18 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useFormik } from "formik";
+import { DEFAULT_ZOOM } from "./SearchSitter";
 
-const FilterModalContent = ({ findSitter }) => {
+const FilterModalContent = ({
+  values,
+  errors,
+  setFieldValue,
+  handleSubmit,
+}) => {
+  console.log(values);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
 
-  const { values, errors, setFieldValue, handleSubmit } =
-    FilterModalContentSchema(findSitter);
-
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
-
-  console.log(values);
 
   return (
     <S.FilterWrap>
@@ -175,17 +177,18 @@ const FilterModalContent = ({ findSitter }) => {
   );
 };
 
-const FilterModalContentSchema = (findSitter) => {
+export const FilterSitterSchema = (findSitter) => {
   return useFormik({
     validateOnChange: false,
     initialValues: {
-      serviceType: "",
+      serviceType: "boarding",
       location: "",
       price: [33, 66],
       hasChildren: "",
       homeType: "",
       smokes: "",
       hasYard: "",
+      zoomLevel: DEFAULT_ZOOM,
     },
     validate: async (values) => {
       let errors = {};

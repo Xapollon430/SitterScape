@@ -35,10 +35,13 @@ const normalizeSitterFilterData = (filterData) => {
     $gte: newFilterData.price[0],
     $lte: newFilterData.price[1],
   };
-  delete newFilterData.price;
 
   newFilterData[newFilterData["serviceType"]] = true;
+
+  delete newFilterData.price;
+  delete newFilterData.location;
   delete newFilterData.serviceType;
+  delete newFilterData.zoomLevel;
 
   return newFilterData;
 };

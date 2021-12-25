@@ -127,20 +127,12 @@ const updateSitterInfo = async (req, res) => {
 // afterwards with 200 iq math.
 const searchSitters = async (req, res) => {
   try {
-    const sitterFilterData = normalizeSitterFilterData(req.query);
+    const { location, zoomLevel } = req.query;
+    const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
-    // Take location out of the calculation for now.
-    const filterDataToQuery = { ...sitterFilterData };
+    sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
 
-    delete filterDataToQuery.location;
-
-    console.log(filterDataToQuery);
-
-    sittersFoundWithoutLocation = await User.find({
-      ...filterDataToQuery,
-    });
-
-    console.log(sittersFoundWithoutLocation);
+    // console.log(sittersFoundWithoutLocation, filterDataToQuery);
 
     res.send("123");
   } catch (e) {

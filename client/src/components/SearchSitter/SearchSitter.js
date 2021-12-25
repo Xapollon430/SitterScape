@@ -5,37 +5,44 @@ import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
-import FilterModalContent from "./FilterModalContents";
+import FilterModalContent, { FilterSitterSchema } from "./FilterModalContents";
 import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import fakeData from "./fakedata";
 
-const centerDefault = {
+const DEFAULT_CENTER = {
   lat: 38.8082415,
   lng: -77.662807,
 };
 
-const SearchSitter = () => {
-  const [state, _] = useContext(StoreContext);
-  const [showFilterModal, setShowFilterModal] = useState(true);
-  const [filterData, setFilterData] = useState();
-  const [showMap, setShowMap] = useState(false);
-  const [mapCenter, setMapCenter] = useState(centerDefault);
-  const [sitters, setSitters] = useState([]);
+export const DEFAULT_ZOOM = 13;
 
-  const findSitter = async (filterData) => {
-    let filterQuery = "";
-    for (let key in filterData) {
-      if (filterData[key] !== "") {
-        filterQuery += `${key}=${filterData[key]}&`;
-      }
+const findSitter = async (filterData) => {
+  let filterQuery = "";
+  for (let key in filterData) {
+    if (filterData[key] !== "") {
+      filterQuery += `${key}=${filterData[key]}&`;
     }
+  }
 
-    const filteredSitters = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-    );
-  };
+  const filteredSitters = await fetch(
+    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+  );
+};
+
+const SearchSitter = () => {
+  //Map related states
+  const [showFilterModal, setShowFilterModal] = useState(true);
+  const [showMap, setShowMap] = useState(false);
+  const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [zoomLevel, setZoomLevel] = useState(DEFAULT_ZOOM);
+
+  // Sitter/User related states
+  const [state, _] = useContext(StoreContext);
+  const [sitters, setSitters] = useState([]);
+  const filterData = FilterSitterSchema(findSitter);
+  const { values, errors, setFieldValue, handleSubmit } = filterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
@@ -82,7 +89,7 @@ const SearchSitter = () => {
               },
             ],
           }}
-          defaultZoom={10}
+          defaultZoom={DEFAULT_ZOOM}
           onChange={({ center, zoom, bounds }) => {}}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
@@ -111,7 +118,7 @@ const SearchSitter = () => {
       </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
-        <FilterModalContent findSitter={findSitter} />
+        <FilterModalContent {...filterData} />
       </Modal>
     </Fragment>
   );
