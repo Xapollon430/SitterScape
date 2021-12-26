@@ -16,27 +16,37 @@ const DEFAULT_CENTER = {
   lng: -77.662807,
 };
 
-export const DEFAULT_ZOOM = 13;
-
-const findSitter = async (filterData) => {
-  let filterQuery = "";
-  for (let key in filterData) {
-    if (filterData[key] !== "") {
-      filterQuery += `${key}=${filterData[key]}&`;
-    }
-  }
-
-  const filteredSitters = await fetch(
-    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-  );
-};
+const DEFAULT_ZOOM = 13;
 
 const SearchSitter = () => {
+  const findSitter = async (filterData) => {
+    let filterQuery = "";
+    for (let key in filterData) {
+      if (filterData[key] !== "") {
+        filterQuery += `${key}=${filterData[key]}&`;
+      }
+    }
+
+    const requestedMapCenter = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/api/forward-geocode?address=${filterData.address}`
+    );
+
+    const requestedMapCenterResponse = await requestedMapCenter.json();
+
+    setMapCenter({
+      lat: requestedMapCenterResponse.latitude,
+      lng: requestedMapCenterResponse.longitude,
+    });
+
+    // const filteredSitters = await fetch(
+    //   `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+    // );
+  };
+
   //Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(false);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
-  const [zoomLevel, setZoomLevel] = useState(DEFAULT_ZOOM);
 
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
@@ -46,6 +56,10 @@ const SearchSitter = () => {
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
+
+  //First find the new map center by doing a "pre-flight" request with user
+  // entered address filter. Then we can get our new bounds for the server
+  // to filter.
 
   return (
     <Fragment>
@@ -90,7 +104,9 @@ const SearchSitter = () => {
             ],
           }}
           defaultZoom={DEFAULT_ZOOM}
-          onChange={({ center, zoom, bounds }) => {}}
+          onChange={({ center, zoom, bounds }) => {
+            console.log(center, zoom, bounds);
+          }}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
             19

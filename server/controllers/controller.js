@@ -1,7 +1,10 @@
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
 const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
-const { normalizeSitterFilterData } = require("../utils/helpers");
+const {
+  normalizeSitterFilterData,
+  getLatAndLangPositionStackApi,
+} = require("../utils/helpers");
 const { config } = require("dotenv");
 
 config();
@@ -132,9 +135,20 @@ const searchSitters = async (req, res) => {
 
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
 
-    // console.log(sittersFoundWithoutLocation, filterDataToQuery);
+    console.log(sittersFoundWithoutLocation);
 
     res.send("123");
+  } catch (e) {
+    console.log(e);
+    return res.status(400).send("Couldn't search sitters");
+  }
+};
+
+const forwardGeocoding = async (req, res) => {
+  try {
+    const address = req.query.address;
+    const geocode = await getLatAndLangPositionStackApi(address);
+    res.json(geocode);
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");
@@ -149,4 +163,5 @@ module.exports = {
   updatePersonalInfo,
   updateSitterInfo,
   searchSitters,
+  forwardGeocoding,
 };

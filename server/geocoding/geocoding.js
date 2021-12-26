@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-
+const { getLatAndLangGoogleApi } = require("../utils/helpers");
 
 // Middleware to handle calculating the new lat and lang of user if their address in changed.
 const geocodeConverterMiddleware = async (req, res, next) => {
@@ -13,17 +13,9 @@ const geocodeConverterMiddleware = async (req, res, next) => {
       user.city !== city ||
       user.state !== state
     ) {
-      const queryString = `${address} ${zip} ${city} ${state}`;
+      const addressString = `${address} ${zip} ${city} ${state}`;
 
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${queryString}`
-      );
-      const { results } = await response.json();
-
-      user.geocode = {
-        latitude: results[0].geometry.location.lat,
-        longitude: results[0].geometry.location.lng,
-      };
+      user.geocode = await getLatAndLangGoogleApi(addressString);
 
       await user.save();
     }

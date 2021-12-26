@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { useState } from "react";
 import { useFormik } from "formik";
-import { DEFAULT_ZOOM } from "./SearchSitter";
 
 const FilterModalContent = ({
   values,
@@ -19,7 +18,6 @@ const FilterModalContent = ({
   setFieldValue,
   handleSubmit,
 }) => {
-  console.log(values);
   const [showMoreFilter, setShowMoreFilter] = useState(false);
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
@@ -46,14 +44,14 @@ const FilterModalContent = ({
         )}
       </FormControl>
       <TextField
-        value={values.location}
+        value={values.address}
         onChange={(e) => {
-          setFieldValue("location", e.target.value);
+          setFieldValue("address", e.target.value);
         }}
         label="Address or Zip Code"
         variant="outlined"
-        error={errors.location ? true : false}
-        helperText={errors.location}
+        error={errors.address ? true : false}
+        helperText={errors.address}
       />
       <S.FilterPriceWrap>
         <S.FilterPriceRangeWrap>
@@ -182,13 +180,12 @@ export const FilterSitterSchema = (findSitter) => {
     validateOnChange: false,
     initialValues: {
       serviceType: "boarding",
-      location: "",
+      address: "",
       price: [33, 66],
       hasChildren: "",
       homeType: "",
       smokes: "",
       hasYard: "",
-      zoomLevel: DEFAULT_ZOOM,
     },
     validate: async (values) => {
       let errors = {};
@@ -199,8 +196,8 @@ export const FilterSitterSchema = (findSitter) => {
         errorExists = true;
       }
 
-      if (values.location === "") {
-        errors.location = "Please enter your location.";
+      if (values.address === "") {
+        errors.address = "Please enter your location.";
         errorExists = true;
       }
 

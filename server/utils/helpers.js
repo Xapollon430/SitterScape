@@ -1,7 +1,9 @@
+const fetch = require("node-fetch");
+
 const filterableData = ["smokes", "hasChildren", "hasYard", "price"];
 
 // Given address (zip or specific address) transform into latitude and longitude.
-const getLatandLang = async (address) => {
+const getLatAndLangGoogleApi = async (address) => {
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${address}`
   );
@@ -10,6 +12,18 @@ const getLatandLang = async (address) => {
   return {
     latitude: results[0].geometry.location.lat,
     longitude: results[0].geometry.location.lng,
+  };
+};
+
+const getLatAndLangPositionStackApi = async (address) => {
+  const response = await fetch(
+    `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
+  );
+  const { data } = await response.json();
+
+  return {
+    latitude: data[0].latitude,
+    longitude: data[0].longitude,
   };
 };
 
@@ -46,7 +60,10 @@ const normalizeSitterFilterData = (filterData) => {
   return newFilterData;
 };
 
+const filterSitterByLocation = () => {};
+
 module.exports = {
-  getLatandLang,
+  getLatAndLangGoogleApi,
   normalizeSitterFilterData,
+  getLatAndLangPositionStackApi,
 };
