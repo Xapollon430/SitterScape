@@ -38,9 +38,11 @@ const SearchSitter = () => {
       lng: requestedMapCenterResponse.longitude,
     });
 
-    // const filteredSitters = await fetch(
-    //   `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-    // );
+    const filteredSitters = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+    );
+
+    const filteredSittersResponse = await filteredSitters.json();
   };
 
   //Map related states
