@@ -2,7 +2,8 @@ const fetch = require("node-fetch");
 
 const filterableData = ["smokes", "hasChildren", "hasYard", "price"];
 
-// Given address (zip or specific address) transform into latitude and longitude.
+// Given address (zip or specific address) transform into latitude and longitude only in US
+// through the Google Maps Api.
 const getLatAndLangGoogleApi = async (address) => {
   const response = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_GEOCODING_API_KEY}&address=${address}`
@@ -15,15 +16,28 @@ const getLatAndLangGoogleApi = async (address) => {
   };
 };
 
+// Given address (zip or specific address) transform into latitude and longitude only in US
+// through the PositionStack Api.
 const getLatAndLangPositionStackApi = async (address) => {
   const response = await fetch(
     `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
   );
   const { data } = await response.json();
 
+  let latitude;
+  let longitude;
+
+  for (let i in data) {
+    if (data[i].country === "United States") {
+      latitude = data[i].latitude;
+      longitude = data[i].longitude;
+    }
+  }
+
+  console.log(latitude, longitude);
   return {
-    latitude: data[0].latitude,
-    longitude: data[0].longitude,
+    latitude,
+    longitude,
   };
 };
 
@@ -55,7 +69,6 @@ const normalizeSitterFilterData = (filterData) => {
   delete newFilterData.price;
   delete newFilterData.location;
   delete newFilterData.serviceType;
-  delete newFilterData.zoomLevel;
 
   return newFilterData;
 };

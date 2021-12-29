@@ -1,11 +1,12 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
+import { useFormik } from "formik";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
-import FilterModalContent, { FilterSitterSchema } from "./FilterModalContents";
+import FilterModalContent from "./FilterModalContents";
 import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -18,50 +19,117 @@ const DEFAULT_CENTER = {
 
 const DEFAULT_ZOOM = 13;
 
-const SearchSitter = () => {
-  const findSitter = async (filterData) => {
-    let filterQuery = "";
-    for (let key in filterData) {
-      if (filterData[key] !== "") {
-        filterQuery += `${key}=${filterData[key]}&`;
+let prevAddress;
+
+const FilterSitterSchema = (setMapCenter, mapBounds) => {
+  return useFormik({
+    validateOnChange: false,
+    initialValues: {
+      serviceType: "boarding",
+      address: "",
+      price: [33, 66],
+      hasChildren: "",
+      homeType: "",
+      smokes: "",
+      hasYard: "",
+    },
+    validate: async (values) => {
+      let errors = {};
+      let errorExists = false;
+
+      if (values.serviceType === "") {
+        errors.serviceType = "Please select a service.";
+        errorExists = true;
       }
+
+      if (values.address === "") {
+        errors.address = "Please enter your location.";
+        errorExists = true;
+      }
+
+      //if the service type being searched for is not boarding, clean unnecessary search filters.
+      if (values.serviceType !== "boarding") {
+        values.homeType = "";
+        values.smokes = "";
+        values.hasYard = "";
+        values.hasChildren = "";
+      }
+
+      if (errorExists) {
+        return errors;
+      }
+
+      return true;
+    },
+    onSubmit: async (values) => {
+      try {
+        if (prevAddress !== values.address) {
+          setMapCenter(await mapRelocateHandler(values.address));
+        } else {
+          console.log(123);
+          findSitter(values, mapBounds);
+        }
+        prevAddress = values.address;
+      } catch (e) {}
+    },
+  });
+};
+
+//After finding our bounds, we can make the actual search
+const findSitter = async (filterData, bounds) => {
+  let filterQuery = "";
+
+  console.log(bounds);
+
+  for (let key in filterData) {
+    if (filterData[key] !== "" && key !== "bounds") {
+      filterQuery += `${key}=${filterData[key]}&`;
     }
+  }
 
-    const requestedMapCenter = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/api/forward-geocode?address=${filterData.address}`
-    );
+  for (let bound in filterData.bounds) {
+    filterQuery += `${bound}=${filterData.bounds.bound}&`;
+  }
 
-    const requestedMapCenterResponse = await requestedMapCenter.json();
+  const filteredSitters = await fetch(
+    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+  );
 
-    setMapCenter({
-      lat: requestedMapCenterResponse.latitude,
-      lng: requestedMapCenterResponse.longitude,
-    });
+  // const filteredSittersResponse = await filteredSitters.json();
+};
 
-    const filteredSitters = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-    );
+//To search sitters we need to relocate the map, that will trigger a search for users
+// in that area.
+const mapRelocateHandler = async (address) => {
+  const requestedMapCenter = await fetch(
+    `${process.env.REACT_APP_SERVER_URL}/api/forward-geocode?address=${address}`
+  );
 
-    const filteredSittersResponse = await filteredSitters.json();
+  const requestedMapCenterResponse = await requestedMapCenter.json();
+
+  //Very crucial part of the algorithm, we use this to
+  //trick google maps api to re-render to make address lookups easier.
+
+  return {
+    lat: requestedMapCenterResponse.latitude,
+    lng: requestedMapCenterResponse.longitude,
   };
+};
 
+const SearchSitter = () => {
   //Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(false);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
-
+  const [mapBounds, setMapBounds] = useState();
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
   const [sitters, setSitters] = useState([]);
-  const filterData = FilterSitterSchema(findSitter);
+  const filterData = FilterSitterSchema(setMapCenter, mapBounds);
   const { values, errors, setFieldValue, handleSubmit } = filterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
-
-  //First find the new map center by doing a "pre-flight" request with user
-  // entered address filter. Then we can get our new bounds for the server
-  // to filter.
 
   return (
     <Fragment>
@@ -107,7 +175,12 @@ const SearchSitter = () => {
           }}
           defaultZoom={DEFAULT_ZOOM}
           onChange={({ center, zoom, bounds }) => {
-            setFieldValue("bounds", bounds);
+            console.log("map relocation");
+            if (center.lng !== mapCenter.lng || center.lat !== mapCenter.lat) {
+              findSitter(values, bounds);
+            }
+            setMapCenter(center);
+            setMapBounds(bounds);
           }}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>

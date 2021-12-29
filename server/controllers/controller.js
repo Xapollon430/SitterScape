@@ -130,12 +130,12 @@ const updateSitterInfo = async (req, res) => {
 // afterwards with 200 iq math.
 const searchSitters = async (req, res) => {
   try {
-    const { location, zoomLevel } = req.query;
+    const { location } = req.query;
     const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
 
-    console.log(sittersFoundWithoutLocation);
+    console.log(123);
 
     res.send("123");
   } catch (e) {
@@ -144,6 +144,7 @@ const searchSitters = async (req, res) => {
   }
 };
 
+//Function to handle filterModalContent address lookups
 const forwardGeocoding = async (req, res) => {
   try {
     const address = req.query.address;

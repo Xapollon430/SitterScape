@@ -10,7 +10,6 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { useState } from "react";
-import { useFormik } from "formik";
 
 const FilterModalContent = ({
   values,
@@ -173,55 +172,6 @@ const FilterModalContent = ({
       </Button>
     </S.FilterWrap>
   );
-};
-
-export const FilterSitterSchema = (findSitter) => {
-  return useFormik({
-    validateOnChange: false,
-    initialValues: {
-      serviceType: "boarding",
-      address: "",
-      price: [33, 66],
-      hasChildren: "",
-      homeType: "",
-      smokes: "",
-      hasYard: "",
-      bounds: {},
-    },
-    validate: async (values) => {
-      let errors = {};
-      let errorExists = false;
-
-      if (values.serviceType === "") {
-        errors.serviceType = "Please select a service.";
-        errorExists = true;
-      }
-
-      if (values.address === "") {
-        errors.address = "Please enter your location.";
-        errorExists = true;
-      }
-
-      //if the service type being searched for is not boarding, clean unnecessary search filters.
-      if (values.serviceType !== "boarding") {
-        values.homeType = "";
-        values.smokes = "";
-        values.hasYard = "";
-        values.hasChildren = "";
-      }
-
-      if (errorExists) {
-        return errors;
-      }
-
-      return true;
-    },
-    onSubmit: async (values) => {
-      try {
-        findSitter(values);
-      } catch (e) {}
-    },
-  });
 };
 
 export default FilterModalContent;
