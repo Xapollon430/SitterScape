@@ -186,6 +186,7 @@ export const FilterSitterSchema = (findSitter) => {
       homeType: "",
       smokes: "",
       hasYard: "",
+      bounds: {},
     },
     validate: async (values) => {
       let errors = {};

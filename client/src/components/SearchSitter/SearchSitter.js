@@ -107,7 +107,7 @@ const SearchSitter = () => {
           }}
           defaultZoom={DEFAULT_ZOOM}
           onChange={({ center, zoom, bounds }) => {
-            console.log(center, zoom, bounds);
+            setFieldValue("bounds", bounds);
           }}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
