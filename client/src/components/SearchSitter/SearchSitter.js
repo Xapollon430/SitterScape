@@ -20,8 +20,10 @@ const DEFAULT_CENTER = {
 const DEFAULT_ZOOM = 13;
 
 let prevAddress;
+let prevBounds;
+let prevZoom;
 
-const FilterSitterSchema = (setMapCenter, mapBounds) => {
+const FilterSitterSchema = (setMapCenter) => {
   return useFormik({
     validateOnChange: false,
     initialValues: {
@@ -61,13 +63,16 @@ const FilterSitterSchema = (setMapCenter, mapBounds) => {
 
       return true;
     },
+    //If the address filter is changed, find the new location to center the map
+    //that will consequentely trigger the map to find new sitters.
+    //if the address isnt changed, then find sitters with the rest of the filters.
+    //finally update the address for the next run
     onSubmit: async (values) => {
       try {
         if (prevAddress !== values.address) {
           setMapCenter(await mapRelocateHandler(values.address));
         } else {
-          console.log(123);
-          findSitter(values, mapBounds);
+          findSitter(values);
         }
         prevAddress = values.address;
       } catch (e) {}
@@ -76,10 +81,8 @@ const FilterSitterSchema = (setMapCenter, mapBounds) => {
 };
 
 //After finding our bounds, we can make the actual search
-const findSitter = async (filterData, bounds) => {
+const findSitter = async (filterData) => {
   let filterQuery = "";
-
-  console.log(bounds);
 
   for (let key in filterData) {
     if (filterData[key] !== "" && key !== "bounds") {
@@ -87,13 +90,15 @@ const findSitter = async (filterData, bounds) => {
     }
   }
 
-  for (let bound in filterData.bounds) {
+  for (let bound in prevBounds) {
     filterQuery += `${bound}=${filterData.bounds.bound}&`;
   }
 
-  const filteredSitters = await fetch(
-    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-  );
+  console.log(filterQuery);
+
+  // const filteredSitters = await fetch(
+  //   `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+  // );
 
   // const filteredSittersResponse = await filteredSitters.json();
 };
@@ -107,9 +112,6 @@ const mapRelocateHandler = async (address) => {
 
   const requestedMapCenterResponse = await requestedMapCenter.json();
 
-  //Very crucial part of the algorithm, we use this to
-  //trick google maps api to re-render to make address lookups easier.
-
   return {
     lat: requestedMapCenterResponse.latitude,
     lng: requestedMapCenterResponse.longitude,
@@ -121,11 +123,10 @@ const SearchSitter = () => {
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(false);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
-  const [mapBounds, setMapBounds] = useState();
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
   const [sitters, setSitters] = useState([]);
-  const filterData = FilterSitterSchema(setMapCenter, mapBounds);
+  const filterData = FilterSitterSchema(setMapCenter);
   const { values, errors, setFieldValue, handleSubmit } = filterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
@@ -175,12 +176,19 @@ const SearchSitter = () => {
           }}
           defaultZoom={DEFAULT_ZOOM}
           onChange={({ center, zoom, bounds }) => {
-            console.log("map relocation");
-            if (center.lng !== mapCenter.lng || center.lat !== mapCenter.lat) {
+            //Workaround to map resizing causing infinite network calls
+            //check if center or zoom is changed, then find new sitters
+            //finally update the new bounds, center, and zoom.
+            if (
+              center.lng !== mapCenter.lng ||
+              center.lat !== mapCenter.lat ||
+              zoom != prevZoom
+            ) {
               findSitter(values, bounds);
             }
             setMapCenter(center);
-            setMapBounds(bounds);
+            prevBounds = bounds;
+            prevZoom = zoom;
           }}
         >
           <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
