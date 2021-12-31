@@ -1,6 +1,16 @@
 const fetch = require("node-fetch");
 
 const filterableData = ["smokes", "hasChildren", "hasYard", "price"];
+const boundNames = [
+  "nwLatitude",
+  "nwLongitude",
+  "neLatitude",
+  "neLongitude",
+  "swLatitude",
+  "swLongitude",
+  "seLatitude",
+  "seLongitude",
+];
 
 // Given address (zip or specific address) transform into latitude and longitude only in US
 // through the Google Maps Api.
@@ -56,6 +66,9 @@ const normalizeSitterFilterData = (filterData) => {
           ? true
           : false);
     }
+    //dont include the bounds
+    if (boundNames.includes(key)) return;
+
     newFilterData[key] = filterData[key];
   });
 
@@ -67,16 +80,22 @@ const normalizeSitterFilterData = (filterData) => {
   newFilterData[newFilterData["serviceType"]] = true;
 
   delete newFilterData.price;
-  delete newFilterData.location;
+  delete newFilterData.address;
   delete newFilterData.serviceType;
 
   return newFilterData;
 };
 
-const filterSitterByLocation = () => {};
+//Helper function to find sitters within bounds out of all sitters.
+const filterSitterByLocation = (allSitters, locations) => {
+  const filteredSitters = allSitters.filter((sitter) => {
+
+  })
+};
 
 module.exports = {
   getLatAndLangGoogleApi,
   normalizeSitterFilterData,
   getLatAndLangPositionStackApi,
+  filterSitterByLocation,
 };

@@ -4,6 +4,7 @@ const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
 const {
   normalizeSitterFilterData,
   getLatAndLangPositionStackApi,
+  filterSitterByLocation,
 } = require("../utils/helpers");
 const { config } = require("dotenv");
 
@@ -130,14 +131,35 @@ const updateSitterInfo = async (req, res) => {
 // afterwards with 200 iq math.
 const searchSitters = async (req, res) => {
   try {
-    const { location } = req.query;
+    const {
+      address,
+      nwLatitude,
+      nwLongitude,
+      neLatitude,
+      neLongitude,
+      swLatitude,
+      swLongitude,
+      seLatitude,
+      seLongitude,
+    } = req.query;
     const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
 
-    console.log(123);
-
-    res.send("123");
+    sittersFoundWithLocation = filterSitterByLocation(
+      sittersFoundWithLocation,
+      {
+        address,
+        nwLatitude,
+        nwLongitude,
+        neLatitude,
+        neLongitude,
+        swLatitude,
+        swLongitude,
+        seLatitude,
+        seLongitude,
+      }
+    );
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");
