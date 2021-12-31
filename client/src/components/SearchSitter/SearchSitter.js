@@ -72,7 +72,7 @@ const FilterSitterSchema = (setMapCenter) => {
         if (prevAddress !== values.address) {
           setMapCenter(await mapRelocateHandler(values.address));
         } else {
-          findSitter(values);
+          findSitter(values, prevBounds);
         }
         prevAddress = values.address;
       } catch (e) {}
@@ -81,7 +81,7 @@ const FilterSitterSchema = (setMapCenter) => {
 };
 
 //After finding our bounds, we can make the actual search
-const findSitter = async (filterData) => {
+const findSitter = async (filterData, bounds) => {
   let filterQuery = "";
 
   for (let key in filterData) {
@@ -90,15 +90,14 @@ const findSitter = async (filterData) => {
     }
   }
 
-  for (let bound in prevBounds) {
-    filterQuery += `${bound}=${filterData.bounds.bound}&`;
+  for (let bound in bounds) {
+    filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
+    filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
   }
 
-  console.log(filterQuery);
-
-  // const filteredSitters = await fetch(
-  //   `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-  // );
+  const filteredSitters = await fetch(
+    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+  );
 
   // const filteredSittersResponse = await filteredSitters.json();
 };
