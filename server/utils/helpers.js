@@ -89,7 +89,7 @@ const normalizeSitterFilterData = (filterData) => {
 //Helper function to find sitters within bounds out of all sitters.
 const filterSitterByLocation = (allSitters, locations) => {
   const filteredSitters = allSitters.filter((sitter) => {
-
+    if()
   })
 };
 
