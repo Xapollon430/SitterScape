@@ -29,22 +29,29 @@ const getLatAndLangGoogleApi = async (address) => {
 // Given address (zip or specific address) transform into latitude and longitude only in US
 // through the PositionStack Api.
 const getLatAndLangPositionStackApi = async (address) => {
-  const response = await fetch(
-    `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
-  );
-  const { data } = await response.json();
-
   let latitude;
   let longitude;
 
-  for (let i in data) {
-    if (data[i].country === "United States") {
-      latitude = data[i].latitude;
-      longitude = data[i].longitude;
+  console.log(
+    `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
+  );
+
+  while (latitude === undefined && longitude === undefined) {
+    const response = await fetch(
+      `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
+    );
+    const { data } = await response.json();
+
+    for (let i in data) {
+      if (data[i].country === "United States") {
+        latitude = data[i].latitude;
+        longitude = data[i].longitude;
+      }
     }
   }
 
   console.log(latitude, longitude);
+
   return {
     latitude,
     longitude,
@@ -87,11 +94,17 @@ const normalizeSitterFilterData = (filterData) => {
 };
 
 //Helper function to find sitters within bounds out of all sitters.
-const filterSitterByLocation = (allSitters, locations) => {
-  const filteredSitters = allSitters.filter((sitter) => {
-    if()
-  })
-};
+const filterSitterByLocation = (allSitters, locations) =>
+  allSitters.filter((sitter) => {
+    if (
+      locations.nwLongitude < sitter.geocode.longitude &&
+      locations.seLongitude > sitter.geocode.longitude &&
+      locations.neLatitude > sitter.geocode.latitude &&
+      locations.swLatitude < sitter.geocode.latitude
+    ) {
+      return sitter;
+    }
+  });
 
 module.exports = {
   getLatAndLangGoogleApi,

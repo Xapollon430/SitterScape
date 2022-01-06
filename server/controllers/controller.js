@@ -147,7 +147,7 @@ const searchSitters = async (req, res) => {
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
 
     sittersFoundWithLocation = filterSitterByLocation(
-      sittersFoundWithLocation,
+      sittersFoundWithoutLocation,
       {
         address,
         nwLatitude,
@@ -160,6 +160,7 @@ const searchSitters = async (req, res) => {
         seLongitude,
       }
     );
+    res.json();
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");
