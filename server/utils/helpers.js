@@ -32,25 +32,17 @@ const getLatAndLangPositionStackApi = async (address) => {
   let latitude;
   let longitude;
 
-  console.log(
-    `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
+  const response = await fetch(
+    `http://api.positionstack.com/v1/forward?access_key=${process.env.POSITIONSTACK_API_KEY}&query=${address}`
   );
+  const { data } = await response.json();
 
-  while (latitude === undefined && longitude === undefined) {
-    const response = await fetch(
-      `http://api.positionstack.com/v1/forward?access_key=${process.env.OPENSTACK_API_KEY}&query=${address}`
-    );
-    const { data } = await response.json();
-
-    for (let i in data) {
-      if (data[i].country === "United States") {
-        latitude = data[i].latitude;
-        longitude = data[i].longitude;
-      }
+  for (let i in data) {
+    if (data[i].country === "United States") {
+      latitude = data[i].latitude;
+      longitude = data[i].longitude;
     }
   }
-
-  console.log(latitude, longitude);
 
   return {
     latitude,

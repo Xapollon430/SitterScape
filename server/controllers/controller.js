@@ -160,7 +160,8 @@ const searchSitters = async (req, res) => {
         seLongitude,
       }
     );
-    res.json();
+
+    res.json(sittersFoundWithLocation);
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");
