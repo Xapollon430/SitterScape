@@ -25,8 +25,6 @@ const SitterInfo = () => {
   const { handleSubmit, handleChange, setFieldValue, values, errors } =
     SitterInfoInit(setShowErrorSnackbar);
 
-  console.log(values);
-
   return (
     <Fragment>
       <S.ServiceWrap>
@@ -59,7 +57,7 @@ const SitterInfo = () => {
               onChange={(e) => {
                 setFieldValue("boardingRate", e.target.value);
               }}
-              InputProps={{ inputProps: { min: 0 } }}
+              InputProps={{ inputProps: { min: 0, max: 150 } }}
               label="$"
               value={values.boardingRate}
               type="number"
@@ -196,10 +194,10 @@ const SitterInfo = () => {
               }}
               label="$"
               type="number"
-              InputProps={{ inputProps: { min: 0 } }}
+              InputProps={{ inputProps: { min: 0, max: 150 } }}
               value={values.houseSittingRate}
               variant="filled"
-              error={errors.houseSittingRate}
+              error={errors.houseSittingRate ? true : false}
               helperText={errors.houseSittingRate}
             />
           </Fragment>
@@ -238,7 +236,7 @@ const SitterInfo = () => {
               }}
               label="$"
               type="number"
-              InputProps={{ inputProps: { min: 0 } }}
+              InputProps={{ inputProps: { min: 0, max: 150 } }}
               value={values.dropInVisitRate}
               variant="filled"
               error={errors.dropInVisitRate}
@@ -277,7 +275,7 @@ const SitterInfo = () => {
               onChange={(e) => {
                 setFieldValue("walkingRate", e.target.value);
               }}
-              InputProps={{ inputProps: { min: 0 } }}
+              InputProps={{ inputProps: { min: 0, max: 150 } }}
               label="$"
               type="number"
               value={values.walkingRate}

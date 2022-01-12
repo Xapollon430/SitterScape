@@ -54,8 +54,8 @@ export default (setShowErrorSnackbar) => {
       let errorExists = false;
 
       if (values.boarding) {
-        if (values.boardingRate <= 0) {
-          errors.boardingRate = "Please choose a rate above $0";
+        if (values.boardingRate <= 0 || values.boardingRate >= 150) {
+          errors.boardingRate = "Please choose a rate above $0 and under $150";
           errorExists = true;
         }
 
@@ -77,18 +77,28 @@ export default (setShowErrorSnackbar) => {
         }
       }
 
-      if (values.dropInVisit && values.dropInVisitRate <= 0) {
-        errors.dropInVisitRate = "Please choose a rate above $0";
+      if (
+        values.dropInVisit &&
+        (values.dropInVisitRate <= 0 || values.dropInVisitRate >= 150)
+      ) {
+        errors.dropInVisitRate = "Please choose a rate above $0 and under $150";
         errorExists = true;
       }
 
-      if (values.houseSitting && values.houseSittingRate <= 0) {
-        errors.houseSittingRate = "Please choose a rate above $0";
+      if (
+        values.houseSitting &&
+        (values.houseSittingRate <= 0 || values.houseSittingRate >= 150)
+      ) {
+        errors.houseSittingRate =
+          "Please choose a rate above $0 and under $150";
         errorExists = true;
       }
 
-      if (values.walking && values.walkingRate <= 0) {
-        errors.walkingRate = "Please choose a rate above $0";
+      if (
+        values.walking &&
+        (values.walkingRate <= 0 || values.walkingRate >= 150)
+      ) {
+        errors.walkingRate = "Please choose a rate above $0 and under $150";
         errorExists = true;
       }
 

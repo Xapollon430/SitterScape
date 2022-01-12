@@ -10,99 +10,19 @@ import FilterModalContent from "./FilterModalContents";
 import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import fakeData from "./fakedata";
+import Spinner from "../common/Spinner";
 
 const DEFAULT_CENTER = {
   lat: 38.8082415,
-  lng: -77.662807,
+  lng: -77.332807,
 };
-
-const DEFAULT_ZOOM = 13;
+const DEFAULT_ZOOM = 10;
 
 let prevAddress;
 let prevBounds;
 let prevZoom;
 
-const FilterSitterSchema = (setMapCenter) => {
-  return useFormik({
-    validateOnChange: false,
-    initialValues: {
-      serviceType: "boarding",
-      address: "",
-      price: [33, 66],
-      hasChildren: "",
-      homeType: "",
-      smokes: "",
-      hasYard: "",
-    },
-    validate: async (values) => {
-      let errors = {};
-      let errorExists = false;
-
-      if (values.serviceType === "") {
-        errors.serviceType = "Please select a service.";
-        errorExists = true;
-      }
-
-      if (values.address === "") {
-        errors.address = "Please enter your location.";
-        errorExists = true;
-      }
-
-      //if the service type being searched for is not boarding, clean unnecessary search filters.
-      if (values.serviceType !== "boarding") {
-        values.homeType = "";
-        values.smokes = "";
-        values.hasYard = "";
-        values.hasChildren = "";
-      }
-
-      if (errorExists) {
-        return errors;
-      }
-
-      return true;
-    },
-    //If the address filter is changed, find the new location to center the map
-    //that will consequentely trigger the map to find new sitters.
-    //if the address isnt changed, then find sitters with the rest of the filters.
-    //finally update the address for the next run
-    onSubmit: async (values) => {
-      try {
-        if (prevAddress !== values.address) {
-          setMapCenter(await mapRelocateHandler(values.address));
-        } else {
-          findSitter(values, prevBounds);
-        }
-        prevAddress = values.address;
-      } catch (e) {}
-    },
-  });
-};
-
-//After finding our bounds, we can make the actual search
-const findSitter = async (filterData, bounds) => {
-  let filterQuery = "";
-
-  for (let key in filterData) {
-    if (filterData[key] !== "" && key !== "bounds") {
-      filterQuery += `${key}=${filterData[key]}&`;
-    }
-  }
-
-  for (let bound in bounds) {
-    filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
-    filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
-  }
-
-  const filteredSitters = await fetch(
-    `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-  );
-
-  // const filteredSittersResponse = await filteredSitters.json();
-};
-
-//To search sitters we need to relocate the map, that will trigger a search for users
+// To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
 const mapRelocateHandler = async (address) => {
   const requestedMapCenter = await fetch(
@@ -118,15 +38,104 @@ const mapRelocateHandler = async (address) => {
 };
 
 const SearchSitter = () => {
-  //Map related states
+  const FilterSitterSchema = () => {
+    return useFormik({
+      validateOnChange: false,
+      initialValues: {
+        serviceType: "boarding",
+        address: "",
+        price: [0, 150],
+        hasChildren: "",
+        homeType: "",
+        smokes: "",
+        hasYard: "",
+      },
+      validate: async (values) => {
+        let errors = {};
+        let errorExists = false;
+
+        if (values.serviceType === "") {
+          errors.serviceType = "Please select a service.";
+          errorExists = true;
+        }
+
+        if (values.address === "") {
+          errors.address = "Please enter your location.";
+          errorExists = true;
+        }
+
+        // If the service type being searched for is not boarding, clean unnecessary search filters.
+        if (values.serviceType !== "boarding") {
+          values.homeType = "";
+          values.smokes = "";
+          values.hasYard = "";
+          values.hasChildren = "";
+        }
+
+        if (errorExists) {
+          return errors;
+        }
+
+        return true;
+      },
+      // If the address filter is changed, find the new location to center the map
+      // that will consequentely trigger the map to find new sitters.
+      // if the address isnt changed, then find sitters with the rest of the filters.
+      // finally update the address for the next run
+      onSubmit: async (values) => {
+        try {
+          setModalLoading(true);
+
+          if (prevAddress !== values.address) {
+            setMapCenter(await mapRelocateHandler(values.address));
+          } else {
+            findSitter(values, prevBounds);
+          }
+          setModalLoading(false);
+
+          prevAddress = values.address;
+        } catch (e) {}
+      },
+    });
+  };
+
+  // After finding our bounds, we can make the actual search
+  const findSitter = async (filterData, bounds) => {
+    setSittersLoading(true);
+
+    let filterQuery = "";
+
+    for (let key in filterData) {
+      if (filterData[key] !== "" && key !== "bounds") {
+        filterQuery += `${key}=${filterData[key]}&`;
+      }
+    }
+
+    for (let bound in bounds) {
+      filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
+      filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
+    }
+
+    const filteredSitters = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+    );
+
+    setSitters(await filteredSitters.json());
+    setSittersLoading(false);
+  };
+
+  // Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(false);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [sittersLoading, setSittersLoading] = useState(true);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [popUp, setPopUp] = useState();
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
   const [sitters, setSitters] = useState([]);
-  const filterData = FilterSitterSchema(setMapCenter);
-  const { values, errors, setFieldValue, handleSubmit } = filterData;
+  const filterSitterData = FilterSitterSchema(setMapCenter, setSitters);
+  const { values, errors, setFieldValue, handleSubmit } = filterSitterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
@@ -136,28 +145,42 @@ const SearchSitter = () => {
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
         <S.ProfilesWrap showMap={showMap}>
-          {fakeData.map((profile, key) => {
-            return (
-              <S.Profile key={key}>
-                <S.ProfileImage src={profile.profilePicture} />
-                <S.ProfileDetails>
-                  <S.ProfileName>
-                    <S.ProfileNumber>{key}.</S.ProfileNumber> {profile.name}
-                  </S.ProfileName>
-                  <S.ProfileHeadline>{profile.headline}</S.ProfileHeadline>
-                  <S.ProfileAddress>
-                    {profile.city + ", " + profile.state + ", " + profile.zip}
-                  </S.ProfileAddress>
-                  <S.ProfileComment>"{profile.fakeComment}"</S.ProfileComment>
-                </S.ProfileDetails>
-                <S.ProfilePrice>
-                  <S.PriceText>from</S.PriceText>
-                  <S.Rate> ${profile.boardingRate}</S.Rate>
-                  <S.PriceText>per night</S.PriceText>
-                </S.ProfilePrice>
-              </S.Profile>
-            );
-          })}
+          {sittersLoading ? (
+            <Spinner />
+          ) : sitters.length === 0 ? (
+            <S.NoSitterWrap>
+              <S.NoSitterTitle>
+                We couldn't find any sitters that matched your criteria.
+              </S.NoSitterTitle>
+              <S.NoSitterText>
+                Try changing your search criteria or updating your location.
+              </S.NoSitterText>
+            </S.NoSitterWrap>
+          ) : (
+            sitters.map((sitter, key) => {
+              return (
+                <S.Profile key={key}>
+                  <S.ProfileImage src={sitter.profilePicture} />
+                  <S.ProfileDetails>
+                    <S.ProfileName>
+                      <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
+                      {sitter.name}
+                    </S.ProfileName>
+                    <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>
+                    <S.ProfileAddress>
+                      {sitter.city + ", " + sitter.state + ", " + sitter.zip}
+                    </S.ProfileAddress>
+                    <S.ProfileComment>{sitter.aboutMe}</S.ProfileComment>
+                  </S.ProfileDetails>
+                  <S.ProfilePrice>
+                    <S.PriceText>from</S.PriceText>
+                    <S.Rate> ${sitter.boardingRate}</S.Rate>
+                    <S.PriceText>per night</S.PriceText>
+                  </S.ProfilePrice>
+                </S.Profile>
+              );
+            })
+          )}
         </S.ProfilesWrap>
         <GoogleMap
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
@@ -166,18 +189,19 @@ const SearchSitter = () => {
             maxZoom: 15,
             minZoom: 10,
             styles: [
-              {
-                featureType: "poi",
-                elementType: "labels",
-                stylers: [{ visibility: "off" }],
-              },
+              { featureType: "poi", stylers: [{ visibility: "off" }] },
+              { featureType: "transit", stylers: [{ visibility: "off" }] },
             ],
           }}
           defaultZoom={DEFAULT_ZOOM}
           onChange={({ center, zoom, bounds }) => {
-            //Workaround to map resizing causing infinite network calls
-            //check if center or zoom is changed, then find new sitters
-            //finally update the new bounds, center, and zoom.
+            // Need to reset prevAddress upon map drag, because
+            // if they click search after having dragged the map
+            // it will not relocate the map.
+            prevAddress = 0;
+            // Workaround to map resizing causing infinite network calls
+            // check if center or zoom is changed, then find new sitters
+            // finally update the new bounds, center, and zoom.
             if (
               center.lng !== mapCenter.lng ||
               center.lat !== mapCenter.lat ||
@@ -190,9 +214,23 @@ const SearchSitter = () => {
             prevZoom = zoom;
           }}
         >
-          <S.MapLocationSitter lat={38.91256502929134} lng={-77.55473855962623}>
-            19
-          </S.MapLocationSitter>
+          {sitters.map((sitter, key) => (
+            <S.MapLocationSitter
+              id={`sitter-${key}`}
+              key={key}
+              lat={sitter.geocode.latitude}
+              lng={sitter.geocode.longitude}
+              onMouseEnter={() => {
+                setPopUp(key + 1);
+              }}
+              onMouseLeave={() => {
+                setPopUp(0);
+              }}
+            >
+              {key + 1 === popUp ? <S.MapPopUp /> : null}
+              {key + 1}
+            </S.MapLocationSitter>
+          ))}
         </GoogleMap>
       </S.ContentWrap>
 
@@ -216,7 +254,7 @@ const SearchSitter = () => {
       </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
-        <FilterModalContent {...filterData} />
+        <FilterModalContent modalLoading={modalLoading} {...filterSitterData} />
       </Modal>
     </Fragment>
   );

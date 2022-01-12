@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "../Auth.styles";
 import FormikInit from "./LoginSchema";
+import Spinner from "../../common/Spinner";
 
 const Login = () => {
   const [errorFromServer, setErrorFromServer] = React.useState();
@@ -16,7 +17,7 @@ const Login = () => {
   } = FormikInit(setErrorFromServer);
 
   return isSubmitting ? (
-    <S.Spinner />
+    <Spinner />
   ) : (
     <S.Form onSubmit={handleSubmit}>
       {errors.email && touched.email && (

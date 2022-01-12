@@ -10,18 +10,22 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 import { useState } from "react";
+import Spinner from "../common/Spinner";
 
 const FilterModalContent = ({
   values,
   errors,
   setFieldValue,
   handleSubmit,
+  modalLoading,
 }) => {
   const [showMoreFilter, setShowMoreFilter] = useState(false);
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
-  return (
+  return modalLoading ? (
+    <Spinner />
+  ) : (
     <S.FilterWrap>
       <S.FilterTitle>Find your pawfect sitter!</S.FilterTitle>
       <FormControl variant="outlined" error={errors.serviceType ? true : false}>

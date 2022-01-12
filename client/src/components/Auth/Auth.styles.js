@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Wrap = styled.div`
@@ -26,15 +26,6 @@ export const BrandWrap = styled.div`
   height: 40px;
 `;
 
-const spin = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-`;
-
 export const AuthWrap = styled.div`
   display: grid;
   width: 400px;
@@ -47,16 +38,6 @@ export const AuthWrap = styled.div`
   @media (max-width: 600px) {
     width: 90%;
   }
-`;
-
-export const Spinner = styled.div`
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid rgb(20, 169, 109);
-  width: 120px;
-  height: 120px;
-  animation: ${spin} 2s linear infinite;
-  margin: 0px auto;
 `;
 
 export const TabWrap = styled.div`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../../images/worstdogever.jpg";
+import background from "../../images/background.jpg";
 
 export const StyledBackground = styled.div`
   height: 100vh;

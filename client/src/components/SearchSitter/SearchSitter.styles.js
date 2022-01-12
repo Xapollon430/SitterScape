@@ -21,6 +21,7 @@ export const ProfilesWrap = styled.div`
   overflow-y: scroll;
   @media (max-width: 800px) {
     display: ${({ showMap }) => (showMap ? "none" : "block")};
+    height: 100vh;
   }
 `;
 
@@ -67,11 +68,11 @@ export const ProfileName = styled.h4`
 `;
 
 export const ProfileHeadline = styled.b`
-  font-size: 14px;
+  font-size: 20px;
 `;
 
 export const ProfileAddress = styled.b`
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const ProfilePrice = styled.div`
@@ -199,6 +200,26 @@ export const MapLocationSitter = styled.div`
 
   color: white;
 
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+  }
 `;
+
+export const MapPopUp = styled.div`
+  height: 50px;
+  width: 120px;
+  background-color: blue;
+`;
+
+export const NoSitterWrap = styled.div`
+  margin-top: 100px;
+  text-align: center;
+`;
+
+export const NoSitterTitle = styled.h2``;
+
+export const NoSitterText = styled.span``;
