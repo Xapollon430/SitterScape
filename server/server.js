@@ -37,9 +37,9 @@ app.use("/api", Routes);
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve("../client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve("../client/build/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log("Listening");
