@@ -220,11 +220,8 @@ const SearchSitter = () => {
               key={key}
               lat={sitter.geocode.latitude}
               lng={sitter.geocode.longitude}
-              onMouseEnter={() => {
+              onClick={() => {
                 setPopUp(key + 1);
-              }}
-              onMouseLeave={() => {
-                setPopUp(0);
               }}
             >
               {key + 1 === popUp ? <S.MapPopUp /> : null}
