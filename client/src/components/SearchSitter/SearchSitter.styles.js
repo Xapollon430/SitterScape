@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -21,7 +22,6 @@ export const ProfilesWrap = styled.div`
   overflow-y: scroll;
   @media (max-width: 800px) {
     display: ${({ showMap }) => (showMap ? "none" : "block")};
-    height: 100vh;
   }
 `;
 
@@ -49,6 +49,8 @@ export const ProfileImage = styled.img`
   width: 100%;
   height: 175px;
   object-fit: cover;
+  border-radius: ${({ map }) => (map ? "5px 5px 0px 0px" : "0px")};
+
   @media (max-width: 500px) {
     grid-column: 1 / span2;
     width: 250px;
@@ -63,7 +65,7 @@ export const ProfileDetails = styled.div`
 
 export const ProfileName = styled.h4`
   color: rgb(2, 129, 162);
-  font-size: 26px;
+  font-size: ${({ map }) => (map ? "16px" : "26px")};
   margin: 0px;
 `;
 
@@ -83,7 +85,8 @@ export const ProfilePrice = styled.div`
 export const ProfileComment = styled.span``;
 
 export const ProfileNumber = styled.span`
-  font-size: 26px;
+  font-size: ${({ map }) => (map ? "16px" : "26px")};
+
   font-weight: 600;
   color: black;
   padding-right: 0.25em;
@@ -210,9 +213,29 @@ export const MapLocationSitter = styled.div`
 `;
 
 export const MapPopUp = styled.div`
-  height: 50px;
-  width: 120px;
-  background-color: blue;
+  height: 250px;
+  width: 200px;
+  background-color: white;
+  position: absolute;
+  top: -260px;
+  z-index: 2;
+  border-radius: 5px;
+`;
+
+export const MapPopUpArrow = styled.div`
+  position: absolute;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid white;
+  top: 245px;
+  left: 85px;
+`;
+
+export const MapPopUpSitterWrap = styled.div`
+  margin: 10px;
 `;
 
 export const NoSitterWrap = styled.div`
@@ -223,3 +246,8 @@ export const NoSitterWrap = styled.div`
 export const NoSitterTitle = styled.h2``;
 
 export const NoSitterText = styled.span``;
+
+export const LinkToSitter = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;

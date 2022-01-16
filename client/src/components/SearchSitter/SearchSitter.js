@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
@@ -16,7 +17,7 @@ const DEFAULT_CENTER = {
   lat: 38.8082415,
   lng: -77.332807,
 };
-const DEFAULT_ZOOM = 10;
+const DEFAULT_ZOOM = 11;
 
 let prevAddress;
 let prevBounds;
@@ -92,6 +93,7 @@ const SearchSitter = () => {
             findSitter(values, prevBounds);
           }
           setModalLoading(false);
+          setShowFilterModal(false);
 
           prevAddress = values.address;
         } catch (e) {}
@@ -126,11 +128,11 @@ const SearchSitter = () => {
 
   // Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
   const [sittersLoading, setSittersLoading] = useState(true);
   const [modalLoading, setModalLoading] = useState(false);
-  const [popUp, setPopUp] = useState();
+  const [popUpSitterId, setPopUpSitterId] = useState();
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
   const [sitters, setSitters] = useState([]);
@@ -140,13 +142,19 @@ const SearchSitter = () => {
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
 
+  useEffect(() => {
+    if (window.innerWidth < 800) {
+      setShowMap(false);
+    }
+  }, []);
+
   return (
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
-            <Spinner />
+            <Spinner custom={"margin-top: 50px"} />
           ) : sitters.length === 0 ? (
             <S.NoSitterWrap>
               <S.NoSitterTitle>
@@ -159,76 +167,97 @@ const SearchSitter = () => {
           ) : (
             sitters.map((sitter, key) => {
               return (
-                <S.Profile key={key}>
-                  <S.ProfileImage src={sitter.profilePicture} />
-                  <S.ProfileDetails>
-                    <S.ProfileName>
-                      <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
-                      {sitter.name}
-                    </S.ProfileName>
-                    <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>
-                    <S.ProfileAddress>
-                      {sitter.city + ", " + sitter.state + ", " + sitter.zip}
-                    </S.ProfileAddress>
-                    <S.ProfileComment>{sitter.aboutMe}</S.ProfileComment>
-                  </S.ProfileDetails>
-                  <S.ProfilePrice>
-                    <S.PriceText>from</S.PriceText>
-                    <S.Rate> ${sitter.boardingRate}</S.Rate>
-                    <S.PriceText>per night</S.PriceText>
-                  </S.ProfilePrice>
-                </S.Profile>
+                <S.LinkToSitter key={key} to={`/sitter/${sitter._id}`}>
+                  <S.Profile>
+                    <S.ProfileImage src={sitter.profilePicture} />
+                    <S.ProfileDetails>
+                      <S.ProfileName>
+                        <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
+                        {sitter.name}
+                      </S.ProfileName>
+                      <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>
+                      <S.ProfileAddress>
+                        {sitter.city + ", " + sitter.state + ", " + sitter.zip}
+                      </S.ProfileAddress>
+                      <S.ProfileComment>{sitter.aboutMe}</S.ProfileComment>
+                    </S.ProfileDetails>
+                    <S.ProfilePrice>
+                      <S.PriceText>from</S.PriceText>
+                      <S.Rate> ${sitter.boardingRate}</S.Rate>
+                      <S.PriceText>per night</S.PriceText>
+                    </S.ProfilePrice>
+                  </S.Profile>
+                </S.LinkToSitter>
               );
             })
           )}
         </S.ProfilesWrap>
-        <GoogleMap
-          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
-          center={mapCenter}
-          options={{
-            maxZoom: 15,
-            minZoom: 10,
-            styles: [
-              { featureType: "poi", stylers: [{ visibility: "off" }] },
-              { featureType: "transit", stylers: [{ visibility: "off" }] },
-            ],
-          }}
-          defaultZoom={DEFAULT_ZOOM}
-          onChange={({ center, zoom, bounds }) => {
-            // Need to reset prevAddress upon map drag, because
-            // if they click search after having dragged the map
-            // it will not relocate the map.
-            prevAddress = 0;
-            // Workaround to map resizing causing infinite network calls
-            // check if center or zoom is changed, then find new sitters
-            // finally update the new bounds, center, and zoom.
-            if (
-              center.lng !== mapCenter.lng ||
-              center.lat !== mapCenter.lat ||
-              zoom != prevZoom
-            ) {
-              findSitter(values, bounds);
-            }
-            setMapCenter(center);
-            prevBounds = bounds;
-            prevZoom = zoom;
-          }}
-        >
-          {sitters.map((sitter, key) => (
-            <S.MapLocationSitter
-              id={`sitter-${key}`}
-              key={key}
-              lat={sitter.geocode.latitude}
-              lng={sitter.geocode.longitude}
-              onClick={() => {
-                setPopUp(key + 1);
-              }}
-            >
-              {key + 1 === popUp ? <S.MapPopUp /> : null}
-              {key + 1}
-            </S.MapLocationSitter>
-          ))}
-        </GoogleMap>
+        {showMap ? (
+          <GoogleMap
+            bootstrapURLKeys={{
+              key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+            }}
+            center={mapCenter}
+            options={{
+              maxZoom: 15,
+              minZoom: 10,
+              styles: [
+                { featureType: "poi", stylers: [{ visibility: "off" }] },
+                { featureType: "transit", stylers: [{ visibility: "off" }] },
+              ],
+            }}
+            defaultZoom={DEFAULT_ZOOM}
+            onClick={() => {
+              //Close modal sitter upon click
+              setPopUpSitterId(0);
+            }}
+            onChange={({ center, zoom, bounds }) => {
+              console.log(center, bounds);
+              // Need to reset prevAddress upon map drag, because
+              // if they click search after having dragged the map
+              // it will not relocate the map.
+              prevAddress = 0;
+              // Workaround to map resizing causing infinite network calls
+              // check if center or zoom is changed, then find new sitters
+              // finally update the new bounds, center, and zoom.
+              if (
+                center.lng !== mapCenter.lng ||
+                center.lat !== mapCenter.lat ||
+                zoom != prevZoom
+              ) {
+                findSitter(values, bounds);
+              }
+              setMapCenter(center);
+              prevBounds = bounds;
+              prevZoom = zoom;
+            }}
+          >
+            {sitters.map((sitter, key) => (
+              <S.MapLocationSitter
+                key={key}
+                lat={sitter.geocode.latitude}
+                lng={sitter.geocode.longitude}
+                onClick={() => {
+                  setPopUpSitterId(sitter._id);
+                }}
+              >
+                {popUpSitterId === sitter._id ? (
+                  <S.MapPopUp>
+                    <S.ProfileImage map={true} src={sitter.profilePicture} />
+                    <S.MapPopUpSitterWrap>
+                      <S.ProfileName map={true}>
+                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>{" "}
+                        {sitter.name}
+                      </S.ProfileName>
+                      <S.MapPopUpArrow />
+                    </S.MapPopUpSitterWrap>
+                  </S.MapPopUp>
+                ) : null}
+                {key + 1}
+              </S.MapLocationSitter>
+            ))}
+          </GoogleMap>
+        ) : null}
       </S.ContentWrap>
 
       <S.FilterMapToggleButton>
