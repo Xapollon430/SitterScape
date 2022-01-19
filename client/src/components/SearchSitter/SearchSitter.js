@@ -145,6 +145,7 @@ const SearchSitter = () => {
   useEffect(() => {
     if (window.innerWidth < 800) {
       setShowMap(false);
+      
     }
   }, []);
 
