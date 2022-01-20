@@ -19,8 +19,8 @@ const DEFAULT_CENTER = {
 };
 const DEFAULT_ZOOM = 11;
 
-let prevAddress;
 let prevBounds;
+let prevAddress;
 let prevZoom;
 
 // To search sitters we need to relocate the map, that will trigger a search for users
@@ -80,18 +80,34 @@ const SearchSitter = () => {
         return true;
       },
       // If the address filter is changed, find the new location to center the map
-      // that will consequentely trigger the map to find new sitters.
-      // if the address isnt changed, then find sitters with the rest of the filters.
-      // finally update the address for the next run
+      // That will consequentely trigger the map to find new sitters.
+      // If the address isnt changed, then find sitters with the rest of the filters.
+      // If we are on mobile (no map) call findSitter for top 10 closest
+      // finally update the address for the next run.
       onSubmit: async (values) => {
         try {
           setModalLoading(true);
 
+          let centerToRelocate;
           if (prevAddress !== values.address) {
-            setMapCenter(await mapRelocateHandler(values.address));
-          } else {
+            centerToRelocate = await mapRelocateHandler(values.address);
+            setMapCenter(centerToRelocate);
+          } else if (screenWidth > 800) {
             findSitter(values, prevBounds);
           }
+
+          // For no map devices we filter by given address since we dont have bounds
+          // We look for top 10
+          if (screenWidth <= 800) {
+            findSitter(
+              {
+                ...values,
+                address: `${centerToRelocate.lat},${centerToRelocate.lng}`,
+              },
+              null
+            );
+          }
+
           setModalLoading(false);
           setShowFilterModal(false);
 
@@ -105,6 +121,8 @@ const SearchSitter = () => {
   const findSitter = async (filterData, bounds) => {
     setSittersLoading(true);
 
+    console.log(filterData);
+
     let filterQuery = "";
 
     for (let key in filterData) {
@@ -113,9 +131,11 @@ const SearchSitter = () => {
       }
     }
 
-    for (let bound in bounds) {
-      filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
-      filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
+    if (bounds) {
+      for (let bound in bounds) {
+        filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
+        filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
+      }
     }
 
     const filteredSitters = await fetch(
@@ -133,19 +153,22 @@ const SearchSitter = () => {
   const [sittersLoading, setSittersLoading] = useState(true);
   const [modalLoading, setModalLoading] = useState(false);
   const [popUpSitterId, setPopUpSitterId] = useState();
+  // To determine platform width
+  const screenWidth = window.innerWidth;
   // Sitter/User related states
   const [state, _] = useContext(StoreContext);
   const [sitters, setSitters] = useState([]);
   const filterSitterData = FilterSitterSchema(setMapCenter, setSitters);
-  const { values, errors, setFieldValue, handleSubmit } = filterSitterData;
+  const { values } = filterSitterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
 
+  // Comment
   useEffect(() => {
-    if (window.innerWidth < 800) {
+    if (screenWidth < 800) {
       setShowMap(false);
-      find
+      findSitter(values, null);
     }
   }, []);
 
@@ -213,7 +236,6 @@ const SearchSitter = () => {
               setPopUpSitterId(0);
             }}
             onChange={({ center, zoom, bounds }) => {
-              console.log(center, bounds);
               // Need to reset prevAddress upon map drag, because
               // if they click search after having dragged the map
               // it will not relocate the map.

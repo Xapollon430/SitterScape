@@ -12,6 +12,11 @@ const boundNames = [
   "seLongitude",
 ];
 
+const McDonaldsLocation = {
+  latitude: 38.9144124,
+  longitude: -77.225595,
+};
+
 // Given address (zip or specific address) transform into latitude and longitude only in US
 // through the Google Maps Api.
 const getLatAndLangGoogleApi = async (address) => {
@@ -86,8 +91,15 @@ const normalizeSitterFilterData = (filterData) => {
 };
 
 //Helper function to find sitters within bounds out of all sitters.
-const filterSitterByLocation = (allSitters, locations) =>
-  allSitters.filter((sitter) => {
+const filterSitterByLocation = (allSitters, locations) => {
+  // On mobile devices with no maps we filter for the top 10 closest to given
+  // address, or to a McDonald's in Tysons Corner :)
+  if (!locations.nwLongitude) {
+  }
+
+  console.log(locations);
+
+  return allSitters.filter((sitter) => {
     if (
       locations.nwLongitude < sitter.geocode.longitude &&
       locations.seLongitude > sitter.geocode.longitude &&
@@ -97,6 +109,7 @@ const filterSitterByLocation = (allSitters, locations) =>
       return sitter;
     }
   });
+};
 
 module.exports = {
   getLatAndLangGoogleApi,
