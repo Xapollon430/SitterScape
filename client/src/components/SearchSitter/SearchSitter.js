@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { useResponsive } from "../../utils/hooks";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
@@ -18,6 +18,13 @@ const DEFAULT_CENTER = {
   lng: -77.332807,
 };
 const DEFAULT_ZOOM = 11;
+
+const PER_X = {
+  boarding: "night",
+  houseSitting: "night",
+  walking: "walk",
+  dropInVisit: "visit",
+};
 
 let prevBounds;
 let prevAddress;
@@ -93,12 +100,22 @@ const SearchSitter = () => {
             centerToRelocate = await mapRelocateHandler(values.address);
             setMapCenter(centerToRelocate);
           } else if (screenWidth > 800) {
-            findSitter(values, prevBounds);
+            findSitter(
+              {
+                ...values,
+                address: `${mapCenter.lat},${mapCenter.lng}`,
+              },
+              prevBounds
+            );
           }
 
           // For no map devices we filter by given address since we dont have bounds
-          // We look for top 10
+          // We look for top 10 within 25 miles
           if (screenWidth <= 800) {
+            centerToRelocate =
+              centerToRelocate === undefined
+                ? { lat: mapCenter.lat, lng: mapCenter.lng }
+                : centerToRelocate;
             findSitter(
               {
                 ...values,
@@ -164,12 +181,18 @@ const SearchSitter = () => {
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
 
-  // Comment
+  // Have to turn off map and find sitters upon landing for small devices
+  // Also upon resize of page make sure the map shows for large devices.
   useEffect(() => {
     if (screenWidth < 800) {
       setShowMap(false);
       findSitter(values, null);
     }
+    const cleanUp = window.addEventListener(
+      "resize",
+      () => window.innerWidth > 800 && setShowMap(true)
+    );
+    return () => window.removeEventListener("resize", cleanUp);
   }, []);
 
   return (
@@ -208,7 +231,9 @@ const SearchSitter = () => {
                     <S.ProfilePrice>
                       <S.PriceText>from</S.PriceText>
                       <S.Rate> ${sitter.boardingRate}</S.Rate>
-                      <S.PriceText>per night</S.PriceText>
+                      <S.PriceText>
+                        per {PER_X[`${values.serviceType}`]}
+                      </S.PriceText>
                     </S.ProfilePrice>
                   </S.Profile>
                 </S.LinkToSitter>
@@ -248,9 +273,12 @@ const SearchSitter = () => {
                 center.lat !== mapCenter.lat ||
                 zoom != prevZoom
               ) {
-                findSitter(values, bounds);
+                findSitter(
+                  { ...values, address: `${mapCenter.lat},${mapCenter.lng}` },
+                  bounds
+                );
+                setMapCenter(center);
               }
-              setMapCenter(center);
               prevBounds = bounds;
               prevZoom = zoom;
             }}

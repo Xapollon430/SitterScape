@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 
 const filterableData = ["smokes", "hasChildren", "hasYard", "price"];
+
 const boundNames = [
   "nwLatitude",
   "nwLongitude",
@@ -90,21 +91,42 @@ const normalizeSitterFilterData = (filterData) => {
   return newFilterData;
 };
 
-//Helper function to find sitters within bounds out of all sitters.
+// Helper function to find filtered sitters out of all sitters
 const filterSitterByLocation = (allSitters, locations) => {
   // On mobile devices with no maps we filter for the top 10 closest to given
-  // address, or to a McDonald's in Tysons Corner :)
-  if (!locations.nwLongitude) {
+  // address (or McDonalds's in Tysons Corner) within 25 miles
+  if (locations.nwLongitude === undefined) {
+    center =
+      locations.address !== undefined
+        ? {
+            latitude: locations.address.split(",")[0],
+            longitude: locations.address.split(",")[1],
+          }
+        : McDonaldsLocation;
+    // Calculate the addition of absolute values of the lat and langs to find
+    // the smallest number, which means closest to the given user address
+
+    console.log(center);
+    return allSitters
+      .map((sitter) => ({
+        sitter,
+        absValueLatAndLang:
+          Math.abs(center.latitude - sitter.geocode.latitude) +
+          Math.abs(center.longitude - sitter.geocode.longitude),
+      }))
+      .sort(({ absValueLatAndLang: a }, { absValueLatAndLang: b }) => a - b)
+      .map((obj) => {
+        return obj.sitter;
+      });
   }
 
-  console.log(locations);
-
+  // If bounds are present we filter for sitters in bounds
   return allSitters.filter((sitter) => {
     if (
-      locations.nwLongitude < sitter.geocode.longitude &&
-      locations.seLongitude > sitter.geocode.longitude &&
-      locations.neLatitude > sitter.geocode.latitude &&
-      locations.swLatitude < sitter.geocode.latitude
+      Number(locations.nwLongitude) < sitter.geocode.longitude &&
+      Number(locations.seLongitude) > sitter.geocode.longitude &&
+      Number(locations.neLatitude) > sitter.geocode.latitude &&
+      Number(locations.swLatitude) < sitter.geocode.latitude
     ) {
       return sitter;
     }
