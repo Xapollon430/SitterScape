@@ -3,14 +3,18 @@ const jwt = require("jsonwebtoken");
 const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
 const {
   normalizeSitterFilterData,
-  getLatAndLangPositionStackApi,
+  getLatAndLangGoogleApi,
   filterSitterByLocation,
+  cleanUpUserData,
 } = require("../utils/helpers");
 const { config } = require("dotenv");
+const { omit } = require("lodash");
 
 config();
 
 const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
+
+const sitterDataToOmit = ["email", "password", "address"];
 
 const signUp = async (req, res) => {
   try {
@@ -29,7 +33,9 @@ const signUp = async (req, res) => {
       // secure: process.env.NODE_ENV === "production" ? true : false,
     });
 
-    res.json({ user: newUser, accessToken });
+    const cleanedUpUser = omit(newUser.toObject(), ["password"]);
+
+    res.json({ user: cleanedUpUser, accessToken });
   } catch (e) {
     console.log(e);
     return res.status(500).send("Something went wrong");
@@ -40,19 +46,21 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     let foundUser = await User.findOne({ email });
-    console.log(foundUser);
     if (!foundUser || password !== foundUser.password) {
       return res.status(401).send("Wrong password or email!");
     }
     let { refreshToken, accessToken } = foundUser.generateTokens();
+
     res.cookie("refreshToken", refreshToken, {
       maxAge: monthToMiliseconds,
       httpOnly: true,
       // secure: process.env.NODE_ENV === "production" ? true : false,
     });
 
+    const cleanedUpUser = omit(foundUser.toObject(), ["password"]);
+
     res.status(200).json({
-      user: foundUser,
+      user: cleanedUpUser,
       accessToken,
     });
   } catch (e) {
@@ -67,7 +75,10 @@ const autoLogin = async (req, res) => {
     const token = jwt.verify(refreshToken, process.env.JWT_SECRET);
     const user = await User.findById(token.id);
     const accessToken = user.generateAccessToken();
-    res.status(200).json({ accessToken, user });
+
+    const cleanedUpUser = omit(user.toObject(), ["password"]);
+
+    res.status(200).json({ accessToken, user: cleanedUpUser });
   } catch (e) {
     return res.status(401).send("Couldn't log in!");
   }
@@ -97,7 +108,9 @@ const updatePersonalInfo = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).send(user);
+    const cleanedUpUser = omit(user.toObject(), ["password"]);
+
+    return res.status(200).send(cleanedUpUser);
   } catch (e) {
     return res.status(400).send("Couldn't update user!");
   }
@@ -119,7 +132,7 @@ const updateSitterInfo = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).send(user);
+    return res.status(200).send(omit(user.toObject(), ["password"]));
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't update user!");
@@ -161,7 +174,13 @@ const searchSitters = async (req, res) => {
       }
     );
 
-    res.json(sittersFoundWithLocation);
+    const cleanedUpSitters = sittersFoundWithLocation.map((sitter) => {
+      var x = omit(sitter.toObject(), sitterDataToOmit);
+      console.log(x);
+      return x;
+    });
+
+    res.json(cleanedUpSitters);
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");
@@ -172,7 +191,7 @@ const searchSitters = async (req, res) => {
 const forwardGeocoding = async (req, res) => {
   try {
     const address = req.query.address;
-    const geocode = await getLatAndLangPositionStackApi(address);
+    const geocode = await getLatAndLangGoogleApi(address);
     res.json(geocode);
   } catch (e) {
     console.log(e);
