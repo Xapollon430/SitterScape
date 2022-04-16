@@ -129,6 +129,7 @@ const updateSitterInfo = async (req, res) => {
     for (const data in values) {
       user[data] = values[data];
     }
+    console.log(user);
 
     await user.save();
 
@@ -175,9 +176,7 @@ const searchSitters = async (req, res) => {
     );
 
     const cleanedUpSitters = sittersFoundWithLocation.map((sitter) => {
-      var x = omit(sitter.toObject(), sitterDataToOmit);
-      console.log(x);
-      return x;
+      return omit(sitter.toObject(), sitterDataToOmit);
     });
 
     res.json(cleanedUpSitters);

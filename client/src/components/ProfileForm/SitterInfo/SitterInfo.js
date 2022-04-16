@@ -116,13 +116,7 @@ const SitterInfo = () => {
             >
               <InputLabel>Home Type</InputLabel>
               <Select
-                value={
-                  values.homeType === "House"
-                    ? "House"
-                    : values.homeType === "Apartment"
-                    ? "Apartment"
-                    : ""
-                }
+                value={values.homeType}
                 onChange={(e) => {
                   setFieldValue("homeType", e.target.value);
                 }}

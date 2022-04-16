@@ -153,7 +153,7 @@ export default (setShowErrorSnackbar) => {
       try {
         const updatedProfileData = new FormData();
         for (const data in values) {
-          data !== "" && updatedProfileData.append(data, values[data]);
+          values[data] !== "" && updatedProfileData.append(data, values[data]);
         }
 
         updatedProfileData.append("isActiveSitter", true);
