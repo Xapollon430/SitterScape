@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
-import { useResponsive } from "../../utils/hooks";
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
@@ -107,11 +106,9 @@ const SearchSitter = () => {
               },
               prevBounds
             );
-          }
-
-          // For no map devices we filter by given address since we dont have bounds
-          // We look for top 10 within 25 miles
-          if (screenWidth <= 800) {
+          } else {
+            // For no map devices we filter by given address since we dont have bounds
+            // We look for top 10 within 25 miles
             centerToRelocate =
               centerToRelocate === undefined
                 ? { lat: mapCenter.lat, lng: mapCenter.lng }
@@ -137,8 +134,6 @@ const SearchSitter = () => {
   // After finding our bounds, we can make the actual search
   const findSitter = async (filterData, bounds) => {
     setSittersLoading(true);
-
-    console.log(filterData);
 
     let filterQuery = "";
 
@@ -241,7 +236,7 @@ const SearchSitter = () => {
             })
           )}
         </S.ProfilesWrap>
-        {showMap ? (
+        {showMap && (
           <GoogleMap
             bootstrapURLKeys={{
               key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -274,7 +269,7 @@ const SearchSitter = () => {
                 zoom != prevZoom
               ) {
                 findSitter(
-                  { ...values, address: `${mapCenter.lat},${mapCenter.lng}` },
+                  { ...values, address: `${center.lat},${center.lng}` },
                   bounds
                 );
                 setMapCenter(center);
@@ -292,23 +287,27 @@ const SearchSitter = () => {
                   setPopUpSitterId(sitter._id);
                 }}
               >
-                {popUpSitterId === sitter._id ? (
-                  <S.MapPopUp>
+                {popUpSitterId === sitter._id && (
+                  <S.MapPopUp
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
                     <S.ProfileImage map={true} src={sitter.profilePicture} />
                     <S.MapPopUpSitterWrap>
                       <S.ProfileName map={true}>
-                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>{" "}
+                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>
                         {sitter.name}
                       </S.ProfileName>
                       <S.MapPopUpArrow />
                     </S.MapPopUpSitterWrap>
                   </S.MapPopUp>
-                ) : null}
+                )}
                 {key + 1}
               </S.MapLocationSitter>
             ))}
           </GoogleMap>
-        ) : null}
+        )}
       </S.ContentWrap>
 
       <S.FilterMapToggleButton>
