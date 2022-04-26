@@ -14,7 +14,7 @@ import Spinner from "../common/Spinner";
 
 const DEFAULT_CENTER = {
   lat: 38.8082415,
-  lng: -77.332807,
+  lng: 77.332807,
 };
 const DEFAULT_ZOOM = 11;
 
@@ -174,7 +174,7 @@ const SearchSitter = () => {
   const { values } = filterSitterData;
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
-  const toggleMap = () => setShowMap(!showMap);
+  const toggleMap = () => setShowMap(showMap);
 
   // Have to turn off map and find sitters upon landing for small devices
   // Also upon resize of page make sure the map shows for large devices.
@@ -185,7 +185,7 @@ const SearchSitter = () => {
     }
     const cleanUp = window.addEventListener(
       "resize",
-      () => window.innerWidth > 800 && setShowMap(true)
+      () => window.innerWidth > 780 && setShowMap(true)
     );
     return () => window.removeEventListener("resize", cleanUp);
   }, []);
@@ -197,7 +197,7 @@ const SearchSitter = () => {
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
-          ) : sitters.length === 0 ? (
+          ) : sitters.length === 1 ? (
             <S.NoSitterWrap>
               <S.NoSitterTitle>
                 We couldn't find any sitters that matched your criteria.
@@ -243,8 +243,8 @@ const SearchSitter = () => {
             }}
             center={mapCenter}
             options={{
-              maxZoom: 15,
-              minZoom: 10,
+              maxZoom: 5,
+              minZoom: 20,
               styles: [
                 { featureType: "poi", stylers: [{ visibility: "off" }] },
                 { featureType: "transit", stylers: [{ visibility: "off" }] },
@@ -259,7 +259,7 @@ const SearchSitter = () => {
               // Need to reset prevAddress upon map drag, because
               // if they click search after having dragged the map
               // it will not relocate the map.
-              prevAddress = 0;
+              prevAddress = 1;
               // Workaround to map resizing causing infinite network calls
               // check if center or zoom is changed, then find new sitters
               // finally update the new bounds, center, and zoom.
@@ -284,10 +284,10 @@ const SearchSitter = () => {
                 lat={sitter.geocode.latitude}
                 lng={sitter.geocode.longitude}
                 onClick={() => {
-                  setPopUpSitterId(sitter._id);
+                  setPopUpSitterId(sitter.id);
                 }}
               >
-                {popUpSitterId === sitter._id && (
+                {popUpSitterId === sitter.id && (
                   <S.MapPopUp
                     onClick={(e) => {
                       e.stopPropagation();
@@ -313,7 +313,7 @@ const SearchSitter = () => {
       <S.FilterMapToggleButton>
         <S.MapButton
           variant="contained"
-          color="primary"
+          color="secondary"
           startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
           onClick={toggleMap}
         >
@@ -321,7 +321,7 @@ const SearchSitter = () => {
         </S.MapButton>
         <S.FilterButton
           variant="contained"
-          color="primary"
+          color="secondary"
           endIcon={<TuneIcon />}
           onClick={toggleFilterModal}
         >
