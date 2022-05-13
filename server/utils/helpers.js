@@ -46,8 +46,6 @@ const getLatAndLangPositionStackApi = async (address) => {
   );
   const data = await response.json();
 
-  console.log(data);
-
   for (let i in data) {
     if (data[i].country === "United States") {
       latitude = data[i].latitude;
@@ -100,8 +98,6 @@ const normalizeSitterFilterData = (filterData) => {
 const filterSitterByLocation = (allSitters, locations) => {
   // On mobile devices with no maps we filter for the top 10 closest to given
   // address (or McDonalds's in Tysons Corner) within 25 miles
-
-  console.log(allSitters, locations);
   if (locations.nwLongitude === undefined) {
     center =
       locations.address !== undefined
@@ -138,7 +134,6 @@ const filterSitterByLocation = (allSitters, locations) => {
         Math.pow(latitudeDifferenceInMile, 2) +
           Math.pow(longitudeDifferenceInMiles, 2)
       );
-      console.log(FancyPythagorean);
 
       return FancyPythagorean < 25 || false;
     });

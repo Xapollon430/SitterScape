@@ -129,7 +129,6 @@ const updateSitterInfo = async (req, res) => {
     for (const data in values) {
       user[data] = values[data];
     }
-    console.log(user);
 
     await user.save();
 
