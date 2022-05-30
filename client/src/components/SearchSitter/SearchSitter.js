@@ -19,8 +19,7 @@ const MyFavoriteMcDonalds = {
 };
 const DEFAULT_ZOOM = 11;
 
-let prevBounds;
-let prevAddress;
+let prevCenter;
 let prevZoom;
 
 // To search sitters we need to relocate the map, that will trigger a search for users
@@ -258,7 +257,6 @@ const SearchSitter = () => {
                 );
                 setMapCenter(center);
               }
-              prevBounds = bounds;
               prevZoom = zoom;
             }}
           >
