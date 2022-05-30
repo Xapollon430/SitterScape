@@ -213,11 +213,11 @@ export const MapLocationSitter = styled.div`
 `;
 
 export const MapPopUp = styled.div`
-  height: 250px;
+  height: 220px;
   width: 200px;
   background-color: white;
   position: absolute;
-  top: -260px;
+  top: -230px;
   z-index: 2;
   border-radius: 5px;
 `;
@@ -230,12 +230,14 @@ export const MapPopUpArrow = styled.div`
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
   border-top: 15px solid white;
-  top: 245px;
+  top: 215px;
   left: 85px;
 `;
 
 export const MapPopUpSitterWrap = styled.div`
   margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
 
 export const NoSitterWrap = styled.div`
@@ -250,4 +252,16 @@ export const NoSitterText = styled.span``;
 export const LinkToSitter = styled(Link)`
   text-decoration: none;
   color: black;
+`;
+
+export const MapProfileImage = styled.img`
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  border-radius: ${({ map }) => (map ? "5px 5px 0px 0px" : "0px")};
+`;
+
+export const MapPriceBoldText = styled.b`
+  color: black;
+  font-size: 16px;
 `;

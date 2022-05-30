@@ -12,18 +12,12 @@ import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Spinner from "../common/Spinner";
 
-const DEFAULT_CENTER = {
-  lat: 38.8082415,
-  lng: -77.332807,
+// Center the map at my favorite McDonalds :D
+const MyFavoriteMcDonalds = {
+  lat: 38.9144124,
+  lng: -77.225595,
 };
 const DEFAULT_ZOOM = 11;
-
-const PER_X = {
-  boarding: "night",
-  houseSitting: "night",
-  walking: "walk",
-  dropInVisit: "visit",
-};
 
 let prevBounds;
 let prevAddress;
@@ -31,7 +25,9 @@ let prevZoom;
 
 // To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
-const mapRelocateHandler = async (address) => {
+const mapRelocateHandler = async (
+  address = "8512 Leesburg Pike, Vienna, VA 22182" // This is my local McDonalds :D
+) => {
   const requestedMapCenter = await fetch(
     `${process.env.REACT_APP_SERVER_URL}/api/forward-geocode?address=${address}`
   );
@@ -85,34 +81,22 @@ const SearchSitter = () => {
 
         return true;
       },
-      // If the address filter is changed, find the new location to center the map
-      // That will consequentely trigger the map to find new sitters.
-      // If the address isnt changed, then find sitters with the rest of the filters.
-      // If we are on mobile (no map) call findSitter for top 10 closest
-      // finally update the address for the next run.
       onSubmit: async (values) => {
         try {
           setModalLoading(true);
 
-          let centerToRelocate;
-          if (prevAddress !== values.address) {
-            centerToRelocate = await mapRelocateHandler(values.address);
-            setMapCenter(centerToRelocate);
-          } else if (screenWidth > 800) {
-            findSitter(
-              {
-                ...values,
-                address: `${mapCenter.lat},${mapCenter.lng}`,
-              },
-              prevBounds
-            );
+          const centerToRelocate = await mapRelocateHandler(values.address);
+
+          // Hacky workaround. Everytime "submit" is clicked. We move the map a minuscule bit
+          // to force a rerender of the map which gets the new sitters with new filtes.
+          if (showMap) {
+            setMapCenter({
+              lat: centerToRelocate.lat + Math.random() / 10000,
+              lng: centerToRelocate.lng + Math.random() / 10000,
+            });
           } else {
             // For no map devices we filter by given address since we dont have bounds
-            // We look for top 10 within 25 miles
-            centerToRelocate =
-              centerToRelocate === undefined
-                ? { lat: mapCenter.lat, lng: mapCenter.lng }
-                : centerToRelocate;
+            // We look for top 10 within 25 miles. If no address then use a default address.
             findSitter(
               {
                 ...values,
@@ -125,7 +109,7 @@ const SearchSitter = () => {
           setModalLoading(false);
           setShowFilterModal(false);
 
-          prevAddress = values.address;
+          // prevAddress = values.address;
         } catch (e) {}
       },
     });
@@ -161,7 +145,7 @@ const SearchSitter = () => {
   // Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(true);
-  const [mapCenter, setMapCenter] = useState(DEFAULT_CENTER);
+  const [mapCenter, setMapCenter] = useState(MyFavoriteMcDonalds);
   const [sittersLoading, setSittersLoading] = useState(true);
   const [modalLoading, setModalLoading] = useState(false);
   const [popUpSitterId, setPopUpSitterId] = useState();
@@ -181,7 +165,13 @@ const SearchSitter = () => {
   useEffect(() => {
     if (screenWidth < 800) {
       setShowMap(false);
-      findSitter(values, null);
+      findSitter(
+        {
+          ...values,
+          address: `${MyFavoriteMcDonalds.lat},${MyFavoriteMcDonalds.lng}`,
+        },
+        null
+      );
     }
     const cleanUp = window.addEventListener(
       "resize",
@@ -225,10 +215,8 @@ const SearchSitter = () => {
                     </S.ProfileDetails>
                     <S.ProfilePrice>
                       <S.PriceText>from</S.PriceText>
-                      <S.Rate> ${sitter.boardingRate}</S.Rate>
-                      <S.PriceText>
-                        per {PER_X[`${values.serviceType}`]}
-                      </S.PriceText>
+                      <S.Rate> ${sitter.price}</S.Rate>
+                      <S.PriceText>{sitter.perX}</S.PriceText>
                     </S.ProfilePrice>
                   </S.Profile>
                 </S.LinkToSitter>
@@ -256,10 +244,6 @@ const SearchSitter = () => {
               setPopUpSitterId(0);
             }}
             onChange={({ center, zoom, bounds }) => {
-              // Need to reset prevAddress upon map drag, because
-              // if they click search after having dragged the map
-              // it will not relocate the map.
-              prevAddress = 0;
               // Workaround to map resizing causing infinite network calls
               // check if center or zoom is changed, then find new sitters
               // finally update the new bounds, center, and zoom.
@@ -294,15 +278,17 @@ const SearchSitter = () => {
                 {popUpSitterId === sitter._id && (
                   <S.MapPopUp
                     onClick={(e) => {
-                      // e.stopPropagation();
+                      // why?
+                      e.stopPropagation();
                     }}
                   >
-                    <S.ProfileImage map={true} src={sitter.profilePicture} />
+                    <S.MapProfileImage map={true} src={sitter.profilePicture} />
                     <S.MapPopUpSitterWrap>
                       <S.ProfileName map={true}>
                         <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>
                         {sitter.name}
                       </S.ProfileName>
+                      <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
                       <S.MapPopUpArrow />
                     </S.MapPopUpSitterWrap>
                   </S.MapPopUp>

@@ -4,6 +4,7 @@ const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
 const {
   normalizeSitterFilterData,
   getLatAndLangGoogleApi,
+  getLatAndLangPositionStackApi,
   filterSitterByLocation,
   cleanUpUserData,
 } = require("../utils/helpers");
@@ -14,7 +15,35 @@ config();
 
 const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
 
-const sitterDataToOmit = ["email", "password", "address"];
+const SITTER_DATA_TO_INCLUDE = {
+  name: 1,
+  surname: 1,
+  geocode: 1,
+  aboutMe: 1,
+  zip: 1,
+  state: 1,
+  city: 1,
+  headline: 1,
+  profilePicture: 1,
+  boardingRate: 1,
+  dropInVisitRate: 1,
+  houseSittingRate: 1,
+  walkingRate: 1,
+};
+
+const SITTER_DATA_TO_EXCLUDE = [
+  "boardingRate",
+  "walkingRate",
+  "dropInVisitRate",
+  "houseSittingRate",
+];
+
+const PER_X = {
+  boarding: "night",
+  houseSitting: "night",
+  walking: "walk",
+  dropInVisit: "visit",
+};
 
 const signUp = async (req, res) => {
   try {
@@ -73,12 +102,10 @@ const autoLogin = async (req, res) => {
   try {
     const { refreshToken } = req.cookies;
     const token = jwt.verify(refreshToken, process.env.JWT_SECRET);
-    const user = await User.findById(token.id);
+    const user = await User.findById(token.id).select({ password: 0 });
     const accessToken = user.generateAccessToken();
 
-    const cleanedUpUser = omit(user.toObject(), ["password"]);
-
-    res.status(200).json({ accessToken, user: cleanedUpUser });
+    res.status(200).json({ accessToken, user: user });
   } catch (e) {
     return res.status(401).send("Couldn't log in!");
   }
@@ -108,9 +135,7 @@ const updatePersonalInfo = async (req, res) => {
 
     await user.save();
 
-    const cleanedUpUser = omit(user.toObject(), ["password"]);
-
-    return res.status(200).send(cleanedUpUser);
+    return res.status(200).send(user);
   } catch (e) {
     return res.status(400).send("Couldn't update user!");
   }
@@ -132,7 +157,7 @@ const updateSitterInfo = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).send(omit(user.toObject(), ["password"]));
+    return res.status(200).send(user);
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't update user!");
@@ -154,10 +179,14 @@ const searchSitters = async (req, res) => {
       swLongitude,
       seLatitude,
       seLongitude,
+      serviceType,
     } = req.query;
+
     const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
-    sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery);
+    sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery)
+      .select(SITTER_DATA_TO_INCLUDE)
+      .lean();
 
     sittersFoundWithLocation = filterSitterByLocation(
       sittersFoundWithoutLocation,
@@ -174,11 +203,13 @@ const searchSitters = async (req, res) => {
       }
     );
 
-    const cleanedUpSitters = sittersFoundWithLocation.map((sitter) => {
-      return omit(sitter.toObject(), sitterDataToOmit);
+    const sittersWithPrice = sittersFoundWithLocation.map((sitter) => {
+      sitter.price = sitter[`${serviceType}Rate`];
+      sitter.perX = `per ${PER_X[serviceType]}`;
+      return sitter;
     });
 
-    res.json(cleanedUpSitters);
+    res.json(sittersWithPrice);
   } catch (e) {
     console.log(e);
     return res.status(400).send("Couldn't search sitters");

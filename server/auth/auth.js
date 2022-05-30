@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
     if (!checkToken) {
       throw new Error();
     }
-    let foundUser = await User.findById(checkToken.id);
+    let foundUser = await User.findById(checkToken.id).select({ password: 0 });
 
     if (foundUser) {
       req.user = foundUser;

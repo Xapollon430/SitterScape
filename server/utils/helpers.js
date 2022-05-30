@@ -14,11 +14,6 @@ const boundNames = [
   "seLongitude",
 ];
 
-const McDonaldsLocation = {
-  latitude: 38.9144124,
-  longitude: -77.225595,
-};
-
 const oneLatitudeInMiles = 69;
 
 // Given address (zip or specific address) transform into latitude and longitude only in US
@@ -80,7 +75,7 @@ const normalizeSitterFilterData = (filterData) => {
     newFilterData[key] = filterData[key];
   });
 
-  newFilterData[`${newFilterData["serviceType"]}Rate`] = {
+  newFilterData[`${newFilterData.serviceType}Rate`] = {
     $gte: newFilterData.price[0],
     $lte: newFilterData.price[1],
   };
@@ -97,15 +92,12 @@ const normalizeSitterFilterData = (filterData) => {
 // Helper function to find filtered sitters out of all sitters
 const filterSitterByLocation = (allSitters, locations) => {
   // On mobile devices with no maps we filter for the top 10 closest to given
-  // address (or McDonalds's in Tysons Corner) within 25 miles
+  // address within 25 miles
   if (locations.nwLongitude === undefined) {
-    center =
-      locations.address !== undefined
-        ? {
-            latitude: locations.address.split(",")[0],
-            longitude: locations.address.split(",")[1],
-          }
-        : McDonaldsLocation;
+    center = {
+      latitude: locations.address.split(",")[0],
+      longitude: locations.address.split(",")[1],
+    };
 
     //Find the latitude in radian for pythagorean theorem
     const latitudeInRadian = center.latitude * (Math.PI / 180);

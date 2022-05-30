@@ -66,6 +66,8 @@ const FilterModalContent = ({
           onChange={(e, value) => setFieldValue("price", value)}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
+          max={150}
+          min={0}
         />
       </S.FilterPriceWrap>
 

@@ -1,4 +1,3 @@
-const fetch = require("node-fetch");
 const { getLatAndLangGoogleApi } = require("../utils/helpers");
 
 // Middleware to handle calculating the new lat and lang of user if their address in changed.
