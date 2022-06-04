@@ -203,12 +203,30 @@ export const MapLocationSitter = styled.div`
 
   color: white;
 
+  position: absolute;
+  bottom: 10px;
+
   width: 25px;
   height: 25px;
   cursor: pointer;
 
   &:hover {
     background-color: black;
+  }
+`;
+
+export const MapLocationSitterArrow = styled.div`
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-top: 0;
+  border-bottom: 15px solid rgb(2, 129, 162);
+  transform: rotate(180deg);
+  top: 20px;
+  left: 5px;
+  position: absolute;
+  ${MapLocationSitter}:hover & {
+    border-bottom-color: black;
   }
 `;
 
@@ -220,18 +238,6 @@ export const MapPopUp = styled.div`
   top: -230px;
   z-index: 2;
   border-radius: 5px;
-`;
-
-export const MapPopUpArrow = styled.div`
-  position: absolute;
-  z-index: 1;
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 15px solid white;
-  top: 215px;
-  left: 85px;
 `;
 
 export const MapPopUpSitterWrap = styled.div`

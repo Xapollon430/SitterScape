@@ -19,8 +19,7 @@ const MyFavoriteMcDonalds = {
 };
 const DEFAULT_ZOOM = 11;
 
-let prevCenter;
-let prevZoom;
+let prevAddress = "";
 
 // To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
@@ -243,21 +242,11 @@ const SearchSitter = () => {
               setPopUpSitterId(0);
             }}
             onChange={({ center, zoom, bounds }) => {
-              // Workaround to map resizing causing infinite network calls
-              // check if center or zoom is changed, then find new sitters
-              // finally update the new bounds, center, and zoom.
-              if (
-                center.lng !== mapCenter.lng ||
-                center.lat !== mapCenter.lat ||
-                zoom != prevZoom
-              ) {
-                findSitter(
-                  { ...values, address: `${center.lat},${center.lng}` },
-                  bounds
-                );
-                setMapCenter(center);
-              }
-              prevZoom = zoom;
+              findSitter(
+                { ...values, address: `${center.lat},${center.lng}` },
+                bounds
+              );
+              setMapCenter(center);
             }}
           >
             {sitters.map((sitter, key) => (
@@ -287,11 +276,11 @@ const SearchSitter = () => {
                         {sitter.name}
                       </S.ProfileName>
                       <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
-                      <S.MapPopUpArrow />
                     </S.MapPopUpSitterWrap>
                   </S.MapPopUp>
                 )}
                 {key + 1}
+                <S.MapLocationSitterArrow />
               </S.MapLocationSitter>
             ))}
           </GoogleMap>

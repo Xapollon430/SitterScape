@@ -203,9 +203,14 @@ const searchSitters = async (req, res) => {
       }
     );
 
+    // Sanitizing the data by only keeping the price of the asked service
+    // Also randomizing the sitter's place on the map for privacy.
     const sittersWithPrice = sittersFoundWithLocation.map((sitter) => {
       sitter.price = sitter[`${serviceType}Rate`];
       sitter.perX = `per ${PER_X[serviceType]}`;
+      // sitter.geocode.latitude += Math.random() / 10000;
+      // sitter.geocode.longitude += Math.random() / 10000;
+
       return sitter;
     });
 
