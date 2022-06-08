@@ -21,7 +21,6 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
         user: null,
       })
     );
-    localStorage.removeItem("userLocation");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);
@@ -59,7 +58,7 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
                 {user.name}
                 <S.StyledIcon
                   icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-                ></S.StyledIcon>
+                />
               </S.Button>
               <ProfileDropdown profileOpen={isProfileDropdownOpen} />
             </S.ProfileWrapper>

@@ -21,8 +21,6 @@ const LandingHeader = () => {
         user: null,
       })
     );
-
-    localStorage.removeItem("userLocation");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);

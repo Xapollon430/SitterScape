@@ -31,13 +31,6 @@ const SITTER_DATA_TO_INCLUDE = {
   walkingRate: 1,
 };
 
-const SITTER_DATA_TO_EXCLUDE = [
-  "boardingRate",
-  "walkingRate",
-  "dropInVisitRate",
-  "houseSittingRate",
-];
-
 const PER_X = {
   boarding: "night",
   houseSitting: "night",

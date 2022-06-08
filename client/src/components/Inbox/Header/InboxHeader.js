@@ -24,8 +24,6 @@ const InboxHeader = () => {
       })
     );
 
-    localStorage.removeItem("userLocation")
-
     history.push("/");
   });
 
@@ -60,10 +58,11 @@ const InboxHeader = () => {
         <S.ProfileWrapper>
           <S.Button onClick={openProfileDropdown}>
             {user.name}
-
-            <S.StyledIcon
-              icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-            ></S.StyledIcon>
+            <div>
+              <S.StyledIcon
+                icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+              />
+            </div>
           </S.Button>
           <ProfileDropdown profileOpen={isProfileDropdownOpen} />
         </S.ProfileWrapper>

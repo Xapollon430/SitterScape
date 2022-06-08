@@ -241,9 +241,10 @@ export const MapPopUp = styled.div`
 `;
 
 export const MapPopUpSitterWrap = styled.div`
-  margin: 10px;
+  margin: 10px 15px 10px 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
 `;
 
 export const NoSitterWrap = styled.div`
@@ -270,4 +271,6 @@ export const MapProfileImage = styled.img`
 export const MapPriceBoldText = styled.b`
   color: black;
   font-size: 16px;
+  margin: 0px;
+  justify-self: end;
 `;

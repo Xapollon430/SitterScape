@@ -19,8 +19,6 @@ const MyFavoriteMcDonalds = {
 };
 const DEFAULT_ZOOM = 11;
 
-let prevAddress = "";
-
 // To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
 const mapRelocateHandler = async (
@@ -87,12 +85,7 @@ const SearchSitter = () => {
 
           // Hacky workaround. Everytime "submit" is clicked. We move the map a minuscule bit
           // to force a rerender of the map which gets the new sitters with new filtes.
-          if (showMap) {
-            setMapCenter({
-              lat: centerToRelocate.lat + Math.random() / 10000,
-              lng: centerToRelocate.lng + Math.random() / 10000,
-            });
-          } else {
+          if (!showMap) {
             // For no map devices we filter by given address since we dont have bounds
             // We look for top 10 within 25 miles. If no address then use a default address.
             findSitter(
@@ -103,6 +96,10 @@ const SearchSitter = () => {
               null
             );
           }
+          setMapCenter({
+            lat: centerToRelocate.lat + Math.random() / 10000,
+            lng: centerToRelocate.lng + Math.random() / 10000,
+          });
 
           setModalLoading(false);
           setShowFilterModal(false);
