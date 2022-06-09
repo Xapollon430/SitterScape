@@ -3,6 +3,7 @@ import { StoreContext } from "../../../store/store";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import * as S from "./SearchSitterHeader.styles";
+import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
@@ -55,8 +56,8 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
           <Fragment>
             <S.ProfileWrapper>
               <S.Button onClick={openProfileDropdown}>
-                {user.name}
-                <S.StyledIcon
+                <Common.NameWrapper> {user.name}</Common.NameWrapper>
+                <Common.NameDropdownIcon
                   icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
                 />
               </S.Button>

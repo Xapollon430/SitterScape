@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
@@ -57,10 +56,6 @@ export const BurgerWrap = styled.div`
     justify-self: end;
     margin-top: -8px;
   }
-`;
-
-export const StyledIcon = styled(FontAwesomeIcon)`
-  padding-left: 8px;
 `;
 
 export const StyledBurgerSpin = styled(HamburgerSpin)`

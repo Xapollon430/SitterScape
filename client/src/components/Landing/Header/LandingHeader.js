@@ -3,6 +3,7 @@ import { StoreContext } from "../../../store/store";
 import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./LandingHeader.styles";
+import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
@@ -52,10 +53,10 @@ const LandingHeader = () => {
           <Fragment>
             <S.ProfileWrapper>
               <S.Button onClick={openProfileDropdown}>
-                {user.name}
-                <S.StyledIcon
+                <Common.NameWrapper> {user.name}</Common.NameWrapper>
+                <Common.NameDropdownIcon
                   icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-                ></S.StyledIcon>
+                />
               </S.Button>
               <ProfileDropdown profileOpen={isProfileDropdownOpen} />
             </S.ProfileWrapper>

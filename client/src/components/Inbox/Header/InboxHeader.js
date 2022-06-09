@@ -4,6 +4,7 @@ import { StoreContext } from "../../../store/store";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import * as S from "./InboxHeader.styles";
+import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
@@ -57,12 +58,10 @@ const InboxHeader = () => {
 
         <S.ProfileWrapper>
           <S.Button onClick={openProfileDropdown}>
-            {user.name}
-            <div>
-              <S.StyledIcon
-                icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
-              />
-            </div>
+            <Common.NameWrapper> {user.name}</Common.NameWrapper>
+            <Common.NameDropdownIcon
+              icon={isProfileDropdownOpen ? faChevronUp : faChevronDown}
+            />
           </S.Button>
           <ProfileDropdown profileOpen={isProfileDropdownOpen} />
         </S.ProfileWrapper>

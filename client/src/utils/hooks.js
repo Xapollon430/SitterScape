@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 // This hook is to literally just show off my skills... I don't even use it...
 // Looking at this a year later I found a better solution. I kept the shitty version down below
 // New version is more concise and performant
-
 export const useResponsive = () => {
   let [isMenuShowing, setIsMenuShowing] = useState(
     window.innerWidth > 700 ? true : false
