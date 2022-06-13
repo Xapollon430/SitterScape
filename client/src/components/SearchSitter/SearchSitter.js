@@ -19,6 +19,9 @@ const MyFavoriteMcDonalds = {
 };
 const DEFAULT_ZOOM = 11;
 
+let prevCenter = 0;
+let prevZoom = {};
+
 // To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
 const mapRelocateHandler = async (
@@ -80,7 +83,6 @@ const SearchSitter = () => {
       onSubmit: async (values) => {
         try {
           setModalLoading(true);
-          console.log(values.address);
 
           const centerToRelocate = await mapRelocateHandler(values.address);
 
@@ -241,10 +243,23 @@ const SearchSitter = () => {
               //Close sitter modal upon clicking on a random place in the maps
             }
             onChange={({ center, zoom, bounds }) => {
-              findSitter(
-                { ...values, address: `${center.lat},${center.lng}` },
-                bounds
-              );
+              // We dont want to make an excessive amount of calls when the page is resized
+              // (which resizes the map changing its bounds) so we only find new sitters if
+              // the center is moved or zoom has changed.
+              if (
+                zoom !== prevZoom ||
+                prevCenter.lng !== center.lng ||
+                prevCenter.lat !== center.lat
+              ) {
+                findSitter(
+                  { ...values, address: `${center.lat},${center.lng}` },
+                  bounds
+                );
+                console.log("inside");
+              }
+
+              prevZoom = zoom;
+              prevCenter = center;
               setMapCenter(center);
             }}
           >
