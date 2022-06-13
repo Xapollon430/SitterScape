@@ -255,7 +255,6 @@ const SearchSitter = () => {
                   { ...values, address: `${center.lat},${center.lng}` },
                   bounds
                 );
-                console.log("inside");
               }
 
               prevZoom = zoom;
