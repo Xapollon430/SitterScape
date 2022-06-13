@@ -15,6 +15,7 @@ const boundNames = [
 ];
 
 const oneLatitudeInMiles = 69;
+const MileRadius = 20;
 
 // Given address (zip or specific address) transform into latitude and longitude only in US
 // through the Google Maps Api.
@@ -89,10 +90,10 @@ const normalizeSitterFilterData = (filterData) => {
   return newFilterData;
 };
 
-// Helper function to find filtered sitters out of all sitters
+// Helper function to find filtered (by location) sitters out of all sitters
 const filterSitterByLocation = (allSitters, locations) => {
-  // On mobile devices with no maps we filter for the top 10 closest to given
-  // address within 25 miles
+  // On mobile devices with no maps we filter for the closest to given
+  // address within 20 miles
   if (locations.nwLongitude === undefined) {
     center = {
       latitude: locations.address.split(",")[0],
@@ -108,7 +109,7 @@ const filterSitterByLocation = (allSitters, locations) => {
     const oneDegreeLongitudeInMiles = longitudeInCOS * oneLatitudeInMiles;
 
     // Find the differences in lat and long, then convert that to actual milage
-    // Then use pythagorean theorem to find Z, Z being less than 25 means the sitter is in 25 mile radius.
+    // Then use pythagorean theorem to find Z, Z being less than 20 means the sitter is in 20 mile radius.
     return allSitters.filter((sitter) => {
       const latitudeDifference = Math.abs(
         center.latitude - sitter.geocode.latitude
@@ -127,10 +128,10 @@ const filterSitterByLocation = (allSitters, locations) => {
           Math.pow(longitudeDifferenceInMiles, 2)
       );
 
-      return FancyPythagorean < 25 || false;
+      return FancyPythagorean < MileRadius || false;
     });
   } else {
-    // If bounds are present we filter for sitters in bounds. Only for maps
+    // If bounds are present we filter for sitters in bounds. Only for when map is active.
     return allSitters.filter((sitter) => {
       if (
         Number(locations.nwLongitude) < sitter.geocode.longitude &&

@@ -80,6 +80,7 @@ const SearchSitter = () => {
       onSubmit: async (values) => {
         try {
           setModalLoading(true);
+          console.log(values.address);
 
           const centerToRelocate = await mapRelocateHandler(values.address);
 
@@ -154,6 +155,7 @@ const SearchSitter = () => {
 
   const toggleFilterModal = () => setShowFilterModal(!showFilterModal);
   const toggleMap = () => setShowMap(!showMap);
+  const closeMapPopUp = () => setPopUpSitterId(0);
 
   // Have to turn off map and find sitters upon landing for small devices
   // Also upon resize of page make sure the map shows for large devices.
@@ -234,10 +236,10 @@ const SearchSitter = () => {
               ],
             }}
             defaultZoom={DEFAULT_ZOOM}
-            onClick={() => {
+            onClick={
+              closeMapPopUp
               //Close sitter modal upon clicking on a random place in the maps
-              setPopUpSitterId(0);
-            }}
+            }
             onChange={({ center, zoom, bounds }) => {
               findSitter(
                 { ...values, address: `${center.lat},${center.lng}` },
@@ -260,20 +262,28 @@ const SearchSitter = () => {
                 }}
               >
                 {popUpSitterId === sitter._id && (
-                  <S.MapPopUp
-                    onClick={(e) => {
-                      // why?
-                      e.stopPropagation();
-                    }}
-                  >
-                    <S.MapProfileImage map={true} src={sitter.profilePicture} />
-                    <S.MapPopUpSitterWrap>
-                      <S.ProfileName map={true}>
-                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>
-                        {sitter.name}
-                      </S.ProfileName>
-                      <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
-                    </S.MapPopUpSitterWrap>
+                  <S.MapPopUp>
+                    <S.LinkToSitterMap to={`/sitter/${sitter._id}`}>
+                      <S.MapPopUpCancel
+                        onClick={(e) => {
+                          e.preventDefault();
+                          closeMapPopUp();
+                        }}
+                      />
+                      <S.MapProfileImage
+                        map={true}
+                        src={sitter.profilePicture}
+                      />
+                      <S.MapPopUpSitterWrap>
+                        <S.ProfileName map={true}>
+                          <S.ProfileNumber map={true}>
+                            {key + 1}.
+                          </S.ProfileNumber>
+                          {sitter.name}
+                        </S.ProfileName>
+                        <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
+                      </S.MapPopUpSitterWrap>
+                    </S.LinkToSitterMap>
                   </S.MapPopUp>
                 )}
                 {key + 1}

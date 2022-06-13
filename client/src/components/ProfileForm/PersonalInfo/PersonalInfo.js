@@ -8,7 +8,6 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { StoreContext } from "../../../store/store";
 import Modal from "../../Modal/Modal";
 import PersonalInfoInit from "./PersonalInfoSchema";
@@ -61,11 +60,10 @@ const PersonalInfo = ({ changeShowBothTabs }) => {
             errors.surname && touched.surname && "Don't leave this empty!"
           }
         />
-        {/* <S.ButtonWrap> */}
+
         <Button variant="contained" onClick={passwordModalHandler}>
           Change Password
         </Button>
-        {/* </S.ButtonWrap> */}
       </S.PersonalInfoWrap>
       <S.AddressWrap>
         <S.InfoText>Your Address</S.InfoText>

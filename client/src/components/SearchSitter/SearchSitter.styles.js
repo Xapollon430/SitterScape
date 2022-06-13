@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronUp,
+  faChevronDown,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Select from "@material-ui/core/Select";
@@ -231,13 +235,13 @@ export const MapLocationSitterArrow = styled.div`
 `;
 
 export const MapPopUp = styled.div`
-  height: 220px;
   width: 200px;
   background-color: white;
   position: absolute;
-  top: -230px;
+  top: -225px;
   z-index: 2;
   border-radius: 5px;
+  border: 1px solid black;
 `;
 
 export const MapPopUpSitterWrap = styled.div`
@@ -261,6 +265,10 @@ export const LinkToSitter = styled(Link)`
   color: black;
 `;
 
+export const LinkToSitterMap = styled(Link)`
+  color: white;
+`;
+
 export const MapProfileImage = styled.img`
   width: 100%;
   height: 175px;
@@ -273,4 +281,17 @@ export const MapPriceBoldText = styled.b`
   font-size: 16px;
   margin: 0px;
   justify-self: end;
+`;
+
+export const MapPopUpCancel = styled((props) => {
+  return <FontAwesomeIcon size="2x" icon={faTimes} {...props} />;
+})`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  background-color: red;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  height: 15px;
 `;

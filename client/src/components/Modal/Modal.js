@@ -22,12 +22,14 @@ const ModalOverlay = (props) => {
 };
 
 const Modal = (props) => {
-  return props.showModal ? (
-    <Fragment>
-      <Backdrop onClose={props.onClose} />
-      <ModalOverlay {...props} />
-    </Fragment>
-  ) : null;
+  return (
+    props.showModal && (
+      <Fragment>
+        <Backdrop onClose={props.onClose} />
+        <ModalOverlay {...props} />
+      </Fragment>
+    )
+  );
 };
 
 export default Modal;

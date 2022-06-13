@@ -159,7 +159,8 @@ const updateSitterInfo = async (req, res) => {
 
 // Given filter data through URL Query, we will first find sitters
 // by querying the database without the location, we will use location to filter
-// afterwards with 200 iq math.
+// afterwards with 200 iq math. Currently doesnt support paging, returns every
+// matching (by location and preference) sitter.
 const searchSitters = async (req, res) => {
   try {
     const {
@@ -197,13 +198,9 @@ const searchSitters = async (req, res) => {
     );
 
     // Sanitizing the data by only keeping the price of the asked service
-    // Also randomizing the sitter's place on the map for privacy.
     const sittersWithPrice = sittersFoundWithLocation.map((sitter) => {
       sitter.price = sitter[`${serviceType}Rate`];
       sitter.perX = `per ${PER_X[serviceType]}`;
-      // sitter.geocode.latitude += Math.random() / 10000;
-      // sitter.geocode.longitude += Math.random() / 10000;
-
       return sitter;
     });
 
