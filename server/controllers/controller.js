@@ -6,7 +6,7 @@ const {
   getLatAndLangGoogleApi,
   getLatAndLangPositionStackApi,
   filterSitterByLocation,
-  cleanUpUserData,
+  ,
 } = require("../utils/helpers");
 const { config } = require("dotenv");
 const { omit } = require("lodash");
@@ -225,7 +225,7 @@ const forwardGeocoding = async (req, res) => {
 
 const getSitter = (req, res) => {
   const id = req.params.id;
-  
+
 
 };
 

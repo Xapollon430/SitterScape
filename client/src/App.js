@@ -16,7 +16,8 @@ const TwentyMinutesInMiliseconds = 20 * 60 * 1000;
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
   const [autoLoginAttempted, setAutoLoginAttempted] = useState(false);
-  //Automatic login on refresh
+  // Automatic login on refresh
+  // Also auto logging every 20 minutes to keep the session secure
   useEffect(() => {
     const autoLogin = async () => {
       try {
