@@ -15,6 +15,7 @@ router.get("/auto-login", controllers.autoLogin);
 router.get("/log-out", controllers.logOut);
 router.get("/sitters", controllers.searchSitters);
 router.get("/forward-geocode", controllers.forwardGeocoding);
+router.get("/sitter/:id", controllers.getSitter);
 
 router.patch(
   "/update-personal-info",

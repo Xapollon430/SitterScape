@@ -4,11 +4,14 @@ import Auth from "./components/Auth/Auth";
 import Inbox from "./components/Inbox/Inbox";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Profile from "./components/ProfileForm/Profile";
+import Sitter from "./components/Sitter/Sitter";
 import * as actions from "./store/actions";
 import * as S from "./App.styles";
 import { StoreContext } from "./store/store";
 import { Route, Switch } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
+
+const TwentyMinutesInMiliseconds = 20 * 60 * 1000;
 
 const App = () => {
   const [_, dispatch] = useContext(StoreContext);
@@ -51,7 +54,7 @@ const App = () => {
     };
 
     autoLogin();
-    setInterval(autoLogin, 1200000);
+    setInterval(autoLogin, TwentyMinutesInMiliseconds);
   }, []);
 
   return autoLoginAttempted ? (
@@ -59,7 +62,7 @@ const App = () => {
       <Route exact path="/" render={() => <Landing />} />
       <Route exact path="/search" render={() => <SearchSitter />} />
       <Route exact path="/auth" render={() => <Auth />} />
-      <Route exact path="/sitter/:id" render={() => <h1>123</h1>} />
+      <Route exact path="/sitter/:id" render={() => <Sitter />} />
 
       <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
       <PrivateRoute exact path="/profile" render={() => <Profile />} />

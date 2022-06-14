@@ -223,6 +223,12 @@ const forwardGeocoding = async (req, res) => {
   }
 };
 
+const getSitter = (req, res) => {
+  const id = req.params.id;
+  
+
+};
+
 module.exports = {
   signUp,
   logOut,
@@ -232,4 +238,5 @@ module.exports = {
   updateSitterInfo,
   searchSitters,
   forwardGeocoding,
+  getSitter,
 };
