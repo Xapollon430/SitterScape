@@ -172,11 +172,16 @@ const SearchSitter = () => {
         null
       );
     }
+
     const cleanUp = window.addEventListener(
       "resize",
       () => window.innerWidth > 800 && setShowMap(true)
     );
-    return () => window.removeEventListener("resize", cleanUp);
+    return () => {
+      prevCenter = 0;
+      prevZoom = {};
+      window.removeEventListener("resize", cleanUp);
+    };
   }, []);
 
   return (
