@@ -6,7 +6,6 @@ const {
   getLatAndLangGoogleApi,
   getLatAndLangPositionStackApi,
   filterSitterByLocation,
-  ,
 } = require("../utils/helpers");
 const { config } = require("dotenv");
 const { omit } = require("lodash");
@@ -223,10 +222,16 @@ const forwardGeocoding = async (req, res) => {
   }
 };
 
-const getSitter = (req, res) => {
-  const id = req.params.id;
+const getSitter = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id).select(SITTER_DATA_TO_INCLUDE);
 
-
+    console.log(user, id);
+    return res.status(200).json(user);
+  } catch (e) {
+    return res.status(400).send("Couldn't find sitter!");
+  }
 };
 
 module.exports = {

@@ -10,7 +10,7 @@ const Sitter = () => {
       .then((response) => response.json())
       .then(setSitterInfo);
   }, []);
-  return 123;
+  return sitterInfo.name;
 };
 
 export default Sitter;
