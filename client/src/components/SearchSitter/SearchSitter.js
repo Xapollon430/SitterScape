@@ -115,29 +115,33 @@ const SearchSitter = () => {
 
   // After finding our bounds, we can make the actual search
   const findSitter = async (filterData, bounds) => {
-    setSittersLoading(true);
+    try {
+      setSittersLoading(true);
 
-    let filterQuery = "";
+      let filterQuery = "";
 
-    for (let key in filterData) {
-      if (filterData[key] !== "" && key !== "bounds") {
-        filterQuery += `${key}=${filterData[key]}&`;
+      for (let key in filterData) {
+        if (filterData[key] !== "" && key !== "bounds") {
+          filterQuery += `${key}=${filterData[key]}&`;
+        }
       }
-    }
 
-    if (bounds) {
-      for (let bound in bounds) {
-        filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
-        filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
+      if (bounds) {
+        for (let bound in bounds) {
+          filterQuery += `${bound}Latitude=${bounds[bound].lat}&`;
+          filterQuery += `${bound}Longitude=${bounds[bound].lng}&`;
+        }
       }
+
+      const filteredSitters = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
+      );
+
+      setSitters(await filteredSitters.json());
+      setSittersLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-
-    const filteredSitters = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/api/sitters?${filterQuery}`
-    );
-
-    setSitters(await filteredSitters.json());
-    setSittersLoading(false);
   };
 
   // Map related states
