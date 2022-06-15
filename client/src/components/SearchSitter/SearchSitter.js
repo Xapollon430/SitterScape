@@ -203,27 +203,27 @@ const SearchSitter = () => {
           ) : (
             sitters.map((sitter, key) => {
               return (
-                <S.LinkToSitter key={key} to={`/sitter/${sitter._id}`}>
-                  <S.Profile>
-                    <S.ProfileImage src={sitter.profilePicture} />
-                    <S.ProfileDetails>
-                      <S.ProfileName>
-                        <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
-                        {sitter.name}
-                      </S.ProfileName>
-                      <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>
-                      <S.ProfileAddress>
-                        {sitter.city + ", " + sitter.state + ", " + sitter.zip}
-                      </S.ProfileAddress>
-                      <S.ProfileComment>{sitter.aboutMe}</S.ProfileComment>
-                    </S.ProfileDetails>
-                    <S.ProfilePrice>
-                      <S.PriceText>from</S.PriceText>
-                      <S.Rate> ${sitter.price}</S.Rate>
-                      <S.PriceText>{sitter.perX}</S.PriceText>
-                    </S.ProfilePrice>
-                  </S.Profile>
-                </S.LinkToSitter>
+                <S.Profile
+                  onClick={() => window.open(`/sitter/${sitter._id}`, "_blank")}
+                >
+                  <S.ProfileImage src={sitter.profilePicture} />
+                  <S.ProfileDetails>
+                    <S.ProfileName>
+                      <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
+                      {sitter.name}
+                    </S.ProfileName>
+                    <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>
+                    <S.ProfileAddress>
+                      {sitter.city + ", " + sitter.state + ", " + sitter.zip}
+                    </S.ProfileAddress>
+                    <S.ProfileComment>{sitter.aboutMe}</S.ProfileComment>
+                  </S.ProfileDetails>
+                  <S.ProfilePrice>
+                    <S.PriceText>from</S.PriceText>
+                    <S.Rate> ${sitter.price}</S.Rate>
+                    <S.PriceText>{sitter.perX}</S.PriceText>
+                  </S.ProfilePrice>
+                </S.Profile>
               );
             })
           )}
@@ -281,28 +281,25 @@ const SearchSitter = () => {
                 }}
               >
                 {popUpSitterId === sitter._id && (
-                  <S.MapPopUp>
-                    <S.LinkToSitterMap to={`/sitter/${sitter._id}`}>
-                      <S.MapPopUpCancel
-                        onClick={(e) => {
-                          e.preventDefault();
-                          closeMapPopUp();
-                        }}
-                      />
-                      <S.MapProfileImage
-                        map={true}
-                        src={sitter.profilePicture}
-                      />
-                      <S.MapPopUpSitterWrap>
-                        <S.ProfileName map={true}>
-                          <S.ProfileNumber map={true}>
-                            {key + 1}.
-                          </S.ProfileNumber>
-                          {sitter.name}
-                        </S.ProfileName>
-                        <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
-                      </S.MapPopUpSitterWrap>
-                    </S.LinkToSitterMap>
+                  <S.MapPopUp
+                    onClick={() =>
+                      window.open(`/sitter/${sitter._id}`, "_blank")
+                    }
+                  >
+                    <S.MapPopUpCancel
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeMapPopUp();
+                      }}
+                    />
+                    <S.MapProfileImage map={true} src={sitter.profilePicture} />
+                    <S.MapPopUpSitterWrap>
+                      <S.ProfileName map={true}>
+                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>
+                        {sitter.name}
+                      </S.ProfileName>
+                      <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
+                    </S.MapPopUpSitterWrap>
                   </S.MapPopUp>
                 )}
                 {key + 1}

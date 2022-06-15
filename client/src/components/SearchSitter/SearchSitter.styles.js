@@ -43,6 +43,7 @@ export const Profile = styled.div`
   grid-gap: 15px;
   box-sizing: border-box;
   box-shadow: 0 4px 2px -2px rgb(0 0 0 / 20%);
+  cursor: pointer;
 
   @media (max-width: 500px) {
     grid-template-columns: 3fr 1fr;
@@ -242,6 +243,7 @@ export const MapPopUp = styled.div`
   z-index: 2;
   border-radius: 5px;
   border: 1px solid black;
+  cursor: pointer;
 `;
 
 export const MapPopUpSitterWrap = styled.div`

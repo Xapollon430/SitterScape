@@ -227,7 +227,6 @@ const getSitter = async (req, res) => {
     const id = req.params.id;
     const user = await User.findById(id).select(SITTER_DATA_TO_INCLUDE);
 
-    console.log(user, id);
     return res.status(200).json(user);
   } catch (e) {
     return res.status(400).send("Couldn't find sitter!");
