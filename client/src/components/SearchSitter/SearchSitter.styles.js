@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 
 export const SearchSitterWrap = styled.div`
   height: 100vh;
+  overflow: hidden;
 `;
 
 export const ContentWrap = styled.div`
