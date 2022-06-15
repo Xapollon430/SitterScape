@@ -10,6 +10,10 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+export const SearchSitterWrap = styled.div`
+  height: 100vh;
+`;
+
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
   padding-top: 65px;

@@ -189,7 +189,7 @@ const SearchSitter = () => {
   }, []);
 
   return (
-    <Fragment>
+    <S.SearchSitterWrap>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
         <S.ProfilesWrap showMap={showMap}>
@@ -336,7 +336,7 @@ const SearchSitter = () => {
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
         <FilterModalContent modalLoading={modalLoading} {...filterSitterData} />
       </Modal>
-    </Fragment>
+    </S.SearchSitterWrap>
   );
 };
 
