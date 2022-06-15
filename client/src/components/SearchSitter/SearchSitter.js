@@ -1,6 +1,8 @@
-import { Fragment, useEffect, useContext, useState } from "react";
+import { Fragment, useEffect, useContext, useState, useRef } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
@@ -144,6 +146,9 @@ const SearchSitter = () => {
     }
   };
 
+  // need to use this because IOS Safari is retarded
+  // https://www.npmjs.com/package/body-scroll-lock
+  const targetRef = useRef();
   // Map related states
   const [showFilterModal, setShowFilterModal] = useState(true);
   const [showMap, setShowMap] = useState(true);
@@ -177,6 +182,8 @@ const SearchSitter = () => {
       );
     }
 
+    disableBodyScroll(targetRef);
+
     const cleanUp = window.addEventListener(
       "resize",
       () => window.innerWidth > 800 && setShowMap(true)
@@ -184,14 +191,15 @@ const SearchSitter = () => {
     return () => {
       prevCenter = 0;
       prevZoom = {};
+      enableBodyScroll(targetRef);
       window.removeEventListener("resize", cleanUp);
     };
   }, []);
 
   return (
-    <S.SearchSitterWrap>
+    <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
-      <S.ContentWrap>
+      <S.ContentWrap ref={targetRef}>
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
@@ -336,7 +344,7 @@ const SearchSitter = () => {
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
         <FilterModalContent modalLoading={modalLoading} {...filterSitterData} />
       </Modal>
-    </S.SearchSitterWrap>
+    </Fragment>
   );
 };
 
