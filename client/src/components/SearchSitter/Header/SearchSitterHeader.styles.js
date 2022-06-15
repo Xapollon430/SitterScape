@@ -6,7 +6,7 @@ import { HamburgerSpin } from "react-animated-burgers";
 export const Navbar = styled.div`
   padding: 10px;
   display: grid;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;

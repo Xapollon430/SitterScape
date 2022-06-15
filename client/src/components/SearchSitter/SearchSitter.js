@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useContext, useState, useRef } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 import * as S from "./SearchSitter.styles";
 import * as actions from "../../store/actions";
@@ -182,8 +181,6 @@ const SearchSitter = () => {
       );
     }
 
-    disableBodyScroll(targetRef);
-
     const cleanUp = window.addEventListener(
       "resize",
       () => window.innerWidth > 800 && setShowMap(true)
@@ -191,7 +188,6 @@ const SearchSitter = () => {
     return () => {
       prevCenter = 0;
       prevZoom = {};
-      enableBodyScroll(targetRef);
       window.removeEventListener("resize", cleanUp);
     };
   }, []);
@@ -200,7 +196,7 @@ const SearchSitter = () => {
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
-        <S.ProfilesWrap ref={targetRef} showMap={showMap}>
+        <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
           ) : sitters.length === 0 ? (
