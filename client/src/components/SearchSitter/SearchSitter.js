@@ -202,7 +202,7 @@ const SearchSitter = () => {
       <S.ContentWrap>
         <S.ProfilesWrap ref={targetRef} showMap={showMap}>
           {sittersLoading ? (
-            <Spinner custom={"margin-top: 50px"} />
+            <Spinner custom={"margin-top: 5px"} />
           ) : sitters.length === 0 ? (
             <S.NoSitterWrap>
               <S.NoSitterTitle>
