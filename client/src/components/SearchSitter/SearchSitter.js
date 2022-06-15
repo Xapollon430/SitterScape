@@ -182,7 +182,7 @@ const SearchSitter = () => {
       );
     }
 
-    disableBodyScroll(targetRef);
+    disableBodyScroll(document.getElementsByTagName("body"));
 
     const cleanUp = window.addEventListener(
       "resize",
@@ -191,7 +191,7 @@ const SearchSitter = () => {
     return () => {
       prevCenter = 0;
       prevZoom = {};
-      enableBodyScroll(targetRef);
+      enableBodyScroll(document.getElementsByTagName("body"));
       window.removeEventListener("resize", cleanUp);
     };
   }, []);
