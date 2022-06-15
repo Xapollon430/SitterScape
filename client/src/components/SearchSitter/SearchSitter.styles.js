@@ -17,7 +17,7 @@ export const SearchSitterWrap = styled.div`
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
-  padding-top: 65px;
+  padding-top: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media (max-width: 800px) {
