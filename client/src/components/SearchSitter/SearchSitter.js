@@ -182,7 +182,7 @@ const SearchSitter = () => {
       );
     }
 
-    disableBodyScroll(document.getElementsByTagName("body"));
+    disableBodyScroll(targetRef);
 
     const cleanUp = window.addEventListener(
       "resize",
@@ -191,7 +191,7 @@ const SearchSitter = () => {
     return () => {
       prevCenter = 0;
       prevZoom = {};
-      enableBodyScroll(document.getElementsByTagName("body"));
+      enableBodyScroll(targetRef);
       window.removeEventListener("resize", cleanUp);
     };
   }, []);
@@ -199,8 +199,8 @@ const SearchSitter = () => {
   return (
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
-      <S.ContentWrap ref={targetRef}>
-        <S.ProfilesWrap showMap={showMap}>
+      <S.ContentWrap>
+        <S.ProfilesWrap ref={targetRef} showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
           ) : sitters.length === 0 ? (
