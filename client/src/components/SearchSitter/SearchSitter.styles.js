@@ -17,7 +17,7 @@ export const SearchSitterWrap = styled.div`
 
 export const ContentWrap = styled.div`
   height: calc(100vh - 65px);
-  padding-top: 60px;
+  padding-top: 65px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   @media (max-width: 800px) {
@@ -181,7 +181,7 @@ export const FilterMapToggleButton = styled.div`
   display: grid;
   grid-template-columns: 100px 100px;
   left: 50%;
-  bottom: 50px;
+  bottom: 150px;
   transform: translate(-50%, -50%);
   z-index: 1010;
 
