@@ -689,3 +689,7 @@ body {
   font-family: "Quicksand";
   overflow-x: hidden;
 }
+
+#root {
+  overflow: hidden;
+}
