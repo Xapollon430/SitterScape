@@ -176,7 +176,7 @@ export const FilterMapToggleButton = styled.div`
   display: grid;
   grid-template-columns: 100px 100px;
   left: 50%;
-  bottom: 125px;
+  bottom: 150px;
   transform: translate(-50%, -50%);
   z-index: 1010;
 
