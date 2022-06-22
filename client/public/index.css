@@ -688,12 +688,5 @@ body {
   min-width: 280px;
   font-family: "Quicksand";
   overflow-x: hidden;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
+  overflow-y: hidden;
 }
