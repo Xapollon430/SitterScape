@@ -59,7 +59,23 @@ const App = () => {
     setInterval(autoLogin, TwentyMinutesInMiliseconds);
   }, []);
 
-  return "nig";
+  return autoLoginAttempted ? (
+    <Switch>
+      <Route exact path="/" render={() => <Landing />} />
+      <Route exact path="/search" render={() => <SearchSitter />} />
+      <Route exact path="/auth" render={() => <Auth />} />
+      <Route exact path="/sitter/:id" render={() => <Sitter />} />
+
+      <PrivateRoute exact path="/inbox" render={() => <Inbox />} />
+      <PrivateRoute exact path="/profile" render={() => <Profile />} />
+      <PrivateRoute exact path="/profile/sitter" render={() => <Profile />} />
+      <Route path="/*" render={() => <Landing />} />
+    </Switch>
+  ) : (
+    <S.SpinnerWrapper>
+      <S.Spinner />
+    </S.SpinnerWrapper>
+  );
 };
 
 export default App;
