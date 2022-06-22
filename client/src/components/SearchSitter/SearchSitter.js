@@ -194,8 +194,27 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
+      <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
-        <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
+        <S.FilterMapToggleButton>
+          <S.MapButton
+            variant="contained"
+            color="primary"
+            startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
+            onClick={toggleMap}
+          >
+            {showMap ? "Back" : "Map"}
+          </S.MapButton>
+          <S.FilterButton
+            variant="contained"
+            color="primary"
+            endIcon={<TuneIcon />}
+            onClick={toggleFilterModal}
+          >
+            Filter
+          </S.FilterButton>
+        </S.FilterMapToggleButton>
+
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
@@ -212,6 +231,7 @@ const SearchSitter = () => {
             sitters.map((sitter, key) => {
               return (
                 <S.Profile
+                  key={key}
                   onClick={() => window.open(`/sitter/${sitter._id}`, "_blank")}
                 >
                   <S.ProfileImage src={sitter.profilePicture} />
@@ -317,25 +337,6 @@ const SearchSitter = () => {
           </GoogleMap>
         )}
       </S.ContentWrap>
-
-      <S.FilterMapToggleButton>
-        <S.MapButton
-          variant="contained"
-          color="primary"
-          startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
-          onClick={toggleMap}
-        >
-          {showMap ? "Back" : "Map"}
-        </S.MapButton>
-        <S.FilterButton
-          variant="contained"
-          color="primary"
-          endIcon={<TuneIcon />}
-          onClick={toggleFilterModal}
-        >
-          Filter
-        </S.FilterButton>
-      </S.FilterMapToggleButton>
 
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
         <FilterModalContent modalLoading={modalLoading} {...filterSitterData} />

@@ -11,11 +11,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 export const ContentWrap = styled.div`
-  height: 100vh;
+  height: calc(100vh - 65px);
+  padding-top: 65px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 65px 1fr;
   @media (max-width: 800px) {
+    height: calc(100vh - 60px);
+    padding-top: 60px;
     grid-template-columns: 1fr;
   }
 `;
@@ -174,7 +176,7 @@ export const FilterMapToggleButton = styled.div`
   display: grid;
   grid-template-columns: 100px 100px;
   left: 50%;
-  bottom: 100px;
+  bottom: 125px;
   transform: translate(-50%, -50%);
   z-index: 1010;
 

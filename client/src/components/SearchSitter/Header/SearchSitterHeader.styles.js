@@ -6,18 +6,22 @@ import { HamburgerSpin } from "react-animated-burgers";
 export const Navbar = styled.div`
   padding: 10px;
   display: grid;
-  grid-column-start: span 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
   justify-items: center;
   align-items: center;
 
+  background-color: white;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   z-index: 1002;
 
   box-sizing: border-box;
   @media (max-width: 800px) {
-    padding: 5px 0px 5px 0px;
+    padding: 0px;
     grid-template-areas:
       "brand menu"
       "nav nav";
@@ -30,9 +34,6 @@ export const Nav = styled.div`
   width: 100%;
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
-
-  background-color: red;
-
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen
