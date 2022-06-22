@@ -194,8 +194,8 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
-      <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
+        <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
