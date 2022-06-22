@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.c699948d.chunk.js",
-    "main.js.map": "/static/js/main.c699948d.chunk.js.map",
+    "main.js": "/static/js/main.6d3f7b1b.chunk.js",
+    "main.js.map": "/static/js/main.6d3f7b1b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a06e69b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.a06e69b5.js.map",
-    "static/js/2.09257a20.chunk.js": "/static/js/2.09257a20.chunk.js",
-    "static/js/2.09257a20.chunk.js.map": "/static/js/2.09257a20.chunk.js.map",
+    "static/js/2.ee03cc65.chunk.js": "/static/js/2.ee03cc65.chunk.js",
+    "static/js/2.ee03cc65.chunk.js.map": "/static/js/2.ee03cc65.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.09257a20.chunk.js.LICENSE.txt": "/static/js/2.09257a20.chunk.js.LICENSE.txt",
+    "static/js/2.ee03cc65.chunk.js.LICENSE.txt": "/static/js/2.ee03cc65.chunk.js.LICENSE.txt",
     "static/media/background.99ad8523.jpg": "/static/media/background.99ad8523.jpg",
     "static/media/petsitter.ae3c789e.jpg": "/static/media/petsitter.ae3c789e.jpg",
     "static/media/steps-handshake.5306cbf9.png": "/static/media/steps-handshake.5306cbf9.png",
@@ -16,7 +16,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.a06e69b5.js",
-    "static/js/2.09257a20.chunk.js",
-    "static/js/main.c699948d.chunk.js"
+    "static/js/2.ee03cc65.chunk.js",
+    "static/js/main.6d3f7b1b.chunk.js"
   ]
 }
