@@ -31,7 +31,7 @@ export const Nav = styled.div`
   grid-gap: 10px;
   grid-template-columns: 120px 120px 1fr 120px 120px;
 
-  background-color: white;
+  background-color: red;
 
   @media (max-width: 800px) {
     height: ${(props) =>
