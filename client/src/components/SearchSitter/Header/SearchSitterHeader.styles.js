@@ -21,8 +21,7 @@ export const Navbar = styled.div`
 
   box-sizing: border-box;
   @media (max-width: 800px) {
-    position: relative;
-
+    position: ${({ showMap }) => (showMap ? "fixed" : "relative")};
     padding: 0px;
     grid-template-areas:
       "brand menu"

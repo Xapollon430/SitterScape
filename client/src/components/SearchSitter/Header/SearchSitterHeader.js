@@ -7,7 +7,7 @@ import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const SearchSitterHeader = ({ toggleFilterModal }) => {
+const SearchSitterHeader = ({ toggleFilterModal, showMap }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
@@ -29,7 +29,7 @@ const SearchSitterHeader = ({ toggleFilterModal }) => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   return (
-    <S.Navbar>
+    <S.Navbar showMap={showMap}>
       <S.BrandLink to="/">SitterScape</S.BrandLink>
 
       <S.BurgerWrap>
