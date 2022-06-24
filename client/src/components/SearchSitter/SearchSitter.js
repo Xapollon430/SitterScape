@@ -242,85 +242,93 @@ const SearchSitter = () => {
           )}
         </S.ProfilesWrap>
         {showMap && (
-          <GoogleMap
-            bootstrapURLKeys={{
-              key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-            }}
-            center={mapCenter}
-            options={{
-              gestureHandling: "greedy",
-              maxZoom: 15,
-              minZoom: 10,
-              styles: [
-                { featureType: "poi", stylers: [{ visibility: "off" }] },
-                { featureType: "transit", stylers: [{ visibility: "off" }] },
-              ],
-            }}
-            defaultZoom={DEFAULT_ZOOM}
-            onClick={
-              closeMapPopUp
-              //Close sitter modal upon clicking on a random place in the maps
-            }
-            onChange={({ center, zoom, bounds }) => {
-              // We dont want to make an excessive amount of calls when the page is resized
-              // (which resizes the map changing its bounds) so we only find new sitters if
-              // the center is moved or zoom has changed.
-              if (
-                zoom !== prevZoom ||
-                prevCenter.lng !== center.lng ||
-                prevCenter.lat !== center.lat
-              ) {
-                findSitter(
-                  { ...values, address: `${center.lat},${center.lng}` },
-                  bounds
-                );
+          <S.MapWrap>
+            {" "}
+            <GoogleMap
+              bootstrapURLKeys={{
+                key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+              }}
+              center={mapCenter}
+              options={{
+                gestureHandling: "greedy",
+                maxZoom: 15,
+                minZoom: 10,
+                styles: [
+                  { featureType: "poi", stylers: [{ visibility: "off" }] },
+                  { featureType: "transit", stylers: [{ visibility: "off" }] },
+                ],
+              }}
+              defaultZoom={DEFAULT_ZOOM}
+              onClick={
+                closeMapPopUp
+                //Close sitter modal upon clicking on a random place in the maps
               }
+              onChange={({ center, zoom, bounds }) => {
+                // We dont want to make an excessive amount of calls when the page is resized
+                // (which resizes the map changing its bounds) so we only find new sitters if
+                // the center is moved or zoom has changed.
+                if (
+                  zoom !== prevZoom ||
+                  prevCenter.lng !== center.lng ||
+                  prevCenter.lat !== center.lat
+                ) {
+                  findSitter(
+                    { ...values, address: `${center.lat},${center.lng}` },
+                    bounds
+                  );
+                }
 
-              prevZoom = zoom;
-              prevCenter = center;
-              setMapCenter(center);
-            }}
-          >
-            {sitters.map((sitter, key) => (
-              <S.MapLocationSitter
-                key={key}
-                lat={sitter.geocode.latitude}
-                lng={sitter.geocode.longitude}
-                onTouchEnd={() => {
-                  //For mobile devices.
-                  setPopUpSitterId(sitter._id);
-                }}
-                onClick={() => {
-                  setPopUpSitterId(sitter._id);
-                }}
-              >
-                {popUpSitterId === sitter._id && (
-                  <S.MapPopUp
-                    onClick={() =>
-                      window.open(`/sitter/${sitter._id}`, "_blank")
-                    }
-                  >
-                    <S.MapPopUpCancel
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        closeMapPopUp();
-                      }}
-                    />
-                    <S.MapProfileImage map={true} src={sitter.profilePicture} />
-                    <S.MapPopUpSitterWrap>
-                      <S.ProfileName map={true}>
-                        <S.ProfileNumber map={true}>{key + 1}.</S.ProfileNumber>
-                        {sitter.name}
-                      </S.ProfileName>
-                      <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
-                    </S.MapPopUpSitterWrap>
-                  </S.MapPopUp>
-                )}
-                {key + 1}
-                <S.MapLocationSitterArrow />
-              </S.MapLocationSitter>
-            ))}
-          </GoogleMap>
+                prevZoom = zoom;
+                prevCenter = center;
+                setMapCenter(center);
+              }}
+            >
+              {sitters.map((sitter, key) => (
+                <S.MapLocationSitter
+                  key={key}
+                  lat={sitter.geocode.latitude}
+                  lng={sitter.geocode.longitude}
+                  onTouchEnd={() => {
+                    //For mobile devices.
+                    setPopUpSitterId(sitter._id);
+                  }}
+                  onClick={() => {
+                    setPopUpSitterId(sitter._id);
+                  }}
+                >
+                  {popUpSitterId === sitter._id && (
+                    <S.MapPopUp
+                      onClick={() =>
+                        window.open(`/sitter/${sitter._id}`, "_blank")
+                      }
+                    >
+                      <S.MapPopUpCancel
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          closeMapPopUp();
+                        }}
+                      />
+                      <S.MapProfileImage
+                        map={true}
+                        src={sitter.profilePicture}
+                      />
+                      <S.MapPopUpSitterWrap>
+                        <S.ProfileName map={true}>
+                          <S.ProfileNumber map={true}>
+                            {key + 1}.
+                          </S.ProfileNumber>
+                          {sitter.name}
+                        </S.ProfileName>
+                        <S.MapPriceBoldText>${sitter.price}</S.MapPriceBoldText>
+                      </S.MapPopUpSitterWrap>
+                    </S.MapPopUp>
+                  )}
+                  {key + 1}
+                  <S.MapLocationSitterArrow />
+                </S.MapLocationSitter>
+              ))}
+            </GoogleMap>
+          </S.MapWrap>
         )}
       </S.ContentWrap>
       <S.FilterMapToggleButton>

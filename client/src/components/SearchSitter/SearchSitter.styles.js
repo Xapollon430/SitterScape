@@ -33,9 +33,10 @@ export const ProfilesWrap = styled.div`
   }
 `;
 
-export const LeafletMap = styled.div`
+export const MapWrap = styled.div`
   @media (max-width: 800px) {
-    display: ${({ showMap }) => (showMap ? "block" : "none")};
+    padding-top: 60px;
+    height: calc(100vh - 60px);
   }
 `;
 
