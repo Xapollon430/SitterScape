@@ -21,6 +21,8 @@ export const Navbar = styled.div`
 
   box-sizing: border-box;
   @media (max-width: 800px) {
+    position: relative;
+
     padding: 0px;
     grid-template-areas:
       "brand menu"

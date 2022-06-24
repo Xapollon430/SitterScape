@@ -40,11 +40,6 @@ const mapRelocateHandler = async (
   };
 };
 
-const stupidCSS = () => {
-  document.getElementsByTagName("body")[0].style.overflow = "hidden";
-  document.getElementById("root").style.overflow = "hidden";
-};
-
 const SearchSitter = () => {
   const FilterSitterSchema = () => {
     return useFormik({
@@ -186,8 +181,6 @@ const SearchSitter = () => {
       );
     }
 
-    stupidCSS();
-
     const cleanUp = window.addEventListener(
       "resize",
       () => window.innerWidth > 800 && setShowMap(true)
@@ -202,8 +195,8 @@ const SearchSitter = () => {
 
   return (
     <Fragment>
-      <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
+        <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />

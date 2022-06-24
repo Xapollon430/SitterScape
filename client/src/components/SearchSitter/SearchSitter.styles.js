@@ -15,15 +15,17 @@ export const ContentWrap = styled.div`
   padding-top: 65px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  overflow-y: scroll;
+
   @media (max-width: 800px) {
-    height: calc(100vh - 60px);
-    padding-top: 60px;
+    height: 100vh;
+    padding-top: 0px;
     grid-template-columns: 1fr;
   }
 `;
 
 export const ProfilesWrap = styled.div`
-  overflow-y: scroll;
   @media (max-width: 800px) {
     display: ${({ showMap }) => (showMap ? "none" : "block")};
   }
