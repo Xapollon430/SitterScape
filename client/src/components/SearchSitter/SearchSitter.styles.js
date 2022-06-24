@@ -17,8 +17,6 @@ export const ContentWrap = styled.div`
   grid-template-columns: 1fr 1fr;
 
   @media (max-width: 800px) {
-    overflow-y: scroll;
-
     height: 100vh;
     padding-top: 0px;
     grid-template-columns: 1fr;
@@ -178,7 +176,7 @@ export const StyledSelect = styled(Select)``;
 export const StyledText = styled(TextField)``;
 
 export const FilterMapToggleButton = styled.div`
-  position: absolute;
+  position: fixed;
   display: grid;
   grid-template-columns: 100px 100px;
   left: 50%;
