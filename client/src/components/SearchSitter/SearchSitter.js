@@ -248,6 +248,7 @@ const SearchSitter = () => {
             }}
             center={mapCenter}
             options={{
+              gestureHandling: "greedy",
               maxZoom: 15,
               minZoom: 10,
               styles: [
