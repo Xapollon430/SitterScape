@@ -40,6 +40,11 @@ const mapRelocateHandler = async (
   };
 };
 
+const stupidCSS = () => {
+  document.getElementsByTagName("body")[0].style.overflow = "hidden";
+  document.getElementById("root").style.overflow = "hidden";
+};
+
 const SearchSitter = () => {
   const FilterSitterSchema = () => {
     return useFormik({
@@ -181,11 +186,14 @@ const SearchSitter = () => {
       );
     }
 
+    stupidCSS();
+
     const cleanUp = window.addEventListener(
       "resize",
       () => window.innerWidth > 800 && setShowMap(true)
     );
     return () => {
+      // Need to reset these so that if user leaves and comes back we will make a network call.
       prevCenter = 0;
       prevZoom = {};
       window.removeEventListener("resize", cleanUp);
@@ -196,25 +204,6 @@ const SearchSitter = () => {
     <Fragment>
       <SearchSitterHeader toggleFilterModal={toggleFilterModal} />
       <S.ContentWrap>
-        <S.FilterMapToggleButton>
-          <S.MapButton
-            variant="contained"
-            color="primary"
-            startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
-            onClick={toggleMap}
-          >
-            {showMap ? "Back" : "Map"}
-          </S.MapButton>
-          <S.FilterButton
-            variant="contained"
-            color="primary"
-            endIcon={<TuneIcon />}
-            onClick={toggleFilterModal}
-          >
-            Filter
-          </S.FilterButton>
-        </S.FilterMapToggleButton>
-
         <S.ProfilesWrap showMap={showMap}>
           {sittersLoading ? (
             <Spinner custom={"margin-top: 50px"} />
@@ -337,7 +326,24 @@ const SearchSitter = () => {
           </GoogleMap>
         )}
       </S.ContentWrap>
-
+      <S.FilterMapToggleButton>
+        <S.MapButton
+          variant="contained"
+          color="primary"
+          startIcon={showMap ? <ArrowBackIcon /> : <MapIcon />}
+          onClick={toggleMap}
+        >
+          {showMap ? "Back" : "Map"}
+        </S.MapButton>
+        <S.FilterButton
+          variant="contained"
+          color="primary"
+          endIcon={<TuneIcon />}
+          onClick={toggleFilterModal}
+        >
+          Filter
+        </S.FilterButton>
+      </S.FilterMapToggleButton>
       <Modal onClose={toggleFilterModal} showModal={showFilterModal}>
         <FilterModalContent modalLoading={modalLoading} {...filterSitterData} />
       </Modal>
