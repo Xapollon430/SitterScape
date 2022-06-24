@@ -16,9 +16,9 @@ export const ContentWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  overflow-y: scroll;
-
   @media (max-width: 800px) {
+    overflow-y: scroll;
+
     height: 100vh;
     padding-top: 0px;
     grid-template-columns: 1fr;
@@ -26,7 +26,11 @@ export const ContentWrap = styled.div`
 `;
 
 export const ProfilesWrap = styled.div`
+  overflow-y: scroll;
+
   @media (max-width: 800px) {
+    overflow-y: visible;
+
     display: ${({ showMap }) => (showMap ? "none" : "block")};
   }
 `;
