@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import SitterHeader from "./Header/SitterHeader";
 
 const Sitter = () => {
   const { id: sitterID } = useParams();
@@ -10,7 +12,29 @@ const Sitter = () => {
       .then((response) => response.json())
       .then(setSitterInfo);
   }, []);
-  return <h1>123 {sitterInfo.name}</h1>;
+
+  return (
+    <Fragment>
+      <SitterHeader />
+      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>{" "}
+      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+      <h1>{sitterInfo.name}</h1>
+    </Fragment>
+  );
 };
 
 export default Sitter;

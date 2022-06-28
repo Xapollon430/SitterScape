@@ -34,7 +34,7 @@ const Footer = memo(() => {
         <S.RecentPosts>
           <S.FooterTitle>RECENT POSTS</S.FooterTitle>
           <S.FooterLink href="/joke">
-            Why Are Dogs Better Than Cats?
+            Why Are Cats Better Than Dogs?
           </S.FooterLink>
           <S.FooterLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             Best Dog Diets

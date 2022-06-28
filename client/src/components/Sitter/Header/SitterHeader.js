@@ -1,13 +1,13 @@
 import { useState, useContext, useCallback, Fragment } from "react";
 import { StoreContext } from "../../../store/store";
-import { Link } from "react-router-dom";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import * as S from "./LandingHeader.styles";
+import { Link } from "react-router-dom";
+import * as S from "./SitterHeader.styles";
 import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const LandingHeader = () => {
+const SitterHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
@@ -30,12 +30,13 @@ const LandingHeader = () => {
 
   return (
     <S.Navbar>
-      <S.Brand>SitterScape</S.Brand>
+      <S.BrandLink to="/">SitterScape</S.BrandLink>
+
       <S.BurgerWrap>
         <S.StyledBurgerSpin
           isActive={isHamburgerOpen ? true : false}
           toggleButton={openHamburger}
-          barColor="white"
+          barColor="#484847"
         />
       </S.BurgerWrap>
 
@@ -43,14 +44,14 @@ const LandingHeader = () => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
+        <S.Button>About Us</S.Button>
+
         <Link to="/search">
-          <S.Button>Find A Sitter</S.Button>
-        </Link>
-        <Link to="/about-me">
-          <S.Button>About Me</S.Button>
+          <S.Button>Find Sitter</S.Button>
         </Link>
 
         <S.EmptyDiv />
+
         {loggedIn ? (
           <Fragment>
             <S.ProfileWrapper>
@@ -67,11 +68,11 @@ const LandingHeader = () => {
           </Fragment>
         ) : (
           <Fragment>
-            <Link to="/auth?next=/&type=login">
+            <Link to="/auth?next=/search&type=login">
               <S.Button>Log In</S.Button>
             </Link>
 
-            <Link to="/auth?next=/&type=signUp">
+            <Link to="/auth?next=/search&type=signUp">
               <S.Button>Sign Up</S.Button>
             </Link>
           </Fragment>
@@ -81,4 +82,4 @@ const LandingHeader = () => {
   );
 };
 
-export default LandingHeader;
+export default SitterHeader;

@@ -17,6 +17,8 @@ export const ContentWrap = styled.div`
   grid-template-columns: 1fr 1fr;
 
   @media (max-width: 800px) {
+    grid-template-rows: auto 1fr;
+
     height: 100vh;
     padding-top: 0px;
     grid-template-columns: 1fr;
@@ -35,7 +37,7 @@ export const ProfilesWrap = styled.div`
 
 export const MapWrap = styled.div`
   @media (max-width: 800px) {
-    padding-top: 60px;
+    padding-top: 58px;
     height: calc(100vh - 60px);
   }
 `;

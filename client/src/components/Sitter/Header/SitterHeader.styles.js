@@ -4,11 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
 
 export const Navbar = styled.div`
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
   display: grid;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+
   width: 100vw;
   grid-template-areas: "brand nav";
   grid-template-columns: 200px auto;
@@ -16,14 +15,11 @@ export const Navbar = styled.div`
   align-items: center;
 
   background-color: white;
-
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   z-index: 1002;
 
   box-sizing: border-box;
   @media (max-width: 800px) {
-    position: ${({ showMap }) => (showMap ? "fixed" : "relative")};
-
     padding: 0px;
     grid-template-areas:
       "brand menu"

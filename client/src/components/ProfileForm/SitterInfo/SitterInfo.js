@@ -25,6 +25,8 @@ const SitterInfo = () => {
   const { handleSubmit, handleChange, setFieldValue, values, errors } =
     SitterInfoInit(setShowErrorSnackbar);
 
+  console.log(values);
+
   return (
     <Fragment>
       <S.ServiceWrap>
@@ -294,7 +296,7 @@ const SitterInfo = () => {
             control={
               <Radio
                 checked={values.petPreferencesSmall}
-                onChange={() => {
+                onClick={() => {
                   setFieldValue(
                     "petPreferencesSmall",
                     !values.petPreferencesSmall
@@ -306,11 +308,10 @@ const SitterInfo = () => {
           <FormControlLabel
             label="Medium 16-40 lbs"
             labelPlacement="bottom"
-            value={values.petPreferencesMedium}
             control={
               <Radio
                 checked={values.petPreferencesMedium}
-                onChange={() => {
+                onClick={() => {
                   setFieldValue(
                     "petPreferencesMedium",
                     !values.petPreferencesMedium
@@ -326,7 +327,7 @@ const SitterInfo = () => {
             control={
               <Radio
                 checked={values.petPreferencesLarge}
-                onChange={() => {
+                onClick={() => {
                   setFieldValue(
                     "petPreferencesLarge",
                     !values.petPreferencesLarge
@@ -342,7 +343,7 @@ const SitterInfo = () => {
             control={
               <Radio
                 checked={values.petPreferencesGiant}
-                onChange={() => {
+                onClick={() => {
                   setFieldValue(
                     "petPreferencesGiant",
                     !values.petPreferencesGiant

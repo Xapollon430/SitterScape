@@ -1,9 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import * as S from "./Landing.styles";
 import LandingHeader from "./Header/LandingHeader";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import Information from "./Information/Information";
 import Footer from "../Footer/Footer";
+import UnderDevelopmentSnackbar from "./UnderDevelopmentSnackbar";
 
 function Landing() {
   return (
@@ -13,6 +14,7 @@ function Landing() {
         <Jumbotron />
       </S.StyledBackground>
       <Information />
+      <UnderDevelopmentSnackbar />
       <Footer />
     </Fragment>
   );

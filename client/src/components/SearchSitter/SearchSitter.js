@@ -21,7 +21,7 @@ const MyFavoriteMcDonalds = {
 const DEFAULT_ZOOM = 11;
 
 let prevCenter = 0;
-let prevZoom = {};
+let prevZoom = 0;
 
 // To search sitters we need to relocate the map, that will trigger a search for users
 // in that area.
@@ -188,7 +188,7 @@ const SearchSitter = () => {
     return () => {
       // Need to reset these so that if user leaves and comes back we will make a network call.
       prevCenter = 0;
-      prevZoom = {};
+      prevZoom = 0;
       window.removeEventListener("resize", cleanUp);
     };
   }, []);
@@ -258,7 +258,7 @@ const SearchSitter = () => {
                   { featureType: "transit", stylers: [{ visibility: "off" }] },
                 ],
               }}
-              defaultZoom={DEFAULT_ZOOM}
+              defaultZoom={prevZoom || DEFAULT_ZOOM}
               onClick={
                 closeMapPopUp
                 //Close sitter modal upon clicking on a random place in the maps
