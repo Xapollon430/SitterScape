@@ -480,10 +480,10 @@ const SitterInfo = () => {
         ></TextField>
         <S.Text>Craft an engaging "About Me"</S.Text>
 
-        <TextField
+        <TextField  
           label="About me"
           multiline
-          rows={8}
+          minRows={8}
           onBlur={(e) => {
             setFieldValue("aboutMe", e.target.value);
           }}

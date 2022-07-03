@@ -1,21 +1,15 @@
 import { useContext } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { StoreContext } from "../../store/store";
 
-const PrivateRoute = ({ render: C, path }) => {
+const PrivateRoute = ({ render: Component, path }) => {
   const [state] = useContext(StoreContext);
   return (
-    <Route
-      path={path}
-      render={() =>
-        state.loggedIn ? (
-          <C />
-        ) : (
-          <Redirect to={`/auth?next=${path}&type=login`} />
-        )
-      }
-    />
+    <AuthCheck Component={Component} path={path} loggedIn={state.loggedIn} />
   );
 };
+
+const AuthCheck = ({ loggedIn, Component, path }) =>
+  loggedIn ? <Component /> : <Navigate to={`/auth?next=${path}&type=login`} />;
 
 export default PrivateRoute;

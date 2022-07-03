@@ -1,13 +1,13 @@
 import { StoreContext } from "../../store/store";
-import { useContext, useEffect, useState } from "react";
-import { Route, useHistory, useLocation } from "react-router-dom";
+import { Fragment, useContext, useEffect, useState } from "react";
+import { Route, Router, useNavigate, useLocation } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import SitterInfo from "./SitterInfo/SitterInfo";
 import * as S from "./Profile.styles";
 
 const Profile = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [state] = useContext(StoreContext);
   const [selectedTab, setSelectedTab] = useState();
@@ -25,18 +25,18 @@ const Profile = () => {
   const changeShowBothTabs = () => {
     setShowBothTabs(true);
     setSelectedTab("sitter");
-    history.push("/profile/sitter");
+    navigate("/profile/sitter");
   };
 
   const changeTab = (e) => {
     e.target.innerHTML == "Personal Information"
       ? (() => {
           setSelectedTab("personal");
-          history.push("/profile");
+          navigate("/profile");
         })()
       : (() => {
           setSelectedTab("sitter");
-          history.push("/profile/sitter");
+          navigate("/profile/sitter");
         })();
   };
 
@@ -62,14 +62,11 @@ const Profile = () => {
             </S.TabWrap>
           )}
 
-          <Route
-            exact
-            path="/profile"
-            render={() => (
-              <PersonalInfo changeShowBothTabs={changeShowBothTabs} />
-            )}
-          />
-          <Route exact path="/profile/sitter" render={() => <SitterInfo />} />
+          {selectedTab == "sitter" ? (
+            <SitterInfo />
+          ) : (
+            <PersonalInfo changeShowBothTabs={changeShowBothTabs} />
+          )}
         </S.FormWrap>
       </S.ProfileWrap>
     </S.Wrap>

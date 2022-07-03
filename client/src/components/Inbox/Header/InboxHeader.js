@@ -1,5 +1,5 @@
 import { useState, useContext, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { StoreContext } from "../../../store/store";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const InboxHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user }, dispatch] = useContext(StoreContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const logOut = useCallback(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/api/log-out`, {
@@ -25,7 +25,7 @@ const InboxHeader = () => {
       })
     );
 
-    history.push("/");
+    navigate("/");
   });
 
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);

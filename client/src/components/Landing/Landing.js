@@ -4,7 +4,7 @@ import LandingHeader from "./Header/LandingHeader";
 import Jumbotron from "./Jumbotron/Jumbotron";
 import Information from "./Information/Information";
 import Footer from "../Footer/Footer";
-import UnderDevelopmentSnackbar from "./UnderDevelopmentSnackbar";
+import UnderDevelopmentSnackbar from "../common/UnderDevelopmentSnackbar";
 
 function Landing() {
   return (
@@ -14,8 +14,8 @@ function Landing() {
         <Jumbotron />
       </S.StyledBackground>
       <Information />
-      <UnderDevelopmentSnackbar />
       <Footer />
+      <UnderDevelopmentSnackbar />
     </Fragment>
   );
 }
