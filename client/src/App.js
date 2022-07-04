@@ -10,6 +10,8 @@ import Profile from "./components/ProfileForm/Profile";
 import Sitter from "./components/Sitter/Sitter";
 import * as actions from "./store/actions";
 import * as S from "./App.styles";
+import PersonalInfo from "./components/ProfileForm/PersonalInfo/PersonalInfo";
+import SitterInfo from "./components/ProfileForm/SitterInfo/SitterInfo";
 
 const TwentyMinutesInMiliseconds = 20 * 60 * 1000;
 
@@ -73,15 +75,12 @@ const App = () => {
         <Route
           path="/profile"
           element={<PrivateRoute path="/profile" render={() => <Profile />} />}
-        />
-        <Route
-          path="/profile/sitter"
-          element={
-            <PrivateRoute path="/profile/sitter" render={() => <Profile />} />
-          }
-        />
+        >
+          <Route element={<PersonalInfo />} />
+          <Route path="sitter" element={<SitterInfo />} />
+        </Route>
 
-        <Route path="/*" element={<Landing />} />
+        <Route path="*" element={<Landing />} />
       </Routes>
     </Fragment>
   ) : (
