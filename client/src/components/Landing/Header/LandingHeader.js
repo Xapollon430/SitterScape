@@ -6,9 +6,12 @@ import * as S from "./LandingHeader.styles";
 import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
+import Modal from "../../Modal/Modal";
 
 const LandingHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
 
@@ -24,6 +27,7 @@ const LandingHeader = () => {
     );
   });
 
+  const toggleAboutMe = () => setIsAboutMeOpen(!isAboutMeOpen);
   const openHamburger = () => setIsHamburgerOpen(!isHamburgerOpen);
   const openProfileDropdown = () =>
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
@@ -46,9 +50,7 @@ const LandingHeader = () => {
         <Link to="/search">
           <S.Button>Find A Sitter</S.Button>
         </Link>
-        <Link to="/about-me">
-          <S.Button>About Me</S.Button>
-        </Link>
+        <S.Button onClick={toggleAboutMe}>About Me</S.Button>
 
         <S.EmptyDiv />
         {loggedIn ? (
@@ -77,6 +79,9 @@ const LandingHeader = () => {
           </Fragment>
         )}
       </S.Nav>
+      <Modal showModal={isAboutMeOpen} onClose={toggleAboutMe}>
+        123
+      </Modal>
     </S.Navbar>
   );
 };
