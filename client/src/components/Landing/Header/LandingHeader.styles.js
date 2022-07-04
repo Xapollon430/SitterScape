@@ -106,3 +106,15 @@ export const ProfileWrapper = styled.div`
 export const ExpandIcon = styled.i`
   padding-left: 8px;
 `;
+
+export const AboutMeWrapper = styled.div`
+  display: grid;
+  place-items: center;
+  grid-gap: 20px;
+`;
+
+export const AboutMeImage = styled.img`
+  border-radius: 50%;
+  height: 200px;
+  margin: 0px auto;
+`;

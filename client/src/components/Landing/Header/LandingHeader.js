@@ -7,6 +7,8 @@ import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import Modal from "../../Modal/Modal";
+import Typography from "@mui/material/Typography";
+import AboutMeImage from "../../../images/aboutMe.jpg";
 
 const LandingHeader = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -80,7 +82,14 @@ const LandingHeader = () => {
         )}
       </S.Nav>
       <Modal showModal={isAboutMeOpen} onClose={toggleAboutMe}>
-        123
+        <S.AboutMeWrapper>
+          <S.AboutMeImage src={AboutMeImage} />
+          <Typography variant="body1" gutterBottom>
+            Hello, thanks for visiting my startup SitterScape. My name is Vehbi,
+            I go by "V", and I am currently in the process of building the best
+            platform for pet sitting. My mission is to
+          </Typography>
+        </S.AboutMeWrapper>
       </Modal>
     </S.Navbar>
   );
