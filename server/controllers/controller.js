@@ -1,6 +1,8 @@
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
-const uploadProfilePicture = require("../aws-s3-upload/uploadProfilePicture");
+const {
+  uploadProfilePicture,
+} = require("../aws-s3-upload/uploadProfilePicture");
 const {
   normalizeSitterFilterData,
   getLatAndLangGoogleApi,

@@ -34,7 +34,7 @@ const uploadProfilePicture = (file, user) => {
   });
 };
 
-const deleteFile = (profilePicture) => {
+const deleteProfilePicture = (profilePicture) => {
   const params = {
     Bucket: BUCKET_NAME,
     Key: profilePicture, // File name you want to delete from S3
@@ -45,4 +45,4 @@ const deleteFile = (profilePicture) => {
   });
 };
 
-module.exports = uploadProfilePicture;
+module.exports = { uploadProfilePicture, deleteProfilePicture };
