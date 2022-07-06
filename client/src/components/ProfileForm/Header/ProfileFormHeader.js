@@ -52,7 +52,9 @@ const ProfileFormHeader = () => {
           <S.Button>Find A Sitter</S.Button>
         </Link>
 
-        <S.Button>Blog</S.Button>
+        <Link to="/profile/sitter">
+          <S.Button>Become A Sitter</S.Button>
+        </Link>
 
         <S.EmptyDiv />
 

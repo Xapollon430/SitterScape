@@ -118,3 +118,7 @@ export const AboutMeImage = styled.img`
   height: 200px;
   margin: 0px auto;
 `;
+
+export const Text = styled.span`
+  line-height: 2;
+`;

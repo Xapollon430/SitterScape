@@ -36,7 +36,7 @@ export const Nav = styled.div`
   display: grid;
   width: 100%;
   grid-gap: 10px;
-  grid-template-columns: 120px 120px 1fr 120px 120px;
+  grid-template-columns: 120px 160px 1fr 120px 120px;
   @media (max-width: 800px) {
     height: ${(props) =>
       props.profileOpen && props.hamburgerOpen

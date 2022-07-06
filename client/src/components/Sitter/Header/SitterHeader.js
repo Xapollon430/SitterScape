@@ -44,10 +44,12 @@ const SitterHeader = () => {
         hamburgerOpen={isHamburgerOpen}
         profileOpen={isProfileDropdownOpen}
       >
-        <S.Button>About Us</S.Button>
-
         <Link to="/search">
-          <S.Button>Find Sitter</S.Button>
+          <S.Button>Find A Sitter</S.Button>
+        </Link>
+
+        <Link to="/profile/sitter">
+          <S.Button>Become A Sitter</S.Button>
         </Link>
 
         <S.EmptyDiv />

@@ -47,7 +47,7 @@ const SearchSitterHeader = ({ toggleFilterModal, showMap }) => {
         <S.Button onClick={toggleFilterModal}>Filter</S.Button>
 
         <Link to="/profile/sitter">
-          <S.Button>Be A Sitter</S.Button>
+          <S.Button>Become A Sitter</S.Button>
         </Link>
 
         <S.EmptyDiv />
