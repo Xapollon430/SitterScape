@@ -7,7 +7,7 @@ import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 
-const SitterHeader = () => {
+const SitterHeader = ({ sitterID }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user, loggedIn }, dispatch] = useContext(StoreContext);
@@ -70,11 +70,11 @@ const SitterHeader = () => {
           </Fragment>
         ) : (
           <Fragment>
-            <Link to="/auth?next=/search&type=login">
+            <Link to={`/auth?next=/sitter/${sitterID}&type=login`}>
               <S.Button>Log In</S.Button>
             </Link>
 
-            <Link to="/auth?next=/search&type=signUp">
+            <Link to={`/auth?next=/sitter/${sitterID}&type=signUp`}>
               <S.Button>Sign Up</S.Button>
             </Link>
           </Fragment>

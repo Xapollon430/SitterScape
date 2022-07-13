@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
 
 const Sitter = () => {
@@ -15,24 +16,8 @@ const Sitter = () => {
 
   return (
     <Fragment>
-      <SitterHeader />
-      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>{" "}
-      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1> <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
-      <h1>{sitterInfo.name}</h1>
+      <SitterHeader sitterID={sitterID} />
+      <S.SitterWrapper>img</S.SitterWrapper>
     </Fragment>
   );
 };

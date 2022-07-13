@@ -3,7 +3,6 @@ import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
 
 import * as S from "./SearchSitter.styles";
-import * as actions from "../../store/actions";
 import GoogleMap from "google-map-react";
 import SearchSitterHeader from "./Header/SearchSitterHeader";
 import Modal from "../Modal/Modal";
