@@ -11,7 +11,7 @@ const root = require("./graphql/resolver");
 const cookieParser = require("cookie-parser");
 const { graphqlHTTP } = require("express-graphql");
 
-const PORT = 5000;
+const PORT = 8000;
 const app = express();
 
 app.use(

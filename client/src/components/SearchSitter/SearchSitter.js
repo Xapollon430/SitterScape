@@ -242,7 +242,6 @@ const SearchSitter = () => {
         </S.ProfilesWrap>
         {showMap && (
           <S.MapWrap>
-            {" "}
             <GoogleMap
               bootstrapURLKeys={{
                 key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
