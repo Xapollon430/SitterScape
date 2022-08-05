@@ -9,35 +9,15 @@ const {
   getLatAndLangPositionStackApi,
   filterSitterByLocation,
 } = require("../utils/helpers");
+const {
+  MonthToMiliseconds,
+  SitterDataToInclude,
+  Per_X,
+} = require("../utils/constants");
 const { config } = require("dotenv");
 const { omit } = require("lodash");
 
 config();
-
-const monthToMiliseconds = 30 * 24 * 60 * 60 * 1000;
-
-const SITTER_DATA_TO_INCLUDE = {
-  name: 1,
-  surname: 1,
-  geocode: 1,
-  aboutMe: 1,
-  zip: 1,
-  state: 1,
-  city: 1,
-  headline: 1,
-  profilePicture: 1,
-  boardingRate: 1,
-  dropInVisitRate: 1,
-  houseSittingRate: 1,
-  walkingRate: 1,
-};
-
-const PER_X = {
-  boarding: "night",
-  houseSitting: "night",
-  walking: "walk",
-  dropInVisit: "visit",
-};
 
 const signUp = async (req, res) => {
   try {
@@ -51,7 +31,7 @@ const signUp = async (req, res) => {
     const { refreshToken, accessToken } = newUser.generateTokens();
 
     res.cookie("refreshToken", refreshToken, {
-      maxAge: monthToMiliseconds,
+      maxAge: MonthToMiliseconds,
       httpOnly: true,
       // secure: process.env.NODE_ENV === "production" ? true : false,
     });
@@ -75,7 +55,7 @@ const login = async (req, res) => {
     let { refreshToken, accessToken } = foundUser.generateTokens();
 
     res.cookie("refreshToken", refreshToken, {
-      maxAge: monthToMiliseconds,
+      maxAge: MonthToMiliseconds,
       httpOnly: true,
       // secure: process.env.NODE_ENV === "production" ? true : false,
     });
@@ -180,7 +160,7 @@ const searchSitters = async (req, res) => {
     const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery)
-      .select(SITTER_DATA_TO_INCLUDE)
+      .select(SitterDataToInclude)
       .lean();
 
     sittersFoundWithLocation = filterSitterByLocation(
@@ -201,7 +181,7 @@ const searchSitters = async (req, res) => {
     // Sanitizing the data by only keeping the price of the asked service
     const sittersWithPrice = sittersFoundWithLocation.map((sitter) => {
       sitter.price = sitter[`${serviceType}Rate`];
-      sitter.perX = `per ${PER_X[serviceType]}`;
+      sitter.perX = `per ${Per_X[serviceType]}`;
       return sitter;
     });
 
@@ -227,7 +207,7 @@ const forwardGeocoding = async (req, res) => {
 const getSitter = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findById(id).select(SITTER_DATA_TO_INCLUDE);
+    const user = await User.findById(id).select(SitterDataToInclude);
 
     return res.status(200).json(user);
   } catch (e) {

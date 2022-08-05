@@ -689,3 +689,7 @@ body {
   font-family: "Quicksand";
   overflow-x: hidden;
 }
+
+/* *{
+  outline: 2px solid limegreen;
+} */

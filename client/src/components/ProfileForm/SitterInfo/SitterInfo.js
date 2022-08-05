@@ -480,7 +480,7 @@ const SitterInfo = () => {
         ></TextField>
         <S.Text>Craft an engaging "About Me"</S.Text>
 
-        <TextField  
+        <TextField
           label="About me"
           multiline
           minRows={8}

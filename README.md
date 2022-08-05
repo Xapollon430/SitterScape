@@ -84,4 +84,5 @@ Most important article ever
 https://medium.com/better-programming/the-best-engineering-advice-i-ever-got-i-dont-really-care-just-make-it-work-2e238f0cf908
 
 Deploying on EC2 with domain
+https://keithweaverca.medium.com/setting-up-mern-stack-on-aws-ec2-6dc599be4737
 https://medium.com/@kei178/how-to-make-ec2-ubuntu-nginx-passenger-https-with-lets-encrypt-dcb08c2e6c4b
