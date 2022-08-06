@@ -99,6 +99,7 @@ const updatePersonalInfo = async (req, res) => {
     const values = req.body;
     const user = req.user;
     const file = req.file;
+
     if (file) {
       uploadProfilePicture(file, user);
     }
@@ -111,6 +112,7 @@ const updatePersonalInfo = async (req, res) => {
 
     return res.status(200).send(user);
   } catch (e) {
+    console.log(e);
     return res.status(400).send("Couldn't update user!");
   }
 };

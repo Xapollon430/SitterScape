@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ServicesRate } from "../../utils/constants";
+import { Services, Per_X, ServicesTranslator } from "../../utils/constants";
 import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
 
@@ -26,7 +26,6 @@ const Sitter = () => {
         <S.LeftGrid>
           <S.SitterImage src={sitterInfo.profilePicture} />
           <S.SitterName>{sitterInfo.name}</S.SitterName>
-          {/* <S.SitterHeadline>{sitterInfo.headline}</S.SitterHeadline> */}
           <S.SitterAddress>
             {sitterInfo.city + ", " + sitterInfo.state + ", " + sitterInfo.zip}
           </S.SitterAddress>
@@ -45,11 +44,23 @@ const Sitter = () => {
           <S.ServicesWrap>
             <S.ServicesTitle>Services</S.ServicesTitle>
 
-            <S.ServiceName>Boarding</S.ServiceName>
-            <S.ServicePrice>
-              <b>$35</b>
-              <S.ServicePriceUnderText> per night</S.ServicePriceUnderText>
-            </S.ServicePrice>
+            {Services.map((service) => {
+              const serviceRate = sitterInfo?.[`${service}Rate`];
+
+              if (serviceRate > 0) {
+                return (
+                  <S.ServiceWrap>
+                    <S.ServiceName>{ServicesTranslator[service]}</S.ServiceName>
+                    <S.ServicePrice>
+                      <b>${serviceRate}</b>
+                      <S.ServicePriceUnderText>
+                        per {Per_X[service]}
+                      </S.ServicePriceUnderText>
+                    </S.ServicePrice>
+                  </S.ServiceWrap>
+                );
+              }
+            })}
           </S.ServicesWrap>
         </S.RightGrid>
       </S.SitterWrapper>

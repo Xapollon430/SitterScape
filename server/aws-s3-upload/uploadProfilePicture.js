@@ -20,7 +20,7 @@ const uploadProfilePicture = (file, user) => {
 
   if (user.profilePicture) {
     // If profile picture already exists.
-    deleteFile(user.profilePictureName);
+    deleteProfilePicture(user.profilePictureName);
   }
 
   s3.upload(params, function (err, data) {
@@ -40,7 +40,7 @@ const deleteProfilePicture = (profilePicture) => {
     Key: profilePicture, // File name you want to delete from S3
   };
 
-  s3.deleteObject(params, (err) => {
+  s3.deleteObject(params, (err, data) => {
     if (err) console.log(err, err.stack);
   });
 };

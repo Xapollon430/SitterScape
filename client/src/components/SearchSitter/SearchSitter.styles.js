@@ -73,6 +73,7 @@ export const ProfileImage = styled.img`
 export const ProfileDetails = styled.div`
   display: grid;
   grid-template-rows: auto auto auto auto;
+  grid-gap: 10px;
 `;
 
 export const ProfileName = styled.h4`

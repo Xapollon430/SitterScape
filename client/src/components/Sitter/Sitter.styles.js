@@ -13,6 +13,7 @@ export const SitterWrapper = styled.div`
 
 export const LeftGrid = styled.div`
   margin-top: 30px;
+  width: 100%;
 `;
 
 export const RightGrid = styled.div``;
@@ -22,11 +23,9 @@ export const ServicesWrap = styled.div`
   max-width: 350px;
   min-width: 300px;
   background-color: #f4f5f6;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
+
   border-radius: 5px;
-  padding: 0px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
   box-sizing: border-box;
 `;
 
@@ -78,6 +77,12 @@ export const AboutMeParagraph = styled.p`
   line-height: 1.5rem;
   text-align: left;
   font-size: 0.9rem;
+`;
+
+export const ServiceWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
 `;
 
 export const ServiceName = styled.div`
