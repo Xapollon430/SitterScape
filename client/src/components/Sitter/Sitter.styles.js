@@ -102,3 +102,10 @@ export const ServicePriceUnderText = styled.div`
   color: #62686e;
   font-size: 0.9rem;
 `;
+
+export const PetPreferences = styled.div`
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+`;

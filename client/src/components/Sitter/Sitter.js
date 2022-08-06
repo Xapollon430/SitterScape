@@ -62,6 +62,10 @@ const Sitter = () => {
               }
             })}
           </S.ServicesWrap>
+
+          <S.PetPreferences>
+            {sitterInfo.name}'s Pet Preferences
+          </S.PetPreferences>
         </S.RightGrid>
       </S.SitterWrapper>
     </Fragment>
