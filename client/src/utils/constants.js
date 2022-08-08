@@ -13,3 +13,19 @@ export const Per_X = {
   walking: "walk",
   dropInVisit: "visit",
 };
+
+export const PetPreferences = [
+  "petPreferencesSmall",
+  "petPreferencesMedium",
+  "petPreferencesLarge",
+  "petPreferencesGiant",
+];
+
+export const PetWeights = ["0-15", "16-40", "40-100", "101+"];
+
+export const HomeInfo = {
+  hasChildren: "Has Children",
+  hasYard: "Has Yard",
+  homeType: "",
+  smokes: "",
+};

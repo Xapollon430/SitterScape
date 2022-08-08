@@ -14,6 +14,10 @@ const SitterDataToInclude = {
   dropInVisitRate: 1,
   houseSittingRate: 1,
   walkingRate: 1,
+  petPreferencesSmall: 1,
+  petPreferencesMedium: 1,
+  petPreferencesLarge: 1,
+  petPreferencesGiant: 1,
 };
 
 const Per_X = {

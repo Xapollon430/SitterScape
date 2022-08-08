@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useContext, useState, useRef } from "react";
 import { StoreContext } from "../../store/store";
 import { useFormik } from "formik";
+import { MyFavoriteMcDonalds } from "../../utils/constants";
 
 import * as S from "./SearchSitter.styles";
 import GoogleMap from "google-map-react";
@@ -13,10 +14,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Spinner from "../common/Spinner";
 
 // Center the map at my favorite McDonalds :D
-const MyFavoriteMcDonalds = {
-  lat: 38.9144124,
-  lng: -77.225595,
-};
+
 const DEFAULT_ZOOM = 11;
 
 let prevCenter = 0;

@@ -690,6 +690,16 @@ body {
   overflow-x: hidden;
 }
 
-/* *{
-  outline: 2px solid limegreen;
-} */
+/* These next few lines turn off the unnecessary bottom links on google maps
+https://stackoverflow.com/questions/12499886/how-to-hide-or-disable-the-google-logo-footer-copyright-on-google-maps-javascr
+*/
+
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+  display:none;
+}
+.gmnoprint div {
+  background:none !important;
+}

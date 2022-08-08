@@ -16,7 +16,9 @@ export const LeftGrid = styled.div`
   width: 100%;
 `;
 
-export const RightGrid = styled.div``;
+export const RightGrid = styled.div`
+  margin-bottom: 100px;
+`;
 
 export const ServicesWrap = styled.div`
   width: 100%;
@@ -104,8 +106,54 @@ export const ServicePriceUnderText = styled.div`
 `;
 
 export const PetPreferences = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 20px;
-  border: 2px solid black;
   border-radius: 10px;
+  font-size: 1.1rem;
 `;
+
+export const PetLogosWrap = styled.div`
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+`;
+
+export const PetLogo = styled.img`
+  height: 36px;
+`;
+
+export const Weight = styled.div`
+  margin-top: 5px;
+  font-size: 0.9rem;
+`;
+
+export const Lbs = styled.div`
+  font-size: 0.8rem;
+  color: #62686e;
+`;
+
+export const MapWrap = styled.div`
+  margin-top: 30px;
+  height: 300px;
+`;
+
+export const BlueCircle = styled.div`
+  height: 130px;
+  width: 130px;
+  border: 1px solid rgb(2, 129, 162);
+  background-color: rgb(2, 129, 162, 0.3);
+  border-radius: 50%;
+
+  position: relative;
+  left: -65px;
+  bottom: 65px;
+`;
+
+export const Title = styled.h3``;
+
+export const AboutHomeWrap = styled.div``;
+
+export const Line = styled.hr``;
+
+export const HomeInfo = styled.div``;
