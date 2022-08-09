@@ -8,7 +8,11 @@ export const SitterWrapper = styled.div`
   grid-template-columns: 3fr 2fr;
   justify-items: center;
   text-align: center;
-  padding: 0px 15px 10px 15px;
+  padding: 0px 15px 50px 15px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const LeftGrid = styled.div`
@@ -16,13 +20,13 @@ export const LeftGrid = styled.div`
   width: 100%;
 `;
 
-export const RightGrid = styled.div`
-  margin-bottom: 100px;
-`;
+export const RightGrid = styled.div``;
 
 export const ServicesWrap = styled.div`
   width: 100%;
-  max-width: 350px;
+  max-width: ${({ mobile }) => (mobile ? "" : "350px")};
+  margin-top: ${({ mobile }) => (mobile ? "20px" : "0px")};
+
   min-width: 300px;
   background-color: #f4f5f6;
 
@@ -61,6 +65,8 @@ export const SitterAddress = styled.div`
 
 export const ContactButton = styled(Button)`
   &&& {
+    font-family: "Quicksand";
+    font-weight: 900;
     margin-top: 10px;
     border-radius: 20px;
     background-color: rgb(2, 129, 162);
@@ -73,7 +79,9 @@ export const AboutMeTitle = styled.h3`
   font-size: 1.3rem;
 `;
 
-export const AboutMe = styled.div``;
+export const AboutMe = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const AboutMeParagraph = styled.p`
   line-height: 1.5rem;
@@ -92,6 +100,8 @@ export const ServiceName = styled.div`
   align-self: center;
   font-size: 1rem;
   text-align: left;
+
+  font-size: ${({ mobile }) => (mobile ? "1.2rem" : "1rem")};
 `;
 
 export const ServicePrice = styled.div`
@@ -150,10 +160,28 @@ export const BlueCircle = styled.div`
   bottom: 65px;
 `;
 
-export const Title = styled.h3``;
+export const Title = styled.h3`
+  margin-bottom: 5px;
+`;
 
 export const AboutHomeWrap = styled.div``;
 
 export const Line = styled.hr``;
 
-export const HomeInfo = styled.div``;
+export const NeighborhoodTitle = styled.h3`
+  margin-top: 40px;
+`;
+
+export const HomeInfo = styled.div`
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  text-align: left;
+`;
+
+export const HomeInfoCheck = styled.img`
+  height: 15px;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+`;

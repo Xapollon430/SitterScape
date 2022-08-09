@@ -7,6 +7,7 @@ import {
   ServicesTranslator,
   PetPreferences,
   PetWeights,
+  HomeInfo,
 } from "../../utils/constants";
 import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
@@ -15,12 +16,16 @@ import pom from "../../images/pom.png";
 import mutt from "../../images/mutt.png";
 import mastif from "../../images/mastif.png";
 import husky from "../../images/husky.png";
+import check from "../../images/check.png";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const PetLogos = [pom, mutt, husky, mastif];
 
 const Sitter = () => {
   const { id: sitterID } = useParams();
   const [sitterInfo, setSitterInfo] = useState({});
+
+  const matches = useMediaQuery("(max-width:800px)");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/api/sitter/${sitterID}`)
@@ -47,6 +52,32 @@ const Sitter = () => {
             Contact Sitter
           </S.ContactButton>
 
+          {matches && (
+            <S.ServicesWrap mobile>
+              <S.ServicesTitle>Services</S.ServicesTitle>
+
+              {Services.map((service) => {
+                const serviceRate = sitterInfo?.[`${service}Rate`];
+
+                if (serviceRate > 0) {
+                  return (
+                    <S.ServiceWrap>
+                      <S.ServiceName mobile>
+                        {ServicesTranslator[service]}
+                      </S.ServiceName>
+                      <S.ServicePrice>
+                        <b>${serviceRate}</b>
+                        <S.ServicePriceUnderText>
+                          per {Per_X[service]}
+                        </S.ServicePriceUnderText>
+                      </S.ServicePrice>
+                    </S.ServiceWrap>
+                  );
+                }
+              })}
+            </S.ServicesWrap>
+          )}
+
           <S.AboutMeTitle>About {sitterInfo.name}</S.AboutMeTitle>
           <S.AboutMe>
             {sitterInfo.aboutMe?.split(/(?:\r?\n)+/).map((paragraph, index) => (
@@ -55,27 +86,31 @@ const Sitter = () => {
           </S.AboutMe>
         </S.LeftGrid>
         <S.RightGrid>
-          <S.ServicesWrap>
-            <S.ServicesTitle>Services</S.ServicesTitle>
+          {matches || (
+            <S.ServicesWrap>
+              <S.ServicesTitle>Services</S.ServicesTitle>
 
-            {Services.map((service) => {
-              const serviceRate = sitterInfo?.[`${service}Rate`];
+              {Services.map((service) => {
+                const serviceRate = sitterInfo?.[`${service}Rate`];
 
-              if (serviceRate > 0) {
-                return (
-                  <S.ServiceWrap>
-                    <S.ServiceName>{ServicesTranslator[service]}</S.ServiceName>
-                    <S.ServicePrice>
-                      <b>${serviceRate}</b>
-                      <S.ServicePriceUnderText>
-                        per {Per_X[service]}
-                      </S.ServicePriceUnderText>
-                    </S.ServicePrice>
-                  </S.ServiceWrap>
-                );
-              }
-            })}
-          </S.ServicesWrap>
+                if (serviceRate > 0) {
+                  return (
+                    <S.ServiceWrap>
+                      <S.ServiceName>
+                        {ServicesTranslator[service]}
+                      </S.ServiceName>
+                      <S.ServicePrice>
+                        <b>${serviceRate}</b>
+                        <S.ServicePriceUnderText>
+                          per {Per_X[service]}
+                        </S.ServicePriceUnderText>
+                      </S.ServicePrice>
+                    </S.ServiceWrap>
+                  );
+                }
+              })}
+            </S.ServicesWrap>
+          )}
 
           <S.PetPreferences>
             <S.Title>{sitterInfo.name}'s Pet Preferences</S.Title>
@@ -95,9 +130,35 @@ const Sitter = () => {
             </S.PetLogosWrap>
           </S.PetPreferences>
 
+          {sitterInfo.boardingRate > 0 && (
+            <S.AboutHomeWrap>
+              <S.Title>About {sitterInfo.name}'s Home</S.Title>
+              <S.Line />
+
+              <S.HomeInfo>
+                {Object.keys(HomeInfo).map((homeInfo) => {
+                  console.log(sitterInfo[homeInfo]);
+                  if (sitterInfo[homeInfo]) {
+                    return (
+                      <div>
+                        <S.HomeInfoCheck src={check} />
+                        {homeInfo === "homeType"
+                          ? sitterInfo.homeType
+                          : HomeInfo[homeInfo]}
+                      </div>
+                    );
+                  }
+                })}
+              </S.HomeInfo>
+            </S.AboutHomeWrap>
+          )}
+
+          <S.NeighborhoodTitle>
+            {sitterInfo.name}'s Neighorhood
+          </S.NeighborhoodTitle>
+
           {center && (
             <S.MapWrap>
-              <S.Title>{sitterInfo.name}'s Neighorhood</S.Title>
               <GoogleMap
                 bootstrapURLKeys={{
                   key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -112,17 +173,11 @@ const Sitter = () => {
                   keyboardShortcuts: false,
                   gestureHandling: "none",
                 }}
-                defaultZoom={14}
+                defaultZoom={13}
               >
                 <S.BlueCircle lat={center.lat} lng={center.lng} />
               </GoogleMap>
             </S.MapWrap>
-          )}
-
-          {sitterInfo.boarding && (
-            <S.AboutHomeWrap>
-              <S.Title>About {sitterInfo.name}'s Home</S.Title>
-            </S.AboutHomeWrap>
           )}
         </S.RightGrid>
       </S.SitterWrapper>

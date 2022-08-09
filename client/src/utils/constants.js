@@ -27,5 +27,11 @@ export const HomeInfo = {
   hasChildren: "Has Children",
   hasYard: "Has Yard",
   homeType: "",
-  smokes: "",
+  smokes: "Non-Smoker",
+};
+
+// Center the map at my favorite McDonalds :D
+export const MyFavoriteMcDonalds = {
+  lat: 38.9144124,
+  lng: -77.225595,
 };

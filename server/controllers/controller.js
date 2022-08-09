@@ -13,6 +13,7 @@ const {
   MonthToMiliseconds,
   SitterDataToInclude,
   Per_X,
+  SitterDataToIncludeMap,
 } = require("../utils/constants");
 const { config } = require("dotenv");
 const { omit } = require("lodash");
@@ -162,7 +163,7 @@ const searchSitters = async (req, res) => {
     const sitterFilterDataToQuery = normalizeSitterFilterData(req.query);
 
     sittersFoundWithoutLocation = await User.find(sitterFilterDataToQuery)
-      .select(SitterDataToInclude)
+      .select(SitterDataToIncludeMap)
       .lean();
 
     sittersFoundWithLocation = filterSitterByLocation(
