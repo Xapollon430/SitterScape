@@ -13,8 +13,6 @@ import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Spinner from "../common/Spinner";
 
-// Center the map at my favorite McDonalds :D
-
 const DEFAULT_ZOOM = 11;
 
 let prevCenter = 0;
@@ -219,7 +217,7 @@ const SearchSitter = () => {
                   <S.ProfileImage src={sitter.profilePicture} />
                   <S.ProfileDetails>
                     <S.ProfileName>
-                      <S.ProfileNumber>{key + 1}.</S.ProfileNumber>{" "}
+                      <S.ProfileNumber>{key + 1}.</S.ProfileNumber>
                       {sitter.name}
                     </S.ProfileName>
                     <S.ProfileHeadline>{sitter.headline}</S.ProfileHeadline>

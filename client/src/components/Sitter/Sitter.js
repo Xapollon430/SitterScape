@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import {
   Services,
@@ -9,6 +9,7 @@ import {
   PetWeights,
   HomeInfo,
 } from "../../utils/constants";
+import { limitChar } from "../../utils/helpers";
 import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
 import GoogleMap from "google-map-react";
@@ -21,22 +22,46 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const PetLogos = [pom, mutt, husky, mastif];
 
+const limitCharLength = 1300;
+
 const Sitter = () => {
   const { id: sitterID } = useParams();
   const [sitterInfo, setSitterInfo] = useState({});
-
+  const [extraAboutMe, setExtraAboutMe] = useState(false);
+  const [showMore, setShowMore] = useState();
   const matches = useMediaQuery("(max-width:800px)");
+
+  const center = sitterInfo?.geocode;
+
+  const createParagraph = (paragraph = "") => {
+    const paragraphs = paragraph.split(/(?:\r?\n)+/);
+
+    let x = paragraphs.map((paragraph, index) => {
+      return (
+        <S.AboutMeParagraph key={index}>
+          {paragraph}
+          {/*  calculating whether to show the "Show More" option in the last paragraph */}
+          {index + 1 === paragraphs.length && showMore && !extraAboutMe && (
+            <S.ShowMore onClick={() => setExtraAboutMe(true)}>
+              Show More
+            </S.ShowMore>
+          )}
+        </S.AboutMeParagraph>
+      );
+    });
+
+    console.log(x);
+    return x;
+  };
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/api/sitter/${sitterID}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSitterInfo(data);
+        if (data.aboutMe.length > 1300) setShowMore(true);
       });
   }, []);
-
-  const center = sitterInfo?.geocode;
 
   return (
     <Fragment>
@@ -80,9 +105,11 @@ const Sitter = () => {
 
           <S.AboutMeTitle>About {sitterInfo.name}</S.AboutMeTitle>
           <S.AboutMe>
-            {sitterInfo.aboutMe?.split(/(?:\r?\n)+/).map((paragraph, index) => (
-              <S.AboutMeParagraph key={index}>{paragraph}</S.AboutMeParagraph>
-            ))}
+            {extraAboutMe
+              ? createParagraph(sitterInfo?.aboutMe)
+              : createParagraph(
+                  limitChar(sitterInfo?.aboutMe, limitCharLength)
+                )}
           </S.AboutMe>
         </S.LeftGrid>
         <S.RightGrid>
@@ -137,7 +164,6 @@ const Sitter = () => {
 
               <S.HomeInfo>
                 {Object.keys(HomeInfo).map((homeInfo) => {
-                  console.log(sitterInfo[homeInfo]);
                   if (sitterInfo[homeInfo]) {
                     return (
                       <div>

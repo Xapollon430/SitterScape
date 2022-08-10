@@ -33,3 +33,9 @@ export const getUserLocation = (
     );
   }
 };
+
+// cut off too many characters with an ellipsis
+export const limitChar = (str = "", limit) => {
+  console.log(str);
+  return str.length > limit ? `${str.slice(0, limit)}...` : str;
+};

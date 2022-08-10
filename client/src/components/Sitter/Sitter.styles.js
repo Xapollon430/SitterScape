@@ -185,3 +185,11 @@ export const HomeInfoCheck = styled.img`
   top: 2px;
   margin-right: 5px;
 `;
+
+export const ShowMore = styled.span`
+  text-decoration: underline;
+  color: blue;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  cursor: pointer;
+`;

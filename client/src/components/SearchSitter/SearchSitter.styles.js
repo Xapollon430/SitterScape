@@ -77,6 +77,9 @@ export const ProfileDetails = styled.div`
 `;
 
 export const ProfileName = styled.h4`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: rgb(2, 129, 162);
   font-size: ${({ map }) => (map ? "16px" : "26px")};
   margin: 0px;
@@ -84,6 +87,9 @@ export const ProfileName = styled.h4`
 
 export const ProfileHeadline = styled.b`
   font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ProfileAddress = styled.b`
@@ -95,7 +101,13 @@ export const ProfilePrice = styled.div`
   justify-self: center;
 `;
 
-export const ProfileComment = styled.span``;
+export const ProfileComment = styled.span`
+  display: -webkit-box;
+  width: 100%;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
 
 export const ProfileNumber = styled.span`
   font-size: ${({ map }) => (map ? "16px" : "26px")};

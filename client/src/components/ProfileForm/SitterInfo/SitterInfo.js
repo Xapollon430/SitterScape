@@ -478,7 +478,9 @@ const SitterInfo = () => {
           error={errors.headline ? true : false}
           helperText={errors.headline}
         ></TextField>
-        <S.Text>Craft an engaging "About Me"</S.Text>
+        <S.Text>
+          Craft an engaging "About Me". We are recommending 2 paragraphs :)
+        </S.Text>
 
         <TextField
           label="About me"
