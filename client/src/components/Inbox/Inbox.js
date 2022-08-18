@@ -1,8 +1,12 @@
 import * as S from "./Inbox.styles.js";
 import InboxHeader from "./Header/InboxHeader";
-import Footer from "../Footer/Footer";
+import io from "socket.io-client";
+import { useEffect } from "react";
 
 const Inbox = () => {
+  useEffect(() => {
+    const socket = io(`${process.env.REACT_APP_SERVER_URL}`);
+  }, []);
   return (
     <S.InboxWrap>
       <InboxHeader />

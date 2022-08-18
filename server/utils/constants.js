@@ -22,6 +22,7 @@ const SitterDataToInclude = {
   hasYard: 1,
   hasChildren: 1,
   homeType: 1,
+  yearsOfExperience: 1,
 };
 
 const SitterDataToIncludeMap = {
@@ -50,5 +51,6 @@ const Per_X = {
 module.exports = {
   MonthToMiliseconds,
   SitterDataToInclude,
+  SitterDataToIncludeMap,
   Per_X,
 };

@@ -193,3 +193,19 @@ export const ShowMore = styled.span`
   margin-left: 5px;
   cursor: pointer;
 `;
+
+export const TitleAndYoeWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+`;
+
+export const YoeWrap = styled.span`
+  justify-self: right;
+`;
+
+export const YoeText = styled.span`
+  font-size: 0.8rem;
+  color: #62686e;
+  margin-left: 5px;
+`;

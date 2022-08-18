@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Services,
@@ -36,7 +36,7 @@ const Sitter = () => {
   const createParagraph = (paragraph = "") => {
     const paragraphs = paragraph.split(/(?:\r?\n)+/);
 
-    let x = paragraphs.map((paragraph, index) => {
+    return paragraphs.map((paragraph, index) => {
       return (
         <S.AboutMeParagraph key={index}>
           {paragraph}
@@ -49,9 +49,6 @@ const Sitter = () => {
         </S.AboutMeParagraph>
       );
     });
-
-    console.log(x);
-    return x;
   };
 
   useEffect(() => {
@@ -103,7 +100,14 @@ const Sitter = () => {
             </S.ServicesWrap>
           )}
 
-          <S.AboutMeTitle>About {sitterInfo.name}</S.AboutMeTitle>
+          <S.TitleAndYoeWrap>
+            <S.AboutMeTitle>About {sitterInfo.name}</S.AboutMeTitle>
+            <S.YoeWrap>
+              {sitterInfo.yearsOfExperience}
+              <S.YoeText>years of experience</S.YoeText>
+            </S.YoeWrap>
+          </S.TitleAndYoeWrap>
+
           <S.AboutMe>
             {extraAboutMe
               ? createParagraph(sitterInfo?.aboutMe)
