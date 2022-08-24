@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { StoreContext } from "../../store/store";
+import Auth from "../Auth/Auth";
 
 const PrivateRoute = ({ render: Component, path }) => {
   const [state] = useContext(StoreContext);
-  return (
-    <AuthCheck Component={Component} path={path} loggedIn={state.loggedIn} />
-  );
-};
+  const location = useLocation();
 
-const AuthCheck = ({ loggedIn, Component, path }) =>
-  loggedIn ? <Component /> : <Navigate to={`/auth?next=${path}&type=login`} />;
+  // console.log(path, location);
+
+  return state.loggedIn ? <Component /> : <Auth state={location} next={path} />;
+};
 
 export default PrivateRoute;

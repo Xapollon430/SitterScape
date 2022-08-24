@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 export const SitterWrapper = styled.div`
   margin: 30px auto 0px auto;
@@ -71,6 +72,10 @@ export const ContactButton = styled(Button)`
     border-radius: 20px;
     background-color: rgb(2, 129, 162);
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const AboutMeTitle = styled.h3`

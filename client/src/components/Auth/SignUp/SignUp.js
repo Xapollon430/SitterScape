@@ -3,7 +3,7 @@ import * as S from "../Auth.styles";
 import FormikInit from "./SignUpSchema";
 import Spinner from "../../common/Spinner";
 
-const SignUp = () => {
+const SignUp = (state, next) => {
   const [errorFromServer, setErrorFromServer] = useState();
 
   const {
@@ -14,7 +14,7 @@ const SignUp = () => {
     touched,
     handleBlur,
     isSubmitting,
-  } = FormikInit(setErrorFromServer);
+  } = FormikInit(setErrorFromServer, state, next);
 
   return isSubmitting ? (
     <Spinner />

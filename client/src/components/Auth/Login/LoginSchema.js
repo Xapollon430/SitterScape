@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
-import { useQuery } from "../../../utils/hooks";
 import { useNavigate } from "react-router-dom";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";
@@ -11,9 +10,8 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
-export default (setErrorFromServer) => {
+export default (setErrorFromServer, state, next = "/") => {
   const [_, dispatch] = useContext(StoreContext);
-  const query = useQuery();
   const navigate = useNavigate();
   return useFormik({
     initialValues: {
@@ -49,7 +47,7 @@ export default (setErrorFromServer) => {
           })
         );
 
-        navigate(query.get("next"));
+        navigate(next, { replace: true, state });
       } catch (e) {
         setErrorFromServer("Failed to login");
         resetForm();

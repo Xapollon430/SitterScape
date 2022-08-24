@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const InboxWrap = styled.div`
   background-color: #e9ebed;
@@ -43,4 +44,35 @@ export const ProfileBox = styled.div`
   }
 `;
 
-export const ChatBox = styled.div``;
+export const ChatBox = styled.div`
+  display: grid;
+  grid-template-rows: auto 50px;
+  padding: 10px;
+`;
+
+export const ChatBoxTop = styled.div``;
+
+export const ChatBoxBottom = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-gap: 5px;
+`;
+
+export const NoSelectedChat = styled.div`
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 15px;
+`;
+
+export const NoSelectedText = styled.div`
+  align-self: flex-end;
+`;
+
+export const NoSelectedButtonWrap = styled.div`
+  align-self: flex-start;
+`;
+
+export const SearchSitterLink = styled(Link)`
+  text-decoration: none;
+`;

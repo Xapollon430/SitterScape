@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Services,
   Per_X,
@@ -10,6 +10,7 @@ import {
   HomeInfo,
 } from "../../utils/constants";
 import { limitChar } from "../../utils/helpers";
+
 import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
 import GoogleMap from "google-map-react";
@@ -29,6 +30,7 @@ const Sitter = () => {
   const [sitterInfo, setSitterInfo] = useState({});
   const [extraAboutMe, setExtraAboutMe] = useState(false);
   const [showMore, setShowMore] = useState();
+  const navigate = useNavigate();
   const matches = useMediaQuery("(max-width:800px)");
 
   const center = sitterInfo?.geocode;
@@ -70,20 +72,23 @@ const Sitter = () => {
           <S.SitterAddress>
             {sitterInfo.city + ", " + sitterInfo.state + ", " + sitterInfo.zip}
           </S.SitterAddress>
-          <S.ContactButton color="primary" variant="contained">
-            Contact Sitter
-          </S.ContactButton>
+
+          <S.StyledLink to="/inbox" state={{ to: sitterID }}>
+            <S.ContactButton color="primary" variant="contained">
+              Contact Sitter
+            </S.ContactButton>
+          </S.StyledLink>
 
           {matches && (
             <S.ServicesWrap mobile>
               <S.ServicesTitle>Services</S.ServicesTitle>
 
-              {Services.map((service) => {
+              {Services.map((service, index) => {
                 const serviceRate = sitterInfo?.[`${service}Rate`];
 
                 if (serviceRate > 0) {
                   return (
-                    <S.ServiceWrap>
+                    <S.ServiceWrap key={index}>
                       <S.ServiceName mobile>
                         {ServicesTranslator[service]}
                       </S.ServiceName>
@@ -121,12 +126,12 @@ const Sitter = () => {
             <S.ServicesWrap>
               <S.ServicesTitle>Services</S.ServicesTitle>
 
-              {Services.map((service) => {
+              {Services.map((service, index) => {
                 const serviceRate = sitterInfo?.[`${service}Rate`];
 
                 if (serviceRate > 0) {
                   return (
-                    <S.ServiceWrap>
+                    <S.ServiceWrap key={index}>
                       <S.ServiceName>
                         {ServicesTranslator[service]}
                       </S.ServiceName>
@@ -167,10 +172,10 @@ const Sitter = () => {
               <S.Line />
 
               <S.HomeInfo>
-                {Object.keys(HomeInfo).map((homeInfo) => {
+                {Object.keys(HomeInfo).map((homeInfo, index) => {
                   if (sitterInfo[homeInfo]) {
                     return (
-                      <div>
+                      <div key={index}>
                         <S.HomeInfoCheck src={check} />
                         {homeInfo === "homeType"
                           ? sitterInfo.homeType

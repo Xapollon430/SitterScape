@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useFormik } from "formik";
 import { StoreContext } from "../../../store/store";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "../../../utils/hooks";
 import * as actions from "../../../store/actions";
 import * as Yup from "yup";
 
@@ -17,9 +16,8 @@ const SignUpSchema = Yup.object().shape({
     .min(6, "Password is too short"),
 });
 
-export default (setErrorFromServer) => {
+export default (setErrorFromServer, state, next = "/") => {
   const [_, dispatch] = useContext(StoreContext);
-  const query = useQuery();
   const navigate = useNavigate();
 
   return useFormik({
@@ -58,7 +56,7 @@ export default (setErrorFromServer) => {
           })
         );
 
-        navigate(query.get("next"));
+        navigate(next, { replace: true, state });
       } catch (e) {
         setErrorFromServer("Failed to login");
         resetForm();

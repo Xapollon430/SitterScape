@@ -6,6 +6,7 @@ export const NameWrapper = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 70%;
+  max-width: 100px;
   display: inline-block;
   margin-top: 5px;
 `;
