@@ -10,7 +10,6 @@ import {
   HomeInfo,
 } from "../../utils/constants";
 import { limitChar } from "../../utils/helpers";
-
 import * as S from "./Sitter.styles";
 import SitterHeader from "./Header/SitterHeader";
 import GoogleMap from "google-map-react";
@@ -24,6 +23,15 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const PetLogos = [pom, mutt, husky, mastif];
 
 const limitCharLength = 1300;
+
+const decideSmoker = (smokes) => {
+  return smokes ? null : (
+    <div>
+      <S.HomeInfoCheck src={check}></S.HomeInfoCheck>
+      {HomeInfo.smokes}
+    </div>
+  );
+};
 
 const Sitter = () => {
   const { id: sitterID } = useParams();
@@ -106,7 +114,7 @@ const Sitter = () => {
           )}
 
           <S.TitleAndYoeWrap>
-            <S.AboutMeTitle>About {sitterInfo.name}</S.AboutMeTitle>
+            <S.AboutMeTitle>About the sitter</S.AboutMeTitle>
             <S.YoeWrap>
               {sitterInfo.yearsOfExperience}
               <S.YoeText>years of experience</S.YoeText>
@@ -149,7 +157,7 @@ const Sitter = () => {
           )}
 
           <S.PetPreferences>
-            <S.Title>{sitterInfo.name}'s Pet Preferences</S.Title>
+            <S.Title>Sitter's Pet Preferences</S.Title>
             <S.PetLogosWrap>
               {PetPreferences.map((preference, i) => {
                 if (sitterInfo[preference]) {
@@ -168,29 +176,34 @@ const Sitter = () => {
 
           {sitterInfo.boardingRate > 0 && (
             <S.AboutHomeWrap>
-              <S.Title>About {sitterInfo.name}'s Home</S.Title>
+              <S.Title>About Sitter's Home</S.Title>
               <S.Line />
 
               <S.HomeInfo>
                 {Object.keys(HomeInfo).map((homeInfo, index) => {
-                  if (sitterInfo[homeInfo]) {
-                    return (
-                      <div key={index}>
-                        <S.HomeInfoCheck src={check} />
-                        {homeInfo === "homeType"
-                          ? sitterInfo.homeType
-                          : HomeInfo[homeInfo]}
-                      </div>
-                    );
-                  }
+                  return (
+                    <div key={index}>
+                      {homeInfo === "homeType" ? (
+                        <div>
+                          <S.HomeInfoCheck src={check}></S.HomeInfoCheck>
+                          {sitterInfo.homeType}
+                        </div>
+                      ) : homeInfo === "smokes" ? (
+                        decideSmoker(sitterInfo.smokes)
+                      ) : (
+                        <div>
+                          <S.HomeInfoCheck src={check}></S.HomeInfoCheck>
+                          {HomeInfo[homeInfo]}
+                        </div>
+                      )}
+                    </div>
+                  );
                 })}
               </S.HomeInfo>
             </S.AboutHomeWrap>
           )}
 
-          <S.NeighborhoodTitle>
-            {sitterInfo.name}'s Neighorhood
-          </S.NeighborhoodTitle>
+          <S.NeighborhoodTitle>Sitter's Neighorhood</S.NeighborhoodTitle>
 
           {center && (
             <S.MapWrap>

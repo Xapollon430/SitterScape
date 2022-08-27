@@ -6,25 +6,23 @@ import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
 import { useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
-import { useQuery } from "../../utils/hooks";
 import { useLocation } from "react-router-dom";
 
 const socket = io(`${process.env.REACT_APP_SERVER_URL}`);
 
 const Inbox = () => {
   const [{ user }, dispatch] = useContext(StoreContext);
-  const query = useQuery();
-  let x = useLocation();
+  const location = useLocation();
 
-  console.log(x);
-
-  const [selectedRoom, setSelectedRoom] = useState(query.get("to") || "");
+  const [selectedRoom, setSelectedRoom] = useState(location?.state?.to || "");
   const [rooms, setRooms] = useState([]);
 
-  const sendMessage = (message) => {};
+  console.log(selectedRoom);
+
+  const sendMessage = (toId, message) => {};
 
   // useEffect(() => {
-  //   const toUser =
+  //   socket = io(`${process.env.REACT_APP_SERVER_URL}`, {query: });
   // }, []);
 
   useEffect(() => {

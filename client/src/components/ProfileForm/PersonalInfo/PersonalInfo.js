@@ -45,7 +45,8 @@ const PersonalInfo = ({ changeShowBothTabs }) => {
           placeholder="Your Name"
           variant="outlined"
           helperText={errors.name && touched.name && "Don't leave this empty!"}
-        ></TextField>
+          inputProps={{ maxLength: 20 }}
+        />
 
         <TextField
           error={errors.surname && touched.surname}
@@ -59,6 +60,7 @@ const PersonalInfo = ({ changeShowBothTabs }) => {
           helperText={
             errors.surname && touched.surname && "Don't leave this empty!"
           }
+          inputProps={{ maxLength: 20 }}
         />
 
         <Button variant="contained" onClick={passwordModalHandler}>

@@ -30,7 +30,7 @@ const Login = ({ state, next }) => {
         onBlur={handleBlur}
         name="email"
         placeholder="Email"
-      ></S.Input>
+      />
 
       {errors.password && touched.password && (
         <S.ErrorText>{errors.password}</S.ErrorText>
@@ -43,7 +43,7 @@ const Login = ({ state, next }) => {
         name="password"
         placeholder="Password"
         type="password"
-      ></S.Input>
+      />
       {errorFromServer && <S.ErrorText>{errorFromServer}</S.ErrorText>}
       <S.SubmitButton type="submit">SUBMIT</S.SubmitButton>
       <S.Text>Did somebody forget their password?</S.Text>

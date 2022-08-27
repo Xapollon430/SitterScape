@@ -51,11 +51,15 @@ export const SitterImage = styled.img`
 `;
 
 export const SitterName = styled.h2`
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   color: rgb(2, 129, 162);
   font-weight: 900;
   font-size: 2rem;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 350px;
 `;
 
 export const SitterHeadline = styled.div``;

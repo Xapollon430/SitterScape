@@ -8,6 +8,9 @@ import Footer from "../Footer/Footer";
 const Auth = ({ state, next }) => {
   const query = useQuery();
 
+  //Prefering the URL next over the react router state next
+  const nextPath = query.get("next") || next;
+
   const [selectedTab, setSelectedTab] = useState(query.get("type") || "login");
 
   const changeTab = (e) => {
@@ -27,9 +30,9 @@ const Auth = ({ state, next }) => {
           <S.TabText selected={selectedTab === "login"}>Login</S.TabText>
         </S.TabWrap>
         {selectedTab === "login" ? (
-          <Login state={state} next={next} />
+          <Login state={state} next={nextPath} />
         ) : (
-          <SignUp state={state} next={next} />
+          <SignUp state={state} next={nextPath} />
         )}
       </S.AuthWrap>
       <Footer />

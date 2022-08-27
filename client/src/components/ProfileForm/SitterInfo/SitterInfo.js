@@ -477,7 +477,7 @@ const SitterInfo = () => {
           fullWidth
           error={errors.headline ? true : false}
           helperText={errors.headline}
-        ></TextField>
+        />
         <S.Text>
           Craft an engaging "About Me". We are recommending 2 paragraphs :)
         </S.Text>
@@ -494,6 +494,7 @@ const SitterInfo = () => {
           variant="outlined"
           error={errors.aboutMe ? true : false}
           helperText={errors.aboutMe}
+          inputProps={{ maxLength: 5000 }}
         />
       </S.ExperienceWrap>
       <S.PhotoWrap>

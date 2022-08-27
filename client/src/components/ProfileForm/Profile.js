@@ -1,6 +1,6 @@
 import { StoreContext } from "../../store/store";
 import { Fragment, useContext, useEffect, useState } from "react";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ProfileHeader from "./Header/ProfileFormHeader";
 import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import SitterInfo from "./SitterInfo/SitterInfo";

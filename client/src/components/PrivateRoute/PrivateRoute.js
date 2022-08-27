@@ -7,8 +7,6 @@ const PrivateRoute = ({ render: Component, path }) => {
   const [state] = useContext(StoreContext);
   const location = useLocation();
 
-  // console.log(path, location);
-
   return state.loggedIn ? <Component /> : <Auth state={location} next={path} />;
 };
 
