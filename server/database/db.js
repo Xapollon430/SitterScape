@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
     mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
   } catch (err) {
     console.error(err);

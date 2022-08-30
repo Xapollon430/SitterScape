@@ -8,30 +8,53 @@ import { useEffect, useContext, useState } from "react";
 import { StoreContext } from "../../store/store";
 import { useLocation } from "react-router-dom";
 
-const socket = io(`${process.env.REACT_APP_SERVER_URL}`);
+let socket;
 
 const Inbox = () => {
   const [{ user }, dispatch] = useContext(StoreContext);
   const location = useLocation();
 
+  const [chatMessage, setChatMessage] = useState("");
   const [selectedRoom, setSelectedRoom] = useState(location?.state?.to || "");
   const [rooms, setRooms] = useState([]);
 
-  console.log(selectedRoom);
+  const sendMessage = (toID, message) => {
+    if (message.length > 0) {
+      const roomID = [toID, user._id].sort().join("_");
 
-  const sendMessage = (toId, message) => {};
+      socket.emit("send_message", {
+        to: toID,
+        from: user._id,
+        roomID,
+        message,
+      });
 
-  // useEffect(() => {
-  //   socket = io(`${process.env.REACT_APP_SERVER_URL}`, {query: });
-  // }, []);
+      setChatMessage("");
+    }
+  };
 
   useEffect(() => {
-    if (selectedRoom !== "") {
-      const fromID = user._id;
-      const roomID = `${fromID}_${selectedRoom}`;
-      socket.emit("join_room", { roomID });
-    }
-  }, [selectedRoom]);
+    socket = io.connect(`${process.env.REACT_APP_SERVER_URL}`, {
+      auth: {
+        token: user._id,
+      },
+    });
+
+    socket.on("join_rooms", (rooms) => {
+      console.log(rooms);
+      setRooms();
+    });
+
+    return () => socket.disconnect();
+  }, []);
+
+  // useEffect(() => {
+  //   if (selectedRoom !== "") {
+  //     const fromID = user._id;
+  //     const roomID = `${fromID}_${selectedRoom}`;
+  //     socket.emit("join_room", { roomID });
+  //   }
+  // }, [selectedRoom]);
 
   return (
     <S.InboxWrap>
@@ -65,8 +88,15 @@ const Inbox = () => {
                 placeholder="Type a message..."
                 variant="outlined"
                 size="medium"
+                value={chatMessage}
+                onChange={(e) => setChatMessage(e.target.value)}
               />
-              <Button variant="contained" endIcon={<SendIcon />} size="small">
+              <Button
+                variant="contained"
+                endIcon={<SendIcon />}
+                size="small"
+                onClick={() => sendMessage(selectedRoom, chatMessage)}
+              >
                 Send
               </Button>
             </S.ChatBoxBottom>
