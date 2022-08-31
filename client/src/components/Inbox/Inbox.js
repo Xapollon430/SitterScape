@@ -70,6 +70,9 @@ const Inbox = () => {
     }
   }, [rooms, selectedRoom]);
 
+  console.log(selectedRoom, rooms);
+  console.log(rooms.find((room) => room.roomID === selectedRoom));
+
   // Mobile View
   if (matches) {
     return (
@@ -107,6 +110,7 @@ const Inbox = () => {
             <S.ChatBox>
               <S.ChatBoxTop ref={mobileChat}>
                 {rooms.length > 0 &&
+                rooms.find((room) => room.roomID === selectedRoom) ? (
                   rooms
                     .find((room) => room.roomID === selectedRoom)
                     .chat.map(({ from, message }, index) => {
@@ -115,7 +119,10 @@ const Inbox = () => {
                       ) : (
                         <S.LeftGray key={index}>{message}</S.LeftGray>
                       );
-                    })}
+                    })
+                ) : (
+                  <span>send a message to person</span>
+                )}
               </S.ChatBoxTop>
               <S.ChatBoxBottom>
                 <TextField
@@ -164,6 +171,7 @@ const Inbox = () => {
           <S.ChatBox>
             <S.ChatBoxTop ref={desktopChat}>
               {rooms.length > 0 &&
+              rooms.find((room) => room.roomID === selectedRoom) ? (
                 rooms
                   .find((room) => room.roomID === selectedRoom)
                   .chat.map(({ from, message }, index) => {
@@ -172,7 +180,10 @@ const Inbox = () => {
                     ) : (
                       <S.LeftGray key={index}>{message}</S.LeftGray>
                     );
-                  })}
+                  })
+              ) : (
+                <span>send a message to person</span>
+              )}
             </S.ChatBoxTop>
             <S.ChatBoxBottom>
               <TextField

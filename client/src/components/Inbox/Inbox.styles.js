@@ -61,6 +61,7 @@ export const ChatBox = styled.div`
   display: grid;
   grid-gap: 15px;
   overflow: scroll;
+  grid-template-rows: 1fr auto;
 `;
 
 export const ChatBoxTop = styled.div`
@@ -70,6 +71,7 @@ export const ChatBoxTop = styled.div`
   overflow: scroll;
   padding: 10px 15px 0px 15px;
   position: relative;
+  align-content: flex-end;
 `;
 
 export const RightBlue = styled.div`
