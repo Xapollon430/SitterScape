@@ -34,15 +34,18 @@ const InboxHeader = ({ selectedRoom, matches }) => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   return (
-    <S.Navbar>
+    <S.Navbar matches={matches}>
       {selectedRoom && matches && (
         <S.BackIconWrapper>
           <ArrowBackIcon />
         </S.BackIconWrapper>
       )}
 
-      {!matches ||
-        (!selectedRoom && <S.BrandLink to="/">SitterScape</S.BrandLink>)}
+      {!matches && <S.BrandLink to="/">SitterScape</S.BrandLink>}
+
+      {!selectedRoom && matches && (
+        <S.BrandLink to="/">SitterScape</S.BrandLink>
+      )}
 
       <S.BurgerWrap>
         <S.StyledBurgerSpin

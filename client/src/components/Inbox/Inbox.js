@@ -16,7 +16,12 @@ const Inbox = () => {
   const location = useLocation();
 
   const [chatMessage, setChatMessage] = useState("");
-  const [selectedRoom, setSelectedRoom] = useState(location?.state?.to || "");
+
+  // If user joined the inbox from search, find the roomID, or show all chats
+  const [selectedRoom, setSelectedRoom] = useState(
+    location?.state?.to ? [location?.state?.to, user._id].sort().join("_") : ""
+  );
+
   const [rooms, setRooms] = useState([]);
   const matches = useMediaQuery("(max-width:800px)");
 
@@ -63,7 +68,7 @@ const Inbox = () => {
       if (desktopChat?.current)
         desktopChat.current.scrollTop = desktopChat?.current?.scrollHeight;
     }
-  }, [rooms]);
+  }, [rooms, selectedRoom]);
 
   // Mobile View
   if (matches) {
@@ -101,15 +106,16 @@ const Inbox = () => {
           ) : (
             <S.ChatBox>
               <S.ChatBoxTop ref={mobileChat}>
-                {rooms
-                  .find((room) => room.roomID === selectedRoom)
-                  .chat.map(({ from, message }, index) => {
-                    return from === user._id ? (
-                      <S.RightBlue key={index}>{message}</S.RightBlue>
-                    ) : (
-                      <S.LeftGray key={index}>{message}</S.LeftGray>
-                    );
-                  })}
+                {rooms.length > 0 &&
+                  rooms
+                    .find((room) => room.roomID === selectedRoom)
+                    .chat.map(({ from, message }, index) => {
+                      return from === user._id ? (
+                        <S.RightBlue key={index}>{message}</S.RightBlue>
+                      ) : (
+                        <S.LeftGray key={index}>{message}</S.LeftGray>
+                      );
+                    })}
               </S.ChatBoxTop>
               <S.ChatBoxBottom>
                 <TextField
@@ -157,15 +163,16 @@ const Inbox = () => {
         {selectedRoom !== "" ? (
           <S.ChatBox>
             <S.ChatBoxTop ref={desktopChat}>
-              {rooms
-                .find((room) => room.roomID === selectedRoom)
-                .chat.map(({ from, message }, index) => {
-                  return from === user._id ? (
-                    <S.RightBlue key={index}>{message}</S.RightBlue>
-                  ) : (
-                    <S.LeftGray key={index}>{message}</S.LeftGray>
-                  );
-                })}
+              {rooms.length > 0 &&
+                rooms
+                  .find((room) => room.roomID === selectedRoom)
+                  .chat.map(({ from, message }, index) => {
+                    return from === user._id ? (
+                      <S.RightBlue key={index}>{message}</S.RightBlue>
+                    ) : (
+                      <S.LeftGray key={index}>{message}</S.LeftGray>
+                    );
+                  })}
             </S.ChatBoxTop>
             <S.ChatBoxBottom>
               <TextField
