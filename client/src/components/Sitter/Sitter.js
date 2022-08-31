@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Services,
   Per_X,
@@ -38,7 +38,6 @@ const Sitter = () => {
   const [sitterInfo, setSitterInfo] = useState({});
   const [extraAboutMe, setExtraAboutMe] = useState(false);
   const [showMore, setShowMore] = useState();
-  const navigate = useNavigate();
   const matches = useMediaQuery("(max-width:800px)");
 
   const center = sitterInfo?.geocode;

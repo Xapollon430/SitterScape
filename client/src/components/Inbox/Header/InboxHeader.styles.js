@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HamburgerSpin } from "react-animated-burgers";
+import { Link } from "react-router-dom";
 
 export const Navbar = styled.div`
   top: 0;
@@ -23,6 +23,18 @@ export const Navbar = styled.div`
     grid-template-areas:
       "brand menu"
       "nav nav";
+  }
+`;
+
+export const BrandLink = styled(Link)`
+  grid-area: brand;
+  font-size: 2rem;
+  color: #484847;
+  text-decoration: none;
+  font-weight: 600;
+  @media (max-width: 800px) {
+    grid-area: brand;
+    font-size: 1.8rem;
   }
 `;
 
@@ -67,18 +79,6 @@ export const StyledBurgerSpin = styled(HamburgerSpin)`
   outline: none;
 `;
 
-export const BrandLink = styled(Link)`
-  grid-area: brand;
-  font-size: 2rem;
-  color: #484847;
-  text-decoration: none;
-  font-weight: 600;
-  @media (max-width: 800px) {
-    grid-area: brand;
-    font-size: 1.8rem;
-  }
-`;
-
 export const EmptyDiv = styled.div`
   @media (max-width: 800px) {
     display: none;
@@ -112,4 +112,19 @@ export const ProfileWrapper = styled.div`
 
 export const ExpandIcon = styled.i`
   padding-left: 8px;
+`;
+
+export const BackIconWrapper = styled.div`
+  background-color: #166cbf;
+  border-radius: 50%;
+  height: 56px;
+  width: 56px;
+  display: grid;
+  place-items: center;
+  justify-self: left;
+  align-self: center;
+  margin-left: 10px;
+
+  position: relative;
+  bottom: 5px;
 `;

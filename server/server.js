@@ -33,7 +33,7 @@ app.use(
   })
 );
 
-io.on("connection", socketEndPoints);
+io.on("connection", (socket) => socketEndPoints(io, socket));
 
 app.use(express.json());
 app.use(cookieParser());

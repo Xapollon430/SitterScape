@@ -3,28 +3,37 @@ const User = require("../database/models/User");
 
 const mongoose = require("mongoose");
 
-const socketEndPoints = async (socket) => {
+const socketEndPoints = async (io, socket) => {
   const id = socket.handshake.auth.token;
 
   const { allRooms, allChatsAndUsers } = await findAllChatsForUser(id);
 
   socket.join(allRooms);
 
-  socket.emit("join_rooms", { allChatsAndUsers, allRooms });
+  socket.emit("join_rooms", allChatsAndUsers);
 
   socket.on("send_message", async (data) => {
     const message = new Message({
-      from: mongoose.Types.ObjectId(data.from),
+      from: id,
       to: mongoose.Types.ObjectId(data.to),
       message: data.message,
     });
     await message.save();
 
-    socket.to(data.roomID).emit("received_message", data.message);
+    const roomIndex = allChatsAndUsers.findIndex(
+      (room) => room.roomID === data.roomID
+    );
+
+    allChatsAndUsers[roomIndex] = {
+      ...allChatsAndUsers[roomIndex],
+      chat: [...allChatsAndUsers[roomIndex].chat, message],
+    };
+
+    io.in(data.roomID).emit("received_message", allChatsAndUsers);
   });
 
   socket.on("disconnect", (data) => {
-    console.log("socket disconnected.");
+    // console.log("socket disconnected.");
   });
 };
 
@@ -53,8 +62,6 @@ const findAllChatsForUser = async (mainUserID) => {
     },
   }).select({ name: 1, profilePicture: 1 });
 
-  console.log(usersWithData);
-
   const allChatsAndUsers = usersWithData.map((user) => {
     const temporary = [];
     allChatsIncludingID.forEach((messageWithIds) => {
@@ -66,12 +73,15 @@ const findAllChatsForUser = async (mainUserID) => {
       }
     });
 
-    allRooms.push([user._id, mainUserID].sort().join("_"));
+    const roomID = [user._id, mainUserID].sort().join("_");
+
+    allRooms.push(roomID);
 
     return {
       name: user.name,
       profilePicture: user.profilePicture,
-      id: user._id,
+      otherUser: user._id,
+      roomID,
       chat: [...temporary],
     };
   });
