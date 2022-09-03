@@ -9,7 +9,7 @@ import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const InboxHeader = ({ selectedRoom, matches }) => {
+const InboxHeader = ({ selectedRoom, matches, goBack }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [{ user }, dispatch] = useContext(StoreContext);
@@ -37,7 +37,7 @@ const InboxHeader = ({ selectedRoom, matches }) => {
     <S.Navbar matches={matches}>
       {selectedRoom && matches && (
         <S.BackIconWrapper>
-          <ArrowBackIcon />
+          <ArrowBackIcon onClick={goBack} />
         </S.BackIconWrapper>
       )}
 

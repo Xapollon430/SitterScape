@@ -49,14 +49,6 @@ const Inbox = () => {
       },
     });
 
-    socket.on("join_rooms", (rooms) => {
-      setRooms(rooms);
-    });
-
-    socket.on("received_message", (data) => {
-      setRooms(data);
-    });
-
     return () => socket.disconnect();
   }, []);
 
@@ -68,16 +60,37 @@ const Inbox = () => {
       if (desktopChat?.current)
         desktopChat.current.scrollTop = desktopChat?.current?.scrollHeight;
     }
+
+    socket.on("join_rooms", (rooms) => {
+      setRooms(rooms);
+    });
+
+    socket.on("received_message", (data) => {
+      const newRooms = rooms.map((room) => {
+        if (data.roomID !== room.roomID) {
+          return room;
+        } else {
+          return { ...room, chat: data.chat };
+        }
+      });
+
+      setRooms(newRooms);
+    });
   }, [rooms, selectedRoom]);
 
-  console.log(selectedRoom, rooms);
-  console.log(rooms.find((room) => room.roomID === selectedRoom));
+  const goBack = () => {
+    setSelectedRoom("");
+  };
 
   // Mobile View
   if (matches) {
     return (
       <S.InboxWrap>
-        <InboxHeader selectedRoom={selectedRoom} matches={matches} />
+        <InboxHeader
+          goBack={goBack}
+          selectedRoom={selectedRoom}
+          matches={matches}
+        />
         <S.Inbox>
           {selectedRoom === "" && rooms.length === 0 ? (
             <S.NoSelectedChat>
@@ -138,6 +151,7 @@ const Inbox = () => {
                   <SendIcon
                     fontSize="large"
                     style={{ fill: "white", marginLeft: "5px" }}
+                    onClick={() => sendMessage(selectedRoom, chatMessage)}
                   />
                 </S.IconWrapper>
               </S.ChatBoxBottom>

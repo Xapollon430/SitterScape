@@ -23,7 +23,7 @@ export const Inbox = styled.div`
   box-sizing: border-box;
   @media (max-width: 800px) {
     margin-top: 100px;
-    padding-bottom: 10px;
+
     height: calc(100vh - 100px);
     grid-template-columns: 1fr;
   }
@@ -59,19 +59,20 @@ export const ProfileBox = styled.div`
 
 export const ChatBox = styled.div`
   display: grid;
-  grid-gap: 15px;
-  overflow: scroll;
-  grid-template-rows: 1fr auto;
+
+  grid-template-rows: 1fr 60px;
 `;
 
 export const ChatBoxTop = styled.div`
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 10px;
-  overflow: scroll;
+  overflow-y: auto;
+
   padding: 10px 15px 0px 15px;
-  position: relative;
-  align-content: flex-end;
+  height: calc(100vh - 180px);
+
+  align-content: flex-start;
 `;
 
 export const RightBlue = styled.div`
