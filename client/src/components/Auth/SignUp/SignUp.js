@@ -3,7 +3,7 @@ import * as S from "../Auth.styles";
 import FormikInit from "./SignUpSchema";
 import Spinner from "../../common/Spinner";
 
-const SignUp = (state, next) => {
+const SignUp = ({ state, next }) => {
   const [errorFromServer, setErrorFromServer] = useState();
 
   const {

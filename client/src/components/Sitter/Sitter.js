@@ -80,7 +80,10 @@ const Sitter = () => {
             {sitterInfo.city + ", " + sitterInfo.state + ", " + sitterInfo.zip}
           </S.SitterAddress>
 
-          <S.StyledLink to="/inbox" state={{ to: sitterID }}>
+          <S.StyledLink
+            to="/inbox"
+            state={{ to: sitterID, name: sitterInfo.name }}
+          >
             <S.ContactButton color="primary" variant="contained">
               Contact Sitter
             </S.ContactButton>

@@ -7,7 +7,6 @@ import * as S from "./InboxHeader.styles";
 import * as Common from "../../common/commonUIKit";
 import * as actions from "../../../store/actions";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const InboxHeader = ({ selectedRoom, matches, goBack }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -34,18 +33,8 @@ const InboxHeader = ({ selectedRoom, matches, goBack }) => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
   return (
-    <S.Navbar matches={matches}>
-      {selectedRoom && matches && (
-        <S.BackIconWrapper>
-          <ArrowBackIcon onClick={goBack} />
-        </S.BackIconWrapper>
-      )}
-
-      {!matches && <S.BrandLink to="/">SitterScape</S.BrandLink>}
-
-      {!selectedRoom && matches && (
-        <S.BrandLink to="/">SitterScape</S.BrandLink>
-      )}
+    <S.Navbar>
+      <S.BrandLink to="/">SitterScape</S.BrandLink>
 
       <S.BurgerWrap>
         <S.StyledBurgerSpin

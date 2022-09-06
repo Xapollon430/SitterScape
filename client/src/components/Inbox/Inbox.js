@@ -4,14 +4,17 @@ import io from "socket.io-client";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
+import Spinner from "../common/Spinner";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useContext, useState, useRef } from "react";
 import { StoreContext } from "../../store/store";
 import { useLocation } from "react-router-dom";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 let socket;
 
 const Inbox = () => {
+  const [loadingRooms, setLoadingRooms] = useState(true);
   const [{ user }, dispatch] = useContext(StoreContext);
   const location = useLocation();
 
@@ -63,9 +66,11 @@ const Inbox = () => {
 
     socket.on("join_rooms", (rooms) => {
       setRooms(rooms);
+      setLoadingRooms(false);
     });
 
     socket.on("received_message", (data) => {
+      console.log(rooms, data);
       const newRooms = rooms.map((room) => {
         if (data.roomID !== room.roomID) {
           return room;
@@ -74,7 +79,12 @@ const Inbox = () => {
         }
       });
 
-      setRooms(newRooms);
+      // If it is the user's first chat
+      if (newRooms.length === 0) {
+        setRooms([data]);
+      } else {
+        setRooms(newRooms);
+      }
     });
   }, [rooms, selectedRoom]);
 
@@ -86,13 +96,20 @@ const Inbox = () => {
   if (matches) {
     return (
       <S.InboxWrap>
-        <InboxHeader
-          goBack={goBack}
-          selectedRoom={selectedRoom}
-          matches={matches}
-        />
-        <S.Inbox>
-          {selectedRoom === "" && rooms.length === 0 ? (
+        {selectedRoom === "" && (
+          <InboxHeader
+            goBack={goBack}
+            selectedRoom={selectedRoom}
+            matches={matches}
+          />
+        )}
+
+        <S.Inbox selectedRoom={selectedRoom} matches={matches}>
+          {loadingRooms ? (
+            <S.SpinnerWrapper>
+              <Spinner />
+            </S.SpinnerWrapper>
+          ) : selectedRoom === "" && rooms.length === 0 ? (
             <S.NoSelectedChat>
               <S.NoSelectedText>
                 Find local sitters and get in contact with them!
@@ -120,10 +137,22 @@ const Inbox = () => {
               })}
             </S.Profiles>
           ) : (
-            <S.ChatBox>
-              <S.ChatBoxTop ref={mobileChat}>
+            <S.ChatBox matches={matches}>
+              <S.BackIconWrapper onClick={goBack}>
+                <ArrowBackIcon />
+              </S.BackIconWrapper>
+              <S.SitterNameChat>
+                {rooms.find((room) => room.roomID === selectedRoom)?.name
+                  ? rooms.find((room) => room.roomID === selectedRoom)?.name
+                  : location?.state?.name}
+              </S.SitterNameChat>
+              <S.ChatBoxTop
+                ref={mobileChat}
+                selectedRoom={selectedRoom}
+                matches={matches}
+              >
                 {rooms.length > 0 &&
-                rooms.find((room) => room.roomID === selectedRoom) ? (
+                  rooms.find((room) => room.roomID === selectedRoom) &&
                   rooms
                     .find((room) => room.roomID === selectedRoom)
                     .chat.map(({ from, message }, index) => {
@@ -132,10 +161,7 @@ const Inbox = () => {
                       ) : (
                         <S.LeftGray key={index}>{message}</S.LeftGray>
                       );
-                    })
-                ) : (
-                  <span>send a message to person</span>
-                )}
+                    })}
               </S.ChatBoxTop>
               <S.ChatBoxBottom>
                 <TextField
@@ -168,24 +194,35 @@ const Inbox = () => {
       <InboxHeader />
       <S.Inbox>
         <S.Profiles>
-          {rooms.map((room, index) => {
-            return (
-              <S.ProfileBox
-                key={index}
-                onClick={() => setSelectedRoom(room.roomID)}
-              >
-                <S.SitterPicture src={room.profilePicture} />
-                <S.SitterName>{room.name}</S.SitterName>
-              </S.ProfileBox>
-            );
-          })}
+          {loadingRooms ? (
+            <S.SpinnerWrapper>
+              <Spinner />
+            </S.SpinnerWrapper>
+          ) : (
+            rooms.map((room, index) => {
+              return (
+                <S.ProfileBox
+                  key={index}
+                  onClick={() => setSelectedRoom(room.roomID)}
+                >
+                  <S.SitterPicture src={room.profilePicture} />
+                  <S.SitterName>{room.name}</S.SitterName>
+                </S.ProfileBox>
+              );
+            })
+          )}
         </S.Profiles>
 
         {selectedRoom !== "" ? (
           <S.ChatBox>
+            <S.SitterNameChat>
+              {rooms.find((room) => room.roomID === selectedRoom)?.name
+                ? rooms.find((room) => room.roomID === selectedRoom)?.name
+                : location?.state?.name}
+            </S.SitterNameChat>
             <S.ChatBoxTop ref={desktopChat}>
               {rooms.length > 0 &&
-              rooms.find((room) => room.roomID === selectedRoom) ? (
+                rooms.find((room) => room.roomID === selectedRoom) &&
                 rooms
                   .find((room) => room.roomID === selectedRoom)
                   .chat.map(({ from, message }, index) => {
@@ -194,10 +231,7 @@ const Inbox = () => {
                     ) : (
                       <S.LeftGray key={index}>{message}</S.LeftGray>
                     );
-                  })
-              ) : (
-                <span>send a message to person</span>
-              )}
+                  })}
             </S.ChatBoxTop>
             <S.ChatBoxBottom>
               <TextField

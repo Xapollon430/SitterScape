@@ -56,7 +56,7 @@ export default (setErrorFromServer, state, next = "/") => {
           })
         );
 
-        navigate(next, { replace: true, state });
+        navigate(next, state);
       } catch (e) {
         setErrorFromServer("Failed to login");
         resetForm();

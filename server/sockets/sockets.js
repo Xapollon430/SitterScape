@@ -26,14 +26,11 @@ const socketEndPoints = async (io, socket) => {
 
     const roomChat = allChatsAndUsers.find((room) => room.roomID === roomID);
 
-    io.in(roomID).emit("received_message", {
-      roomID: roomChat.roomID,
-      chat: roomChat.chat,
-    });
+    io.in(roomID).emit("received_message", roomChat);
   });
 
   socket.on("disconnect", (data) => {
-    console.log(`socket ${id}.`);
+    // console.log(`socket ${id}.`);
   });
 };
 
