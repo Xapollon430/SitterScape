@@ -23,6 +23,7 @@ const FilterModalContent = ({
 
   const toggleShowMoreFilter = () => setShowMoreFilter(!showMoreFilter);
 
+  console.log(values);
   return modalLoading ? (
     <Spinner />
   ) : (

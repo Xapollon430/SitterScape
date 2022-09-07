@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.7323a346.chunk.js",
-    "main.js.map": "/static/js/main.7323a346.chunk.js.map",
+    "main.js": "/static/js/main.e81094f7.chunk.js",
+    "main.js.map": "/static/js/main.e81094f7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a06e69b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.a06e69b5.js.map",
-    "static/js/2.c2a183be.chunk.js": "/static/js/2.c2a183be.chunk.js",
-    "static/js/2.c2a183be.chunk.js.map": "/static/js/2.c2a183be.chunk.js.map",
+    "static/js/2.de1022db.chunk.js": "/static/js/2.de1022db.chunk.js",
+    "static/js/2.de1022db.chunk.js.map": "/static/js/2.de1022db.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.c2a183be.chunk.js.LICENSE.txt": "/static/js/2.c2a183be.chunk.js.LICENSE.txt",
+    "static/js/2.de1022db.chunk.js.LICENSE.txt": "/static/js/2.de1022db.chunk.js.LICENSE.txt",
     "static/media/aboutMe.a49afe2e.jpg": "/static/media/aboutMe.a49afe2e.jpg",
     "static/media/background.99ad8523.jpg": "/static/media/background.99ad8523.jpg",
     "static/media/petsitter.ae3c789e.jpg": "/static/media/petsitter.ae3c789e.jpg",
@@ -17,7 +17,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.a06e69b5.js",
-    "static/js/2.c2a183be.chunk.js",
-    "static/js/main.7323a346.chunk.js"
+    "static/js/2.de1022db.chunk.js",
+    "static/js/main.e81094f7.chunk.js"
   ]
 }

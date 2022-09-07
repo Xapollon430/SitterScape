@@ -29,7 +29,6 @@ export const BrandWrap = styled.div`
 export const AuthWrap = styled.div`
   display: grid;
   width: 400px;
-  height: ${(props) => (props.isLoginOpen ? "300px" : "400px")};
   justify-self: center;
   margin: 50px 0px;
   background-color: white;
@@ -61,7 +60,7 @@ export const Form = styled.form`
   display: grid;
   width: 90%;
   margin: 10px auto 30px auto;
-  grid-gap: 3px;
+  grid-gap: 10px;
   text-align: center;
 `;
 

@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "../Auth.styles";
 import FormikInit from "./LoginSchema";
 import Spinner from "../../common/Spinner";
+import { TextField } from "@material-ui/core";
 
 const Login = ({ state, next }) => {
   const [errorFromServer, setErrorFromServer] = React.useState();
@@ -20,28 +21,26 @@ const Login = ({ state, next }) => {
     <Spinner />
   ) : (
     <S.Form onSubmit={handleSubmit}>
-      {errors.email && touched.email && (
-        <S.ErrorText>{errors.email}</S.ErrorText>
-      )}
-      <S.Input
-        error={errors.email && touched.email}
+      <TextField
         value={values.email}
         onChange={handleChange}
-        onBlur={handleBlur}
         name="email"
-        placeholder="Email"
+        label="Email"
+        variant="outlined"
+        error={errors.email && touched.email ? true : false}
+        helperText={errors.email && touched.email && errors.email}
+        onBlur={handleBlur}
       />
 
-      {errors.password && touched.password && (
-        <S.ErrorText>{errors.password}</S.ErrorText>
-      )}
-      <S.Input
-        error={errors.password && touched.password}
+      <TextField
         value={values.password}
         onChange={handleChange}
-        onBlur={handleBlur}
         name="password"
-        placeholder="Password"
+        label="Password"
+        variant="outlined"
+        error={errors.password && touched.password ? true : false}
+        helperText={errors.password && touched.password && errors.password}
+        onBlur={handleBlur}
         type="password"
       />
       {errorFromServer && <S.ErrorText>{errorFromServer}</S.ErrorText>}
