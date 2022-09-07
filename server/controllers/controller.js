@@ -1,5 +1,6 @@
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
+const CryptoJS = require("crypto-js");
 const {
   uploadProfilePicture,
 } = require("../aws-s3-upload/uploadProfilePicture");
@@ -25,6 +26,10 @@ const signUp = async (req, res) => {
     const userExists = await User.findOne({ email: signUpData.email });
     if (userExists) return res.status(409).send("Email is already in use!");
 
+    signUpData.password = CryptoJS.SHA512(signUpData.password);
+
+    console.log(signUpData.password.toString());
+
     const newUser = new User(signUpData);
     await newUser.save();
 
@@ -49,7 +54,14 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     let foundUser = await User.findOne({ email });
-    if (!foundUser || password !== foundUser.password) {
+
+    console.log(foundUser.password);
+    console.log(CryptoJS.SHA512(password).toString());
+
+    if (
+      !foundUser ||
+      CryptoJS.SHA512(password).toString() !== foundUser.password
+    ) {
       return res.status(401).send("Wrong password or email!");
     }
     let { refreshToken, accessToken } = foundUser.generateTokens();
