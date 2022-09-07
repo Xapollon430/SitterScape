@@ -72,13 +72,17 @@ const App = () => {
           path="/inbox"
           element={<PrivateRoute path="/inbox" render={() => <Inbox />} />}
         />
+
         <Route
           path="/profile"
           element={<PrivateRoute path="/profile" render={() => <Profile />} />}
-        >
-          <Route element={<PersonalInfo />} />
-          <Route path="sitter" element={<SitterInfo />} />
-        </Route>
+        />
+        <Route
+          path="/profile/sitter"
+          element={
+            <PrivateRoute path="/profile/sitter" render={() => <Profile />} />
+          }
+        />
 
         <Route path="*" element={<Landing />} />
       </Routes>

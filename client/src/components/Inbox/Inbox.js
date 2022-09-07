@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Spinner from "../common/Spinner";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import DefaultUser from "../../images/default-user.png";
 import { useEffect, useContext, useState, useRef } from "react";
 import { StoreContext } from "../../store/store";
 import { useLocation } from "react-router-dom";
@@ -70,21 +71,19 @@ const Inbox = () => {
     });
 
     socket.on("received_message", (data) => {
-      console.log(rooms, data);
-      const newRooms = rooms.map((room) => {
-        if (data.roomID !== room.roomID) {
-          return room;
-        } else {
-          return { ...room, chat: data.chat };
-        }
-      });
-
-      // If it is the user's first chat
-      if (newRooms.length === 0) {
-        setRooms([data]);
-      } else {
-        setRooms(newRooms);
+      const indexOfRoomToUpdate = rooms
+        .map((room) => room.roomID)
+        .indexOf(selectedRoom);
+      // If it is a new chat, just add it
+      if (indexOfRoomToUpdate === -1) {
+        setRooms([...rooms, data]);
+        return;
       }
+
+      const newRooms = [...rooms];
+      newRooms[indexOfRoomToUpdate].chat = data.chat;
+
+      setRooms(newRooms);
     });
   }, [rooms, selectedRoom]);
 
@@ -130,14 +129,14 @@ const Inbox = () => {
                     key={index}
                     onClick={() => setSelectedRoom(room.roomID)}
                   >
-                    <S.SitterPicture src={room.profilePicture} />
+                    <S.SitterPicture src={room.profilePicture || DefaultUser} />
                     <S.SitterName>{room.name}</S.SitterName>
                   </S.ProfileBox>
                 );
               })}
             </S.Profiles>
           ) : (
-            <S.ChatBox matches={matches}>
+            <S.ChatBox matches={matches} selectedRoom={selectedRoom}>
               <S.BackIconWrapper onClick={goBack}>
                 <ArrowBackIcon />
               </S.BackIconWrapper>
@@ -205,7 +204,7 @@ const Inbox = () => {
                   key={index}
                   onClick={() => setSelectedRoom(room.roomID)}
                 >
-                  <S.SitterPicture src={room.profilePicture} />
+                  <S.SitterPicture src={room.profilePicture || DefaultUser} />
                   <S.SitterName>{room.name}</S.SitterName>
                 </S.ProfileBox>
               );

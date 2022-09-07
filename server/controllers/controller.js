@@ -6,7 +6,6 @@ const {
 const {
   normalizeSitterFilterData,
   getLatAndLangGoogleApi,
-  getLatAndLangPositionStackApi,
   filterSitterByLocation,
 } = require("../utils/helpers");
 const {

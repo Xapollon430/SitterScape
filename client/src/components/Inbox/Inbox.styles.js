@@ -63,8 +63,11 @@ export const ProfileBox = styled.div`
 `;
 
 export const ChatBox = styled.div`
+  grid-gap: 5px;
   display: grid;
   grid-template-rows: 70px 1fr 60px;
+  margin-bottom: ${({ matches, selectedRoom }) =>
+    matches && selectedRoom ? "100px" : "0px"};
 `;
 
 export const ChatBoxBack = styled.div``;
@@ -77,7 +80,7 @@ export const ChatBoxTop = styled.div`
 
   padding: 10px 15px 0px 15px;
   height: ${({ matches, selectedRoom }) =>
-    matches && selectedRoom ? "calc(100vh - 150px)" : "calc(100vh - 230px)"};
+    matches && selectedRoom ? "calc(100vh - 250px)" : "calc(100vh - 230px)"};
   align-content: flex-start;
 `;
 

@@ -1,6 +1,8 @@
 import { Fragment } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { StoreContext } from "../../store/store";
+
 import {
   Services,
   Per_X,
@@ -34,6 +36,7 @@ const decideSmoker = (smokes) => {
 };
 
 const Sitter = () => {
+  const [{ user }] = useContext(StoreContext);
   const { id: sitterID } = useParams();
   const [sitterInfo, setSitterInfo] = useState({});
   const [extraAboutMe, setExtraAboutMe] = useState(false);
@@ -80,14 +83,16 @@ const Sitter = () => {
             {sitterInfo.city + ", " + sitterInfo.state + ", " + sitterInfo.zip}
           </S.SitterAddress>
 
-          <S.StyledLink
-            to="/inbox"
-            state={{ to: sitterID, name: sitterInfo.name }}
-          >
-            <S.ContactButton color="primary" variant="contained">
-              Contact Sitter
-            </S.ContactButton>
-          </S.StyledLink>
+          {user?._id !== sitterID && (
+            <S.StyledLink
+              to="/inbox"
+              state={{ to: sitterID, name: sitterInfo.name }}
+            >
+              <S.ContactButton color="primary" variant="contained">
+                Contact Sitter
+              </S.ContactButton>
+            </S.StyledLink>
+          )}
 
           {matches && (
             <S.ServicesWrap mobile>

@@ -1,5 +1,5 @@
 // Normally MongoDB Atlas is a good place to manage user data
-// but you not all my user data is there (S3 profile pictures)]
+// but not all my user data is there (S3 profile pictures)]
 // this script is to remove a user from the DB and that users picture
 // depending on the option you can also remove all users.
 // Run it from the .env directory as the dotenv needs to see that.
@@ -14,7 +14,6 @@ const {
 } = require("../aws-s3-upload/uploadProfilePicture");
 
 const mongoose = require("mongoose");
-const { exists } = require("../database/models/User.js");
 
 const arg = process.argv[2];
 
