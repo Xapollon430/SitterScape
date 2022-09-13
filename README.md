@@ -1,5 +1,4 @@
 # SitterScape
-iiiitest
 of SitterScape.com -- https://sitterscape.com/
 
 SitterScape.com is an innovative platform to connect pet sitters and owners.
