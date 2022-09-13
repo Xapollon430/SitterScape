@@ -167,7 +167,6 @@ const Inbox = () => {
                   placeholder="Type a message..."
                   variant="outlined"
                   size="medium"
-                  multiline
                   value={chatMessage}
                   inputProps={{ maxLength: 500 }}
                   onChange={(e) => setChatMessage(e.target.value)}
@@ -232,12 +231,16 @@ const Inbox = () => {
                     );
                   })}
             </S.ChatBoxTop>
-            <S.ChatBoxBottom>
+            <S.ChatBoxBottom
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendMessage(selectedRoom, chatMessage);
+              }}
+            >
               <TextField
                 placeholder="Type a message..."
                 variant="outlined"
                 size="medium"
-                multiline
                 value={chatMessage}
                 inputProps={{ maxLength: 500 }}
                 onChange={(e) => setChatMessage(e.target.value)}
@@ -246,7 +249,7 @@ const Inbox = () => {
                 variant="contained"
                 endIcon={<SendIcon />}
                 size="small"
-                onClick={() => sendMessage(selectedRoom, chatMessage)}
+                type="submit"
               >
                 Send
               </Button>

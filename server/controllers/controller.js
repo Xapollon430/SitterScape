@@ -154,11 +154,12 @@ const updateSitterInfo = async (req, res) => {
 
 // Given filter data through URL Query, we will first find sitters
 // by querying the database without the location, we will use location to filter
-// afterwards with 200 iq math. Currently doesnt support paging, returns every
+// afterwards with 200 iq math (pythagorean theorem). Currently doesnt support paging, returns every
 // matching (by location and preference) sitter.
 const searchSitters = async (req, res) => {
   try {
     const {
+      pageNumber,
       address,
       nwLatitude,
       nwLongitude,
@@ -191,6 +192,14 @@ const searchSitters = async (req, res) => {
         seLongitude,
       }
     );
+
+    const totalPageCount = Math.floor(sittersFoundWithLocation.length / 10);
+    console.log(totalPageCount);
+
+    // const paginatedSitters = paginateSitters(
+    //   sittersFoundWithLocation,
+    //   pageNumber
+    // );
 
     // Sanitizing the data by only keeping the price of the asked service
     const sittersWithPrice = sittersFoundWithLocation.map((sitter) => {

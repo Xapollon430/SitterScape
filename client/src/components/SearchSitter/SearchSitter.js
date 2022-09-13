@@ -12,6 +12,8 @@ import TuneIcon from "@material-ui/icons/Tune";
 import MapIcon from "@material-ui/icons/Map";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Spinner from "../common/Spinner";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const DEFAULT_ZOOM = 11;
 
@@ -235,6 +237,14 @@ const SearchSitter = () => {
               );
             })
           )}
+          <Stack marginY={1} alignItems="center" spacing={2}>
+            <Pagination
+              count={10}
+              shape="circular"
+              variant="outlined"
+              color="primary"
+            />
+          </Stack>
         </S.ProfilesWrap>
         {showMap && (
           <S.MapWrap>
