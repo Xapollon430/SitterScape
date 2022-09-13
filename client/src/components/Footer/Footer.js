@@ -50,7 +50,7 @@ const Footer = memo(() => {
             City: Mc Lean <br />
             State: Virginia <br />
             Zip Code: 22182 <br />
-            Phone Number: 703-589-3760
+            Email Address: sitterscape@gmail.com
           </S.FooterText>
         </S.Contact>
         <S.NewsLetter>
