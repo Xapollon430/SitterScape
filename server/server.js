@@ -49,10 +49,10 @@ app.use(
 
 app.use("/api", Routes);
 
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use(express.static(path.resolve(__dirname, "./build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve("../client/build/index.html"));
+  res.sendFile(path.resolve("./build/index.html"));
 });
 
 httpServer.listen(PORT, () => {
